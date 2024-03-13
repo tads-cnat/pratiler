@@ -45,6 +45,18 @@ flowchart TD
 ![Tela com a estante do usuário](wireframes-pratiler/Estante.png)
 
 ## J. Tela 10: Livros populares
+![Tela com livros populares](wireframes-pratiler/Livros-populares.png)
 
+## K. Tela 11: Seguindo
+![Tela com comentários de usuários que o usuário segue](wireframes-pratiler/Seguindo.png)
 
+# Outras telas
+## L. Tela 12: Informações de um livro
+![Tela com informações de um livro específico](wireframes-pratiler/Informações-do-livro.png)
+
+## M. Tela 13: Sobre nós
+![Tela sobre o site](wireframes-pratiler/Sobre.png)
+
+## N. Tela 14: Tela de cadastro
+![Tela de cadastro de usuário](wireframes-pratiler/Cadastro.png)
 
