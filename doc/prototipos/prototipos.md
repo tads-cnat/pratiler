@@ -14,10 +14,12 @@ flowchart TD
     B --- F[Página 3]
 ```
 
-## A. Tela 1: Index
-
-> Obs. Substituir pela captura das imagens, sejam elas provenientes do Figma (anexar também o link para o Figma) ou já em HTML e CSS...
+## A. Tela 1: Home
+![Página de home](wireframes-pratiler/Home.png)
 
 ## B. Tela 2: Login
+![Página de login](wireframes-pratiler/Login.png)
 
-> Obs. Substituir pela captura das imagens, sejam elas provenientes do Figma (anexar também o link para o Figma) ou já em HTML e CSS...
+## C. Tela 3: Meu perfil/perfil de usuário - atualizações recentes
+![Atualizações recentes - 1](wireframes-pratiler/Meu perfil - atualizações recentes - 1.png)
+![Atualizações recentes - 2](wireframes-pratiler/Meu perfil - atualizações recentes - 2.png)
