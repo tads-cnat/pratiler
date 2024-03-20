@@ -51,10 +51,22 @@ flowchart TD
 ## K. Tela 11: Seguindo
 ![Tela com comentários de usuários que o usuário segue](wireframes-pratiler/Seguindo.png)
 
+# Telas de pesquisa
+## L. Tela 12: Pesquisando
+![Pesquisando na barra de pesquisa](wireframes-pratiler/Pesquisando.png)
+
+## M. Tela 13: Ver mais da pesquisa - Livros
+![Tela com livros, como resultado do ver mais](wireframes-pratiler/PesquisaLivros.png)
+
+## N. Tela 14: Ver mais da pesquisa - Usuários
+![Tela com usuários, como resultado do ver mais](wireframes-pratiler/PesquisaUsuarios.png)
+
 # Outras telas
-## L. Tela 12: Informações de um livro
+## O. Tela 15: Informações de um livro
 ![Tela com informações de um livro específico](wireframes-pratiler/Informações-do-livro.png)
 
-## M. Tela 13: Sobre nós
+
+## P. Tela 16: Sobre nós
 ![Tela sobre o site](wireframes-pratiler/Sobre.png)
+
 
