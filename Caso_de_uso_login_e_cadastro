@@ -1,0 +1,36 @@
+Caso de uso "Login e Cadastro":
+
+Fluxo Principal:
+	1. [IN] Usuário acesso o sistema web PratiLer;
+	2. [OUT] Sistema exibe tela de login e cadastro;
+	3. [IN] Usuário realiza login com as credenciais;
+	4. [OUT] Sistema identifica credenciais corretas e exibe tela do feed e atualizações;
+	
+Fluxo alternativo (Login incorreto):
+	1. [IN] Usuário acesso o sistema web PratiLer;
+	2. [OUT] Sistema exibe tela de login e cadastro;
+	3. [IN] Usuário realiza login com as credenciais;
+	4. [OUT] Sistema percebe inconsistência das informações, exibindo erro "Usuário ou senha incorretos";
+	5. [IN] Usuário reenvia informações de login, agora corretas;
+	6. [OUT] Sistema aceita e informa conformidade, exibindo feed;
+	
+Fluxo alternativo (Recuperação de senha):
+	1. [IN] Usuário acesso o sistema web PratiLer;
+	2. [OUT] Sistema exibe tela de login e cadastro;
+	3. [IN] Usuário realiza login com as credenciais;
+	4. [OUT] Sistema percebe inconsistência das informações, exibindo erro "Usuário ou senha incorretos";
+	5. [IN] Usuário seleciona "recuperação de senha";
+	6. [OUT] Sistema solicita que acesse caixa email e continue por link enviado para atualizar senha;
+	7. [IN] Usuário realiza passo, acessa tela de atualização;
+	8. [OUT] Sistema informa sucesso e redireciona usuário para tela de login;
+	9. [IN] Usuário realiza login com nova credencial e obtém sucesso acessando ao feed;
+
+Fluxo alternativo (Cadastro):
+	1. [IN] Usuário acesso o sistema web PratiLer;
+	2. [OUT] Sistema exibe tela de login e cadastro;
+	3. [IN] Por ser primeiro acesso, usuário solicita cadastro;
+	4. [OUT] Sistema exibe formulário solicitando informações pessoais como nome, email e informações bibliográficas como gêneros e autores de preferência para exibir no feed;
+	5. [IN] Usuário fornece tais informações;
+	6. [OUT] Sistema envia email de confirmação e boas vindas;
+	7. [IN] Usuário confirma email e retornar para acessar o feed;
+	8. [OUT] Sistema exibe opções para pesquisar novos perfis para seguir, desafios novos da comunidade para entrar e o feed para visualizar as novidades gerais da plataforma;
