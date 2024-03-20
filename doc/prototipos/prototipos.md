@@ -17,8 +17,9 @@ flowchart TD
 ## A. Tela 1: Home
 ![Página de home](wireframes-pratiler/Home.png)
 
-## B. Tela 2: Login
+## B. Tela 2: Login e cadastro
 ![Página de login](wireframes-pratiler/Login.png)
+![Tela de cadastro de usuário](wireframes-pratiler/Cadastro.png)
 
 # Telas para o perfil do usuário
 ## C. Tela 3: Meu perfil - atualizações recentes
@@ -56,7 +57,4 @@ flowchart TD
 
 ## M. Tela 13: Sobre nós
 ![Tela sobre o site](wireframes-pratiler/Sobre.png)
-
-## N. Tela 14: Tela de cadastro
-![Tela de cadastro de usuário](wireframes-pratiler/Cadastro.png)
 
