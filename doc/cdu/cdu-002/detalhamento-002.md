@@ -23,6 +23,8 @@
 &emsp;&emsp;Nestas postagens, os leitores que visualizarem, podem curtir o comentário, ou comentar sobre o comentário, servindo como uma resposta ao comentário, como um meio de socialização.
 
 ## Fluxo Alternativo IV - Página "Perfil"
+&emsp;&emsp;Ao clicar no ícone que redireciona ao perfil do próprio leitor, ele poderá visualizar o seu username, sua biografia, foto de perfil e capa do perfil. Além disso, é informado também a quantidade de seguidores que o leitor possui e a quantidade de leitores que ele segue.
+&emsp;&emsp;Também terá a opção de acessar as configurações e alterar essas informações sobre seu perfil.
 
 ## Diagrama de Interação (Sequência ou Comunicação)
 
