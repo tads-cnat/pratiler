@@ -17,10 +17,17 @@ flowchart TD
 3 --- 9[Livros Populares]
 3 --- 10[Seguindo]
 
-8 --- 11[Postagens]
-8 --- 12[Lista de Livros]
-8 --- 13[Resenhas]
+8 --- 11[Atualizações recentes]
+8 --- 12[Listas de Livros]
+8 --- 13[Lista de resenhas]
 8 --- 14[Conquistas]
+13 --- 15[Resenha]
+
+16[Resultados da pesquisa] --- 17[Livros - ver mais]
+16 --- 18[Usuários - ver mais]
+
+19[Livro - detalhes]
+
 ```
 
 ## A. Tela 1: Home
