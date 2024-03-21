@@ -10,13 +10,12 @@ flowchart TD
 1 --- 3[Login]
 1 --- 4[Sobre Nós]
 
-3 --- 5[Feed]
 
-5 --- 6[Desafios]
-5 --- 7[Minha Estante]
-5 --- 8[Perfil]
-5 --- 9[Livros Populares]
-5 --- 10[Seguindo]
+3 --- 6[Desafios]
+3 --- 7[Minha Estante]
+3 --- 8[Perfil]
+3 --- 9[Livros Populares]
+3 --- 10[Seguindo]
 
 8 --- 11[Postagens]
 8 --- 12[Lista de Livros]
