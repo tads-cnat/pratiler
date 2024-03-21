@@ -6,12 +6,22 @@
 
 ```mermaid
 flowchart TD
-    A[Index] --- B[Login]
-    A --- C[Cadastro]
-    C --- B
-    B --- D[Página 1]
-    B --- E[Página 2]
-    B --- F[Página 3]
+1[Home] --- 2[Cadastro]
+1 --- 3[Login]
+1 --- 4[Sobre Nós]
+
+3 --- 5[Feed]
+
+5 --- 6[Desafios]
+5 --- 7[Minha Estante]
+5 --- 8[Perfil]
+5 --- 9[Livros Populares]
+5 --- 10[Seguindo]
+
+8 --- 11[Postagens]
+8 --- 12[Lista de Livros]
+8 --- 13[Resenhas]
+8 --- 14[Conquistas]
 ```
 
 ## A. Tela 1: Home
