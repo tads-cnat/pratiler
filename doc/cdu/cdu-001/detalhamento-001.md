@@ -1,18 +1,25 @@
-# CDU001. Gerenciar desafios 
+# CDU001. Gerenciamento do moderador
 
 - **Ator principal**: Moderador
 - **Atores secundários**:	 
 - **Resumo**: Moderador poderá editar, adicionar, ou excluir desafios do sistema
 - **Pré-condição**: Estar autenticado no sistema
-- **Pós-Condição**: A lista de desafios deve estar atualizada de acordo com o gerenciamento do moderador
+- **Pós-Condição**: A lista de desafios e de livros deve estar atualizada de acordo com o gerenciamento do moderador
 
 ## Fluxo Principal
-&emsp;&emsp;O moderador vai até a página de desafios e acessa a funcionalidade de editar desafios, levando ele à página de edição, podendo criar novos desafios, apagar desafios, ou então editar informações de desafios já lançads no sistema.<br>
+&emsp;&emsp;O moderador será direcionado à uma página em que os desafios estão listados. Nessa página, ele poderá acessa também outra página em que são listados os livros que foram registrados no sistema.<br>
+&emsp;&emsp;Na página em que o moderador se encontrá, ele poderá acessar a página para editar um desafio ou um livro específicos.<br>
 &emsp;&emsp;Após terminar a edição, irá salvá-las e as alterações feitas serão salvas no sistema de acordo com o que o moderador editou.
 
-## Fluxo Alternativo I - Editar desafio específico
-&emsp;&emsp;O moderador na página de desafios, poderá selecionar um desafio em específico para gerenciar, tendo uma funcionalidade de editar desafio mais próxima, indicando que a edição será feita sob aquele desafio em específico.<br>
-&emsp;&emsp;Após terminar a edição, irá salvá-las e as alterações feitas serão salvas no sistema de acordo com o que o moderador editou, podendo selecionar outro desafio para editar se for de sua preferência.
+## Fluxo Alternativo I - Editar desafios
+&emsp;&emsp;O moderador terá acesso à uma página que exibe os livros que estão registrados no sistema. Ele poderá clicar em um dos livros para editar ou deletar.<br>
+&emsp;&emsp;Haverá, também, um botão em que ele poderá adicionar novos livros, inserindo informações como título, sinopse, autor e quantidade de páginas.
+&emsp;&emsp;O moderador deve salvar as alterações depois de terminá-las, para que sejam registradas no sistema.
+
+## Fluxo Alternativo II - Editar livros
+&emsp;&emsp;O moderador terá acesso à uma página que exibe os livros que estão registrados no sistema. Ele poderá clicar em um dos livros para editar ou deletar.<br>
+&emsp;&emsp;Haverá, também, um botão em que ele poderá adicionar novos livros, inserindo informações como título, sinopse, autor e quantidade de páginas.
+&emsp;&emsp;O moderador deve salvar as alterações depois de terminá-las, para que sejam registradas no sistema.
 
 ## Fluxo de Exceção I - Alterações não salvas
 &emsp;&emsp;Após terminar as alterações e o moderador tentar sair da página, ele será notificado que suas alterações feitas não foram salvas e lhe dará a opção de salvar, ou sair sem salvar.<br>
