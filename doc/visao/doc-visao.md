@@ -61,21 +61,22 @@ Temos como objetivo neste projeto o incentivo da leitura para o Brasil atual, le
 
 | Código | Nome | Descrição | Prioridade |
 | - | - | - | :-: |
-| F01 | Efetuar login usuário | O usuário consegue acesso ao sistema através do login | <kbd>Alta</kbd> |
-| F02 | Efetuar cadastrar | O usuário pode se cadastrar clicando em um botão de cadastro e inserindo dados (nome, e-mail, senha etc) | <kbd>Alta</kbd> |
-| F03 | Realizar comentários sobre postagens e curtir comentários | O usuário pode deixar um comentário sobre qualquer postagem ou curtí-la | <kbd>Alta</kbd> |
-| F04 | Fazer postagens e resenhas | O usuário pode fazer postagens ou resenhas no feed sobre seus livros. Os comentários devem ser mais curtos, então caso o usuário deseje fazer uma análise mais complexa, o ideal seria fazer uma resenha, que possuiria título, texto e, talvez, imagens | <kbd>Alta</kbd> |
-| F05 | Seguir outros usuários | O usuário pode seguir outros usuários a fim de facilitar o acesso às postagens do usuário seguido | <kbd>Média</kbd> |
-| F06 | Registrar livro | O usuário pode registrar os livros que começou ou quer começar a ler a fim de gerenciar a leitura sobre ele, inserindo o nome do livro e quantidade de páginas | <kbd>Alta</kbd> |
-| F07 | Atualizar número de páginas lidas | Ao continuar lendo, o usuário atualiza em “seus livros” o número de páginas do livro que está lendo | <kbd>Alta</kbd> |
-| F08 | Entrar em desafios de leitura | O usuário pode entrar em desafios de leitura abertos com uma meta para completar em um determinado tempo. Um exemplo de um desses desafios seria manter a leitura contínua por uma certa quantidade de dias. Outro exemplo pode se referir à quantidade de páginas ou livros que o usuário leu | <kbd>Média</kbd> |
-| F09 | Efetuar logout usuário | O usuário deixa de ter acesso ao sistema até o seu próximo login | <kbd>Alta</kbd> |
-| F10 | Pesquisar usuários, livros e autores | O usuário pode pesquisar (em uma área de pesquisa) sobre usuários, livros e autores já cadastrados no sistema | <kbd>Média</kbd> |
-| F11 | Cadastrar desafio de leitura | O administrador cadastra um novo desafio para os usuários leitores do sistema inserindo o nome do desafio e descrição | <kbd>Baixa</kbd> |
-| F12 | Adicionar livros à lista de “livros para ler” | O usuário irá adicionar livros à uma lista que ele deseja ler futuramente de forma manual | <kbd>Alta</kbd> |
-| F13 | Adicionar comentários finais e uma nota a um livro lido | Ao terminar de ler um livro, o usuário pode adicionar uma nota e dizer o que achou do livro. Caso ele queira fazer um texto mais longo do que um comentário, ele terá que fazer uma resenha. O usuário pode também adicionar um livro que ele já leu para avaliar, sem necessidade de monitorar pelo app | <kbd>Média</kbd> |
-| F14 | Editar informações do perfil do usuário | O usuário pode editar as informações sobre o seu perfil. Através do botão de configurações | <kbd>Baixa</kbd> |
-| F15 | Adicionar livros à leituras recentes | O usuário terá uma lista de leituras que ele está realizando. Ao invés de adicionar o livro à lista de desejo, ele pode adicionar o livro diretamente à lista de leituras recentes | <kbd>Alta</kbd> |
+| F01 | Efetuar login de usuário | O leitor e o moderador conseguem acesso ao sistema através do login | <kbd>Alta</kbd> |
+| F02 | Efetuar cadastro de usuário | O visitante pode se cadastrar clicando em um botão de cadastro e inserindo dados (nome, e-mail, senha etc) | <kbd>Alta</kbd> |
+| F03 | Realizar comentários sobre postagens e curtir comentários | O leitor pode deixar um comentário sobre qualquer postagem ou curtí-la | <kbd>Alta</kbd> |
+| F04 | Fazer postagens e resenhas | O leitor pode fazer postagens ou resenhas no feed sobre seus livros. Os comentários devem ser mais curtos, então caso o leitor deseje fazer uma análise mais complexa, o ideal seria fazer uma resenha, que possuiria título, texto e, talvez, imagens | <kbd>Alta</kbd> |
+| F05 | Seguir outros leitores | O leitor pode seguir outros usuários a fim de facilitar o acesso às postagens do usuário seguido | <kbd>Média</kbd> |
+| F06 | Registrar livro | O leitor pode registrar os livros que começou ou quer começar a ler a fim de gerenciar a leitura sobre ele, inserindo o nome do livro e quantidade de páginas | <kbd>Alta</kbd> |
+| F07 | Atualizar número de páginas lidas | Ao continuar lendo, o leitor atualiza em “seus livros” o número de páginas do livro que está lendo | <kbd>Alta</kbd> |
+| F08 | Entrar em desafios de leitura | O leitor pode entrar em desafios de leitura abertos com uma meta para completar em um determinado tempo. Um exemplo de um desses desafios seria manter a leitura contínua por uma certa quantidade de dias. Outro exemplo pode se referir à quantidade de páginas ou livros que o usuário leu | <kbd>Média</kbd> |
+| F09 | Efetuar logout usuário | O leitor e o moderador deixam de ter acesso ao sistema até o seu próximo login | <kbd>Alta</kbd> |
+| F10 | Pesquisar leitores e livros | O leitor pode pesquisar (em uma área de pesquisa) sobre leitores e livros já cadastrados no sistema | <kbd>Média</kbd> |
+| F11 | Cadastrar desafio de leitura | O moderador cadastra um novo desafio para os usuários leitores do sistema inserindo o nome do desafio e descrição | <kbd>Baixa</kbd> |
+| F12 | Adicionar livros à lista de “livros para ler” | O leitor irá adicionar livros à uma lista que ele deseja ler futuramente de forma manual | <kbd>Alta</kbd> |
+| F13 | Adicionar comentários finais e uma nota a um livro lido | Ao terminar de ler um livro, o leitor pode adicionar uma nota e dizer o que achou do livro. Caso ele queira fazer um texto mais longo do que um comentário, ele terá que fazer uma resenha. O leitor pode também adicionar um livro que ele já leu para avaliar, sem necessidade de monitorar pelo app | <kbd>Média</kbd> |
+| F14 | Editar informações do perfil do leitor | O leitor pode editar as informações sobre o seu perfil. Através do botão de configurações | <kbd>Baixa</kbd> |
+| F15 | Adicionar livros à leituras recentes | O leitor terá uma lista de leituras que ele está realizando. Ao invés de adicionar o livro à lista de desejo, ele pode adicionar o livro diretamente à lista de leituras recentes | <kbd>Alta</kbd> |
+| F16 | Adicionar livros ao sistema | O moderador poderá adicionar livros ao sistema, informando seus dados, como número de páginas, autor, título e sinopse |  <kbd>Alta</kbd> | 
 ## 9. Requisitos não-funcionais
 
 | Código              |  Nome               |          Descrição  |  Categoria          |  Classificação      |

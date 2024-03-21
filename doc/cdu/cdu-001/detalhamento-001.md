@@ -1,28 +1,22 @@
-# CDU001. Nome... 
+# CDU001. Gerenciar desafios 
 
-- **Ator principal**: ...
-- **Atores secundários**: ...	 
-- **Resumo**: ...
-- **Pré-condição**: ...
-- **Pós-Condição**: ...
+- **Ator principal**: Moderador
+- **Atores secundários**:	 
+- **Resumo**: Moderador poderá editar, adicionar, ou excluir desafios do sistema
+- **Pré-condição**: Estar autenticado no sistema
+- **Pós-Condição**: A lista de desafios deve estar atualizada de acordo com o gerenciamento do moderador
 
 ## Fluxo Principal
-| Ações do ator | Ações do sistema |
-| :-----------------: | :-----------------: | 
-| 1 - ... | |  
-| | 2 - ... | 
+&emsp;&emsp;O moderador vai até a página de desafios e acessa a funcionalidade de editar desafios, levando ele à página de edição, podendo criar novos desafios, apagar desafios, ou então editar informações de desafios já lançads no sistema.<br>
+&emsp;&emsp;Após terminar a edição, irá salvá-las e as alterações feitas serão salvas no sistema de acordo com o que o moderador editou.
 
-## Fluxo Alternativo I - ...
-| Ações do ator | Ações do sistema |
-| :-----------------: |:-----------------: | 
-| 1.1 - ... | |  
-| | 1.2 - ... |
+## Fluxo Alternativo I - Editar desafio específico
+&emsp;&emsp;O moderador na página de desafios, poderá selecionar um desafio em específico para gerenciar, tendo uma funcionalidade de editar desafio mais próxima, indicando que a edição será feita sob aquele desafio em específico.<br>
+&emsp;&emsp;Após terminar a edição, irá salvá-las e as alterações feitas serão salvas no sistema de acordo com o que o moderador editou, podendo selecionar outro desafio para editar se for de sua preferência.
 
-## Fluxo Alternativo II - ...
-| Ações do ator | Ações do sistema |
-| :-----------------: | :-----------------: | 
-| 2.1 - ... | |  
-| | 2.2 - ... |  
+## Fluxo de Exceção I - Alterações não salvas
+&emsp;&emsp;Após terminar as alterações e o moderador tentar sair da página, ele será notificado que suas alterações feitas não foram salvas e lhe dará a opção de salvar, ou sair sem salvar.<br>
+&emsp;&emsp;Indo na funcionalidade de salvar, os dados serão salvos e atualizados corretamente, caso a decisão seja de sair sem salvar, suas alterações não serão consideradas.
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 

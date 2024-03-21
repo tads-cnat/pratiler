@@ -6,5 +6,5 @@ Imagem...
 
 ## 2. Listagem dos detalhamentos dos casos de uso
 
-1. [CDU-001 - Nome...](cdu-001/detalhamento-001.md)
-2. [CDU-002 - Nome...](cdu-002/detalhamento-002.md)
+1. [CDU-001 - Gerenciar desafios](cdu-001/detalhamento-001.md)
+2. [CDU-002 - Gerenciar feed](cdu-002/detalhamento-002.md)
