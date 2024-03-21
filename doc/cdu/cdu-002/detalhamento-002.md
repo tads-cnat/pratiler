@@ -22,10 +22,7 @@
 &emsp;&emsp;O leitor após se autenticar, pode navegar para a página "Seguindo", onde poderá ver com mais facilidade as postagens de seus seguidores, postagens essas que tem como informações, foto e nome do usuário que postou, o nome do livro tema do *post*, páginas lidas no momento da postagem, e o comentário postado.<br>
 &emsp;&emsp;Nestas postagens, os leitores que visualizarem, podem curtir o comentário, ou comentar sobre o comentário, servindo como uma resposta ao comentário, como um meio de socialização.
 
-## Fluxo Alternativo IV - Página "Desafios"
-&emsp;&emsp;O leitor terá acesso aos desafios registrados no sistema que ele poderá participar. Cada desafio possuirá uma descrição, título e quantidade de pessoas que estão participando. Clicando em "Participar do desafio", o leitor se tornará um dos participantes.
-
-## Fluxo Alternativo V - Página "Perfil"
+## Fluxo Alternativo IV - Página "Perfil"
 
 ## Diagrama de Interação (Sequência ou Comunicação)
 
