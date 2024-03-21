@@ -32,8 +32,8 @@ flowchart TD
 ```mermaid
 flowchart TD
 1[Login] --- 2[Desafios e livros]
-2 --- 3[Adicionar desafio]
-2 --- 4[Adicionar livro]
+2 --- 3[Adicionar/editar desafio]
+2 --- 4[Adicionar/editar livro]
 ```
 
 ## A. Tela 1: Home
