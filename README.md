@@ -11,7 +11,7 @@
 1. DÉBORA SAMARA DOS SANTOS RODRIGUES       (GitHub deborasamara)
 2. ESTER OLIVEIRA DO NASCIMENTO DUARTE MELO (GitHub esteroliver)
 3. FELIPE ALVES DE VASCONCELOS              (GitHub Lipeeeeeee)
-4. JOÃO ROBERTO CHAVES CAMBOIM
+4. JOÃO ROBERTO CHAVES CAMBOIM              (GitHub JoaoRobert0)
 5. JOÃO VICTOR DA FONSECA DIONISIO          (GitHub JVictorFonseca)
 
 > Descrever as formas de contato da equipe - WhatsApp, Discord, etc.
