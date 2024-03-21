@@ -18,10 +18,14 @@
 &emsp;&emsp;O leitor após se autenticar, pode navegar para a página "Livros populares", onde terão os livros mais populares atualmente rankeados por números ordinais(1º, 2º, ...). Em consulta, poderão ser vistos a capa, o título, a descrição e a quantidade de pessoas que leram este livro.<br>
 &emsp;&emsp;Nesta página, também há a funcionalidade de adicionar a lista de livros "desejo ler", caso seja de desejo do leitor, sendo uma segunda opção para adicionar livros às suas listas.
 
-## Fluxo Alternativo II - Página "Seguindo"
+## Fluxo Alternativo III - Página "Seguindo"
 &emsp;&emsp;O leitor após se autenticar, pode navegar para a página "Seguindo", onde poderá ver com mais facilidade as postagens de seus seguidores, postagens essas que tem como informações, foto e nome do usuário que postou, o nome do livro tema do *post*, páginas lidas no momento da postagem, e o comentário postado.<br>
 &emsp;&emsp;Nestas postagens, os leitores que visualizarem, podem curtir o comentário, ou comentar sobre o comentário, servindo como uma resposta ao comentário, como um meio de socialização.
-> Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
+
+## Fluxo Alternativo IV - Página "Desafios"
+&emsp;&emsp;O leitor terá acesso aos desafios registrados no sistema que ele poderá participar. Cada desafio possuirá uma descrição, título e quantidade de pessoas que estão participando. Clicando em "Participar do desafio", o leitor se tornará um dos participantes.
+
+## Fluxo Alternativo V - Página "Perfil"
 
 ## Diagrama de Interação (Sequência ou Comunicação)
 
