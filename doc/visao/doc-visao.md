@@ -76,6 +76,7 @@ Temos como objetivo neste projeto o incentivo da leitura para o Brasil atual, le
 | F13 | Adicionar comentários finais e uma nota a um livro lido | Ao terminar de ler um livro, o leitor pode adicionar uma nota e dizer o que achou do livro. Caso ele queira fazer um texto mais longo do que um comentário, ele terá que fazer uma resenha. O leitor pode também adicionar um livro que ele já leu para avaliar, sem necessidade de monitorar pelo app | <kbd>Média</kbd> |
 | F14 | Editar informações do perfil do leitor | O leitor pode editar as informações sobre o seu perfil. Através do botão de configurações | <kbd>Baixa</kbd> |
 | F15 | Adicionar livros à leituras recentes | O leitor terá uma lista de leituras que ele está realizando. Ao invés de adicionar o livro à lista de desejo, ele pode adicionar o livro diretamente à lista de leituras recentes | <kbd>Alta</kbd> |
+| F16 | Adicionar livros ao sistema | O moderador poderá adicionar livros ao sistema, informando seus dados, como número de páginas, autor, título e sinopse |  <kbd>Alta</kbd> | 
 ## 9. Requisitos não-funcionais
 
 | Código              |  Nome               |          Descrição  |  Categoria          |  Classificação      |
