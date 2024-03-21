@@ -13,12 +13,12 @@
 
 ## Fluxo Alternativo I - Editar desafios
 &emsp;&emsp;O moderador terá acesso à uma página que exibe os livros que estão registrados no sistema. Ele poderá clicar em um dos livros para editar ou deletar.<br>
-&emsp;&emsp;Haverá, também, um botão em que ele poderá adicionar novos livros, inserindo informações como título, sinopse, autor e quantidade de páginas.
+&emsp;&emsp;Haverá, também, um botão em que ele poderá adicionar novos livros, inserindo informações como título, sinopse, autor e quantidade de páginas.<br>
 &emsp;&emsp;O moderador deve salvar as alterações depois de terminá-las, para que sejam registradas no sistema.
 
 ## Fluxo Alternativo II - Editar livros
 &emsp;&emsp;O moderador terá acesso à uma página que exibe os livros que estão registrados no sistema. Ele poderá clicar em um dos livros para editar ou deletar.<br>
-&emsp;&emsp;Haverá, também, um botão em que ele poderá adicionar novos livros, inserindo informações como título, sinopse, autor e quantidade de páginas.
+&emsp;&emsp;Haverá, também, um botão em que ele poderá adicionar novos livros, inserindo informações como título, sinopse, autor e quantidade de páginas.<br>
 &emsp;&emsp;O moderador deve salvar as alterações depois de terminá-las, para que sejam registradas no sistema.
 
 ## Fluxo de Exceção I - Alterações não salvas
