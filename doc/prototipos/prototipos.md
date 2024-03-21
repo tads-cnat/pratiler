@@ -29,6 +29,11 @@ flowchart TD
 19[Livro - detalhes]
 
 ```
+```mermaid
+flowchart TD
+1[Login] --- 2[Adicionar livro]
+1 --- 3[Adicionar desafio]
+```
 
 ## A. Tela 1: Home
 ![Página de home](wireframes-pratiler/Home.png)
