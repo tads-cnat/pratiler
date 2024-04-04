@@ -3,7 +3,7 @@
 - **Ator principal**: Usuário leitor do sistema
 - **Atores secundários**: - 
 - **Resumo**: O usuário irá pesquisar o que deseja na barra de pesquisa do site.
-- **Pré-condição**: O site não deve estar passando por atualizações no momento e o usuário precisa ter uma conta cadastrada no sistema para efetuar a busca com excelência.
+- **Pré-condição**: O site não deve estar passando por atualizações no momento e o usuário precisa ter uma conta cadastrada no sistema para efetuar a busca com excelência. O usuário deve estar autenticado no sistema.
 - **Pós-Condição**: O sistema deve mostrar as opções encontradas para a busca digitada pelo usuário.
 
 ## Fluxo Principal
