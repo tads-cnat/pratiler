@@ -2,7 +2,8 @@
 
 ## Diagrama ER
 
-<h3>Diagrama entidade-relacionamento - PratiLer</h3>
+### Diagrama entidade-relacionamento pratiLer
+
 ![DER](imgBD/DERPratiler.png)
 
 ## Modelo Relacional
