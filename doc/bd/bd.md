@@ -3,7 +3,7 @@
 ## Diagrama ER
 
 <h3>Diagrama entidade-relacionamento - PratiLer</h3>
-![DER](https://github.com/tads-cnat/pratiler/edit/main/doc/bd/imgBD/DERPratiler.drawio.png)
+![DER](imgBD/DERPratiler.drawio.png)
 
 ## Modelo Relacional
 
