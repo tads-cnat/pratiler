@@ -1,0 +1,119 @@
+:root {
+    --color-black: #000;
+    --color-white: #FFF;
+    --color-grey: #D9D9D9;
+    --color-blue: #0095F6;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-direction-column {
+    flex-direction: column;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.height-100-vh {
+    height: 100vh;
+}
+
+/* Login e Cadastre-se */
+.register-page-header {
+    padding: 2rem;
+    font-size: 3rem;
+    font-weight: bolder;
+}
+
+.register-container {
+    height: 60%;
+    width: 70rem;
+    margin: 0 auto;
+    margin-bottom: 1.8rem;
+    padding: 3rem 7rem;
+    border-radius: 2rem;
+    background-color: var(--color-grey);
+}
+
+.register-container-title {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+    font-size: 3rem;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin: 4rem 0;
+}
+
+.register-form-input {
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: var(--color-white);
+}
+
+.register-form-input input {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.register-form-submit {
+    padding: 1rem;
+    border: 0;
+    cursor: pointer;
+    border-radius: 1rem;
+    background-color: var(--color-blue);
+}
+
+.register-forgot-password {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--color-blue);
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.register-container + div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    width: 70rem;
+    margin: 0 auto;
+    padding: 3rem 7rem;
+    border-radius: 2rem;
+    background-color: var(--color-grey);
+}
+
+.register-container + div span {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.register-container + div a {
+    color: var(--color-blue);
+    text-decoration: none;
+}
