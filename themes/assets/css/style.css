@@ -1,7 +1,9 @@
 :root {
     --color-black: #000;
-    --color-white: #FFF;
-    --color-grey: #D9D9D9;
+    --color-white-1: #FFF;
+    --color-white-2: #F3EEEE;
+    --color-grey-1: #D9D9D9;
+    --color-grey-2: #808080;
     --color-blue: #0095F6;
 }
 
@@ -13,6 +15,16 @@ html {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+a {
+    color: var(--color-black);
+    text-decoration: none;
+}
+
+/* CLASSES DE USO GERAL */
+.mr {
+    margin-right: 10px;
 }
 
 .d-flex {
@@ -27,12 +39,49 @@ html {
     align-items: center;
 }
 
+.align-items-flex-end {
+    align-items: flex-end;
+}
+
 .justify-content-center {
     justify-content: center;
 }
 
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+.height-100 {
+    height: 100%;
+}
+
 .height-100-vh {
     height: 100vh;
+}
+
+/* TAMANHO DE FONTES */
+.fs-es {
+    font-size: 1.2rem;
+}
+
+.fs-s {
+    font-size: 1.6rem;
+}
+
+.fs-m {
+    font-size: 1.8rem;
+}
+
+.fs-b {
+    font-size: 2.4rem;
+}
+
+.fs-eb {
+    font-size: 2.6rem;
+}
+
+.bold {
+    font-weight: bold;
 }
 
 /* Login e Cadastre-se */
@@ -113,7 +162,153 @@ html {
     font-size: 1.4rem;
     font-weight: bold;
 }
+
 .register-container + div a {
     color: var(--color-blue);
     text-decoration: none;
+}
+
+/* Header navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 4rem;
+    background-color: var(--color-grey-1);
+}
+
+.navbar-title {
+    font-size: 3rem;
+}
+
+.navbar-search {
+    display: flex;
+    align-items: center;
+    margin-right: 3rem;
+}
+
+.navbar-search-input {
+    background-color: var(--color-white-1);
+    border-radius: 1rem 0 0 1rem;
+    padding: .5rem;
+}
+
+.navbar-search-input input {
+    width: 25rem;
+    border: 0;
+    outline: none;
+}
+
+.navbar-search-icon {
+    background-color: var(--color-grey-2);
+    padding: .3rem;
+    border-radius: 0 1rem 1rem 0;
+    color: var(--color-white-1);
+}
+
+.navbar-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar-profile a{
+    text-decoration: none;
+    color: var(--color-black);
+}
+
+/* Navbar feed */
+.navbar-feed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+    gap: 20rem;
+    background-color: var(--color-white-2);
+}
+
+.navbar-feed-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--color-black);
+    font-size: 1.3rem;
+}
+
+/* Conteúdo main desafio*/ 
+.cartao-desafio {
+    margin: auto;
+    padding: 1.7rem;
+    display: grid;
+    grid-template-columns: 15% 75% 10%;
+    background-color: #D9D9D9;
+    width: 70%;
+    border-radius: 3%;
+    margin-top: 15px;
+}
+
+.cartão-desafio-img{
+    border-radius: 3%;
+}
+
+.cartao-desafio-descricao{
+    font-size: 1.7rem;
+}
+
+.botao-participar-desafio{
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: #D9D9D9;
+}
+
+.cartao-desafio-titulo, .cartao-qtd-participantes {
+    display: inline;
+}
+
+/* LIVRO INFO */
+.livro-container {
+    display: flex;
+    max-width: 800px;
+    gap: 20px;
+    margin: 30px auto;
+}
+
+.livro-conteudo {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sobre nós */
+.conteudo-sobre-nos {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#sessao-um-sobre-nos, #sessao-dois-sobre-nos {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.texto-sobre-nos{
+    margin: 1rem;
+}
+
+.main-sobre-nos{
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+}
+
+.sessao-um-sobrenos{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    background-color: red;
+}
+
+.sessao-dois-sobrenos{
+    display: grid;
+    grid-template-columns: 20% 80%;
 }
