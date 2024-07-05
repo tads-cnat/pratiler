@@ -235,7 +235,7 @@
 }
 
 .meu-perfil .atualizacoes .post .sec-1{
-    width: 75%;
+    max-width: 750px;
     padding-right: 20px;
 }
 
