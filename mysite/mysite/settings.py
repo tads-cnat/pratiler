@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-tk&-i3kn-^kzy0^ka)bvbq^m_bd^4922y+w+u0v8tqt#_0mr!2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pdsweb.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'pratiler.pythonanywhere.com']
 
 
 # Application definition
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # NOSSOS APPS
+    'mainapp',
 ]
 
 MIDDLEWARE = [
