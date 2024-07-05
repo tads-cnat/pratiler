@@ -157,6 +157,8 @@
     }
 }
 
+/*ATUALIZAÇÕES RECENTES*/
+
 .meu-perfil .atualizacoes{
     display: flex;
     flex-wrap: wrap;
@@ -216,6 +218,7 @@
     border-style: none;
     border-radius: 15px;
     padding: 5px;
+    font-size: 15px;
 }
 
 .meu-perfil .atualizacoes .postagens{
@@ -249,7 +252,77 @@
     font-size: 20px;
 }
 
+
+
 .meu-perfil .atualizacoes .post .sec-2 img{
     width: 150px;
     height: 200px;
+}
+
+
+/*LISTA RESENHAS*/
+
+.meu-perfil .listas-resenhas{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.meu-perfil .listas-resenhas section{
+    border: 2px solid gray;
+    padding: 30px;
+    margin: 10px;
+    border-radius: 15px;
+    
+} 
+
+.meu-perfil .listas-resenhas section h1{
+    font-size: 23px;
+}
+
+.meu-perfil .listas-resenhas .resenha-post{
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.meu-perfil .listas-resenhas .resenha-post .sec-1{
+    margin-bottom: 20px;
+}
+.meu-perfil .listas-resenhas .resenha-post .sec-1 h2{
+    font-size: 20px;
+}
+
+.meu-perfil .listas-resenhas .resenha-post .sec-1 h3{
+    font-size: 20px;
+    color: gray;
+    font-weight: 100;
+}
+
+.meu-perfil .listas-resenhas .resenha-post .sec-1 button{
+    background-color: gray;
+    color: white;
+    width: 100px;
+    border-style: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.meu-perfil .listas-resenhas .resenha-post .sec-2{
+    margin-left: 20px;
+}
+
+.meu-perfil .listas-resenhas .resenha-post .sec-2 img{
+    width: 150px;
+    height: 200px;
+}
+
+.meu-perfil .data{
+    color: gray;
+    text-align: right;
 }
