@@ -1,6 +1,7 @@
 .meu-perfil{
     margin: 0px;
     padding: 0px;
+    font-family: sans-serif;
 }
 
 .meu-perfil .nav-bar{
@@ -154,4 +155,63 @@
         font-size: 20px;
         margin: 0px;
     }
+}
+
+.meu-perfil .atualizacoes{
+    margin: 30px;
+    display: flex;
+}
+
+.meu-perfil .atualizacoes .realizar-post{
+    width: 80%;
+}
+
+.meu-perfil .atualizacoes .realizar-post form{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid gray;
+    padding: 30px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.meu-perfil .atualizacoes .realizar-post form p{
+    font-weight: bolder;
+}
+
+.meu-perfil .atualizacoes .realizar-post form label{
+    padding-bottom: 10px;
+}
+
+.meu-perfil .atualizacoes .realizar-post form label select{
+    padding: 5px;
+    border-radius: 15px;
+    border: 1px solid gray;
+    color: gray;
+    width: 70%;
+}
+
+.meu-perfil .atualizacoes .realizar-post form label input{
+    padding: 5px;
+    border-radius: 15px;
+    border: 1px solid gray;
+    color: gray;
+    width:30%;
+}
+
+.meu-perfil .atualizacoes .realizar-post form textarea{
+    width: 100%;
+    border-radius: 35px;
+    border: 1px solid gray;
+    color: gray;
+    height: 150px;
+}
+
+.meu-perfil .atualizacoes .realizar-post form button{
+    background-color: gray;
+    color: white;
+    width: 100px;
+    border-style: none;
+    border-radius: 15px;
+    padding: 5px;
 }
