@@ -158,12 +158,14 @@
 }
 
 .meu-perfil .atualizacoes{
-    margin: 30px;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .meu-perfil .atualizacoes .realizar-post{
-    width: 80%;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    width: 500px;
 }
 
 .meu-perfil .atualizacoes .realizar-post form{
@@ -214,4 +216,40 @@
     border-style: none;
     border-radius: 15px;
     padding: 5px;
+}
+
+.meu-perfil .atualizacoes .postagens{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    width: 1000px;
+}
+
+.meu-perfil .atualizacoes .post{
+    border: 2px solid gray;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.meu-perfil .atualizacoes .post .sec-1{
+    width: 75%;
+    padding-right: 20px;
+}
+
+.meu-perfil .atualizacoes .post .sec-1 h1{
+    font-size: 25px;
+}
+
+.meu-perfil .atualizacoes .post .sec-1 h2{
+    color: gray;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.meu-perfil .atualizacoes .post .sec-2 img{
+    width: 150px;
+    height: 200px;
 }
