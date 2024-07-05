@@ -326,3 +326,37 @@
     color: gray;
     text-align: right;
 }
+
+.meu-perfil .resenha{
+    margin: 30px;
+}
+
+.meu-perfil .resenha .caminho{
+    font-size: 15px;
+    color: gray;
+    margin-bottom: 40px;
+    text-decoration: none;
+}
+
+.meu-perfil .resenha section{
+    max-width: 1200px;
+    padding: 40px;
+    margin: auto;
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+
+.meu-perfil .resenha section p{
+    font-size: 20px;
+    text-indent: 2em;
+}
+
+.meu-perfil .resenha section button{
+    background-color: gray;
+    color: white;
+    width: 170px;
+    border-style: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 15px;
+}
