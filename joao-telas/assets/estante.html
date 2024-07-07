@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Estante | PraTiLer</title>
+    <link rel="stylesheet" href="./css/feed.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <div class="navbar-wrapper">
+        <div class="navbar-content">
+            <!-- Adicionar um svg para uma logo futura -->
+            <h1>PraTiLer</h1>
+
+            <div>
+
+                <div class="search-wrapper">
+                    <input type="text" placeholder="Busque por livros, usuários e autores" class="search-text-input">
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.4444 20L11.4444 13C10.8889 13.4444 10.25 13.7963 9.52778 14.0556C8.80556 14.3148 8.03704 14.4444 7.22222 14.4444C5.2037 14.4444 3.49556 13.7452 2.09778 12.3467C0.7 10.9481 0.000740741 9.24 0 7.22222C0 5.2037 0.699259 3.49556 2.09778 2.09778C3.4963 0.7 5.20444 0.000740741 7.22222 0C9.24074 0 10.9493 0.699259 12.3478 2.09778C13.7463 3.4963 14.4452 5.20444 14.4444 7.22222C14.4444 8.03704 14.3148 8.80556 14.0556 9.52778C13.7963 10.25 13.4444 10.8889 13 11.4444L20 18.4444L18.4444 20ZM7.22222 12.2222C8.61111 12.2222 9.79185 11.7363 10.7644 10.7644C11.737 9.79259 12.223 8.61185 12.2222 7.22222C12.2222 5.83333 11.7363 4.65296 10.7644 3.68111C9.79259 2.70926 8.61185 2.22296 7.22222 2.22222C5.83333 2.22222 4.65296 2.70852 3.68111 3.68111C2.70926 4.6537 2.22296 5.83407 2.22222 7.22222C2.22222 8.61111 2.70852 9.79185 3.68111 10.7644C4.6537 11.737 5.83407 12.223 7.22222 12.2222Z" fill="black"/>
+                    </svg>                                 
+                </div>
+
+                <div class="navbar-profile">
+                    <svg width="32" height="32" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20.5" cy="20.5" r="20.5" fill="#808080"/>
+                        <path d="M21 10C22.3261 10 23.5979 10.5268 24.5355 11.4645C25.4732 12.4021 26 13.6739 26 15C26 16.3261 25.4732 17.5979 24.5355 18.5355C23.5979 19.4732 22.3261 20 21 20C19.6739 20 18.4021 19.4732 17.4645 18.5355C16.5268 17.5979 16 16.3261 16 15C16 13.6739 16.5268 12.4021 17.4645 11.4645C18.4021 10.5268 19.6739 10 21 10ZM21 22.5C26.525 22.5 31 24.7375 31 27.5V30H11V27.5C11 24.7375 15.475 22.5 21 22.5Z" fill="white"/>
+                    </svg>
+                    <span><a href="#">Login</a> - <a href="#">Cadastro</a></span> 
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- FIM DA NAVBAR -->
+
+    <!-- NAVEGAÇÃO NO FEED -->
+    <div class="navfeed-wrapper">
+        <div class="navfeed-content">
+
+            <!-- DESAFIOS -->
+            <a href="desafios.html" class="navfeed-item">
+                <svg width="28" height="28" viewBox="0 0 42 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 24V27C16 28.8565 15.2625 30.637 13.9497 31.9497C12.637 33.2625 10.8565 34 9 34C7.14348 34 5.36301 33.2625 4.05025 31.9497C2.7375 30.637 2 28.8565 2 27V13M26 24V27C26 28.8565 26.7375 30.637 28.0503 31.9497C29.363 33.2625 31.1435 34 33 34C34.8565 34 36.637 33.2625 37.9497 31.9497C39.2625 30.637 40 28.8565 40 27V13" stroke="#545454" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M29 2H13C6.92487 2 2 6.92487 2 13C2 19.0751 6.92487 24 13 24H29C35.0751 24 40 19.0751 40 13C40 6.92487 35.0751 2 29 2Z" stroke="#545454" stroke-width="4"/>
+                    <path d="M18 13H10M14 9V17" stroke="#545454" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M33 11C33 9.89543 32.1046 9 31 9C29.8954 9 29 9.89543 29 11C29 12.1046 29.8954 13 31 13C32.1046 13 33 12.1046 33 11Z" fill="#545454"/>
+                    <path d="M29 16C29 14.8954 28.1046 14 27 14C25.8954 14 25 14.8954 25 16C25 17.1046 25.8954 18 27 18C28.1046 18 29 17.1046 29 16Z" fill="#545454"/>
+                </svg>
+                <span>Desafios</span>
+            </a>
+
+            <!-- MINHA ESTANTE -->
+            <a href="estante.html" class="navfeed-item">
+                <svg width="28" height="28" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.5 35.5C2.5375 35.5 1.71383 35.1576 1.029 34.4728C0.344166 33.7879 0.00116667 32.9637 0 32V4C0 3.0375 0.343 2.21383 1.029 1.529C1.715 0.844167 2.53867 0.501167 3.5 0.5H24.5C25.4625 0.5 26.2868 0.843 26.9727 1.529C27.6588 2.215 28.0012 3.03867 28 4V32C28 32.9625 27.6576 33.7868 26.9727 34.4728C26.2879 35.1587 25.4637 35.5012 24.5 35.5H3.5ZM3.5 32H24.5V4H21V16.25L16.625 13.625L12.25 16.25V4H3.5V32Z" fill="#545454"/>
+                </svg>
+                <span>Minha Estante</span>
+            </a>
+ 
+            <!-- LIVROS POPULARES -->
+            <a href="livros-populares.html" class="navfeed-item">
+                <svg width="28" height="28" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="42" height="42" fill="url(#pattern0_27_3)" fill-opacity="0.6"/>
+                    <defs>
+                    <pattern id="pattern0_27_3" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_27_3" transform="scale(0.0078125)"/>
+                    </pattern>
+                    <image id="image0_27_3" width="128" height="128" xlink:href="data:image/png;base64,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"/>
+                    </defs>
+                </svg>
+                <span>Livros Populares</span>
+            </a>
+            
+            <!-- SEGUINDO -->
+            <a href="seguindo.html" class="navfeed-item">
+                <svg width="28" height="28" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="42" height="42" fill="url(#pattern0_70_2)"/>
+                    <defs>
+                    <pattern id="pattern0_70_2" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_70_2" transform="translate(-0.0203252) scale(0.00813008)"/>
+                    </pattern>
+                    <image id="image0_70_2" width="128" height="123" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAB7CAYAAAC8a4gRAAALT0lEQVR4Ae2dB8wtRRXH/zbEiogFFSvPrij23oGA2APYazSRaERFjS0qNlTU6Hsvfve+JyoQy6cvsWtABRVbbFGQROyxIKICir3g/mD35Xrftztn7rbZ3TPJ5rvf3rkzZ/7n7OzMmVMkL46AI+AIOAKOgCPgCDgCjoAj4Ag4Ao6AI+AIOAKOgCPgCKSMwC0lHSbp5ZKOl7Qu6WRJp0j6iKT3STpG0uMk7Zd9vmzKg3HawgjsJukRkk6S9GtJF0dev5e0Q9ITJV0l3J3XSAWB60l6s6TzIhleJSB/kjTPhGlTKoN0OnZF4JqSNkv6W4OMXxaKf+czyj67du93+kTgyZJ+1yLjlwXhz5KOlnS5PgftfUtXk/T+Dhm/LAinZa+G6zsj+kFgX0ln98j8Qhh+K+lu/UAw3V7vKOmcBpj/12wqv6iBdnglHDRddnQ78ttK+kMk0/4r6evZO/u1kg7O9vw33WCfz8Luwbme4AuSWPAVT7nl79/z33eLxsR6u5GkX0Yw5kJJx0ridRFb2E6+VBJTvEUAqEN/d4rtyOvbEECx800jM3h635Fde9qarqx1JUmvlMTrwiIIv5DEltRLwwjAUAsDfirp7g33TXM3l/QdIw0fl3SZFmiYbJP3lcR7PCQAp0q6RosoXVHSBwx0QOeTWqRjUk1fXtL3DaB/Onvf794BMhwSoRYOCSNrhzaFsYOhptHFswxgfzXT/1+5Q3LRAHJQFBKCN3ZI0yi7AuiQsgcV8A16GD0nhGcFhIBdQRML0R6Gl0aXhwcA5gl8VI+k3tmgL3hZj/QNvmve61XTLN/3XbYGaPxh3wQOtf+9M63cvwLgpqB0gc7QEXQb29Kh8tVM91MDzMeUK5UyC9CKCtpLJAInBEB9QmR7bVa/Z4DW09vsfKxto9Ere///U5faAqQydrR+vwrQixLJixEB9vT/qQCUfX9q5cQKehFkTjG9GBG4QwDMdxrb6bLa8wM097ld7RKHRvo6JADmcxrppdlGQjQ/t9nuxt3aEQEB4PvUyl0CNLtCKIJjTw+AeWhEW11VxfOobNHK/Td0RcgY+uEotQrMFN+ntw/Q/OoxMKarMTwyAOZTuiIkop/7BGh+YURbk696/wCYKT5NoVmL15oXIwIc71a9AvDsTa1w9l9F8/3qELy+vr7bfD4/suyazWYPrNN+ar9Fs4ZDZhmgWNukZnOHcqqMXu5fpw7Is9lsj9lsdnHZtba29p467af42y8GAMU5JJWylyTU02UCgCl7rTJFAeA9XwYo999SC9Fmf3xkgFaCT9QqUxSA0Koa//8UAjfwKjojIAB4L9cqUxQArG9xsqiaBVLYWj06QCPGInvU4r6kKQoAmKE9qxIAjC5x4eqrcMSLyVcVjR9qgripCsBNAosrgCfAU1+FdUgV8/mu1vavGNhUBYDxv9cAch+ngw8zeCt9qWBg3b9TFgB88v4REAKMRx9eF+SI399VEjEBQk//AyLarKw6ZQEAmNcbwGax1cUhEfZ/lvgEhK4Jli1btuy1ffv2TYZr/zIlUH5/h6GNS/pZX18fXGwjTMR+ZBAC3MJf1KKWkJiBfzHQ8Udr7KD5fH5sgLGl2r9Vf7dt27brBiUzwQp44RCFIzTt8v1n8iggTQ3j2nkkUUvfeDEToNJUXABMMO2s9GyjAMAoAjq8SVIdab96HiWEJ9rCfOpEaShdAHby1vyBkC9WZlCPtQE+/TyVhJULFSKCPETSdkkXRPbFnj8qxrALQIgdu36P6nUtkjGFwLBb+HYeW5DZgRhAL5HEUS7bTQJJhdy8iraW/+KnGG377wKwK4MtdxCC0GHRMoPa/B+fgCtYCF+u4wKwjEjc/1jZWFblbTGfXccr6uw6XADiGL5R7dsZTuPaEAAOqjBdq1XW1tYOmc1mxxmuzYFt35mGNi7pZ+vWrVetRXSCPyaO0PMCVkRNCQGGH0QssywoG4Nq6ppAK5Ds11kbxK7eLcIB4/FYvoWVmCbruQDEoUmgRg6IvrHibmFRIH6Q7xb6iEO0c9QuADuhiP5wY0kEm+Dp/W5g0cihEwxnP4/S6VbRvbX0AxeA5oBlC8nTjCsX6mVCvd9G0g1TTgDhAtCcAAyyJReAQbKtOaJdAJrDcpAtuQAMkm3NEe0C0ByWg2wJ7d1sNjuj7JrP5x6KbpCcdaIdAUfAEXAEWkCAEy8UPWQDfxXeVZI+KukrmfXw97KMHj9ZuvDw+VaeUZzz/bfl6uQDJKFNRIHkJWEEyOCJypdsHjhrVgWaXNT1Wz9jCv6p/Pwfx9XBmVYnzLuVScNphNM/nlxLTiErsy31SC9Panp8Echo5qUjBLC740nH7aprppcJBllL3p6fL3QEw/S64Z2O0UdM4sgyhrV1n9fOJ1pKWzc9jucjxsyaAAsxGTzbYnBMuwjCzSbLtYYGfo/8DD8G+JTqYmKOhi7aXLwh/AbbDCbWrzOkjFmF2Zh24elDPgLyEbKAxO/wNy3aFLLt3G+w3OiYcAwzYMoqzC1+gwMIbeBAQt7BB+V7eeuTiEnZ/pl10GHZ2NllMJ2fW5Mm/BqxMvJSgQCu1+esCDQr8XflcQLasNhFEcRTTFwilEmr7kDIMoYVs5clBIgPHOuWxaqbRM0H9wAq2kE0jKsI7Gczx1V8EL3kCDzGEAuomN75i0fO8ZL2TQBBlEBPk/SzyJnrcx2nu00Aqo1JwGu3KsrmIuP5fHJK1roLQ0IQSBtTFeJ2eSwIwaS1iCy0LjI+OazcH78AeKof95H0SeOYEIjRxfi1Mob4flat3tfyVby17b7rsWB8QcTMhov6pAravc8bn5IPS9p9oOiw/TzfME4Ws7UdTYeEUSjFWvGu5Ex+6OfwpJKx6BBQTBGSZvTl1sbtHvvloTO/YCb6A0toOcLSjL6wBy6e8LK/O0bE/IKh9zJEOUO5hKvaaMtDDcxHbz66AAY5R0Pp8HggyDwylpnv/wSZhd9ZAQFAE8grYswFK6Kyma+4zxnE6Eoorj6DZ+s09rJnINM4OBDJbHQllFQJv/ypHJI81jALYI08mnJvw4AJzjiVwjs+9ECwWB5N2RYQgFNHM1L7QFASFe/8jf6iHOo1LI19KNU10eKFtGEc506xoOLeiPnFPSKfD75w1FsMaKO/SPozJ3gqRlia0wLYYLI2+EKa140Yv3wPq1/Mr8auDiXhJQGrsGlYxmCj/5MJVLWKJGKDF3M+DgDE+MOPD7++sRSsf9jbn2Jk+qIgENB6sIWMWYuDif3MfhgbvE0DRACmk1iK835LfqEybDg1HXTB4ufnNQUBcM7McwexeiaFTIoFX8VnSOIsw2roUsZ4zgXeLelaKQ40liZSvOIg0VRkb0zI2EeTnQP3b07bVgrXHjuQhfpkIkF3wdH2B3O/gjJmxt4nbwGHR6Mr7GuRausCKAY4hIJZAivhzZmwsYU6IvcJwPSMJJSWBSY2ejCXxRdm6hxg4VuAowpxA74sCRP0GNqsdX+cnZccPtbDoEVpxkgCu7lVbeutgFbVQwixM+SqO11X9WP5jh3QURPcCot3JqHXSfBkAWpsdc7OPZ4n7yPAlPsawynZGASAmYf8QgdNYapfnPYtn7EZIPwKs8J5I5sVOO3E+ndvCxBe51KXaraQOHgS0GloTz/GLTixsBhNwYNp8DKFMgjvWlTLWNCmJhAsJE/Pt6YHuu9f+/KGZQ378Bfn2zM8dldx1IwVJJ5sTNvYxbxVEvmEOdjxqGHt89zUA1pCMolxxAxziCt0TKZR25JnEGUG4WJ6RjdfXB/L7/MdjqfH5aliOKnEnI21CXqMURpsmpD1So6AI+AIOAKOgCPgCDgCjoAj4Ag4Ao6AI+AIOAKOgCMwEQT+B0Ok6dyNa8L/AAAAAElFTkSuQmCC"/>
+                    </defs>
+                </svg>
+                <span>Seguindo</span>
+            </a>
+               
+        </div>
+    </div>
+    <!-- FIM DA NAVEGAÇÃO NO FEED -->
+
+    <!-- NAVEGAÇÃO ESTANTE -->
+    <div class="navbookshelf">
+        <a href="#" class="navbookshelf-item">
+            <svg width="18" height="18" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.40287 15.8736L18.2316 0.40433C18.2935 0.309874 18.3737 0.228814 18.4676 0.165952C18.5614 0.103091 18.6669 0.059709 18.7778 0.0383779C18.8887 0.0170468 19.0028 0.0182007 19.1133 0.0417716C19.2237 0.0653425 19.3283 0.11085 19.4209 0.175597C19.5134 0.240345 19.592 0.323013 19.652 0.418702C19.712 0.514391 19.7522 0.621152 19.7702 0.732658C19.7882 0.844163 19.7836 0.958143 19.7567 1.06784C19.7298 1.17754 19.6811 1.28072 19.6136 1.37127L8.28543 17.5544C8.22065 17.6473 8.13784 17.7261 8.04193 17.7863C7.94602 17.8465 7.83898 17.8868 7.72718 17.9047C7.61538 17.9227 7.50111 17.918 7.39118 17.8908C7.28125 17.8637 7.17791 17.8147 7.08731 17.7468L1.01231 13.1905C0.923666 13.124 0.848986 13.0407 0.792533 12.9454C0.736079 12.8501 0.698958 12.7445 0.683288 12.6348C0.651641 12.4133 0.709292 12.1883 0.843558 12.0093C0.977824 11.8302 1.17771 11.7119 1.39923 11.6802C1.62076 11.6486 1.84579 11.7063 2.02481 11.8405L7.40287 15.8736ZM19.4061 7.81246C19.1823 7.81246 18.9677 7.72356 18.8094 7.56533C18.6512 7.40709 18.5623 7.19248 18.5623 6.96871C18.5623 6.74493 18.6512 6.53032 18.8094 6.37208C18.9677 6.21385 19.1823 6.12496 19.4061 6.12496H24.4686C24.6923 6.12496 24.9069 6.21385 25.0652 6.37208C25.2234 6.53032 25.3123 6.74493 25.3123 6.96871C25.3123 7.19248 25.2234 7.40709 25.0652 7.56533C24.9069 7.72356 24.6923 7.81246 24.4686 7.81246H19.4061ZM16.0311 12.875C15.8073 12.875 15.5927 12.7861 15.4344 12.6278C15.2762 12.4696 15.1873 12.255 15.1873 12.0312C15.1873 11.8074 15.2762 11.5928 15.4344 11.4346C15.5927 11.2764 15.8073 11.1875 16.0311 11.1875H24.4669C24.6906 11.1875 24.9053 11.2764 25.0635 11.4346C25.2217 11.5928 25.3106 11.8074 25.3106 12.0312C25.3106 12.255 25.2217 12.4696 25.0635 12.6278C24.9053 12.7861 24.6906 12.875 24.4669 12.875H16.0311ZM12.6561 17.9375C12.4323 17.9375 12.2177 17.8486 12.0594 17.6903C11.9012 17.5321 11.8123 17.3175 11.8123 17.0937C11.8123 16.8699 11.9012 16.6553 12.0594 16.4971C12.2177 16.3389 12.4323 16.25 12.6561 16.25H24.4669C24.6906 16.25 24.9053 16.3389 25.0635 16.4971C25.2217 16.6553 25.3106 16.8699 25.3106 17.0937C25.3106 17.3175 25.2217 17.5321 25.0635 17.6903C24.9053 17.8486 24.6906 17.9375 24.4669 17.9375H12.6561Z" fill="#545454"/>
+            </svg>
+            <span>lidos</span>
+        </a>
+        
+        <a href="#" class="navbookshelf-item">
+            <svg width="18" height="18" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 5.12354C10.2044 5.12354 9.44129 5.46029 8.87868 6.05971C8.31607 6.65913 8 7.47212 8 8.31982C8 9.16753 8.31607 9.98052 8.87868 10.5799C9.44129 11.1794 10.2044 11.5161 11 11.5161C11.7956 11.5161 12.5587 11.1794 13.1213 10.5799C13.6839 9.98052 14 9.16753 14 8.31982C14 7.47212 13.6839 6.65913 13.1213 6.05971C12.5587 5.46029 11.7956 5.12354 11 5.12354ZM11 13.647C9.67392 13.647 8.40215 13.0857 7.46447 12.0867C6.52678 11.0877 6 9.73267 6 8.31982C6 6.90698 6.52678 5.552 7.46447 4.55296C8.40215 3.55393 9.67392 2.99268 11 2.99268C12.3261 2.99268 13.5979 3.55393 14.5355 4.55296C15.4732 5.552 16 6.90698 16 8.31982C16 9.73267 15.4732 11.0877 14.5355 12.0867C13.5979 13.0857 12.3261 13.647 11 13.647ZM11 0.329102C6 0.329102 1.73 3.64259 0 8.31982C1.73 12.9971 6 16.3105 11 16.3105C16 16.3105 20.27 12.9971 22 8.31982C20.27 3.64259 16 0.329102 11 0.329102Z" fill="#545454"/>
+            </svg>
+            <span>lendo</span>
+        </a>
+    
+        <a href="#" class="navbookshelf-item">
+            <svg width="18" height="18" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 3.49997C6.5 -1.17403 1 2.27497 1 7.13797C1 12 5.02 14.591 7.962 16.911C9 17.729 10 18.5 11 18.5" stroke="#545454" stroke-width="1.5" stroke-linecap="round"/>
+                <path opacity="0.5" d="M11 3.49997C15.5 -1.17403 21 2.27497 21 7.13797C21 12.001 16.98 14.592 14.038 16.912C13 17.729 12 18.5 11 18.5" stroke="#545454" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>desejo ler</span>
+        </a>
+    </div>        
+    <!-- FIM DA NAVEGAÇÃO ESTANTE -->
+    
+    <!-- ADICIONAR LIVRO AOS LENDO -->
+    <div class="add-book-reading">
+        <a href="#">Adicionar livro</a>
+    </div>
+    <!-- FIM DO ADICIONAR LIVRO AOS LENDO -->
+
+    <!-- LIVROS POPULARES -->
+    <div class="bookshelf-content">
+
+        <div class="bookshelf-card">
+            <img src="./imgs/diario-do-banana.jpeg" alt="" class="bookshelf-card-image">
+            <div class="bookshelf-card-info">
+                <span class="bookshelf-card-info-title"><b>Diario de um banana</b></span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus mattis orci, ac molestie orci congue et. Nullam commodo tempor suscipit. Nulla porta tellus ut tincidunt eleifend. Proin faucibus posuere tellus et luctus. Nullam imperdiet sem id nulla pretium, sed elementum felis vulputate. Morbi fermentum id nibh sed viverra.</p>
+
+                <div class="increment-page-book">
+                    <a href="#">
+                        <span>123/246 páginas</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 7.99805H8V13.998H6V7.99805H0V5.99805H6V-0.00195312H8V5.99805H14V7.99805Z" fill="#545454"/>
+                        </svg>    
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bookshelf-card">
+            <img src="./imgs/harry-potter-pedra-filosofal.jpeg" alt="" class="bookshelf-card-image">
+            <div class="bookshelf-card-info">
+                <span class="bookshelf-card-info-title"><b>Harry Potter e a Pedra Filosofal</b></span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus mattis orci, ac molestie orci congue et. Nullam commodo tempor suscipit. Nulla porta tellus ut tincidunt eleifend. Proin faucibus posuere tellus et luctus. Nullam imperdiet sem id nulla pretium, sed elementum felis vulputate. Morbi fermentum id nibh sed viverra.</p>
+
+                <div class="increment-page-book">
+                    <a href="#">
+                        <span>123/246 páginas</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 7.99805H8V13.998H6V7.99805H0V5.99805H6V-0.00195312H8V5.99805H14V7.99805Z" fill="#545454"/>
+                        </svg>    
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bookshelf-card">
+            <img src="./imgs/it-a-coisa.jpeg" alt="" class="bookshelf-card-image">
+            <div class="bookshelf-card-info">
+                <span class="bookshelf-card-info-title"><b>It a Coisa</b></span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus mattis orci, ac molestie orci congue et. Nullam commodo tempor suscipit. Nulla porta tellus ut tincidunt eleifend. Proin faucibus posuere tellus et luctus. Nullam imperdiet sem id nulla pretium, sed elementum felis vulputate. Morbi fermentum id nibh sed viverra.</p>
+
+                <div class="increment-page-book">
+                    <a href="#">
+                        <span>123/246 páginas</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 7.99805H8V13.998H6V7.99805H0V5.99805H6V-0.00195312H8V5.99805H14V7.99805Z" fill="#545454"/>
+                        </svg>    
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bookshelf-card">
+            <img src="./imgs/quem-pensa-enriquece.jpg" alt="" class="bookshelf-card-image">
+            <div class="bookshelf-card-info">
+                <span class="bookshelf-card-info-title"><b>Quem Pensa Enriquece</b></span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean maximus mattis orci, ac molestie orci congue et. Nullam commodo tempor suscipit. Nulla porta tellus ut tincidunt eleifend. Proin faucibus posuere tellus et luctus. Nullam imperdiet sem id nulla pretium, sed elementum felis vulputate. Morbi fermentum id nibh sed viverra.</p>
+
+                <div class="increment-page-book">
+                    <a href="#">
+                        <span>123/246 páginas</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 7.99805H8V13.998H6V7.99805H0V5.99805H6V-0.00195312H8V5.99805H14V7.99805Z" fill="#545454"/>
+                        </svg>    
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- FIM DOS LIVROS POPULARES -->
+
+
+</body>
+</html>

@@ -1,0 +1,278 @@
+:root {
+    --grey-color: #D9D9D9;
+    --white-color: #FFF;
+    --beige-color: #F3EEEE;
+    --light-grey-color: #FBFBFB;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ======NAVBAR====== */
+
+.navbar-wrapper {
+    background-color: var(--grey-color);
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+.navbar-content > div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    gap: 80px
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--white-color);
+    padding: 6px;
+    border-radius: 20px;
+}
+
+.search-text-input {
+    border: none;
+    outline: none;
+    width: 225px;
+}
+
+.navbar-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar-profile span {
+    font-size: 14px;
+}
+
+/* ======NAVEGACAO NO FEED===== */
+
+.navfeed-wrapper {
+    background-color: var(--beige-color);
+}
+
+.navfeed-content {
+    display: flex;
+    justify-content: space-around;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.navfeed-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navfeed-content a span{
+    font-size: 14px;
+}
+
+
+/* =====DESAFIOS===== */
+.challenge-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.challenge-item {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: var(--grey-color);
+}
+
+.challenge-item .challenge-title {
+    font-size: 28px;
+}
+
+.challenge-participate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =====ESTANTE===== */
+
+.navbookshelf {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.navbookshelf-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.add-book-reading {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 1200px;
+    margin: 10px auto;;
+    padding: 10px;
+}
+
+.add-book-reading a {
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: var(--grey-color);
+}
+
+.bookshelf-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bookshelf-card {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.bookshelf-card-image {
+    width: 125px;
+    height: 175px;
+    object-fit: cover; /* Para manter a proporção da imagem */
+    border-radius: 8px;
+}
+
+.bookshelf-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bookshelf-card-info-title {
+    font-size: 28px;
+}
+
+.increment-page-book {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.increment-page-book > :nth-child(1) {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    gap: 10px;
+    background-color: var(--grey-color);
+}
+
+/* =====LIVROS POPULARES===== */
+
+.popular-books-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.popular-books-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 22fr;
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.popular-books-card-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.popular-books-card-image {
+    width: 125px;
+    height: 175px;
+    object-fit: cover; /* Para manter a proporção da imagem */
+    border-radius: 8px;
+}
+
+.popular-books-card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.popular-books-card-info > :nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.popular-books-card-info-title {
+    font-size: 28px;
+}
+
+.popular-books-card-info > :nth-child(2) {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+/* =====SEGUINDO (COMENTARIOS)===== */
+
+.comment-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.comment-card {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 20px 0;
+    gap: 30px;
+    background-color: var(--light-grey-color);
+}
+
+.comment-card > :nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+}
+
+.comment-card > :nth-child(2) > .comment-card-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-heart {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comment-heart a {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
