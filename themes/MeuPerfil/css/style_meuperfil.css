@@ -438,3 +438,44 @@
     color: gray;
     font-weight: bolder;
 }
+
+.meu-perfil .desafios{
+    margin: 30px;
+}
+
+.meu-perfil .desafios .desafio{
+    border: 2px solid gray;
+    border-radius: 15px;
+    width: 500px;
+    padding: 20px;
+}
+
+.meu-perfil .desafios .desafio p{
+    font-size: 20px;
+}
+.meu-perfil .desafios img{
+    width: 70px;
+    height: 70px;
+    background-color: cornflowerblue;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.meu-perfil .desafios .desafio .sec-1{
+    display: flex;
+}
+
+.meu-perfil .desafios .desafio .sec-1 h2{
+    font-size: 20px;
+}
+
+.meu-perfil .desafios .conquistas .desafios{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px;
+}
+
+.meu-perfil .desafios .conquistas .desafio{
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
