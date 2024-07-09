@@ -360,3 +360,81 @@
     padding: 5px;
     font-size: 15px;
 }
+
+.meu-perfil .listas-livros{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.meu-perfil .listas-livros section{
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px;
+    width: 500px;
+}
+
+.meu-perfil .listas-livros section button{
+    background-color: gray;
+    color: white;
+    width: 170px;
+    border-style: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.meu-perfil .listas-livros .livros-atuais .livro{
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.meu-perfil .listas-livros .livros-atuais .livro .content{
+    display: flex;
+    justify-content: space-between;
+}
+.meu-perfil .listas-livros .livros-atuais .livro h2{
+    font-size: 20px;
+}
+
+.meu-perfil .listas-livros .livros-atuais .livro p{
+    align-self: flex-end;
+}
+
+.meu-perfil .listas-livros .livros-ler .livro{
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.meu-perfil .listas-livros .livros-ler .livro h2{
+    font-size: 20px;
+}
+
+.meu-perfil .listas-livros .livros-ler .livro label{
+    display: flex;
+}
+
+.meu-perfil .listas-livros .livros-ler .livro label input{
+    margin-right: 10px;
+    width: 20px;
+}
+
+.meu-perfil .listas-livros .livros-lidos .livro{
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.meu-perfil .listas-livros .livros-lidos .livro h2{
+    font-size: 20px;
+}
+
+.meu-perfil .listas-livros .livros-lidos .livro .avl{
+    color: gray;
+    font-weight: bolder;
+}
