@@ -1,4 +1,4 @@
-# Título do Projeto
+# PratiLer
 
 <img src="https://drive.google.com/file/d/172H133ForZKME3waipR131ykK7J3ZiAX/view?usp=drive_link" width="200" height="200" />
 
