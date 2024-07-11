@@ -1,4 +1,4 @@
-# CDU005. Autenticação do usuário
+# CDU005. Autenticar usuário
 
 - **Ator principal**: Usuário (moderador ou leitor)
 - **Atores secundários**:	
