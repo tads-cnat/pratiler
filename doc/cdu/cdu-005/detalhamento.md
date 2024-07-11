@@ -16,7 +16,7 @@
 
 ## Fluxo Alternativo II - Falha no login
 &emsp;&emsp;Caso o usuário não complete a autenticação de sua conta, por conta de um dado mal inserido, receberá uma mensagem informando que os dados de e-mail ou senha não estão corretos.<br>
-&emsp;&emsp;Em caso de senha incorreta, o usuário terá a opção de recuperar a sua senha através de seus dados, e sucessivamente poderá escolher entre mantê-la, ou trocá-la.
+&emsp;&emsp;Em caso de senha incorreta, o usuário terá a opção de recriá-la, informando correntamente email cadastrado e acessando-o, clicando no link de acesso único e expirável e, por conseguinte, poderá cadastrar uma nova senha.
 
 ## Fluxo de Exceção I - Falha no cadastro
 &emsp;&emsp;Caso haja algum problema em algum dado do cadastro do usuário, seu cadastro não será completo e o usuário será notificado a respeito da não conclusão do cadastro e será redirecionado para a página de login.
