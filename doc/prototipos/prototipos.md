@@ -10,17 +10,14 @@ flowchart TD
 1 --- 3[Login]
 1 --- 4[Sobre Nós]
 
-
-3 --- 6[Desafios]
 3 --- 7[Minha Estante]
 3 --- 8[Perfil]
 3 --- 9[Livros Populares]
 3 --- 10[Seguindo]
 
 8 --- 11[Atualizações recentes]
-8 --- 12[Listas de Livros]
+8 --- 12[Minha estante]
 8 --- 13[Lista de resenhas]
-8 --- 14[Conquistas]
 13 --- 15[Resenha]
 
 16[Resultados da pesquisa] --- 17[Livros - ver mais]
