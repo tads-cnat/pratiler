@@ -1,4 +1,4 @@
-# CDU001. Gerenciamento do moderador
+# CDU001. Gerenciar livros
 
 - **Ator principal**: Moderador
 - **Atores secundários**:	 
