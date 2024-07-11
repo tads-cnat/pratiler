@@ -1,0 +1,481 @@
+.meu-perfil{
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+.meu-perfil .nav-bar{
+    background-color: gray;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.meu-perfil .nav-bar h1{
+    font-size: 40px;
+    margin-left: 20px;
+    margin-right: auto;
+    align-self: flex-start;
+    margin-top: 20px;
+}
+
+.meu-perfil .nav-bar form{
+    padding-right: 15px;
+    align-self: flex-start;
+    margin-top: 30px;
+    display: flex;
+}
+
+.meu-perfil .nav-bar form input{
+    padding: 8px;
+    border-radius: 0px 15px 15px 0px;
+    border-style: none;
+    width: 200px;
+}
+
+.meu-perfil .nav-bar form button{
+    padding: 8px;
+    align-self: center;
+    color: rgb(58, 58, 58);
+    border-radius: 15px 0px 0px 15px;
+    border-style: none;
+    background-color: rgb(177, 177, 177);
+}
+
+.meu-perfil .nav-bar form button img{
+    width: 20px;
+    height: 20px;
+}
+
+.meu-perfil .nav-bar a{
+    width: 100px;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.meu-perfil .nav-bar a img{
+    width: 40px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.meu-perfil .nav-bar a p{
+    margin-top: 0px;
+    font-size: 13px;
+}
+
+.meu-perfil .perfil-usuario .capa img{
+    width: 100%;
+    height: 200px;
+
+}
+
+.meu-perfil .perfil-usuario .foto-perfil img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: black;
+    border-width: 8px;
+    margin-left: 20px;
+    position: absolute;
+    top: 150px;
+    left: 30px;
+}
+
+.meu-perfil .perfil-usuario .informacoes{
+    margin-top: 60px;
+    margin-left: 30px;
+}
+
+.meu-perfil .perfil-usuario .informacoes h1{
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.meu-perfil .perfil-usuario .informacoes h2{
+    font-size: 25px;
+    color: gray;
+    font-weight: 100;
+    margin-top: 0px;
+}
+
+.meu-perfil .perfil-usuario .informacoes p{
+    font-size: 20px;
+    margin: 0px;
+    margin-right: 30px;
+}
+
+.meu-perfil .perfil-usuario .informacoes .seg{
+    display: flex;
+}
+
+.meu-perfil .perfil-usuario .informacoes .seg p{
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.meu-perfil .perfil-usuario hr{
+    margin-top: 20px;
+    border-top: 2px solid;
+    color: gray;
+}
+
+.meu-perfil .paginas{
+    display: flex;
+}
+
+.meu-perfil .paginas li{
+    list-style: none;
+    margin: auto;
+}
+
+.meu-perfil .paginas li a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 1000px){
+    .meu-perfil .perfil-usuario .foto-perfil img{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border-style: solid;
+        border-color: black;
+        border-width: 8px;
+        margin-left: 20px;
+        position: absolute;
+        top: 190px;
+        left: 10px;
+    }
+
+    .meu-perfil .perfil-usuario .informacoes p{
+        font-size: 20px;
+        margin: 0px;
+    }
+}
+
+/*ATUALIZAÇÕES RECENTES*/
+
+.meu-perfil .atualizacoes{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.meu-perfil .atualizacoes .realizar-post{
+    margin-left: 30px;
+    margin-bottom: 30px;
+    width: 500px;
+}
+
+.meu-perfil .atualizacoes .realizar-post form{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid gray;
+    padding: 30px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.meu-perfil .atualizacoes .realizar-post form p{
+    font-weight: bolder;
+}
+
+.meu-perfil .atualizacoes .realizar-post form label{
+    padding-bottom: 10px;
+}
+
+.meu-perfil .atualizacoes .realizar-post form label select{
+    padding: 5px;
+    border-radius: 15px;
+    border: 1px solid gray;
+    color: gray;
+    width: 70%;
+}
+
+.meu-perfil .atualizacoes .realizar-post form label input{
+    padding: 5px;
+    border-radius: 15px;
+    border: 1px solid gray;
+    color: gray;
+    width:30%;
+}
+
+.meu-perfil .atualizacoes .realizar-post form textarea{
+    width: 100%;
+    border-radius: 35px;
+    border: 1px solid gray;
+    color: gray;
+    height: 150px;
+}
+
+.meu-perfil .atualizacoes .realizar-post form button{
+    background-color: gray;
+    color: white;
+    width: 100px;
+    border-style: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.meu-perfil .atualizacoes .postagens{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    width: 1000px;
+}
+
+.meu-perfil .atualizacoes .post{
+    border: 2px solid gray;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.meu-perfil .atualizacoes .post .sec-1{
+    max-width: 750px;
+    padding-right: 20px;
+}
+
+.meu-perfil .atualizacoes .post .sec-1 h1{
+    font-size: 25px;
+}
+
+.meu-perfil .atualizacoes .post .sec-1 h2{
+    color: gray;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+
+
+.meu-perfil .atualizacoes .post .sec-2 img{
+    width: 150px;
+    height: 200px;
+}
+
+
+/*LISTA RESENHAS*/
+
+.meu-perfil .listas-resenhas{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.meu-perfil .listas-resenhas section{
+    border: 2px solid gray;
+    padding: 30px;
+    margin: 10px;
+    border-radius: 15px;
+    
+} 
+
+.meu-perfil .listas-resenhas section h1{
+    font-size: 23px;
+}
+
+.meu-perfil .listas-resenhas .resenha-post{
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+
+.meu-perfil .listas-resenhas .resenha-post .sec-1{
+    margin-bottom: 20px;
+}
+.meu-perfil .listas-resenhas .resenha-post .sec-1 h2{
+    font-size: 20px;
+}
+
+.meu-perfil .listas-resenhas .resenha-post .sec-1 h3{
+    font-size: 20px;
+    color: gray;
+    font-weight: 100;
+}
+
+.meu-perfil .listas-resenhas .resenha-post .sec-1 button{
+    background-color: gray;
+    color: white;
+    width: 100px;
+    border-style: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.meu-perfil .listas-resenhas .resenha-post .sec-2{
+    margin-left: 20px;
+}
+
+.meu-perfil .listas-resenhas .resenha-post .sec-2 img{
+    width: 150px;
+    height: 200px;
+}
+
+.meu-perfil .data{
+    color: gray;
+    text-align: right;
+}
+
+.meu-perfil .resenha{
+    margin: 30px;
+}
+
+.meu-perfil .resenha .caminho{
+    font-size: 15px;
+    color: gray;
+    margin-bottom: 40px;
+    text-decoration: none;
+}
+
+.meu-perfil .resenha section{
+    max-width: 1200px;
+    padding: 40px;
+    margin: auto;
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+
+.meu-perfil .resenha section p{
+    font-size: 20px;
+    text-indent: 2em;
+}
+
+.meu-perfil .resenha section button{
+    background-color: gray;
+    color: white;
+    width: 170px;
+    border-style: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.meu-perfil .listas-livros{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.meu-perfil .listas-livros section{
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px;
+    width: 500px;
+}
+
+.meu-perfil .listas-livros section button{
+    background-color: gray;
+    color: white;
+    width: 170px;
+    border-style: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.meu-perfil .listas-livros .livros-atuais .livro{
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.meu-perfil .listas-livros .livros-atuais .livro .content{
+    display: flex;
+    justify-content: space-between;
+}
+.meu-perfil .listas-livros .livros-atuais .livro h2{
+    font-size: 20px;
+}
+
+.meu-perfil .listas-livros .livros-atuais .livro p{
+    align-self: flex-end;
+}
+
+.meu-perfil .listas-livros .livros-ler .livro{
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.meu-perfil .listas-livros .livros-ler .livro h2{
+    font-size: 20px;
+}
+
+.meu-perfil .listas-livros .livros-ler .livro label{
+    display: flex;
+}
+
+.meu-perfil .listas-livros .livros-ler .livro label input{
+    margin-right: 10px;
+    width: 20px;
+}
+
+.meu-perfil .listas-livros .livros-lidos .livro{
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.meu-perfil .listas-livros .livros-lidos .livro h2{
+    font-size: 20px;
+}
+
+.meu-perfil .listas-livros .livros-lidos .livro .avl{
+    color: gray;
+    font-weight: bolder;
+}
+
+.meu-perfil .desafios{
+    margin: 30px;
+}
+
+.meu-perfil .desafios .desafio{
+    border: 2px solid gray;
+    border-radius: 15px;
+    width: 500px;
+    padding: 20px;
+}
+
+.meu-perfil .desafios .desafio p{
+    font-size: 20px;
+}
+.meu-perfil .desafios img{
+    width: 70px;
+    height: 70px;
+    background-color: cornflowerblue;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.meu-perfil .desafios .desafio .sec-1{
+    display: flex;
+}
+
+.meu-perfil .desafios .desafio .sec-1 h2{
+    font-size: 20px;
+}
+
+.meu-perfil .desafios .conquistas .desafios{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px;
+}
+
+.meu-perfil .desafios .conquistas .desafio{
+    margin-right: 20px;
+    margin-bottom: 20px;
+}

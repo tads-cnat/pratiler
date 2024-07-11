@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil | Atualizações recentes</title>
+    <link rel="stylesheet" href="css/style_meuperfil.css">
+</head>
+<body class="meu-perfil">
+    <nav class="nav-bar">
+        <h1>pratiLer</h1>
+        <form action="GET">
+            <button><img src="imgs/icone-pesquisar.png" alt="Ícone de lupa."></button>     
+            <input type="text">
+        </form>
+        <a href="#">
+            <img src="imgs/icone-perfil.png" alt="Ícone de perfil de usuário.">
+            <p>Olá, Janaina's Books!</p>
+        </a>
+    </nav>
+
+    <header class="perfil-usuario">
+        <!--capa-->
+        <div class="fotos">
+            <picture class="capa">
+                <source media="(min-width: 1800px)" srcset="imgs/capa-grande.jpg" > <!--imagem grande-->
+                <source media="(min-width: 800px)" srcset="imgs/capa-media.jpg"> <!--imagem média-->
+                <img src="imgs/capa.jpg" alt="Capa pequena"> <!--imagem pequena-->
+            </picture>
+            <!--foto de perfil-->
+            <picture class="foto-perfil">
+                <source media="(min-width: 1800px)" srcset="imgs/foto-perfil.jpg" > <!--imagem grande-->
+                <source media="(min-width: 800px)" srcset="imgs/foto-perfil.jpg"> <!--imagem média-->
+                <img src="imgs/foto-perfil.jpg" alt="Foto de perfil"> <!--imagem pequena-->
+            </picture>
+        </div>
+
+        <div class="informacoes">
+            <h1>Janaina's Books</h1>
+            <h2>@janainasbooks</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab iste molestiae voluptatum saepe dolor consequuntur eveniet minima in, esse, doloribus deserunt illum. Voluptatum unde nihil eligendi obcaecati officiis deleniti odio. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis ipsa aperiam repellat numquam tenetur error saepe quis odio, quia eaque modi magnam distinctio laborum! Sunt enim deleniti voluptas possimus totam.</p>
+            <div class="seg">
+                <p><strong>5</strong> seguidores</p>
+                <p><strong>7</strong> seguindo</p>
+            </div>
+        </div>
+        <hr>
+        <ul class="paginas">
+            <li>
+                <a href="#"><strong>Atualizações recentes</strong></a>
+            </li>
+            <li>
+                <a href="listalivros.html">Listas de livros</a>
+            </li>
+            <li>
+                <a href="listaresenhas.html">Resenhas</a>
+            </li>
+            <li>
+                <a href="desafios.html">Desafios</a>
+            </li>
+        </ul>
+    </header>
+
+    <!--atualizações recentes-->
+    <main class="atualizacoes">
+        <section class="realizar-post">
+            <form action="">
+                <p>Escreva um comentário</p>
+                <label>Livro: 
+                    <select name="livros" id="livros">
+                        <option value="">A Culpa é das Estrelas - John Green</option>
+                        <option value="">Livro do Desassossego - Fernando Pessoa</option>
+                        <option value="">Casos de Família - Clarice Lispector</option>
+                        <option value="">A Redoma de Vidro - Sylvia Plath</option>
+                    </select>
+                </label>
+
+                <label>
+                    Da página:
+                    <input type="number">
+                </label>
+
+                <label>
+                    Até a página:
+                    <input type="number">
+                </label>
+
+                <label>
+                    <textarea name="comentario" id="comentario"></textarea>
+                </label>
+
+                <button>Postar</button>
+            </form>
+        </section>
+
+        <section class="postagens">
+            <section class="post">
+                <div class="sec-1">
+                    <h1 class="titulo">Crime e Castigo - Fiódor Dostoiévski</h1>
+                    <h2 class="porcentagem">100% do livro foi lido.</h2>
+                    <p class="comentario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet neque alias, sequi laboriosam illum maiores qui vitae voluptatum quibusdam tenetur cum ab, inventore esse dicta minus, quis pariatur velit voluptate! Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nobis doloremque neque? Soluta dolorem eveniet iste, provident laborum, labore id nulla ea natus est quia? Sunt non iure ex ea!</p>
+                </div>
+                <div class="sec-2">
+                    <img src="imgs/capa-livro.jpg" alt="Capa do livro.">
+                    <p class="data">23/06/2024</p>
+                </div>
+            </section>
+            <section class="post">
+                <div class="sec-1">
+                    <h1 class="titulo">Crime e Castigo - Fiódor Dostoiévski</h1>
+                    <h2 class="porcentagem">86% do livro foi lido.</h2>
+                    <p class="comentario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum cumque blanditiis voluptates debitis nulla dolor rem fugit porro voluptatibus magni? Recusandae doloribus accusantium laboriosam deleniti officia est illo nam itaque. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis ipsam eligendi eos voluptatum, nesciunt minima deleniti et doloremque, eius ratione autem architecto aperiam dolores non doloribus nulla maiores quas modi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis natus id minima, repellat et excepturi quam cupiditate blanditiis ratione earum quidem tempore amet ex. Eligendi quidem accusantium ut unde alias. Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum culpa, ducimus voluptate quasi molestiae iste eaque corporis eos minima rerum perferendis excepturi fuga quo vitae, laborum perspiciatis facere, pariatur distinctio.</p>
+                </div>
+                <div class="sec-2">
+                    <img src="imgs/capa-livro.jpg" alt="Capa do livro.">
+                    <p class="data">17/06/2024</p>
+                </div>
+            </section>
+        </section>
+    </main>
+
+</body>
+</html>
