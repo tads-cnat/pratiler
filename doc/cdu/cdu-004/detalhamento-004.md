@@ -1,4 +1,4 @@
-# CDU004. Pesquisa
+# CDU004. Pesquisar
 
 - **Ator principal**: Usuário leitor do sistema
 - **Atores secundários**: - 
