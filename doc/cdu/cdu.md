@@ -10,3 +10,4 @@ Imagem...
 2. [CDU-002 - Gerenciar feed](cdu-002/detalhamento-002.md)
 3. [CDU-003 - Gerenciar perfil](cdu-003/detalhamento-003.md)
 4. [CDU-004 - Pesquisa](cdu-004/detalhamento-004.md)
+5. [CDU-005 - Autenticação do usuário](cdu-005/detalhamento.md)
