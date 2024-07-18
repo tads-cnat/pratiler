@@ -11,11 +11,11 @@
 &emsp;&emsp;Após preencher os campos definidos com seus dados, os dados enviados serão conferidos, e com sucesso, o usuário estará autenticado e com acesso a plataforma.
 
 ## Fluxo Alternativo I - Usuário não tem conta
-&emsp;&emsp;Caso o usuário não tenha nenhuma conta cadastrada, ele pode optar por se cadastrar, assim sendo levado ao [CDU006. Cadastrar Usuário](cdu/cdu-006/detalhamento-006.md)<br>
+&emsp;&emsp;Caso o usuário não tenha nenhuma conta cadastrada, ele pode optar por se cadastrar, assim sendo levado ao [CDU006. Cadastrar Usuário](../cdu-006/detalhamento-006.md)<br>
 
 ## Fluxo Alternativo II - Falha no login
 &emsp;&emsp;Caso o usuário não complete a autenticação de sua conta, por conta de um dado mal inserido ele terá a opção de tentar preencher novamente. Com sucesso, ele estará autenticado, caso contrário não será possível completar a autenticação.<br>
-&emsp;&emsp;Em caso de senha incorreta, o usuário poderá optar por trocar sua senha e então será levado ao [CDU007. Alteração de senha](cdu/cdu-007/detalhamento-007.md).
+&emsp;&emsp;Em caso de senha incorreta, o usuário poderá optar por trocar sua senha e então será levado ao [CDU007. Alteração de senha](../cdu-007/detalhamento-007.md).
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
