@@ -82,10 +82,10 @@ flowchart TD
 
 # Pop-ups de gerenciamento de livros e avaliações
 ## P. Tela 17: Adicionar livro para ler pela Estante
-![Pop-up de adicionar livro pela estante](wireframes-pratiler/Estante%20-%20adicionar%20livro.png)
+![Pop-up de adicionar livro pela estante](wireframes-pratiler/Estanteadicionarlivro.png)
 
 ## Q. Tela 18: Adicionar livro para ler pelo Perfil
-![Pop-up de adicionar livro pelo perfil](wireframes-pratiler/Meu%20perfil%20-%20adicionar%20para%20leituras%20atuais.png)
+![Pop-up de adicionar livro pelo perfil](wireframes-pratiler/adicionarleituras.png)
 
 ## R. Tela 19: Adicionar avaliação
 ![Pop-up de adicionar avaliação](wireframes-pratiler/Meu%20perfil%20-%20adicionar%20avaliação.png)
