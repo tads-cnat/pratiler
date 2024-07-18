@@ -8,13 +8,15 @@
 
 ## Fluxo Principal
 1. Usuário seleciona a opção de alterar senha
-2. Sistema envia e-mail de confirmação para o e-mail cadastrado do usuário
-3. Usuário recebe e-mail e confirma solicitação
-4. Sistema redireciona usuário para troca de senha
-5. Usuário digita nova senha e redigita logo abaixo
-6. Usuário confirma troca de senha
-7. Sistema confere senhas e confirma a troca
-8. Usuário é redirecionado a página de login
+2. Sistema solicita e-mail do usuário para envio de confirmação
+3. Usuário envia e-mail para receber link de troca de senha
+4. Sistema envia e-mail de confirmação para o e-mail cadastrado do usuário
+5. Usuário recebe e-mail e confirma solicitação
+6. Sistema redireciona usuário para troca de senha
+7. Usuário digita nova senha e redigita logo abaixo
+8. Usuário confirma troca de senha
+9. Sistema confere senhas e confirma a troca
+10. Usuário é redirecionado a página de login
 
 ## Fluxo de Exceção I - Senhas não conferem (Passo 6 - Fluxo Principal)
 1. Usuário confirma troca de senha
