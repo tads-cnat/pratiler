@@ -3,7 +3,7 @@
 - **Ator principal**: Moderador
 - **Atores secundários**:	 
 - **Resumo**: Moderador poderá editar, adicionar, ou excluir livros do sistema
-- **Pré-condição**: Estar autenticado no sistema
+- **Pré-condição**: Estar autenticado no sistema como usuário moderador
 - **Pós-Condição**: A lista de livros deve estar atualizada de acordo com o gerenciamento do moderador
 
 ## Fluxo Principal
