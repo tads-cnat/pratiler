@@ -1,13 +1,13 @@
 # CDU004. Pesquisar
 
 - **Ator principal**: Usuário leitor do sistema
-- **Atores secundários**: - 
+- **Atores secundários**:  
 - **Resumo**: O usuário irá pesquisar o que deseja na barra de pesquisa do site.
-- **Pré-condição**: O usuário deve estar autenticado no sistema.
+- **Pré-condição**: O usuário deve estar autenticado no sistema como usuário leitor.
 - **Pós-Condição**: O sistema deve mostrar as opções encontradas para a busca digitada pelo usuário.
 
 ## Fluxo Principal
-O usuário cadastrado no sistema aponta o mouse para a barra de pesquisa, seleciona, digita o que deseja encontrar (usuário ou livro) e dá enter, mostrando o que foi pedido ao site.
+O usuário cadastrado no sistema aponta o mouse para a barra de pesquisa, seleciona, digita o que deseja encontrar (usuário ou livro) e dá enter, mostrando o que foi pedido ao site. O sistema irá retornar uma página com resultados da pesquisa relacionados a livros, e o usuário poderá alterar esse tipo de resultado para que seja exibido resultados relacionados a outros usuários.
 
 ## Fluxo Alternativo I - Pesquisa sem resultados
 Quando o sistema não conseguir fornecer o que o usuário gostaria de visualizar, mostrar uma mensagem de que infelizmente não foi possível encontrar o que o usuário solicitou, mas pergunta se ele não gostaria de pesquisar outra coisa.
