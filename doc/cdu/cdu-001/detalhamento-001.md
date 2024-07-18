@@ -4,7 +4,7 @@
 - **Atores secundários**:	 
 - **Resumo**: Moderador poderá editar, adicionar, ou excluir desafios do sistema
 - **Pré-condição**: Estar autenticado no sistema
-- **Pós-Condição**: A lista de desafios e de livros deve estar atualizada de acordo com o gerenciamento do moderador
+- **Pós-Condição**: A lista de livros deve estar atualizada de acordo com o gerenciamento do moderador
 
 ## Fluxo Principal
 &emsp;&emsp;O moderador será direcionado à uma página em que os livros registrados no sistema estão listados. Nessa página, ele poderá gerenciar os livros da maneira que achar melhor para o sistema.<br>
