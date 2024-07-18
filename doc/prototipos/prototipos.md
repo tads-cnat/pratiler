@@ -41,11 +41,7 @@ flowchart TD
 
 # Telas para o perfil do usuário
 ## C. Tela 3: Meu perfil - atualizações recentes
-![Atualizações recentes - 1](wireframes-pratiler/atualizações-recentes-1.png)
-![Atualizações recentes - 2](wireframes-pratiler/atualizações-recentes-2.png)
-
-## D. Tela 4: Meu perfil - conquistas e desafios
-![Tela de conquistas e desafios](wireframes-pratiler/conquistas.png)
+![Atualizações recentes](wireframes-pratiler/atualizacoesrecentes.png)
 
 ## E. Tela 5: Meu perfil - listas de livros
 ![Tela de listas de livros](wireframes-pratiler/listalivros.png)
