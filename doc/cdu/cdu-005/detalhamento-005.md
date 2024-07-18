@@ -2,9 +2,9 @@
 
 - **Ator principal**: Usuário (moderador ou leitor)
 - **Atores secundários**:	
-- **Resumo**: Usuário poderá se cadastrar ou se autenticar na plataforma, a fim de utilizá-la.
+- **Resumo**: Usuário poderá se autenticar na plataforma, a fim de utilizá-la.
 - **Pré-condição**:
-- **Pós-Condição**: O usuário deverá estar cadastrado ou autenticado, e com livre acesso das suas respectivas atividades.
+- **Pós-Condição**: O usuário deverá estar autenticado, e com livre acesso das suas respectivas atividades.
 
 ## Fluxo Principal
 &emsp;&emsp;O usuário, após acessar o link para acesso do site, será levado à página de login, para se autenticar.<br>
