@@ -1,9 +1,9 @@
-# CDU006. Alteração de senha
+# CDU007. Alteração de senha
 
 - **Ator principal**: Usuário (moderador ou leitor)
 - **Atores secundários**:	
 - **Resumo**: Usuário poderá alterar a sua senha, por problemas de esquecimento da anterior ou segurança.
-- **Pré-condição**:
+- **Pré-condição**: Usuário precisa ter uma conta cadastrada
 - **Pós-Condição**: O usuário deverá estar com sua senha atualizada de acordo com a preferida.
 
 ## Fluxo Principal
@@ -16,7 +16,11 @@
 7. Sistema confere senhas e confirma a troca
 8. Usuário é redirecionado a página de login
 
-
+## Fluxo de Exceção I - Senhas não conferem (Passo 6 - Fluxo Principal)
+1. Usuário confirma troca de senha
+2. Sistema notifica usuário que as senhas não conferem
+3. retorna ao passo 5 do Fluxo principal
+   
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
 ## Diagrama de Interação (Sequência ou Comunicação)
