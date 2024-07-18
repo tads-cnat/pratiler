@@ -4,7 +4,8 @@
 
 ### Diagrama entidade-relacionamento pratiLer
 
-![DERPratiler](https://github.com/tads-cnat/pratiler/assets/50723433/d7b463b9-e523-4626-99c6-f6585a1a0948)
+![DERPratiler](https://github.com/user-attachments/assets/31741f24-104d-4492-8dc3-a517770ed531)
+
 
 ## Modelo Relacional
 
