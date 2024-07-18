@@ -53,8 +53,6 @@ flowchart TD
 ![Tela com resenha](wireframes-pratiler/resenha.png)
 
 # Telas para a página principal
-## H. Tela 8: Desafios
-![Tela com desafios disponíveis](wireframes-pratiler/Desafio.png)
 
 ## I. Tela 9: Minha estante
 ![Tela com a estante do usuário](wireframes-pratiler/Estante.png)
