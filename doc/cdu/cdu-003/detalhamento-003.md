@@ -4,7 +4,7 @@
 - **Atores secundários**: ...	 
 - **Resumo**: O leitor poderá gerenciar e explorar seu perfil, acessando páginas como "Atualizações recentes", "Listas de livros", "Conquistas" e "Resenhas".
 - **Pré-condição**: Estar autenticado no sistema.
-- **Pós-Condição**: ...
+- **Pós-Condição**: O perfil do leitor deve estar atualizado de acordo com sua preferência no gerenciamento
 
 ## Fluxo Principal
 &emsp;&emsp;Ao entrar na página de perfil, o usuário terá acesso às suas postagens mais recentes, em que ele poderá visualizar os últimos comentários e avaliações que realizou sobre os livros. Além disso, haverá uma área em que ele poderá criar uma nova postagem, em que ele colocará o livro que está sendo lido, a página em que ele começou a leitura e a página em que terminou, além de um comentário que diga o que ele está pensando sobre o livro. Ao fazer isso, a página será atualizada com mais uma nova postagem.
@@ -22,8 +22,6 @@
 &emsp;&emsp;Essa página se tratará de uma resenha específica de um livro, que pode ser acessada pela página do fluxo alternativo II. Ela mostrará a resenha em si, com o texto, título e o nome do leitor que escreveu a resenha.<br>
 &emsp;&emsp;Haverá, também, um botão para que o leitor possa editar a resenha que escreveu.
 
-## Fluxo Alternativo IV - Página "Conquistas"
-&emsp;&emsp;Essa página irá mostrar os desafios atuais dos quais o leitor participa e as conquistas dos desafios que ele cumpriu.
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
