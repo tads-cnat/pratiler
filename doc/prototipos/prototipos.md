@@ -58,7 +58,7 @@ flowchart TD
 ![Tela com a estante do usuário](wireframes-pratiler/Estante.png)
 
 ## J. Tela 10: Livros populares
-![Tela com livros populares](wireframes-pratiler/Livros-populares.png)
+![Tela com livros populares](wireframes-pratiler/Livrospopulares.png)
 
 ## K. Tela 11: Seguindo
 ![Tela com comentários de usuários que o usuário segue](wireframes-pratiler/Seguindo.png)
@@ -75,17 +75,17 @@ flowchart TD
 
 # Outras telas
 ## O. Tela 15: Informações de um livro
-![Tela com informações de um livro específico](wireframes-pratiler/Informações-do-livro.png)
+![Tela com informações de um livro específico](wireframes-pratiler/Informaçõeslivro.png)
 
 ## P. Tela 16: Sobre nós
-![Tela sobre o site](wireframes-pratiler/Sobre.png)
+![Tela sobre o site](wireframes-pratiler/Sobrenos.png)
 
 # Pop-ups de gerenciamento de livros e avaliações
 ## P. Tela 17: Adicionar livro para ler pela Estante
 ![Pop-up de adicionar livro pela estante](wireframes-pratiler/Estanteadicionarlivro.png)
 
 ## Q. Tela 18: Adicionar livro para ler pelo Perfil
-![Pop-up de adicionar livro pelo perfil](wireframes-pratiler/adicionarleituras.png)
+![Pop-up de adicionar livro pelo perfil](wireframes-pratiler/adicionaleituras.png)
 
 ## R. Tela 19: Adicionar avaliação
 ![Pop-up de adicionar avaliação](wireframes-pratiler/Meu%20perfil%20-%20adicionar%20avaliação.png)
