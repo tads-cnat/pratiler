@@ -2,7 +2,7 @@
 
 - **Ator principal**: Moderador
 - **Atores secundários**:	 
-- **Resumo**: Moderador poderá editar, adicionar, ou excluir desafios do sistema
+- **Resumo**: Moderador poderá editar, adicionar, ou excluir livros do sistema
 - **Pré-condição**: Estar autenticado no sistema
 - **Pós-Condição**: A lista de livros deve estar atualizada de acordo com o gerenciamento do moderador
 
