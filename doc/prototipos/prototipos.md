@@ -80,12 +80,9 @@ flowchart TD
 ## P. Tela 16: Sobre nós
 ![Tela sobre o site](wireframes-pratiler/Sobrenos.png)
 
-# Pop-ups de gerenciamento de livros e avaliações
+# Pop-ups de gerenciamento de livros
 ## P. Tela 17: Adicionar livro para ler pela Estante
 ![Pop-up de adicionar livro pela estante](wireframes-pratiler/Estanteadicionarlivro.png)
 
 ## Q. Tela 18: Adicionar livro para ler pelo Perfil
 ![Pop-up de adicionar livro pelo perfil](wireframes-pratiler/adicionaleituras.png)
-
-## R. Tela 19: Adicionar avaliação
-![Pop-up de adicionar avaliação](wireframes-pratiler/Meu%20perfil%20-%20adicionar%20avaliação.png)
