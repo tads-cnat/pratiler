@@ -1,10 +1,8 @@
 # Modelo de Domínio
-
-Descrição e imagem do diagrama de classes de domínio...
-
+Modelo de classes de domínio 
+![Diagrama de classes](https://github.com/user-attachments/assets/be17cf7e-5745-4b16-9609-efb755653a39)
 
 ## Glossário (sugestão)
-![Diagrama de classes](https://github.com/user-attachments/assets/be17cf7e-5745-4b16-9609-efb755653a39)
 
 |  Termo  |  Explicação  |
 | ------- | ------------ |
