@@ -11,7 +11,7 @@
 &emsp;&emsp;Após preencher os campos definidos com seus dados para o cadastro, como nome, <i>username</i>, email, e senha, os dados enviados para cadastro serão conferidos, e com sucesso, o usuário estará cadastrado e autenticado com acesso a plataforma. Caso seja de sua escolha, poderá selecionar sua foto de perfil e capa do perfil, porém não são necessárias para o cadastro.
 
 ## Fluxo de Exceção I - Falha no cadastro
-&emsp;&emsp;Caso o usuário falhe na conferência dos dados realizada pelo sistema, ele será notificado e retornará para a página de cadastro, podendo assim tentar novo cadastro com outros dados.<br>
+&emsp;&emsp;Caso o usuário falhe na conferência dos dados realizada pelo sistema, em situações de e-mail ou <i>username</i> já cadastrados, ele será notificado sobre qual falha ocorreu e retornará para a página de cadastro, podendo assim tentar novo cadastro com outros dados.<br>
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
