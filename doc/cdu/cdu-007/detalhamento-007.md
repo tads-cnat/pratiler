@@ -11,6 +11,7 @@
 2. Sistema solicita e-mail do usuário para envio de confirmação
 3. Usuário envia e-mail para receber link de troca de senha
 4. Sistema envia e-mail de confirmação para o e-mail enviado pelo usuário
+5. Usuário parte para o [CDU008 - Alteração de senha](../cdu-008/detalhamento-008.md)
    
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
