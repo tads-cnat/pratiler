@@ -10,7 +10,7 @@
 1. Na tela de login, o suário seleciona a opção de alterar senha
 2. Sistema solicita e-mail do usuário para envio de confirmação
 3. Usuário envia e-mail para receber link de troca de senha
-4. Sistema envia e-mail de confirmação para o e-mail cadastrado do usuário
+4. Sistema envia e-mail de confirmação para o e-mail enviado pelo usuário
    
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
