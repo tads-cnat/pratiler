@@ -2,7 +2,7 @@
 
 - **Ator principal**: Usuário (moderador ou leitor)
 - **Atores secundários**:	
-- **Resumo**: Usuário poderá alterar a sua senha, por problemas de esquecimento da anterior ou segurança.
+- **Resumo**: Usuário realiza a solicitação para alterar sua senha, por problemas de esquecimento da anterior ou segurança.
 - **Pré-condição**:
 - **Pós-Condição**: O usuário deverá receber e-mail enviado pelo sistema com a confirmação da solicitação de senha.
 
