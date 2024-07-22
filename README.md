@@ -2,9 +2,7 @@
 
 <img src="https://drive.google.com/file/d/172H133ForZKME3waipR131ykK7J3ZiAX/view?usp=drive_link" width="200" height="200" />
 
->[Logo](https://drive.google.com/file/d/172H133ForZKME3waipR131ykK7J3ZiAX/view?usp=drive_link)
-
->Inserir pequena descrição do projeto
+Sistema de leitura que promove a organização e o registro das leituras e a comunicação entre leitores.
 
 # Equipe e Formas de Contato
 
@@ -15,11 +13,10 @@
   <li>JOÃO ROBERTO CHAVES CAMBOIM              (<a href="https://github.com/JoaoRobert0">@JoaoRobert0</a>)</li>
   <li>JOÃO VICTOR DA FONSECA DIONISIO           (<a href="https://github.com/JVictorFonseca">@JVictorFonseca</a>)</li>
 </ol>
-> Descrever as formas de contato da equipe - WhatsApp, Discord, etc.
 
 # Horário de Reuniões
-
-> Reuniões via plataforma Discord e interações em sala de aula (Segundas, 10h40 às 12h; Terças, 07h - 08h30; Quintas e Sextas, 09h - 12h)
+- Quinta-feira - 10h30 -> 12h
+- Sábado e domingo - horário combinado no dia
 
 # Documentação
 
