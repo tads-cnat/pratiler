@@ -1,6 +1,6 @@
 # Modelo de Domínio
 Modelo de classes de domínio 
-![Class Diagram pds](modelo-classes.png)
+![Class Diagram pds](modelo-classes/modelo-classes.png)
 
 ## Glossário (sugestão)
 
