@@ -89,3 +89,6 @@ flowchart TD
 
 ## S. Tela 19: Adicionar avaliação de livro
 ![Pop-up para adicionar avaliação de um livro](wireframes-pratiler/popup-adicionaravaliacao.png)
+
+## T. Tela 20: Interface do moderador
+![Interface do moderador](wireframes-pratiler/GerenciarLivros.png)
