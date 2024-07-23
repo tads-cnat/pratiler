@@ -1,7 +1,7 @@
 # Modelo de Domínio
 Modelo de classes de domínio 
 
-![modelo-classes](https://github.com/user-attachments/assets/e55f0229-5865-4676-9dfa-93f8b1656d42)
+![Class Diagram0](https://github.com/user-attachments/assets/e169b3cc-63c8-4306-9b64-4f7ec4822f33)
 
 ## Glossário (sugestão)
 
