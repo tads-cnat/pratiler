@@ -17,9 +17,8 @@
 ## Fluxo Alternativo II - Página "Minha estante"
 &emsp;&emsp;Ponto de extensão para o caso de uso Gerenciar Estante.
 
-
 ## Fluxo Alternativo III - Página "Perfil"
-&emsp;&emsp;Ao clicar no ícone que redireciona ao perfil do próprio leitor, ele será redirecionado ao caso de uso 3.<br>
+&emsp;&emsp;Ponto de extensão para o caso de uso Gerenciar Perfil.
 
 ## Diagrama de Interação (Sequência ou Comunicação)
 
