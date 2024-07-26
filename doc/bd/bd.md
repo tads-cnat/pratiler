@@ -4,7 +4,7 @@
 
 ### Diagrama entidade-relacionamento pratiLer
 
-![DERpratiler](imgBD/DERPratiler.drawio.png)
+![DERpratiler](diagrama-er/DERPratiler.drawio.png)
 
 
 
