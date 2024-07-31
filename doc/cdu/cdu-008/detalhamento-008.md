@@ -1,20 +1,16 @@
-# CDU008. Alterar senha
+# CDU008. Seguir leitor
 
-- **Ator principal**: Usuário (moderador ou leitor)
+- **Ator principal**: Leitor
 - **Atores secundários**:	
-- **Resumo**: Usuário altera a sua senha, por problemas de esquecimento da anterior ou segurança.
-- **Pré-condição**: Usuário acessa o caso de uso através de um item válido
-- **Pós-Condição**: O usuário deverá estar com a sua senha atualizada de acordo com sua preferência.
+- **Resumo**: Usuário começa a seguir outro leitor.
+- **Pré-condição**:
+- **Pós-Condição**: O usuário deverá ter o usuário escolhido como um usuário que segue.
 
 ## Fluxo principal
-1. Sistema leva usuário para tela de troca de senha
-2. Usuário digita e redigita abaixo senha nova
-3. Usuário confirma a troca de senha
+
 
 ## Fluxo de Exceção I - Senhas não conferem (Passo 4 - Fluxo principal)
-1. Usuário confirma a troca de senha
-2. Sistema notifica usuário informando que a senha digitada não é igual a senha redigitada
-3. Passo 1 - Fluxo principal
+
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
