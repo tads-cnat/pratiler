@@ -4,7 +4,7 @@
 - **Atores secundários**:
 - **Resumo**: O leitor poderá fazer um comentário sobre um comentário relacionado a página que um leitor parou de um livro.
 - **Pré-condição**: Ser usuário do tipo leitor e estar logado no sistema
-- **Pós-Condição**: 
+- **Pós-Condição**: Um novo comentário é adicionado em comentário existente
 
 ## Fluxo Principal
 &emsp;01. O leitor na página "Seguindo", clica em um local de comentário de um comentário especifico
