@@ -7,11 +7,11 @@
 - **Pós-Condição**: Quantidade de páginas lidas do seu livro atualizada
 
 ## Fluxo Principal
-&emsp;&ems; 01. O leitor clicará em um botão para atualizar leitura
-&emsp;&ems; 02. O sistema irá mostrar uma tela de comentário com dados de página final e um comentário opcional
-&emsp;&ems; 03. O leitor preenche as informações e clica em enviar/salvar
-&emsp;&ems; 04. O sistema salva os dados e salva as alterações no sistema
-&emsp;&ems; 05. O sistema exibe uma mensagem de que ocorreu tudo bem e as alterações foram salvas.
+&emsp;&ems; 01. O leitor clicará em um botão para atualizar leitura <br>
+&emsp;&ems; 02. O sistema irá mostrar uma tela de comentário com dados de página final e um comentário opcional<br>
+&emsp;&ems; 03. O leitor preenche as informações e clica em enviar/salvar<br>
+&emsp;&ems; 04. O sistema salva os dados e salva as alterações no sistema<br>
+&emsp;&ems; 05. O sistema exibe uma mensagem de que ocorreu tudo bem e as alterações foram salvas.<br>
 
 ## Fluxo Alternativo I - Leitor não preenche o comentário
 &emsp;&emsp; 02.a. Se o leitor não preencher o comentário, deixará o campo de texto vazio e vai para o passo 03. seguindo normalmente o fluxo.
