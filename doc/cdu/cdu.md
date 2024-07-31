@@ -14,3 +14,4 @@
 7. [CDU-007 - Solicitar Alteração de senha](cdu-007/detalhamento-007.md)
 8. [CDU-008 - Seguir leitor](cdu-008/detalhamento-008.md)
 9. [CDU-009 - Acessar perfil](cdu-009/detalhamento-009.md)
+10. [CDU-010 - Ler resenha](cdu-010/detalhamento-010.md)
