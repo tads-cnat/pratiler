@@ -1,15 +1,3 @@
-
-## Fluxo Principal
-1. O leitor clicará em um botão para atualizar leitura.
-2. O sistema irá mostrar uma tela de comentário com dados de página final e um campo para comentário opcional.
-3. O leitor preenche as informações e clica em enviar.
-4. O sistema salva os dados e atualiza a quantidade de páginas lidas no sistema.
-5. O sistema confirma a atualização para o leitor.
-
-## Fluxo Alternativo
-- **2a.** Se o leitor não quiser preencher um comentário, ele pode deixar o campo de comentário vazio e prosseguir para o próximo passo.
-- **4a.** Se houver algum erro no salvamento dos dados, o sistema exibe uma mensagem de erro e permite que o leitor tente novamente.
---------------------------
 # CDU019. Atualizar leitura
 
 - **Ator principal**: Leitor
