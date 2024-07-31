@@ -12,5 +12,5 @@
 5. [CDU-005 - Autenticar usuário](cdu-005/detalhamento-005.md)
 6. [CDU-006 - Cadastrar usuário](cdu-006/detalhamento-006.md)
 7. [CDU-007 - Solicitar Alteração de senha](cdu-007/detalhamento-007.md)
-8. [CDU-008 - Seguir leitor](cdu-008/detalhamento.md)
-9. [CDU-009 - Acessar perfil](cdu-009/detalhamento.md)
+8. [CDU-008 - Seguir leitor](cdu-008/detalhamento-008.md)
+9. [CDU-009 - Acessar perfil](cdu-009/detalhamento-009.md)
