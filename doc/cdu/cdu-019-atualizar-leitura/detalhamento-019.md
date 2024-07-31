@@ -14,12 +14,12 @@
 &emsp; 05. O sistema exibe uma mensagem de que ocorreu tudo bem e as alterações foram salvas.<br>
 
 ## Fluxo Alternativo I - Leitor não preenche o comentário
-&emsp;&emsp; 02.a. Se o leitor não preencher o comentário, deixará o campo de texto vazio e vai para o passo 03. seguindo normalmente o fluxo.
+&emsp; 02.a. Se o leitor não preencher o comentário, deixará o campo de texto vazio e vai para o passo 03. seguindo normalmente o fluxo.
 ## Fluxo Alternativo II - Leitor tenta sair sem salvar as alterações
-&emsp;&emsp; 03.a. O leitor tenta sair da tela sem salvar, então o sistema exibe uma mensagem perguntando se ele quer sair da tela mesmo ou salvar as alterações. Se ele quiser salvar, segue para o fluxo principal 04.
+&emsp; 03.a. O leitor tenta sair da tela sem salvar, então o sistema exibe uma mensagem perguntando se ele quer sair da tela mesmo ou salvar as alterações. Se ele quiser salvar, segue para o fluxo principal 04.
 
 ## Fluxo de Exceção I - O sistema não consegue salvar as informações
-&emsp;&emsp; 04.a. O sistema mostra uma mensagem pedindo para que o leitor envie novamente os dados e segue para o fluxo principal 04.
+&emsp; 04.a. O sistema mostra uma mensagem pedindo para que o leitor envie novamente os dados e segue para o fluxo principal 04.
 
 ## Diagrama de Interação (Sequência ou Comunicação)
 
