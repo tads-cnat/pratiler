@@ -4,12 +4,17 @@
 - **Atores secundários**:	
 - **Resumo**: Usuário começa a seguir outro leitor.
 - **Pré-condição**:
-- **Pós-Condição**: O usuário deverá ter o usuário escolhido como um usuário que segue.
+- **Pós-Condição**: O usuário deverá ter o leitor escolhido como um leitor que ele segue.
 
 ## Fluxo principal
 
+&emsp;&emsp;No seu feed, o usuário pode procurar por leitores que deseja seguir, acessando sua página de perfil selecionando o leitor.<br>
+&emsp;&emsp;No perfil do leitor que o usuário deseja seguir, o usuário poderá selecionar a opção de seguir leitor, assim começando a seguí-lo.
 
-## Fluxo de Exceção I - Senhas não conferem (Passo 4 - Fluxo principal)
+## Fluxo Alternativo I - Pesquisa de leitor
+
+&emsp;&emsp;No feed, o usuário pode optar por utilizar a barra de pesquisa para encontrar o leitor que deseja seguir, pesquisando por seu nome ou seu <i>username</i> na barra de pesquisa.<br>
+&emsp;&emsp;Concluindo a pesquisa, o sistema retornará uma listagem de perfis de acordo com a pesquisa do usuário, então o usuário seleciona o leitor que procurava, abrindo seu perfil. No perfil, o usuário poderá selecionar a opção de seguir leitor, assim começando a seguí-lo.
 
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
