@@ -1,15 +1,15 @@
-# CDU010. Ler resenhas
+# CDU010. Ler resenha
 
 - **Ator principal**: Leitor
 - **Atores secundários**:
-- **Resumo**: O usuário irá ler as resenhas postadas por um leitor
+- **Resumo**: O usuário irá ler uma resenha postada por um leitor
 - **Pré-condição**:
 - **Pós-Condição**: O usuário terá acesso a resenha do leitor
 
 ## Fluxo Principal
 
 &emsp;&emsp;Na tela do feed, o usuário irá procurar por um leitor que ele queira ler as resenhas, ao encontrá-lo, o usuário poderá acessar o perfil do leitor e acessar a sua sessão de "resenhas".<br>
-&emsp;&emsp;Na sessão de resenhas, o usuário terá acesso a todas as resenhas do leitor, assim selecionando a opção "ler resenha" para ter acesso a resenha completa.
+&emsp;&emsp;Na sessão de resenhas, o usuário terá acesso a todas as resenhas do leitor, cada uma com a opção "ler resenha", selecionando-a o usuário terá acesso a resenha completa.
 
 
 ## Fluxo de Exceção I - Leitor não tem resenhas
