@@ -1,4 +1,4 @@
-# CDU007. Solicitar Alteração de senha
+# CDU007. Alterar senha por link
 
 - **Ator principal**: Usuário (moderador ou leitor)
 - **Atores secundários**:	
