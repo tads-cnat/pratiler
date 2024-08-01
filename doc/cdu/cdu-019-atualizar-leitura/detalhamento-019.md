@@ -2,7 +2,7 @@
 
 - **Ator principal**: Leitor
 - **Atores secundários**:	 
-- **Resumo**: O leitor 
+- **Resumo**: O leitor irá atualizar as páginas do livro que está lendo
 - **Pré-condição**: Ser usuário do tipo leitor e estar logado no sistema 
 - **Pós-Condição**: Quantidade de páginas lidas do seu livro atualizada
 
