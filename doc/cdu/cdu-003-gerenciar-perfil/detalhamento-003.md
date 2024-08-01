@@ -25,6 +25,7 @@
 
 ## Fluxo Alternativo IV - Alterar senha (tá logado e quer mudar a senha)
 *** escrever o texto ***
+**** relação com o texto Além disso, terá um botão que o redirecionará para as configurações, em que ele pode alterar algumas dessas informações. Essa tela estará presente em todos os fluxos desse caso de uso. ****
 
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
