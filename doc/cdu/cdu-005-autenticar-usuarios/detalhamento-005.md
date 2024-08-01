@@ -17,7 +17,11 @@
 &emsp;&emsp;Caso o usuário não complete a autenticação de sua conta, por conta de um dado mal inserido ele terá a opção de tentar preencher novamente.<br>
 
 ## Fluxo Alternativo III - Recuperação de senha
-&emsp;&emsp;Em caso de senha incorreta, o usuário poderá optar por trocar sua senha e então será levado ao [CDU007. Alteração de senha](../cdu-007-solicitar-alteracao-de-senha/detalhamento-007.md).
+1. Na tela do seu perfil, ou na tela de login o usuário seleciona a opção de alterar senha
+2. Sistema solicita e-mail do usuário para envio de confirmação
+3. Usuário envia e-mail para receber link de troca de senha
+4. Sistema envia e-mail de confirmação para o e-mail enviado pelo usuário
+&emsp;&emsp; [CDU007. Alteração de senha](../cdu-007-solicitar-alteracao-de-senha/detalhamento-007.md).
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
