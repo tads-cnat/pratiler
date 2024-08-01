@@ -7,15 +7,11 @@
 - **Pós-Condição**: Usuáro deverá ter sua senha atualizada de acordo com sua preferência.
 
 ## Fluxo Principal
-1. Na tela do seu perfil, ou na tela de login o usuário seleciona a opção de alterar senha
-2. Sistema solicita e-mail do usuário para envio de confirmação
-3. Usuário envia e-mail para receber link de troca de senha
-4. Sistema envia e-mail de confirmação para o e-mail enviado pelo usuário
-5. Usuário confirma solicitação pelo link enviado no e-mail
-6. Sistema leva usuário para tela de troca de senha
-7. Usuário digita e redigita abaixo senha nova
-8. Usuário confirma a troca de senha
-9. Usuário é redirecionado para a página onde solicitou a alteração
+1. Usuário confirma solicitação pelo link enviado no e-mail
+2. Sistema leva usuário para tela de troca de senha
+3. Usuário digita e redigita abaixo senha nova
+4. Usuário confirma a troca de senha
+5. Usuário é redirecionado para a página onde solicitou a alteração
 
 ## Fluxo de Exceção I - Senhas não conferem (Passo 8 - Fluxo principal)
 1. Usuário confirma a troca de senha
