@@ -23,6 +23,9 @@
 &emsp;&emsp;Essa página se tratará de uma resenha específica de um livro, que pode ser acessada pela página do fluxo alternativo II. Ela mostrará a resenha em si, com o texto, título e o nome do leitor que escreveu a resenha.<br>
 &emsp;&emsp;Haverá também um botão para que o leitor possa editar a resenha que escreveu.
 
+## Fluxo Alternativo IV - Alterar senha (tá logado e quer mudar a senha)
+*** escrever o texto ***
+
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
