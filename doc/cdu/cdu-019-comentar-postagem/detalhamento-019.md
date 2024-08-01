@@ -16,8 +16,7 @@
 ## Fluxo Alternativo I - O leitor tenta sair sem enviar o comentário
 &emsp;&emsp;04.a. Se o leitor não clicar em salvar o comentário, o sistema exibe uma mensagem perguntando se o leitor quer ir embora sem salvar ou decide salvar.  Se ele quiser salvar, voltar para fluxo principal 05.
 
-## Fluxo Exceção I - O comentário não pode ser enviado
-&emsp;&emsp;04a. Se houver algum erro ao salvar o comentário, o sistema mostra uma mensagem de erro e permite que o leitor tente novamente a partir do fluxo principal 02.
+## Fluxo Exceção I - 
 
 ## Diagrama de Interação (Sequência ou Comunicação)
 
