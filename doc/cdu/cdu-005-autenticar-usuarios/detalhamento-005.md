@@ -3,7 +3,7 @@
 - **Ator principal**: Usuário (moderador ou leitor)
 - **Atores secundários**:	
 - **Resumo**: Usuário poderá se autenticar na plataforma, a fim de utilizá-la.
-- **Pré-condição**:
+- **Pré-condição**: O usuário não estar logado/autenticado ainda. 
 - **Pós-Condição**: O usuário deverá estar autenticado, e com livre acesso das suas respectivas atividades.
 
 ## Fluxo Principal
