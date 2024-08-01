@@ -2,7 +2,7 @@
 
 - **Ator principal**: Leitor
 - **Atores secundários**: 
-- **Resumo**: O leitor poderá gerenciar e explorar seu perfil, acessando páginas como "Atualizações recentes", "Listas de livros", "Conquistas" e "Resenhas".
+- **Resumo**: O leitor poderá gerenciar e explorar seu perfil, acessando páginas como "Atualizações recentes", "Listas de livros" e "Resenhas".
 - **Pré-condição**: Estar autenticado no sistema como usuário leitor
 - **Pós-Condição**: O perfil do leitor deve estar atualizado de acordo com sua preferência no gerenciamento
 
