@@ -7,11 +7,11 @@
 - **Pós-Condição**: Um novo comentário é adicionado em comentário existente
 
 ## Fluxo Principal
-&emsp;01. O leitor na página "Seguindo", clica em um local de comentário de um comentário especifico
-&emsp;02. O sistema abre um espaço para comentário do comentário
-&emsp;03. O leitor escreve o comentário
-&emsp;04. O leitor clica em salvar o comentário
-&emsp;05. O sistema salva e é adicionado aos comentários.
+&emsp;01. O leitor na página "Seguindo", clica em um local de comentário de um comentário especifico<br>
+&emsp;02. O sistema abre um espaço para comentário do comentário<br>
+&emsp;03. O leitor escreve o comentário<br>
+&emsp;04. O leitor clica em salvar o comentário<br>
+&emsp;05. O sistema salva e é adicionado aos comentários.<br>
 
 ## Fluxo Alternativo I - O leitor tenta sair sem enviar o comentário
 &emsp;&emsp;04.a. Se o leitor não clicar em salvar o comentário, o sistema exibe uma mensagem perguntando se o leitor quer ir embora sem salvar ou decide salvar.  Se ele quiser salvar, voltar para fluxo principal 05.
