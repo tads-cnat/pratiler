@@ -18,8 +18,7 @@
 ## Fluxo Alternativo II - Leitor tenta sair sem salvar as alterações
 &emsp; 03.a. O leitor tenta sair da tela sem salvar, então o sistema exibe uma mensagem perguntando se ele quer sair da tela mesmo ou salvar as alterações. Se ele quiser salvar, segue para o fluxo principal 04.
 
-## Fluxo de Exceção I - O sistema não consegue salvar as informações
-&emsp; 04.a. O sistema mostra uma mensagem pedindo para que o leitor envie novamente os dados e segue para o fluxo principal 04.
+## Fluxo de Exceção I -
 
 ## Diagrama de Interação (Sequência ou Comunicação)
 
