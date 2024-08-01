@@ -1,4 +1,4 @@
-# CDU017. Escrever resenha
+# CDU016. Escrever resenha
 
 - **Ator principal**: Leitor
 - **Atores secundários**:	 

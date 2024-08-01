@@ -1,5 +1,5 @@
 
-# CDU023. Gerenciar estante
+# CDU022. Gerenciar estante
 
 - **Ator principal**: Leitor
 - **Atores secundários**:	 

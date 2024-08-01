@@ -1,4 +1,4 @@
-# CDU021. Curtir postagem
+# CDU020. Curtir postagem
 
 - **Ator principal**: Leitor
 - **Atores secundários**:	 
