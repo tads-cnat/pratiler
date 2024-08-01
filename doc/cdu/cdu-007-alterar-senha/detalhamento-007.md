@@ -4,7 +4,7 @@
 - **Atores secundários**:	
 - **Resumo**: Usuário confirma link recebido para alterar sua senha 
 - **Pré-condição**: Ter recebido o link de alteração de senha
-- **Pós-Condição**: Usuáro tem sua senha alterada
+- **Pós-Condição**: Usuário tem sua senha alterada
 
 ## Fluxo Principal
 1. Usuário confirma solicitação pelo link enviado no e-mail
