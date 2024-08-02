@@ -8,7 +8,7 @@
 
 ## Fluxo Principal
 &emsp;&emsp;Ao entrar na página de perfil, o usuário terá acesso às suas postagens mais recentes, em que ele poderá visualizar os últimos comentários e avaliações que realizou sobre os livros. Além disso, haverá uma área em que ele poderá criar uma nova postagem, em que ele colocará o livro que está sendo lido, a página em que ele começou a leitura e a página em que terminou, além de um comentário que diga o que ele está pensando sobre o livro. Ao fazer isso, a página será atualizada com mais uma nova postagem.<br>
-&emsp;&emsp;O usuário terá acesso, também, ao seu perfil de usuário que possui informações sobre o mesmo, com foto de perfil, foto de capa, nome do usuário, username identificador, o número de pessoas que o leitor segue e o número de pessoas que seguem o leitor. Além disso, terá um botão que o redirecionará para as configurações, em que ele pode alterar algumas dessas informações. Essa tela estará presente em todos os fluxos desse caso de uso.
+&emsp;&emsp;O usuário terá acesso, também, ao seu perfil de usuário que possui informações sobre o mesmo, com foto de perfil, foto de capa, nome do usuário, username identificador, o número de pessoas que o leitor segue e o número de pessoas que seguem o leitor.
 
 ## Fluxo Alternativo I - Página "Minha estante"
 &emsp;&emsp;Essa página irá demonstrar 3 tipos de lista. A primeira se trata dos livros que estão sendo lidos pelo leitor, a segunda mostra os livros que o leitor deseja ler futuramente e a terceira mostra os livros que o leitor terminou de ler e aos quais ele adicionou uma nota e um comentário de avaliação.<br>
@@ -23,9 +23,9 @@
 &emsp;&emsp;Essa página se tratará de uma resenha específica de um livro, que pode ser acessada pela página do fluxo alternativo II. Ela mostrará a resenha em si, com o texto, título e o nome do leitor que escreveu a resenha.<br>
 &emsp;&emsp;Haverá também um botão para que o leitor possa editar a resenha que escreveu.
 
-## Fluxo Alternativo IV - Alterar senha (tá logado e quer mudar a senha)
-*** escrever o texto ***
-**** relação com o texto Além disso, terá um botão que o redirecionará para as configurações, em que ele pode alterar algumas dessas informações. Essa tela estará presente em todos os fluxos desse caso de uso. ****
+## Fluxo Alternativo IV - Configurações do perfil
+&emsp;&emsp;O usuário dono do perfil terá acesso a um botão que o redirecionará para as configurações, em que ele pode alterar algumas de suas informações de cadastro, como nome, bio, foto, capa de perfil, ou sua senha, se for do seu interesse.<br>
+&emsp;&emsp;Em caso de alteração de senha, o usuário precisa informar um e-mail para receber o link de confirmação, e assim prosseguir para concluir a alteração. Essa tela estará acessível em todos os fluxos desse caso de uso.
 
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
