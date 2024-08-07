@@ -13,6 +13,8 @@
 ## Fluxo de Exceção I - Não há postagens
 &emsp;&emsp;Ao selecionar a página de postagens de "seguindo", se os leitores que o leitor segue não tiverem postagens, o sistema informará que não tem postagens nesta página.
 
+> Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
+
 ## Diagrama de Interação (Sequência ou Comunicação)
 
 > Substituir pela imagem correspondente...
