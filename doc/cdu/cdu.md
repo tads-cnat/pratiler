@@ -27,3 +27,4 @@
 21. [CDU-020 - Curtir postagem](cdu-020-curtir-postagem/detalhamento-020.md)
 22. [CDU-021 - Ver feed dos seguindo](cdu-021-ver-feed-dos-seguindo/detalhamento-021.md)
 23. [CDU-022 - Gerenciar estante](cdu-022-gerenciar-estante/detalhamento-022.md)
+24. [CDU-023 - Ver postagens](cdu-023-ver-postagens/detalhamento-023.md)
