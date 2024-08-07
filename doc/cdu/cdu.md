@@ -25,5 +25,5 @@
 19. [CDU-018 - Atualizar leitura](cdu-018-atualizar-leitura/detalhamento-018.md)
 20. [CDU-019 - Comentar postagem](cdu-019-comentar-postagem/detalhamento-019.md)
 21. [CDU-020 - Curtir postagem](cdu-020-curtir-postagem/detalhamento-020.md)
-22. [CDU-021 - Gerenciar atualizações recentes](cdu-021-gerenciar-atualizacoes-recentes/detalhamento-021.md)
+22. [CDU-021 - Ver feed dos seguindo](cdu-021-ver-feed-dos-seguindo/detalhamento-021.md)
 23. [CDU-022 - Gerenciar estante](cdu-022-gerenciar-estante/detalhamento-022.md)
