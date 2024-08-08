@@ -2,7 +2,7 @@
 # Modelo de Casos de Uso
 
 ## 1. Diagrama de Casos de Uso
-![diagrama-cdu-pratilerV4](https://github.com/user-attachments/assets/c0161dba-39b3-4a05-8060-02371c5081b9)
+![diagrama-cdu-pratilerv4](https://github.com/user-attachments/assets/c33b49fc-f6f1-4600-a24f-ca40401c0bd2)
 
 ## 2. Listagem dos detalhamentos dos casos de uso
 
