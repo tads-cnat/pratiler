@@ -25,8 +25,6 @@
 
 ## Fluxo Alternativo IV - Configurações do perfil
 &emsp;&emsp;O usuário dono do perfil terá acesso a um botão que o redirecionará para as configurações, em que ele pode alterar algumas de suas informações de cadastro, como nome, bio, foto, capa de perfil, ou sua senha, se for do seu interesse.<br>
-&emsp;&emsp;Em caso de alteração de senha, o usuário precisa informar um e-mail para receber o link de confirmação, e assim prosseguir para concluir a alteração. Essa tela estará acessível em todos os fluxos desse caso de uso.
-
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
