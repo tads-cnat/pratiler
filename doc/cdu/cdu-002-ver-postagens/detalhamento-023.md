@@ -1,4 +1,4 @@
-# CDU023. Ver postagens
+# CDU002. Ver postagens
 
 - **Ator principal**: Leitor
 - **Atores secundários**:	 
