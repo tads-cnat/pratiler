@@ -1,4 +1,4 @@
-# CDU017. Ver feed
+# CDU017. Ver feed geral
 
 - **Ator principal**: Leitor
 - **Atores secundários**:	 
