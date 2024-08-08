@@ -1,4 +1,4 @@
-# CDU003. Gerenciar perfil
+# CDU003. Gerenciar meu perfil
 
 - **Ator principal**: Leitor
 - **Atores secundários**: 
