@@ -70,7 +70,8 @@ class Resenha(models.Model):
 class Avaliacao(models.Model):
     # Só pode ter uma avaliação de um leitor por livro
     # Um livro pode ter avaliações de vários leitores
-    leitor = models.OneToOneField(Usuario, on_delete=models.CASCADE)
+    leitor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
     data_hora = models.DateTimeField(auto_now_add=True)
     nota  = models.IntegerField()
     conteudo = models.TextField()
