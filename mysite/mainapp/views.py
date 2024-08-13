@@ -17,7 +17,7 @@ class VerFeedView(View):
                         comentarios_relevantes.append(comentarios[i])
             else:
                 for i in comentarios:
-                    if i.curtida_set.coutn() > 10:
+                    if i.curtida_set.count() > 10:
                         comentarios_relevantes.append(i)
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes})
     
