@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Pratiler</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css'%}">
+</head>
+<body>
+    <!-- HEADER -->
+    <div>
+        <div class="header-auth">
+            <h1><a href="{% url 'home' %}">PraTiLer</a></h1>
+        </div>
+    </div>
+    <!-- FIM DO HEADER -->
+
+    <!-- LOGIN -->
+    <div class="auth-wrapper">
+        <span class="auth-title"><b>Login</b><hr></span>
+        <form action="#" class="auth-form" method="post">
+            {% csrf_token %}
+            <div class="auth-input-wrapper">
+                <div class="auth-input">
+                    <input type="text" name="email" placeholder="Email" required>
+                </div>
+                <div class="auth-input">
+                    <input type="password" name="senha" placeholder="Senha" required>                    
+                </div>
+            </div>
+            <div class="auth-submit">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+        <!-- <a href="#">Esqueceu a senha?</a> -->
+        <span>Não possui conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></span>
+    </div>
+    <!-- FIM DO LOGIN -->
+</body>
+</html>

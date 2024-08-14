@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Pratiler</title>
+</head>
+<body>
+    <h1>Página Home</h1>
+
+    {% if request.user.is_authenticated %}
+        <span>Bem-vindo <strong>{{ request.user.username }}</strong></span>
+        <br>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <ul>
+            <li>
+                <a href="{% url 'login' %}">Login</a>
+            </li>
+            <li>
+                <a href="{% url 'cadastro' %}">Cadastre-se</a>
+            </li>
+        </ul>
+    {% endif %}
+</body>
+</html>

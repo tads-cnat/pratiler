@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
-from .models import Comentario, Usuario, Curtida, Livro
+from .models import Comentario, Usuario, Livro
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout #Chaves
+from django.contrib import messages #Chaves
+from django.contrib.auth.decorators import login_required # Chaves
 
 # Create your views here.
 class VerFeedView(View):
@@ -69,3 +73,53 @@ class GerenciarLivrosView(View):
         livro = Livro.objects.get(isbn=kwargs['isbn'])
         livro.delete()
         return render(request, 'mainapp/mod_index.html', {'feedback': f'{livro.titulo} deletado com sucesso!'})
+    
+
+def home(request): # Chaves
+    return render(request, 'mainapp/home.html')
+
+def paginaLogin(request): # Chaves
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+
+        try:
+            user = User.objects.get(email=email)
+        except:
+            messages.error(request, 'Usuario não existe')
+        # Tratar quando ele não conseguir pegar esse user
+
+        user = authenticate(request, username=user.username, password=senha)
+
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+
+    return render(request, 'mainapp/login.html')
+
+def paginaCadastro(request): # Chaves
+    if request.method == 'POST':
+        email = request.POST['email']
+        primeiro_nome = request.POST['primeiro_nome']
+        username = request.POST['username']
+        senha = request.POST['senha']
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Nome de usuário já está em uso.')
+        elif User.objects.filter(email=email).exists():
+            messages.error(request, 'Email já está cadastrado.')
+        else:
+            user = User.objects.create_user(
+                username=username,
+                email=email,
+                first_name=primeiro_nome,
+                password=senha
+            )
+            user.save()
+            return redirect('/login')
+    
+    return render(request, 'mainapp/cadastro.html')
+        
+def logoutUser(request): # Chaves
+    logout(request)
+    return redirect('/')
