@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from .services import VerLivrosPopularesService
 from .models import Comentario, Usuario, Livro
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout #Chaves
@@ -11,22 +12,22 @@ class VerFeedView(View):
     def get(self, request, *args, **kwargs):
         comentarios = Comentario.objects.all()
         comentarios_relevantes = []
-        if comentarios == []:
-            mensagem = "Não há comentários relevantes no momento."
-            return render(request, 'mainapp/feed_relevantes.html', {'mensagem':mensagem})
+        if len(comentarios) > 10:
+            for i in range(0, 10):
+                if comentarios[i].curtida_set.count() > 10: 
+                    comentarios_relevantes.append(comentarios[i])
         else:
-            if len(comentarios) > 10:
-                for i in range(0, 10):
-                    if comentarios[i].curtida_set.count() > 10: 
-                        comentarios_relevantes.append(comentarios[i])
-            else:
-                for i in comentarios:
-                    if i.curtida_set.count() > 10:
-                        comentarios_relevantes.append(i)
+            for i in comentarios:
+                if i.curtida_set.count() > 10:
+                    comentarios_relevantes.append(i)
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes})
-    
-    #def post(self, request, *args, **kwargs):
 
+class VerLivrosPopulares(View):
+    def get(self, request, *args, **kwargs):
+        livros_populares = VerLivrosPopularesService.VerLivrosPopulares()
+        # renderização dos livros populares 
+        return render(request, 'mainapp/livros_populares.html', {'livros_populares': livros_populares})
+    
 class GerenciarLivrosView(View):
     def post(self, request, *args, **kwargs):
         '''
@@ -74,7 +75,6 @@ class GerenciarLivrosView(View):
         livro.delete()
         return render(request, 'mainapp/mod_index.html', {'feedback': f'{livro.titulo} deletado com sucesso!'})
     
-
 def home(request): # Chaves
     return render(request, 'mainapp/home.html')
 
