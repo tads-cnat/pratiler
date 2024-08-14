@@ -1,16 +1,18 @@
 from .models import Comentario
-from datetime import datetime
+import datetime
 from datetime import timedelta
+from django.utils import timezone
 
 class VerLivrosPopularesService():
     def VerLivrosPopulares():
         #ver comentários mais recentes
-        data_recente = datetime.today() - timedelta(days=15) # cálculo de 15 dias atras
+        data_recente = timezone.now() - datetime.timedelta(days=15) # cálculo de 15 dias atras
         comentarios_recentes = []
         comentarios = Comentario.objects.all() # todos os comentários
         for i in comentarios:
-            if i.data_hora() <= data_recente:
+            if i.data_hora <= data_recente:
                 comentarios_recentes.append(i) # adiciona os comentários mais recentes
+
         #ver quais são os livros dos comentários recentes
         livros = [] # vetor de livros
         if(len(comentarios_recentes) >= 3):

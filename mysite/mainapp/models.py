@@ -13,6 +13,7 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.user.username
+    
 class Autor(models.Model):
     nome = models.CharField(max_length=120)
 
@@ -28,7 +29,7 @@ class Livro(models.Model):
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.titulo + " " + self.autor
+        return self.titulo + " " + self.autor.nome
     
 class Comentario(models.Model):
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
@@ -38,7 +39,7 @@ class Comentario(models.Model):
     pagina_final = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'Comentário de {self.autor.username} em {self.livro.titulo}'
+        return f'Comentário de {self.leitor.user.username} em {self.livro.titulo}'
     
 class Interage(models.Model):
     leitor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
