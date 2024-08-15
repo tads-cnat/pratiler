@@ -10,9 +10,8 @@ class VerLivrosPopularesService():
         comentarios_recentes = []
         comentarios = Comentario.objects.all() # todos os comentários
         for i in comentarios:
-            if i.data_hora <= data_recente:
+            if  data_recente <= i.data_hora <= timezone.now():
                 comentarios_recentes.append(i) # adiciona os comentários mais recentes
-
         #ver quais são os livros dos comentários recentes
         livros = [] # vetor de livros
         if(len(comentarios_recentes) >= 3):
