@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | Pratiler</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css'%}">
+</head>
+    <body>
+        <div>
+            <div class="header-auth">
+                <h1><a href="{% url 'home' %}">PraTiLer</a></h1>
+            </div>
+        </div>
+        <div>
+            <form action="{% url 'mainapp:adicionar_livros' %}" method="post">
+                <label for="titulo">Título: 
+                    <input type="text" name="titulo">
+                </label>
+                <label for="descricao">Descrição: 
+                    <textarea name="descricao">Digite a descrição aqui</textarea>
+                </label>
+                <label for="isbn">ISBN: 
+                    <input type="text" name="isbn">
+                </label>
+                <label for="n_paginas">Nº de páginas: 
+                    <input type="number" name="n_paginas">
+                </label>
+                <label for="capa">Capa: 
+                    <input type="file" name="capa" accept="image/*">
+                </label>
+                <label for="autor">Autor: 
+                    <select name="autor">
+                        {% for autor in Autor.objects.all %}
+                            <option value="{{ autor.pk }}">{{ autor.nome }}</option>
+                        {{% endfor %}}
+                    </select>
+                </label>
+                <input type="submit" value="Adicionar">
+            </form>
+        </div>
+    </body>
+</html>

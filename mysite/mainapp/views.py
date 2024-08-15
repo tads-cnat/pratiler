@@ -29,6 +29,14 @@ class VerLivrosPopulares(View):
         return render(request, 'mainapp/livros_populares.html', {'livros_populares': livros_populares})
     
 class GerenciarLivrosView(View):
+    def get(self, request, *args, **kwargs):
+        livros = Livro.objects.all()
+        return render(request, 'mainapp/mod_index.html', {"livros": livros})
+    
+    def get_editar(self, request, *args, **kwargs):
+        livro = Livro.objects.get(isbn=kwargs['isbn'])
+        return render(request, 'mainapp/mod_editar.html', {"livro": livro})
+
     def post(self, request, *args, **kwargs):
         '''
         Adiciona um livro e renderiza a página principal do moderador com um feedback
