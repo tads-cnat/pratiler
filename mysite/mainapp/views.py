@@ -87,7 +87,7 @@ def paginaLogin(request): # Chaves
             user = User.objects.get(email=email)
             user = authenticate(request, username=user.username, password=senha)
             login(request, user)
-            return redirect('/') #mudar para redirecionar para o VerFeed
+            return redirect('/feed') #mudar para redirecionar para o VerFeed
         except:
             messages.error(request, 'Usuario não existe')
 
