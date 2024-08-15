@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro | Pratiler</title>
+    <title>Admin | Pratiler</title>
     <link rel="stylesheet" href="{% static 'css/auth.css'%}">
 </head>
     <body>
@@ -16,13 +16,13 @@
         <div>
             <h1>Livros</h1>
             <a href="mod_adicionar.html">Adicionar livro</a>
-                {{% for livro in livros %}}
+                {% for livro in livros %}
                     <div class="livro">
                         <h3>{{ livro.titulo }} - {{ livro.autor.nome }}</h3>{{ livro.capa }}
                             <p>&emsp;{{livro.descricao}}</p>
                             <p><a href="url 'mainapp:editar' livro.isbn">Editar livro</a> <a href="url 'mainapp:deletar' livro.isbn">Excluir livro</a></p>
                     </div>
-                {{% endfor %}}
+                {% endfor %}
         </div>
     </body>
 </html>

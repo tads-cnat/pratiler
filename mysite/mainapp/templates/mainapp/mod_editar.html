@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro | Pratiler</title>
+    <title>Admin | Pratiler</title>
     <link rel="stylesheet" href="{% static 'css/auth.css'%}">
 </head>
     <body>
@@ -34,7 +34,7 @@
                     <select name="autor">
                         {% for autor in Autor.objects.all %}
                             <option value="{{ autor.pk }}">{{ autor.nome }}</option>
-                        {{% endfor %}}
+                        {% endfor %}
                     </select>
                 </label>
                 <input type="submit" value="Adicionar">

@@ -30,13 +30,19 @@ class VerLivrosPopulares(View):
     
 class GerenciarLivrosView(View):
     def get(self, request, *args, **kwargs):
+        '''
+        Carrega o template 'index' do moderador
+        '''
         livros = Livro.objects.all()
         return render(request, 'mainapp/mod_index.html', {"livros": livros})
     
     def get_editar(self, request, *args, **kwargs):
+        '''
+        Carrega o template com o form de edição de um livro
+        '''
         livro = Livro.objects.get(isbn=kwargs['isbn'])
         return render(request, 'mainapp/mod_editar.html', {"livro": livro})
-
+    
     def post(self, request, *args, **kwargs):
         '''
         Adiciona um livro e renderiza a página principal do moderador com um feedback
@@ -47,7 +53,7 @@ class GerenciarLivrosView(View):
                  'capa': request.POST['capa'],
                  'isbn': request.POST['isbn'],
                  'n_paginas': request.POST['n_paginas'],
-                 'autor': request.POST['n_paginas']
+                 'autor': request.POST['autor']
                 }
         try:
             Livro.objects.create(**dados)
@@ -75,6 +81,7 @@ class GerenciarLivrosView(View):
         except Exception as error:
             return render(request, 'mainapp/mod_editar.html', {'error': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
         return render(request, 'mainapp/mod_index.html', {'feedback': f'{livro.titulo} editado com sucesso!'})
+    
     def delete(self, request, *args, **kwargs):
         '''
         Deleta um livro e retorna para a página principal do moderador
