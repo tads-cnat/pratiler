@@ -79,3 +79,10 @@ class Avaliacao(models.Model):
 
     class Meta:
         unique_together = ('livro', 'leitor') # Garante que um leitor possa avaliar um livro apenas uma vez
+
+class Curtida(models.Model):
+    comentario = models.ForeignKey(Comentario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.usuario.user.username + " curtiu comentário de " + self.comentario.leitor.user.username

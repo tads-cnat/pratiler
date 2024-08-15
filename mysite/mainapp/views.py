@@ -12,14 +12,14 @@ class VerFeedView(View):
     def get(self, request, *args, **kwargs):
         comentarios = Comentario.objects.all()
         comentarios_relevantes = []
-        if len(comentarios) > 10:
-            for i in range(0, 10):
-                if comentarios[i].curtida_set.count() > 10: 
-                    comentarios_relevantes.append(comentarios[i])
-        else:
-            for i in comentarios:
-                if i.curtida_set.count() > 10:
-                    comentarios_relevantes.append(i)
+        # if len(comentarios) > 10:
+        #     for i in range(0, 10):
+        #         if comentarios[i].curtida_set.count() > 10: 
+        #             comentarios_relevantes.append(comentarios[i])
+        # else:
+        #     for i in comentarios:
+        #         if i.curtida_set.count() > 10:
+        #             comentarios_relevantes.append(i)
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes})
 
 class VerLivrosPopulares(View):
