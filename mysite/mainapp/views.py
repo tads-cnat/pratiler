@@ -45,54 +45,60 @@ class GerenciarLivrosView(View):
         return render(request, 'mainapp/mod_editar.html', {"livro": livro, "autores": autores})
     
     def get_adicionar(request):
-       return render(request, 'mainapp/mod_adicionar.html')
+        autores = Autor.objects.all()
+        return render(request, 'mainapp/mod_adicionar.html', {"autores": autores})
 
     def post(self, request, *args, **kwargs):
         '''
         Adiciona um livro e renderiza a página principal do moderador com um feedback\n
         Caso haja exceções, renderiza a página de adicionar livro com uma mensagem de erro
         '''
+        autor = Autor.objects.get(nome=request.POST['autor'])
         dados = {'titulo': request.POST['titulo'],
                  'descricao': request.POST['descricao'],
                  'capa': request.POST['capa'],
                  'isbn': request.POST['isbn'],
                  'n_paginas': request.POST['n_paginas'],
-                 'autor': request.POST['autor']
+                 'autor': autor,
                 }
         try:
             Livro.objects.create(**dados)
         except Exception as error:
-            return render(request, 'mainapp/mod_adicionar.html', {'error': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
+            return render(request, 'mainapp/mod_adicionar.html', {'feedback': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
         livro = Livro.objects.get(isbn=request.POST['isbn'])
-        return render(request, 'mainapp/mod_index.html', {'feedback': f'{livro.titulo} adicionado com sucesso!'})
+        return redirect('index')
     
-    def patch(self, request, *args, **kwargs):
+    def patch(request, **kwargs):
         '''
         Edita as informações de um livro e retorna para a página principal do moderador\n
         Caso haja exceções, renderiza a página de editar livro com uma mensagem de erro
         '''
+        autor = Autor.objects.get(nome=request.POST['autor'])
         dados = {'titulo': request.POST['titulo'],
                  'descricao': request.POST['descricao'],
                  'capa': request.POST['capa'],
                  'isbn': request.POST['isbn'],
                  'n_paginas': request.POST['n_paginas'],
-                 'autor': request.POST['n_paginas']
+                 'autor': autor
                 }
-        livro = Livro.objects.get(isbn=kwargs['isbn'])
         try:
-            livro.update(**dados)
+            livro = Livro.objects.get(isbn=kwargs['isbn'])
+            for key in dados:
+                print(key)
+                livro[key] = dados[key]
             livro.save()
         except Exception as error:
-            return render(request, 'mainapp/mod_editar.html', {'error': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
-        return render(request, 'mainapp/mod_index.html', {'feedback': f'{livro.titulo} editado com sucesso!'})
+            return render(request, 'mainapp/mod_editar.html', {'feedback': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
+        return redirect('index')
     
     def delete(request, **kwargs):
         '''
         Deleta um livro e retorna para a página principal do moderador
         '''
         livro = Livro.objects.get(isbn=kwargs['isbn'])
+        livro_1 = livro
         livro.delete()
-        return render(request, 'mainapp/mod_index.html', {'feedback': f'{livro.titulo} deletado com sucesso!'})
+        return redirect('index')
     
 def home(request): # Chaves
     return render(request, 'mainapp/home.html')

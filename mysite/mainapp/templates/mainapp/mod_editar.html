@@ -15,11 +15,12 @@
         </div>
         <div>
             <form action="{% url 'editar_livro' livro.isbn %}" method="post">
+                {% csrf_token %}
                 <label for="titulo">Título: 
                     <input type="text" value="{{ livro.titulo }}" name="titulo">
                 </label>
                 <label for="descricao">Descrição: 
-                    <textarea name="descricao" value="{{ livro.descricao }}">Digite a descrição aqui</textarea>
+                    <textarea name="descricao">{{ livro.descricao }}</textarea>
                 </label>
                 <label for="isbn">ISBN: 
                     <input type="text" value="{{ livro.isbn }}" name="isbn">
@@ -33,11 +34,11 @@
                 <label for="autor">Autor:
                     <select name="autor">
                         {% for autor in autores %}
-                            <option value="{{ autor.pk }}">{{ autor.nome }}</option>
+                            <option>{{ autor.nome }}</option>
                         {% endfor %}
                     </select>
                 </label>
-                <input type="submit" value="Adicionar">
+                <input type="submit" value="Atualizar">
             </form>
         </div>
     </body>

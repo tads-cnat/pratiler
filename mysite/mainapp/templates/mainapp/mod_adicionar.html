@@ -13,13 +13,17 @@
                 <h1><a href="{% url 'home' %}">PraTiLer</a></h1>
             </div>
         </div>
+        {% if feedback %}
+        <p>{{ feedback }}</p>
+        {% endif %}
         <div>
             <form action="{% url 'adicionar_livros' %}" method="post">
+                {% csrf_token %}
                 <label for="titulo">Título: 
                     <input type="text" name="titulo">
                 </label>
                 <label for="descricao">Descrição: 
-                    <textarea name="descricao">Digite a descrição aqui</textarea>
+                    <textarea name="descricao"></textarea>
                 </label>
                 <label for="isbn">ISBN: 
                     <input type="text" name="isbn">
@@ -33,7 +37,7 @@
                 <label for="autor">Autor: 
                     <select name="autor">
                         {% for autor in autores %}
-                            <option value="{{ autor.pk }}">{{ autor.nome }}</option>
+                            <option value="{{ autor }}">{{ autor.nome }}</option>
                         {% endfor %}
                     </select>
                 </label>

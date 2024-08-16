@@ -20,12 +20,12 @@ class Autor(models.Model):
         return self.nome
 
 class Livro(models.Model):
-    titulo = models.CharField(max_length=120)
-    descricao = models.TextField(blank=True)
-    capa = models.ImageField(blank=True, null=True)
-    isbn = models.CharField(max_length=13, unique=True)
-    n_paginas = models.IntegerField()
-    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=120, editable=True)
+    descricao = models.TextField(blank=True, editable=True)
+    capa = models.ImageField(blank=True, null=True, editable=True)
+    isbn = models.CharField(max_length=13, unique=True, editable=True)
+    n_paginas = models.IntegerField(editable=True)
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE, editable=True)
     
     def __str__(self):
         return self.titulo + " - " + self.autor.nome
