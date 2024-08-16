@@ -1,26 +1,32 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .services import VerLivrosPopularesService
-from .models import Comentario, Usuario, Livro
+from .services import VerLivrosPopularesService, ComentariosRecentesService
+from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout #Chaves
 from django.contrib import messages #Chaves
 from django.contrib.auth.decorators import login_required # Chaves
 
-# Create your views here.
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
         comentarios = Comentario.objects.all()
         comentarios_relevantes = []
-        # if len(comentarios) > 10:
-        #     for i in range(0, 10):
-        #         if comentarios[i].curtida_set.count() > 10: 
-        #             comentarios_relevantes.append(comentarios[i])
-        # else:
-        #     for i in comentarios:
-        #         if i.curtida_set.count() > 10:
-        #             comentarios_relevantes.append(i)
+        if len(comentarios) > 10:
+            for i in range(0, 10):
+                if comentarios[i].curtida_set.count() > 10: 
+                    comentarios_relevantes.append(comentarios[i])
+        else:
+            for i in comentarios:
+                if i.curtida_set.count() > 10:
+                    comentarios_relevantes.append(i)
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes})
+    
+class VerFeedSeguindoView(View):
+    def get(self, request, *args, **kwargs):
+        usuario = Usuario.objects.get(user=request.user)
+        comentarios = ComentariosRecentesService.ComentariosRecentesSeguindo(usuario.id)
+        return render(request, 'mainapp/feed_seguindo.html', {'comentarios_recentes': comentarios})
+
 
 class VerLivrosPopulares(View):
     def get(self, request, *args, **kwargs):
@@ -111,7 +117,12 @@ def paginaCadastro(request): # Chaves
                 first_name=primeiro_nome,
                 password=senha
             )
+            usuario = Usuario.objects.create(
+                user = user,
+                id_username = username
+            )
             user.save()
+            usuario.save()
             return redirect('/login')
     
     return render(request, 'mainapp/cadastro.html')

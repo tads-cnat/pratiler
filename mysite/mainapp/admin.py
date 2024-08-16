@@ -8,6 +8,3 @@ admin.site.register(Comentario)
 admin.site.register(Interage)
 admin.site.register(Resenha)
 admin.site.register(Avaliacao)
-
-# Register your models here.
-
