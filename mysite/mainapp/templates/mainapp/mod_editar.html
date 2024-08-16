@@ -14,7 +14,7 @@
             </div>
         </div>
         <div>
-            <form action="{% url 'mainapp:editar_livro' livro.isbn %}" method="post">
+            <form action="{% url 'editar_livro' livro.isbn %}" method="post">
                 <label for="titulo">Título: 
                     <input type="text" value="{{ livro.titulo }}" name="titulo">
                 </label>
@@ -30,9 +30,9 @@
                 <label for="capa">Capa: 
                     <input type="file" value="{{ livro.capa }}" name="capa" accept="image/*">
                 </label>
-                <label for="autor">Autor: 
+                <label for="autor">Autor:
                     <select name="autor">
-                        {% for autor in Autor.objects.all %}
+                        {% for autor in autores %}
                             <option value="{{ autor.pk }}">{{ autor.nome }}</option>
                         {% endfor %}
                     </select>

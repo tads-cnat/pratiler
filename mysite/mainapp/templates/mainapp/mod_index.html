@@ -15,12 +15,12 @@
         </div>
         <div>
             <h1>Livros</h1>
-            <a href="mod_adicionar.html">Adicionar livro</a>
+            <a href="{% url 'adicionar' %}">Adicionar livro</a>
                 {% for livro in livros %}
                     <div class="livro">
                         <h3>{{ livro.titulo }} - {{ livro.autor.nome }}</h3>{{ livro.capa }}
                             <p>&emsp;{{livro.descricao}}</p>
-                            <p><a href="url 'mainapp:editar' livro.isbn">Editar livro</a> <a href="url 'mainapp:deletar' livro.isbn">Excluir livro</a></p>
+                            <p><a href="{% url 'editar' livro.isbn %}">Editar livro</a> <a href="{% url 'deletar' livro.isbn %}">Excluir livro</a></p>
                     </div>
                 {% endfor %}
         </div>

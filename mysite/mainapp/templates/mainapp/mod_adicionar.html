@@ -14,7 +14,7 @@
             </div>
         </div>
         <div>
-            <form action="{% url 'mainapp:adicionar_livros' %}" method="post">
+            <form action="{% url 'adicionar_livros' %}" method="post">
                 <label for="titulo">Título: 
                     <input type="text" name="titulo">
                 </label>
@@ -32,7 +32,7 @@
                 </label>
                 <label for="autor">Autor: 
                     <select name="autor">
-                        {% for autor in Autor.objects.all %}
+                        {% for autor in autores %}
                             <option value="{{ autor.pk }}">{{ autor.nome }}</option>
                         {% endfor %}
                     </select>
