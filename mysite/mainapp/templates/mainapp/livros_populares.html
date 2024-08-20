@@ -1,21 +1,62 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PraTiLer | Livros populares</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/livros_populares.css'%}">
 </head>
 <body>
     <nav>
-
+        <div class="search-bar">
+            <h1>PraTiLer</h1>
+            <input type="text">
+        </div>
+        <div class="nav-bar">
+            <ul>
+                <li>
+                    <a href="">Minha estante</a>
+                    <a href="">Livros populares</a>
+                    <a href="">Publicações populares</a>
+                    <a href="">Seguindo</a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <main>
         {%if livros_populares%}
-        <ul>
+        <ol class="rank-ol">
             {%for l in livros_populares%}
-            <li>{{l.titulo}}</li>
+            <li>
+                <div id="Livro-popular-lista">
+                    <img src="{{ l.capa.url }}" width="200px" height="300px">
+                    <div id="conteudo-livro-popular">
+                        <h2>
+                            {{ l.titulo }}
+                        </h2>
+                
+                        <p>
+                            {{ l.descricao }}
+                        </p>
+                        <p>
+                            Número de páginas: {{l.n_paginas}}
+                        </p>
+                        <p>
+                            ISBN {{l.isbn}}
+                        </p>
+                        <p>
+                            Autor {{l.autor}}
+                        </p>
+                        <button>Iniciar leitura</button>
+                        <button>Adicionar a lista</button>
+                        <p>XX leitores comentaram esse livro na última semana</p> <!-- funcionalidade de ver quantos leitors comentaram na ultima semana-->
+                    </div>                  
+                </div>
+            </li>
             {%endfor%}
-        </ul>
+        </ol>
         {%else%}
         <h1>Não há livros populares no momento.</h1>
         {%endif%}

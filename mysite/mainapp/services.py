@@ -1,15 +1,15 @@
-from .models import Comentario
-from datetime import datetime
-from datetime import timedelta
+from .models import Comentario, Usuario
+import datetime
+from django.utils import timezone
 
 class VerLivrosPopularesService():
     def VerLivrosPopulares():
         #ver comentários mais recentes
-        data_recente = datetime.today() - timedelta(days=15) # cálculo de 15 dias atras
+        data_recente = timezone.now() - datetime.timedelta(days=15) # cálculo de 15 dias atras
         comentarios_recentes = []
         comentarios = Comentario.objects.all() # todos os comentários
         for i in comentarios:
-            if i.data_hora() <= data_recente:
+            if  data_recente <= i.data_hora <= timezone.now():
                 comentarios_recentes.append(i) # adiciona os comentários mais recentes
         #ver quais são os livros dos comentários recentes
         livros = [] # vetor de livros
@@ -30,3 +30,35 @@ class VerLivrosPopularesService():
                 livros_populares.append(livro_popular)
                 livros.remove(livro_popular)
         return livros_populares # retorna os 3 livros mais populares 
+
+class ComentariosRecentesService():
+    def ComentariosRecentesGeral():
+        data_recente = timezone.now() - datetime.timedelta(days=15)
+        comentarios_recentes = []
+        comentarios = Comentario.objects.all() # todos os comentários
+        for i in comentarios:
+            if  data_recente <= i.data_hora <= timezone.now():
+                comentarios_recentes.append(i)
+        return comentarios_recentes
+    
+    def ComentariosRecentesUsuario(usuario):
+        data_recente = timezone.now() - datetime.timedelta(days=15)
+        comentarios = usuario.comentario_set.all()
+        comentarios_recentes = []
+        for i in comentarios:
+            if  data_recente <= i.data_hora <= timezone.now():
+                comentarios_recentes.append(i)
+        return comentarios_recentes
+    
+    def ComentariosRecentesSeguindo(id):
+        user = Usuario.objects.get(pk=id)
+        users_seguindo = user.seguindo
+        comentarios_recentes_todos = []
+        if users_seguindo.count() > 0:  
+            for i in users_seguindo.all():
+                comentarios_recentes = []
+                comentarios_recentes = ComentariosRecentesService.ComentariosRecentesUsuario(i)
+                for x in comentarios_recentes:
+                    comentarios_recentes_todos.append(x)
+            comentarios_recentes_todos.sort(key=lambda x: x.data_hora, reverse=True)
+        return comentarios_recentes_todos

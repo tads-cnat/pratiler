@@ -1,26 +1,31 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .services import VerLivrosPopularesService
-from .models import Comentario, Usuario, Livro, Autor
+from .services import VerLivrosPopularesService, ComentariosRecentesService
+from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout #Chaves
 from django.contrib import messages #Chaves
 from django.contrib.auth.decorators import login_required # Chaves
 
-# Create your views here.
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
-        comentarios = Comentario.objects.all()
+        comentarios = ComentariosRecentesService.ComentariosRecentesGeral()
         comentarios_relevantes = []
         if len(comentarios) > 10:
             for i in range(0, 10):
-                if comentarios[i].curtida_set.count() > 10: 
+                if comentarios[i].curtida_set.count() > 2: 
                     comentarios_relevantes.append(comentarios[i])
         else:
             for i in comentarios:
-                if i.curtida_set.count() > 10:
+                if i.curtida_set.count() > 2:
                     comentarios_relevantes.append(i)
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes})
+    
+class VerFeedSeguindoView(View):
+    def get(self, request, *args, **kwargs):
+        usuario = Usuario.objects.get(user=request.user)
+        comentarios = ComentariosRecentesService.ComentariosRecentesSeguindo(usuario.id)
+        return render(request, 'mainapp/feed_seguindo.html', {'comentarios_recentes': comentarios})
 
 class VerLivrosPopulares(View):
     def get(self, request, *args, **kwargs):
@@ -110,15 +115,11 @@ def paginaLogin(request): # Chaves
 
         try:
             user = User.objects.get(email=email)
+            user = authenticate(request, username=user.username, password=senha)
+            login(request, user)
+            return redirect('/feed') #mudar para redirecionar para o VerFeed
         except:
             messages.error(request, 'Usuario não existe')
-        # Tratar quando ele não conseguir pegar esse user
-
-        user = authenticate(request, username=user.username, password=senha)
-
-        if user is not None:
-            login(request, user)
-            return redirect('/')
 
     return render(request, 'mainapp/login.html')
 
@@ -140,7 +141,12 @@ def paginaCadastro(request): # Chaves
                 first_name=primeiro_nome,
                 password=senha
             )
+            usuario = Usuario.objects.create(
+                user = user,
+                id_username = username
+            )
             user.save()
+            usuario.save()
             return redirect('/login')
     
     return render(request, 'mainapp/cadastro.html')
