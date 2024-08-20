@@ -104,7 +104,15 @@ class GerenciarLivrosView(View):
         livro_1 = livro
         livro.delete()
         return redirect('index')
-    
+
+class SeguirLeitorView(View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        user_followed = Usuario.objects.get(id_username=kwargs['username'])
+        user.seguidores_de.add(user_followed)
+        user_followed.seguido_por.add(user)
+        return redirect('feed')
+
 def home(request): # Chaves
     return render(request, 'mainapp/home.html')
 
