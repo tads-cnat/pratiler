@@ -10,14 +10,42 @@
 
     </nav>
     <main>
-        <h1>Seu feed</h1>
-        {% if comentario_relevantes %}
+        <h1>PraTiLer | Feed Relevantes </h1>
+        {% if comentarios_relevantes %}
+        <ul> 
             {% for comentario in comentarios_relevantes %}
-
-                <p>Texto: {{comentario.texto}}</p>
-        
+            <li>
+                <p>
+                    {{ comentario.leitor.user.first_name }}
+                </p>
+                <p>
+                    <strong>{{ comentario.leitor.user.username}}</strong>
+                </p>
+                <p>
+                    {{ comentario.livro.titulo }} - {{ comentario.livro.autor.nome }}
+                </p>
+                
+                <p>
+                    Página {{comentario.pagina_final}}/{{comentario.livro.n_paginas}}
+                </p>
+                <p>
+                    {{ comentario.texto }}
+                </p>
+                <p>
+                    {{ comentario.data_hora }}
+                </p>
+            </li>
             {% endfor %}
+        </ul>
 
+       {% comment %}
+        livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
+        leitor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+        texto = models.TextField()
+        data_hora = models.DateTimeField(auto_now_add=True)
+        pagina_final = models.IntegerField(default=0)
+    {% endcomment %}
+           
         {% else %}
         <p>Não há comentários relevantes no momento.</p>
         {% endif %}

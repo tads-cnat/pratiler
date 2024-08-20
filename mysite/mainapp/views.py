@@ -9,15 +9,15 @@ from django.contrib.auth.decorators import login_required # Chaves
 
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
-        comentarios = Comentario.objects.all()
+        comentarios = ComentariosRecentesService.ComentariosRecentesGeral()
         comentarios_relevantes = []
         if len(comentarios) > 10:
             for i in range(0, 10):
-                if comentarios[i].curtida_set.count() > 10: 
+                if comentarios[i].curtida_set.count() > 2: 
                     comentarios_relevantes.append(comentarios[i])
         else:
             for i in comentarios:
-                if i.curtida_set.count() > 10:
+                if i.curtida_set.count() > 2:
                     comentarios_relevantes.append(i)
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes})
     
@@ -26,7 +26,6 @@ class VerFeedSeguindoView(View):
         usuario = Usuario.objects.get(user=request.user)
         comentarios = ComentariosRecentesService.ComentariosRecentesSeguindo(usuario.id)
         return render(request, 'mainapp/feed_seguindo.html', {'comentarios_recentes': comentarios})
-
 
 class VerLivrosPopulares(View):
     def get(self, request, *args, **kwargs):
