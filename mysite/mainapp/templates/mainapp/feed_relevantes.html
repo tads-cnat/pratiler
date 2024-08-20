@@ -37,14 +37,6 @@
             </li>
             {% endfor %}
         </ul>
-
-       {% comment %}
-        livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
-        leitor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-        texto = models.TextField()
-        data_hora = models.DateTimeField(auto_now_add=True)
-        pagina_final = models.IntegerField(default=0)
-    {% endcomment %}
            
         {% else %}
         <p>Não há comentários relevantes no momento.</p>
