@@ -19,13 +19,21 @@ class VerFeedView(View):
             for i in comentarios:
                 if i.curtida_set.count() > 2:
                     comentarios_relevantes.append(i)
-        return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes})
+
+        usuario = Usuario.objects.get(user=request.user)
+        livros = usuario.interage_set.filter(status='Lendo')
+        return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
+    def post(self, request, *args, **kwargs):
+        return
     
 class VerFeedSeguindoView(View):
     def get(self, request, *args, **kwargs):
         usuario = Usuario.objects.get(user=request.user)
         comentarios = ComentariosRecentesService.ComentariosRecentesSeguindo(usuario.id)
-        return render(request, 'mainapp/feed_seguindo.html', {'comentarios_recentes': comentarios})
+        livros = usuario.interage_set.filter(status='LN')
+        return render(request, 'mainapp/feed_seguindo.html', {'comentarios_recentes': comentarios, 'livros':livros})
+    def post(self, request, *args, **kwargs):
+        return
 
 class VerLivrosPopulares(View):
     def get(self, request, *args, **kwargs):

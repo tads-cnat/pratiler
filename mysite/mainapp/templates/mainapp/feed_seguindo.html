@@ -26,21 +26,23 @@
         </div>
     </nav>
     <main>
-        <form method="post" action="">
-            {% csrf_token %}
-            
+        <form method="post" action="{% url 'feed' %}">
+        {% csrf_token %}
+            {% if livros %}
+            <select class="livros">
+                {% for l in livros %}
+                <option>{{ l.livro.titulo }}</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+            <label>
+                Da página: <input type="number" name="pagina-inicial" min="0">
+                Até a página: <input type="number" name="pagina-final" min="1">
+            </label>
+            <textarea>Escreva seu comentário</textarea>
+            <input type='submit' value='Postar'>
         </form>
-        <div class="escreva-comentario">
-            <p>Escreva um comentário</p>
-            <p>Livro: <select></select></p>
-            <p>
-               De página:  <input type="number" name="pagina-inicial" min="1"> 
-               até página: <input type="number" name="pagina-inicial" min="1">
-            </p>
-            <textarea placeholder="O que você está achando do livro?"></textarea>
-            <button>Postar</button>
-        </div>
-    
+
         {%if comentarios_recentes%}
         <div class="comentarios-seguindo">
             {% for c in comentarios_recentes %}
