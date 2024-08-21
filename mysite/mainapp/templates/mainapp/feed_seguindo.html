@@ -26,6 +26,10 @@
         </div>
     </nav>
     <main>
+        <form method="post" action="">
+            {% csrf_token %}
+            
+        </form>
         <div class="escreva-comentario">
             <p>Escreva um comentário</p>
             <p>Livro: <select></select></p>
