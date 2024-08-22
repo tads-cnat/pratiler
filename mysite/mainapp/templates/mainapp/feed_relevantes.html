@@ -27,11 +27,16 @@
     <main>
         <h1>PraTiLer | Feed Relevantes </h1>
         {% if comentarios_relevantes %}
-        <ul> 
+        <ul>
             {% for comentario in comentarios_relevantes %}
             <li>
                 <p>
                     {{ comentario.leitor.user.first_name }}
+                    {% if comentario.leitor.user in user.seguidos_por.all %}  se estiver seguindo já 
+                    <a href="{% url 'seguir_leitor' comentario.leitor.user.username %}">Seguindo</a>
+                    {% else %} se não estiver seguindo
+                    <a href="{% url 'seguir_leitor' comentario.leitor.user.username %}">Seguir leitor</a>
+                    {% endif %} 
                 </p>
                 <p>
                     <strong>{{ comentario.leitor.user.username}}</strong>
