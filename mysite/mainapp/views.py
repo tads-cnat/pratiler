@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout #Chaves
 from django.contrib import messages #Chaves
 from django.contrib.auth.decorators import login_required # Chaves
 
+
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
         comentarios = ComentariosRecentesService.ComentariosRecentesGeral()
@@ -105,7 +106,8 @@ class GerenciarLivrosView(View):
         livro.delete()
         return redirect('index')
     
-#class CurtirComentario(View):
+class CurtirComentario(View):
+
 
 
 class SeguirLeitorView(View):
