@@ -62,3 +62,5 @@ class ComentariosRecentesService():
                     comentarios_recentes_todos.append(x)
             comentarios_recentes_todos.sort(key=lambda x: x.data_hora, reverse=True)
         return comentarios_recentes_todos
+
+# Função de verificar se comentário foi curtido pelo usuário 
