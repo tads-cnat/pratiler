@@ -16,7 +16,7 @@
             {% for comentario in comentarios_relevantes %}
             <li>
                 <p>
-                    {{ comentario.leitor.user.first_name }}
+                    <a href="{% url 'pagina_leitor' comentario.leitor.id %}">{{ comentario.leitor.user.first_name }}</a>
                 </p>
                 <p>
                     <strong>{{ comentario.leitor.user.username}}</strong>
