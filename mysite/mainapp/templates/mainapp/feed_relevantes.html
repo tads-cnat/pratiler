@@ -1,13 +1,28 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
     <title>Pratiler | Feed Relevantes</title>
 </head>
 <body>
     <nav>
-
+        <div class="search-bar">
+            <h1>PraTiLer</h1>
+            <input type="text">
+        </div>
+        <div class="nav-bar">
+            <ul>
+                <li>
+                    <a href="">Minha estante</a>
+                    <a href="">Livros populares</a>
+                    <a href="">Publicações populares</a>
+                    <a href="">Seguindo</a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <main>
         <h1>PraTiLer | Feed Relevantes </h1>

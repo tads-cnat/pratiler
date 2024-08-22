@@ -105,6 +105,9 @@ class GerenciarLivrosView(View):
         livro.delete()
         return redirect('index')
     
+#class CurtirComentario(View):
+
+    
 def home(request): # Chaves
     return render(request, 'mainapp/home.html')
 
