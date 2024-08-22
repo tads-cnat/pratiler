@@ -15,5 +15,6 @@ urlpatterns = [
     path('login/', views.paginaLogin, name="login"),
     path('cadastro/', views.paginaCadastro, name="cadastro"),
     path('logout/', views.logoutUser, name="logout"),
-    path('feed_seguindo/', views.VerFeedSeguindoView.as_view())
+    path('feed_seguindo/', views.VerFeedSeguindoView.as_view()),
+    path('feed_seguindo/', views.CurtirComentario.as_view(), name="CurtirComentario")
 ]

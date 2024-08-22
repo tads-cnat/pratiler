@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .services import VerLivrosPopularesService, ComentariosRecentesService
 from .models import *
+from django.shortcuts import get_object_or_404 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout #Chaves
 from django.contrib import messages #Chaves
@@ -107,7 +108,11 @@ class GerenciarLivrosView(View):
         return redirect('index')
     
 class CurtirComentario(View):
-
+    def post(self, request, comentario_id): # envio de dados para o sistema
+        comentario_procurado = get_object_or_404(Comentario, id=comentario_id) # procura o comentario pelo id
+        curtida, created = Curtida.objects.get_or_create(comentario=comentario, usuario=request.user)
+        if not created: 
+            curtida.delete()  # se a curtida existe, vai deletar.
 
 
 class SeguirLeitorView(View):
