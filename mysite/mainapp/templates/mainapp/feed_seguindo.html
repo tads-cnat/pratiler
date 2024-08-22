@@ -48,6 +48,7 @@
                 <p>{{c.data_hora}}</p>
                 <p>{{c.livro.titulo}}</p>
                 <p>{{c.texto}}</p>
+                <p></p>
                 <p>Página final: {{c.pagina_final}}</p>
                 <form method="post" action="{% url 'CurtirComentario' c.id %}">
                     {% csrf_token %}

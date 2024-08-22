@@ -85,4 +85,4 @@ class Curtida(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.usuario.user.username + " curtiu comentário de " + self.comentario.leitor.user.username
+        return "id: "+ str(self.id) + " " + self.usuario.user.username + " curtiu comentário de " + self.comentario.leitor.user.username

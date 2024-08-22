@@ -108,12 +108,15 @@ class GerenciarLivrosView(View):
         return redirect('index')
     
 class CurtirComentario(View):
-    def post(self, request, comentario_id): # envio de dados para o sistema
+    def post(self, request,  *args, **kwargs): # envio de dados para o sistema
+        comentario_id = kwargs.get('id')
         comentario_procurado = get_object_or_404(Comentario, id=comentario_id) # procura o comentario pelo id
-        curtida, created = Curtida.objects.get_or_create(comentario=comentario, usuario=request.user)
+        usuario = Usuario.objects.get(user=request.user)
+        curtida, created = Curtida.objects.get_or_create(comentario=comentario_procurado, usuario=usuario)
         if not created: 
             curtida.delete()  # se a curtida existe, vai deletar.
 
+        return redirect('pagina_seguindo')
 
 class SeguirLeitorView(View):
     def get(self, request, *args, **kwargs):

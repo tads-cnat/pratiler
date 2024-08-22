@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('<slug:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor"),
+    path('<str:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor"),
     path('feed/', views.VerFeedView.as_view(), name="feed"),
     path('livros_populares/', views.VerLivrosPopulares.as_view()),
     path('livros/', views.GerenciarLivrosView.as_view(), name="index"),
@@ -15,6 +15,6 @@ urlpatterns = [
     path('login/', views.paginaLogin, name="login"),
     path('cadastro/', views.paginaCadastro, name="cadastro"),
     path('logout/', views.logoutUser, name="logout"),
-    path('feed_seguindo/', views.VerFeedSeguindoView.as_view()),
-    path('feed_seguindo/', views.CurtirComentario.as_view(), name="CurtirComentario")
+    path('feed_seguindo/', views.VerFeedSeguindoView.as_view(), name="pagina_seguindo"),
+    path('feed_seguindo/<int:id>/', views.CurtirComentario.as_view(), name="CurtirComentario")
 ]
