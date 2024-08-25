@@ -6,7 +6,7 @@ class Usuario(models.Model):
     foto_perfil = models.ImageField(blank=True, null=True)
     descricao = models.TextField(blank=True)
     moderador = models.BooleanField(default=False)
-    id_username = models.CharField(max_length=30, unique=True) #@username
+    id_username = models.CharField(max_length=30, unique=True) #@username # Chaves - Não é necessario, da para visualizar o pela fk user.username
 
     seguidores = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='seguidores_de')
     seguindo = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='seguidos_por')

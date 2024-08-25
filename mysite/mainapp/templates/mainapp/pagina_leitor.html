@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ leitor.user.username }}</title>
+</head>
+<body>
+    <!-- HEADER -->
+    <div>
+        <div class="header-auth">
+            <h1><a href="{% url 'home' %}">PraTiLer</a></h1>
+        </div>
+    </div>
+    <!-- FIM DO HEADER -->
+
+    <!-- Adicionar campo para imagem -->
+
+    <h1>{{ leitor.user.username }}</h1>
+    <p>{{ leitor.descricao }}</p>
+
+    <!-- Seguidores -->
+    <h2>Seguidores</h2>
+    <ul>
+        {% for seguidor in leitor.seguidores.all %}
+            <li>
+                <a href="{% url 'pagina_leitor' seguidor.id %}">{{ seguidor.user.username }}</a>
+            </li>
+        {% empty %}
+            <li>Esse leitor ainda não tem seguidores.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Seguindo -->
+    <h2>Seguindo</h2>
+    <ul>
+        {% for seguido in leitor.seguindo.all %}
+            <li>
+                <a href="{% url 'pagina_leitor' seguido.id %}">{{ seguido.user.username }}</a>
+            </li>
+        {% empty %}
+            <li>Esse leitor ainda não segue ninguém.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

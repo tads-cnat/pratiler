@@ -10,9 +10,10 @@ urlpatterns = [
     path('livros/<int:isbn>/deletar/', views.GerenciarLivrosView.delete, name="deletar"),
     path('livros/add/', views.GerenciarLivrosView.get_adicionar, name="adicionar"),
     path('livros/adicionar/', views.GerenciarLivrosView.as_view(), name="adicionar_livros"),
-    path('', views.home, name='home'),
-    path('login/', views.paginaLogin, name="login"),
-    path('cadastro/', views.paginaCadastro, name="cadastro"),
-    path('logout/', views.logoutUser, name="logout"),
+    path('', views.home, name='home'), # Chaves
+    path('login/', views.paginaLogin, name="login"), # Chaves
+    path('cadastro/', views.paginaCadastro, name="cadastro"), # Chaves
+    path('logout/', views.logoutUser, name="logout"), # Chaves
+    path('leitor/<int:leitor_id>', views.paginaLeitor, name='pagina_leitor'), # Chaves
     path('feed_seguindo/', views.VerFeedSeguindoView.as_view()),
 ]

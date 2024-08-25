@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .services import VerLivrosPopularesService, ComentariosRecentesService
 from .models import *
@@ -154,3 +154,8 @@ def paginaCadastro(request): # Chaves
 def logoutUser(request): # Chaves
     logout(request)
     return redirect('/')
+
+def paginaLeitor(request, leitor_id): # Chaves
+    leitor = get_object_or_404(Usuario, id=leitor_id)
+    context = {'leitor': leitor}
+    return render(request, 'mainapp/pagina_leitor.html', context)
