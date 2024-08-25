@@ -13,12 +13,16 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.user.username
+    class Meta:
+        verbose_name = "Usuário"
     
 class Autor(models.Model):
     nome = models.CharField(max_length=120)
 
     def __str__(self):
         return self.nome
+    class Meta:
+        verbose_name_plural = "Autores"
 
 class Livro(models.Model):
     titulo = models.CharField(max_length=120)
@@ -41,6 +45,9 @@ class Comentario(models.Model):
     def __str__(self):
         return f'Comentário de {self.leitor.user.username} em {self.livro.titulo}'
     
+    class Meta:
+        verbose_name = "Comentário"
+    
 class Interage(models.Model):
     leitor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
@@ -55,6 +62,9 @@ class Interage(models.Model):
 
     def __str__(self):
         return f'{self.leitor.user.username} - {self.livro.titulo} ({self.get_status_display()})'
+    
+    class Meta:
+        verbose_name_plural = "Interações"
 
 class Resenha(models.Model):
     # Um livro pode ter muitas avaliações, mas um leitor pode fazer apenas 
@@ -64,7 +74,8 @@ class Resenha(models.Model):
     titulo = models.CharField(max_length=120)
     texto = models.TextField()
     data_hora = models.DateTimeField(auto_now_add=True)
-
+    def __str__(self):
+        return f"{self.titulo} - {self.leitor.id_username}"
     class Meta:
         unique_together = ('livro', 'leitor')
 
@@ -79,6 +90,8 @@ class Avaliacao(models.Model):
 
     class Meta:
         unique_together = ('livro', 'leitor') # Garante que um leitor possa avaliar um livro apenas uma vez
+        verbose_name = "Avaliação"
+        verbose_name_plural = "Avaliações"
 
 class Curtida(models.Model):
     comentario = models.ForeignKey(Comentario, on_delete=models.CASCADE)
