@@ -18,6 +18,11 @@
 
     <h1>{{ leitor.user.username }}</h1>
     <p>{{ leitor.descricao }}</p>
+    <!-- {% if leitor in user.seguidores_de.all %}
+    <a href="{% url 'seguir_leitor' leitor.id_username %}">Seguindo</a>
+    {% else %}                                                                  DÚVIDA SOBRE REDIRECIONAMENTO
+    <a href="{% url 'seguir_leitor' leitor.id_username %}">Seguir leitor</a>
+    {% endif %} -->
 
     <!-- Seguidores -->
     <h2>Seguidores</h2>

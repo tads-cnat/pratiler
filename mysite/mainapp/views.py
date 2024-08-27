@@ -13,13 +13,14 @@ class VerFeedView(View):
         comentarios_relevantes = []
         if len(comentarios) > 10:
             for i in range(0, 10):
-                if comentarios[i].curtida_set.count() > 2: 
+                if comentarios[i].curtida_set.count() > 2:
                     comentarios_relevantes.append(comentarios[i])
         else:
             for i in comentarios:
                 if i.curtida_set.count() > 2:
                     comentarios_relevantes.append(i)
-        return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes})
+        leitor = Usuario.objects.get(user=request.user)
+        return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'usuario': leitor})
     
 class VerFeedSeguindoView(View):
     def get(self, request, *args, **kwargs):
@@ -88,9 +89,12 @@ class GerenciarLivrosView(View):
                 }
         try:
             livro = Livro.objects.get(isbn=kwargs['isbn'])
-            for key in dados:
-                print(key)
-                livro[key] = dados[key]
+            livro.titulo = dados['titulo']
+            livro.descricao = dados['descricao']
+            livro.capa = dados['capa']
+            livro.isbn = dados['isbn']
+            livro.n_paginas = dados['n_paginas']
+            livro.autor = dados['autor']
             livro.save()
         except Exception as error:
             return render(request, 'mainapp/mod_editar.html', {'feedback': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
@@ -104,7 +108,21 @@ class GerenciarLivrosView(View):
         livro_1 = livro
         livro.delete()
         return redirect('index')
-    
+
+class SeguirLeitorView(View):
+    def get(self, request, *args, **kwargs):
+        user = Usuario.objects.get(user=request.user)
+        user_followed = Usuario.objects.get(id_username=kwargs['username'])
+
+        if user_followed in user.seguidores_de.all():
+            user.seguidores_de.remove(user_followed)
+            user_followed.seguidos_por.remove(user)
+        else:   
+            user.seguidores_de.add(user_followed)
+            user_followed.seguidos_por.add(user)
+
+        return redirect('feed')
+
 def home(request): # Chaves
     return render(request, 'mainapp/home.html')
 
