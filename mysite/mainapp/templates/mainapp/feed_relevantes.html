@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pratiler | Feed Relevantes</title>
-</head>
-<body>
-    <nav>
+{% extends 'mainapp/base.html' %}
+{% load static %}
 
-    </nav>
+{% block titulo %}Pratiler | Feed Relevantes{% endblock %}
+
+{% block conteudo %}
     <main>
         <h1>PraTiLer | Feed Relevantes </h1>
         {% if comentarios_relevantes %}
@@ -47,5 +42,4 @@
         <p>Não há comentários relevantes no momento.</p>
         {% endif %}
     </main>
-</body>
-</html>
+{% endblock %}

@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ leitor.user.username }}</title>
-</head>
-<body>
-    <!-- HEADER -->
-    <div>
-        <div class="header-auth">
-            <h1><a href="{% url 'home' %}">PraTiLer</a></h1>
-        </div>
-    </div>
-    <!-- FIM DO HEADER -->
+{% extends 'mainapp/base.html' %}
+{% load static %}
+    {% block titulo %}{{ leitor.user.username }}{% endblock %}
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+    {% endblock %}
 
+{% block navbar %}{% endblock %}
+{% block conteudo %}
     <!-- Adicionar campo para imagem -->
-
     <h1>{{ leitor.user.username }}</h1>
-    <p>{{ leitor.descricao }}</p>
+    <h4>{{ leitor.descricao }}</h4>
     <!-- {% if leitor in user.seguidores_de.all %}
     <a href="{% url 'seguir_leitor' leitor.id_username %}">Seguindo</a>
     {% else %}                                                                  DÚVIDA SOBRE REDIRECIONAMENTO
@@ -25,27 +17,15 @@
     {% endif %} -->
 
     <!-- Seguidores -->
-    <h2>Seguidores</h2>
-    <ul>
-        {% for seguidor in leitor.seguidores.all %}
-            <li>
-                <a href="{% url 'pagina_leitor' seguidor.id %}">{{ seguidor.user.username }}</a>
-            </li>
-        {% empty %}
-            <li>Esse leitor ainda não tem seguidores.</li>
-        {% endfor %}
-    </ul>
-
-    <!-- Seguindo -->
-    <h2>Seguindo</h2>
-    <ul>
-        {% for seguido in leitor.seguindo.all %}
-            <li>
-                <a href="{% url 'pagina_leitor' seguido.id %}">{{ seguido.user.username }}</a>
-            </li>
-        {% empty %}
-            <li>Esse leitor ainda não segue ninguém.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+    <p>Seguidores {{ leitor.seguidos_por.count }}&emsp;Seguindo {{ leitor.seguidores_de.count }}</p>
+    <hr>
+        <div class="perfil-nav">
+            <ul>
+                <li>
+                    <a href="">Atualizações recentes</a>
+                    <a href="">Minha estante</a>
+                    <a href="">Resenhas</a>
+                </li>
+            </ul>
+        </div>
+{% endblock %}

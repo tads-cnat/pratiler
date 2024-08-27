@@ -1,30 +1,12 @@
-<!DOCTYPE html>
+{% extends 'mainapp/base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PraTiLer | Livros populares</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/livros_populares.css'%}">
-</head>
-<body>
-    <nav>
-        <div class="search-bar">
-            <h1>PraTiLer</h1>
-            <input type="text">
-        </div>
-        <div class="nav-bar">
-            <ul>
-                <li>
-                    <a href="">Minha estante</a>
-                    <a href="">Livros populares</a>
-                    <a href="">Publicações populares</a>
-                    <a href="">Seguindo</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+
+{% block titulo %}Pratiler | Livros populares{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/livros_populares.css'%}">
+{% endblock %}
+
+{% block conteudo %}
     <main>
         {%if livros_populares%}
         <ol class="rank-ol">
@@ -61,5 +43,4 @@
         <h1>Não há livros populares no momento.</h1>
         {%endif%}
     </main>
-</body>
-</html>
+{% endblock %}

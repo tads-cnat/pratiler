@@ -1,46 +1,12 @@
-<!DOCTYPE html>
+{% extends 'mainapp/base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PraTiLer | Feed Seguindo</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/feed_seguindo.css'%}">
-</head>
-<body>
-    <nav>
-        <div class="search-bar">
-            <h1>PraTiLer</h1>
-            <input type="text">
-        </div>
-        <div class="nav-bar">
-            <ul>
-                <li>
-                    <a href="">Minha estante</a>
-                    <a href="">Livros populares</a>
-                    <a href="">Publicações populares</a>
-                    <a href="">Seguindo</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <main>
-        <form method="post" action="">
-            {% csrf_token %}
-            
-        </form>
-        <div class="escreva-comentario">
-            <p>Escreva um comentário</p>
-            <p>Livro: <select></select></p>
-            <p>
-               De página:  <input type="number" name="pagina-inicial" min="1"> 
-               até página: <input type="number" name="pagina-inicial" min="1">
-            </p>
-            <textarea placeholder="O que você está achando do livro?"></textarea>
-            <button>Postar</button>
-        </div>
     
+{% block titulo %}Pratiler | Seguindo{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/feed_seguindo.css'%}">
+{% endblock %}
+{% block conteudo %}
+    <main>
         {%if comentarios_recentes%}
         <div class="comentarios-seguindo">
             {% for c in comentarios_recentes %}
@@ -54,5 +20,4 @@
             <p>Você não segue ninguém para ver os comentários de seguidores</p>
         {%endif%}
     </main>
-</body>
-</html>
+{% endblock %}
