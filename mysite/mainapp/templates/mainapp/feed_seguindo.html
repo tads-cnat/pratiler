@@ -5,8 +5,11 @@
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/feed_seguindo.css'%}">
 {% endblock %}
+
+
 {% block conteudo %}
-    <main>
+<main>
+        {% include 'mainapp/comentario.html' %}
         {%if comentarios_recentes%}
         <div class="comentarios-seguindo">
             {% for c in comentarios_recentes %}

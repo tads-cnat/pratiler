@@ -2,10 +2,13 @@
 {% load static %}
 
 {% block titulo %}Pratiler | Feed Relevantes{% endblock %}
-
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/feed_geral.css' %}">
+{% endblock %}
 {% block conteudo %}
+<h1>PraTiLer | Feed Relevantes </h1>
     <main>
-        <h1>PraTiLer | Feed Relevantes </h1>
+        {% include 'mainapp/comentario.html' %}
         {% if comentarios_relevantes %}
         <ul>
             {% for comentario in comentarios_relevantes %}
