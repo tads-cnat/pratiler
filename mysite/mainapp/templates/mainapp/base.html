@@ -11,7 +11,7 @@
 <body>
     <nav>
         <div class="search-bar">
-            <h1>PraTiLer</h1>
+            <h1><a href="{% url 'feed' %}">PraTiLer</a></h1>
             <input type="text">
         </div>
         {% block navbar %}
@@ -19,9 +19,9 @@
             <ul>
                 <li>
                     <a href="">Minha estante</a>
-                    <a href="">Livros populares</a>
-                    <a href="">Publicações populares</a>
-                    <a href="">Seguindo</a>
+                    <a href="{% url 'livros_populares' %}">Livros populares</a>
+                    <a href="{% url 'feed' %}">Publicações populares</a>
+                    <a href="{% url 'seguindo' %}">Seguindo</a>
                 </li>
             </ul>
         </div>

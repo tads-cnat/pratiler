@@ -32,3 +32,8 @@ nav .nav-bar ul{
 nav .nav-bar ul li a{
     padding-right: 1.5rem;
 }
+
+a{
+    color: black;
+    text-decoration: none;
+}

@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     #path('<slug:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor"),
     path('feed/', views.VerFeedView.as_view(), name="feed"),
-    path('livros_populares/', views.VerLivrosPopulares.as_view()),
+    path('livros_populares/', views.VerLivrosPopulares.as_view(), name="livros_populares"),
     path('livros/', views.GerenciarLivrosView.as_view(), name="index"),
     path('livros/add/', views.GerenciarLivrosView.get_adicionar, name="adicionar"),
     path('livros/adicionar/', views.GerenciarLivrosView.as_view(), name="adicionar_livros"),
@@ -18,6 +18,6 @@ urlpatterns = [
     path('cadastro/', views.paginaCadastro, name="cadastro"), # Chaves
     path('logout/', views.logoutUser, name="logout"), # Chaves
     path('leitor/<int:leitor_id>', views.paginaLeitor, name='pagina_leitor'), # Chaves
-    path('feed_seguindo/', views.VerFeedSeguindoView.as_view()),
+    path('feed_seguindo/', views.VerFeedSeguindoView.as_view(), name="seguindo"),
     path('<str:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor")
 ]
