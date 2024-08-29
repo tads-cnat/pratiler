@@ -18,6 +18,7 @@ urlpatterns = [
     path('cadastro/', views.paginaCadastro, name="cadastro"), # Chaves
     path('logout/', views.logoutUser, name="logout"), # Chaves
     path('leitor/<int:leitor_id>', views.paginaLeitor, name='pagina_leitor'), # Chaves
+    path('livros_pesquisa/', views.livros_pesquisa, name="livros_pesquisa"), #Chaves
     path('feed_seguindo/', views.VerFeedSeguindoView.as_view(), name="seguindo"),
     path('<str:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor")
 ]

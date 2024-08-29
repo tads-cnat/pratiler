@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout #Chaves
 from django.contrib import messages #Chaves
 from django.contrib.auth.decorators import login_required # Chaves
+from django.db.models import Q # Chaves
 
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
@@ -177,3 +178,17 @@ def paginaLeitor(request, leitor_id): # Chaves
     leitor = get_object_or_404(Usuario, id=leitor_id)
     context = {'leitor': leitor}
     return render(request, 'mainapp/pagina_leitor.html', context)
+
+def livros_pesquisa(request):
+    q = ''
+
+    if request.GET.get('q') != None:
+        q = request.GET.get('q')
+    
+    livros = Livro.objects.filter(
+        Q(titulo__icontains=q)
+    )
+
+    context = {'livros': livros}
+
+    return render(request, 'mainapp/livros.html', context)

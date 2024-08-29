@@ -1,34 +1,41 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/navbar.css'%}"
+    />
     {% block head %}{% endblock %}
     <title>{% block titulo %} Pratiler | Base {% endblock %}</title>
-</head>
-<body>
+  </head>
+  <body>
     <nav>
-        <div class="search-bar">
-            <h1><a href="{% url 'feed' %}">PraTiLer</a></h1>
-            <input type="text">
-        </div>
-        {% block navbar %}
-        <div class="nav-bar">
-            <ul>
-                <li>
-                    <a href="">Minha estante</a>
-                    <a href="{% url 'livros_populares' %}">Livros populares</a>
-                    <a href="{% url 'feed' %}">Publicações populares</a>
-                    <a href="{% url 'seguindo' %}">Seguindo</a>
-                </li>
-            </ul>
-        </div>
-        {% endblock %}
+      <div class="search-bar">
+        <h1><a href="{% url 'feed' %}">PraTiLer</a></h1>
+        <form class="header__search" method="get" action="{% url 'livros_pesquisa' %}">
+          <label>
+            <input name="q" placeholder="Search.." />
+          </label>
+        </form>
+      </div>
+      {% block navbar %}
+      <div class="nav-bar">
+        <ul>
+          <li>
+            <a href="">Minha estante</a>
+            <a href="{% url 'livros_populares' %}">Livros populares</a>
+            <a href="{% url 'feed' %}">Publicações populares</a>
+            <a href="{% url 'seguindo' %}">Seguindo</a>
+          </li>
+        </ul>
+      </div>
+      {% endblock %}
     </nav>
-    {% block conteudo %}
-    {% endblock %}
+    {% block conteudo %} {% endblock %}
     <!--{% block escrever_comentario %}
         <form method="post" action="">
             {% csrf_token %}
@@ -45,4 +52,5 @@
             <button>Postar</button>
         </div>
         {% endblock %}-->
-</body>
+  </body>
+</html>
