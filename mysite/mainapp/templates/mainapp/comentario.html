@@ -1,8 +1,8 @@
 <p>
     {{ comentario.leitor.user.first_name }}
-    {% if comentario.leitor in user.usuario.seguidores_de.all %}  <!--se estiver seguindo já--> 
+    {% if comentario.leitor in user.usuario.seguidores_de.all %}
         <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}?next={% url 'feed' %}">Seguindo</a>
-    {% else %} <!--se não estiver seguindo-->
+    {% else %}
         <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}?next={% url 'feed' %}">Seguir leitor</a>
     {% endif %}
 </p>

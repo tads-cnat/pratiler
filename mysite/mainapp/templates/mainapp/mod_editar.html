@@ -34,7 +34,7 @@
                 <label for="autor">Autor: 
                     <select name="autor">
                         {% for autor in autores %}
-                            <option>{{ autor.nome }}</option>
+                            <option value="{{ autor }}">{{ autor.nome }}</option>
                         {% endfor %}
                     </select>
                 </label>

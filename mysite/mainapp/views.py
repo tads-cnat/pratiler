@@ -51,6 +51,9 @@ class GerenciarLivrosView(View):
         return render(request, 'mainapp/mod_editar.html', {"livro": livro, "autores": autores})
     
     def get_adicionar(request):
+        '''
+        Carrega o template com o form de adição de um livro
+        '''
         autores = Autor.objects.all()
         return render(request, 'mainapp/mod_adicionar.html', {"autores": autores})
 
@@ -111,6 +114,11 @@ class GerenciarLivrosView(View):
 
 class SeguirLeitorView(View):
     def get(self, request, *args, **kwargs):
+        '''
+        Segue o leitor requisitado pelo usuário\n
+        Caso o usuário já esteja seguindo, deixará de seguir\n
+        Após o processamento, renderiza a página na qual a View foi chamada
+        '''
         user = Usuario.objects.get(user=request.user)
         user_followed = Usuario.objects.get(id_username=kwargs['username'])
 
