@@ -1,14 +1,23 @@
-<form method="post" action="">
-    {% csrf_token %}
-    
-</form>
-<div class="escreva-comentario">
-    <p class="titulo">Escreva um comentário</p>
-    <p>Livro: <select></select></p>
-    <p>
-       De página:  <input type="number" name="pagina-inicial" min="1"> 
-       até página: <input type="number" name="pagina-inicial" min="1">
-    </p>
-    <textarea placeholder="O que você está achando do livro?"></textarea>
-    <button>Postar</button>
-</div>
+<p>
+    {{ comentario.leitor.user.first_name }}
+    {% if comentario.leitor in user.usuario.seguidores_de.all %}  <!--se estiver seguindo já--> 
+        <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}?next={% url 'feed' %}">Seguindo</a>
+    {% else %} <!--se não estiver seguindo-->
+        <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}?next={% url 'feed' %}">Seguir leitor</a>
+    {% endif %}
+</p>
+<p>
+    <strong><a href="{% url 'pagina_leitor' comentario.leitor.id_username %}">{{ comentario.leitor.user.username}}</a></strong>
+</p>
+<p>
+    {{ comentario.livro.titulo }} - {{ comentario.livro.autor.nome }}
+</p>                        
+<p>
+    Página {{comentario.pagina_final}}/{{comentario.livro.n_paginas}}
+</p>
+<p>
+    {{ comentario.texto }}
+</p>
+<p>
+    {{ comentario.data_hora }}
+</p>

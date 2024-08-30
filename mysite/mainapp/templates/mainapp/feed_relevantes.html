@@ -3,46 +3,22 @@
 
 {% block titulo %}Pratiler | Feed Relevantes{% endblock %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/feed_geral.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/feed_geral.css' %}">
 {% endblock %}
+
 {% block conteudo %}
-<h1>PraTiLer | Feed Relevantes </h1>
+    <h1>PraTiLer | Feed Relevantes </h1>
     <main>
-        {% include 'mainapp/comentario.html' %}
+        {% include 'mainapp/postar_comentario.html' %}
         {% if comentarios_relevantes %}
         <ul>
             {% for comentario in comentarios_relevantes %}
-            <li>
-                <p>
-                    {{ comentario.leitor.user.first_name }}
-                    {% if comentario.leitor in usuario.seguidores_de.all %}  <!--se estiver seguindo já--> 
-                    <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}">Seguindo</a>
-                    {% else %} <!--se não estiver seguindo-->
-                    <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}">Seguir leitor</a>
-                    {% endif %}
-                </p>
-                <p>
-                    <strong>{{ comentario.leitor.user.username}}</strong>
-                </p>
-                <p>
-                    {{ comentario.livro.titulo }} - {{ comentario.livro.autor.nome }}
-                </p>
-                
-                <p>
-                    Página {{comentario.pagina_final}}/{{comentario.livro.n_paginas}}
-                </p>
-                <p>
-                    {{ comentario.texto }}
-                </p>
-                <p>
-                    {{ comentario.data_hora }}
-                </p>
-            </li>
+                {% include 'mainapp/comentario.html' %}
             {% endfor %}
         </ul>
-           
-        {% else %}
+    {% else %}
         <p>Não há comentários relevantes no momento.</p>
-        {% endif %}
+    {% endif %}
     </main>
 {% endblock %}

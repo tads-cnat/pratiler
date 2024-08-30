@@ -20,8 +20,7 @@ class VerFeedView(View):
             for i in comentarios:
                 if i.curtida_set.count() > 2:
                     comentarios_relevantes.append(i)
-        leitor = Usuario.objects.get(user=request.user)
-        return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'usuario': leitor})
+        return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes})
     
 class VerFeedSeguindoView(View):
     def get(self, request, *args, **kwargs):
@@ -122,7 +121,7 @@ class SeguirLeitorView(View):
             user.seguidores_de.add(user_followed)
             user_followed.seguidos_por.add(user)
 
-        return redirect('feed')
+        return redirect(request.GET["next"])
 
 def home(request): # Chaves
     return render(request, 'mainapp/home.html')
@@ -174,8 +173,8 @@ def logoutUser(request): # Chaves
     logout(request)
     return redirect('/')
 
-def paginaLeitor(request, leitor_id): # Chaves
-    leitor = get_object_or_404(Usuario, id=leitor_id)
+def paginaLeitor(request, username): # Chaves
+    leitor = get_object_or_404(Usuario, id_username=username)
     context = {'leitor': leitor}
     return render(request, 'mainapp/pagina_leitor.html', context)
 

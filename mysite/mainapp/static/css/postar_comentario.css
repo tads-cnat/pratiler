@@ -1,0 +1,14 @@
+.escreva-comentario{
+    width: 30%;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px;
+}
+
+.escreva-comentario textarea{
+    border-radius: 20px;
+    margin-left: 20px;
+}
+
+.escreva-comentario .titulo{
+    text-align: center;
+}

@@ -3,22 +3,20 @@
     
 {% block titulo %}Pratiler | Seguindo{% endblock %}
 {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/feed_seguindo.css'%}">
 {% endblock %}
 
-
 {% block conteudo %}
-<main>
-        {% include 'mainapp/comentario.html' %}
+    <h1>Pratiler | Feed Seguindo</h1>
+    <main>
+        {% include 'mainapp/postar_comentario.html' %}
         {%if comentarios_recentes%}
-        <div class="comentarios-seguindo">
-            {% for c in comentarios_recentes %}
-                <p>{{c.leitor.user.username}}</p>
-                <p>{{c.data_hora}}</p>
-                <p>{{c.livro.titulo}}</p>
-                <p>{{c.texto}}</p>
+        <ul>
+            {% for comentario in comentarios_recentes %}
+                {% include 'mainapp/comentario.html' %}
             {%endfor%}
-        </div>
+        </ul>
         {% else%}
             <p>Você não segue ninguém para ver os comentários de seguidores</p>
         {%endif%}

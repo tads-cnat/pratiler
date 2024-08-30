@@ -13,6 +13,10 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+    def lendo(self):
+        return self.interage_set.filter(status='LN')
+
     class Meta:
         verbose_name = "Usuário"
     
