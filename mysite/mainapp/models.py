@@ -68,6 +68,7 @@ class Interage(models.Model):
         return f'{self.leitor.user.username} - {self.livro.titulo} ({self.get_status_display()})'
     
     class Meta:
+        unique_together = ('livro', 'leitor')
         verbose_name_plural = "Interações"
 
 class Resenha(models.Model):
