@@ -37,7 +37,7 @@ class Livro(models.Model):
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.titulo + " " + self.autor.nome
+        return self.titulo + " - " + self.autor.nome
     
 class Comentario(models.Model):
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)

@@ -14,7 +14,7 @@
                 <h2>Desejo ler</h2> <a href="">Adicionar Livro</a>
                 {% for interacao in desejo_ler %}
                     <li>
-                        <h3>{{ interacao.livro.titulo }} - {{ interacao.livro.autor.nome }}</h3><br>
+                        <h3>{{ interacao.livro }}</h3><br>
                         <p>&emsp;{{ interacao.livro.descricao }}</p>
                     </li>
                 {% endfor %}
@@ -25,7 +25,7 @@
                 <h2>Lendo</h2>
                 {% for interacao in lendo %}
                     <li>
-                        <h3>{{ interacao.livro.titulo }} - {{ interacao.livro.autor.nome }}</h3><br>
+                        <h3>{{ interacao.livro }}</h3><br>
                         <p>&emsp;{{ interacao.livro.descricao }}</p>
                     </li>
                 {% endfor %}
@@ -36,7 +36,7 @@
                 <h2>Lidos</h2>
                 {% for interacao in lidos %}
                     <li>
-                        <h3>{{ interacao.livro.titulo }} - {{ interacao.livro.autor.nome }}</h3><br>
+                        <h3>{{ interacao.livro }}</h3><br>
                         <p>&emsp;{{ interacao.livro.descricao }}</p>
                     </li>
                 {% endfor %}
