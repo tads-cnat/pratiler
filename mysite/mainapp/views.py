@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .services import VerLivrosPopularesService, ComentariosRecentesService
 from .models import *
@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout #Chaves
 from django.contrib import messages #Chaves
 from django.contrib.auth.decorators import login_required # Chaves
+from django.db.models import Q # Chaves
 
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
@@ -13,7 +14,7 @@ class VerFeedView(View):
         comentarios_relevantes = []
         if len(comentarios) > 10:
             for i in range(0, 10):
-                if comentarios[i].curtida_set.count() > 2: 
+                if comentarios[i].curtida_set.count() > 2:
                     comentarios_relevantes.append(comentarios[i])
         else:
             for i in comentarios:
@@ -58,6 +59,9 @@ class GerenciarLivrosView(View):
         return render(request, 'mainapp/mod_editar.html', {"livro": livro, "autores": autores})
     
     def get_adicionar(request):
+        '''
+        Carrega o template com o form de adição de um livro
+        '''
         autores = Autor.objects.all()
         return render(request, 'mainapp/mod_adicionar.html', {"autores": autores})
 
@@ -96,9 +100,12 @@ class GerenciarLivrosView(View):
                 }
         try:
             livro = Livro.objects.get(isbn=kwargs['isbn'])
-            for key in dados:
-                print(key)
-                livro[key] = dados[key]
+            livro.titulo = dados['titulo']
+            livro.descricao = dados['descricao']
+            livro.capa = dados['capa']
+            livro.isbn = dados['isbn']
+            livro.n_paginas = dados['n_paginas']
+            livro.autor = dados['autor']
             livro.save()
         except Exception as error:
             return render(request, 'mainapp/mod_editar.html', {'feedback': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
@@ -112,7 +119,26 @@ class GerenciarLivrosView(View):
         livro_1 = livro
         livro.delete()
         return redirect('index')
-    
+
+class SeguirLeitorView(View):
+    def get(self, request, *args, **kwargs):
+        '''
+        Segue o leitor requisitado pelo usuário\n
+        Caso o usuário já esteja seguindo, deixará de seguir\n
+        Após o processamento, renderiza a página na qual a View foi chamada
+        '''
+        user = Usuario.objects.get(user=request.user)
+        user_followed = Usuario.objects.get(id_username=kwargs['username'])
+
+        if user_followed in user.seguidores_de.all():
+            user.seguidores_de.remove(user_followed)
+            user_followed.seguidos_por.remove(user)
+        else:   
+            user.seguidores_de.add(user_followed)
+            user_followed.seguidos_por.add(user)
+
+        return redirect(request.GET["next"])
+
 def home(request): # Chaves
     return render(request, 'mainapp/home.html')
 
@@ -162,3 +188,22 @@ def paginaCadastro(request): # Chaves
 def logoutUser(request): # Chaves
     logout(request)
     return redirect('/')
+
+def paginaLeitor(request, username): # Chaves
+    leitor = get_object_or_404(Usuario, id_username=username)
+    context = {'leitor': leitor}
+    return render(request, 'mainapp/pagina_leitor.html', context)
+
+def livros_pesquisa(request):
+    q = ''
+
+    if request.GET.get('q') != None:
+        q = request.GET.get('q')
+    
+    livros = Livro.objects.filter(
+        Q(titulo__icontains=q)
+    )
+
+    context = {'livros': livros}
+
+    return render(request, 'mainapp/livros.html', context)

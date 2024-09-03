@@ -1,0 +1,46 @@
+body{
+    text-align: center;
+}
+
+a{
+    color: black;
+}
+
+.header-auth{
+    margin: auto;
+    text-align: left;
+    background-color: #E1DAFF;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.308);
+}
+
+.header-auth h1{
+    margin-left: 20px;
+}
+
+.conteudo{
+    margin-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.livro{
+    text-align: left;
+    width: 50%;
+    margin-top: 20px;
+}
+
+.options{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.options a{
+    padding: 5px;
+    margin-top: 5px;
+    background-color: #E1DAFF;
+    border-radius: 5px;
+    color: black;
+}
