@@ -12,8 +12,10 @@ from django.utils import timezone
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
         comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
+        
         usuario = Usuario.objects.get(user=request.user)
         livros = usuario.interage_set.filter(status='LN')
+
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
     def post(self, request, *args, **kwargs):
         texto = request.POST.get('conteudo')
@@ -22,21 +24,14 @@ class VerFeedView(View):
         leitor = Usuario.objects.get(user=request.user)
         data_hora = timezone.now()
         livro = Livro.objects.get(id=livro_id)
-        ultimo_comentario = Comentario.objects.filter(
-            livro=livro, 
-            leitor=leitor
-        ).order_by('-data_hora').first()
-
-        if ultimo_comentario:
-            ultima_pagina_lida = ultimo_comentario.pagina_final
-        else:
-            ultima_pagina_lida = 0
         comentario = Comentario.objects.create(livro=livro, texto=texto, leitor=leitor, pagina_final=pg_final, data_hora=data_hora)
         comentario.save()
+
         livros = leitor.interage_set.filter(status='LN')
 
         comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
-        return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'ultima_pg': ultima_pagina_lida, 'livros':livros})
+
+        return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
     
 class VerFeedSeguindoView(View):
     def get(self, request, *args, **kwargs):

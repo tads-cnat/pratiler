@@ -13,14 +13,16 @@
         <form method="post" action="{% url 'feed' %}">
         {% csrf_token %}
             {% if livros %}
-            <select class="livros" name="livro">
+            <select id="livro-select" name="livro">
                 {% for l in livros %}
-                <option value="{{l.livro.id}}">{{ l.livro.titulo }}</option>
+                {% with ultima_pagina=l.livro.comentario_set.last.pagina_final %}
+                <option value="{{l.livro.id}}" ultima-pagina="{{ ultima_pagina }}">{{ l.livro.titulo }}</option>
+                {% endwith %}
                 {% endfor %}
             </select>
             {% endif %}
             <label>
-                Da página: <input type="number" name="pagina-inicial" min="0" value="{{ ultima_pg }}" placeholder="{{ ultima_pg }}" readonly> 
+                Da página: <input type="number" name="pagina-inicial" id="pagina-inicial" min="0" readonly> 
                 Até a página: <input type="number" name="pagina-final" min="1" max="{{l.livro.n_paginas}}">
             </label>
             <textarea name="conteudo">Escreva seu comentário...</textarea>
@@ -37,3 +39,14 @@
     {% endif %}
     </main>
 {% endblock %}
+
+<script>
+    document.getElementById('livro-select').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var ultimaPagina = selectedOption.getAttribute('ultima-pagina');
+        console.log("Livro selecionado:", selectedOption.text);
+        console.log("Última página lida:", ultimaPagina)
+        document.getElementById('pagina-inicial').value = ultimaPagina;
+        document.getElementById('pagina-inicial').placeholder = ultimaPagina;
+    });
+</script>
