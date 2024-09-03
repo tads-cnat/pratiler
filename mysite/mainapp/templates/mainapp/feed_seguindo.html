@@ -13,17 +13,17 @@
         <form method="post" action="{% url 'feed' %}">
         {% csrf_token %}
             {% if livros %}
-            <select class="livros">
+            <select class="livros" name="livro">
                 {% for l in livros %}
-                <option>{{ l.livro.titulo }}</option>
+                <option value="{{l.livro.id}}">{{ l.livro.titulo }}</option>
                 {% endfor %}
             </select>
             {% endif %}
             <label>
-                Da página: <input type="number" name="pagina-inicial" min="0">
+                Da página: <input type="number" name="pagina-inicial" min="0" value={{ ultima_pg }} readonly> 
                 Até a página: <input type="number" name="pagina-final" min="1">
             </label>
-            <textarea>Escreva seu comentário</textarea>
+            <textarea name="conteudo">Escreva seu comentário...</textarea>
             <input type='submit' value='Postar'>
         </form>
 

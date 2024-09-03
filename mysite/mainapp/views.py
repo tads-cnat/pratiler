@@ -1,31 +1,42 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from .services import VerLivrosPopularesService, ComentariosRecentesService
+from .services import VerLivrosPopularesService, ComentariosRecentesService, ComentariosRelevantesService
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout #Chaves
 from django.contrib import messages #Chaves
 from django.contrib.auth.decorators import login_required # Chaves
 from django.db.models import Q # Chaves
+from django.utils import timezone
 
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
-        comentarios = ComentariosRecentesService.ComentariosRecentesGeral()
-        comentarios_relevantes = []
-        if len(comentarios) > 10:
-            for i in range(0, 10):
-                if comentarios[i].curtida_set.count() > 2:
-                    comentarios_relevantes.append(comentarios[i])
-        else:
-            for i in comentarios:
-                if i.curtida_set.count() > 2:
-                    comentarios_relevantes.append(i)
-
+        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
         usuario = Usuario.objects.get(user=request.user)
-        livros = usuario.interage_set.filter(status='Lendo')
+        livros = usuario.interage_set.filter(status='LN')
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
     def post(self, request, *args, **kwargs):
-        return
+        texto = request.POST.get('conteudo')
+        livro_id = request.POST.get('livro')
+        pg_final = request.POST.get('pagina-final')
+        leitor = Usuario.objects.get(user=request.user)
+        data_hora = timezone.now()
+        livro = Livro.objects.get(id=livro_id)
+        ultimo_comentario = Comentario.objects.filter(
+            livro=livro, 
+            leitor=leitor
+        ).order_by('-data_hora').first()
+
+        if ultimo_comentario:
+            ultima_pagina_lida = ultimo_comentario.pagina_final
+        else:
+            ultima_pagina_lida = 0
+        comentario = Comentario.objects.create(livro=livro, texto=texto, leitor=leitor, pagina_final=pg_final, data_hora=data_hora)
+        comentario.save()
+        livros = leitor.interage_set.filter(status='LN')
+
+        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
+        return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'ultima_pg': ultima_pagina_lida, 'livros':livros})
     
 class VerFeedSeguindoView(View):
     def get(self, request, *args, **kwargs):

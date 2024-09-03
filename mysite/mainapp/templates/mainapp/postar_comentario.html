@@ -1,17 +1,16 @@
-<form method="post" action="">
-    {% csrf_token %}
-    
-</form>
-<div class="escreva-comentario">
-    <p class="titulo">Escreva um comentário</p>
-    <p>Livro: <select>
-        {% for livro in user.usuario.lendo %}
+<form method="post" action="{% url 'feed' %}">
+{% csrf_token %}
+    {% if livros %}
+    <select class="livros" name="livro">
+        {% for l in livros %}
+        <option value="{{l.livro.id}}">{{ l.livro.titulo }}</option>
         {% endfor %}
-    </select></p>
-    <p>
-       De página:  <input type="number" name="pagina-inicial" min="1"> 
-       até página: <input type="number" name="pagina-inicial" min="1">
-    </p>
-    <textarea placeholder="O que você está achando do livro?"></textarea>
-    <button>Postar</button>
-</div>
+    </select>
+    {% endif %}
+    <label>
+        Da página: <input type="number" name="pagina-inicial" min="0" value={{ ultima_pg }} readonly> 
+        Até a página: <input type="number" name="pagina-final" min="1">
+    </label>
+    <textarea name="conteudo">Escreva seu comentário...</textarea>
+    <input type='submit' value='Postar'>
+</form>

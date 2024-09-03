@@ -10,7 +10,22 @@
 {% block conteudo %}
     <h1>PraTiLer | Feed Relevantes </h1>
     <main>
-        {% include 'mainapp/postar_comentario.html' %}
+        <form method="post" action="{% url 'feed' %}">
+        {% csrf_token %}
+            {% if livros %}
+            <select class="livros" name="livro">
+                {% for l in livros %}
+                <option value="{{l.livro.id}}">{{ l.livro.titulo }}</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+            <label>
+                Da página: <input type="number" name="pagina-inicial" min="0" value="{{ ultima_pg }}" placeholder="{{ ultima_pg }}" readonly> 
+                Até a página: <input type="number" name="pagina-final" min="1" max="{{l.livro.n_paginas}}">
+            </label>
+            <textarea name="conteudo">Escreva seu comentário...</textarea>
+            <input type='submit' value='Postar'>
+        </form>
         {% if comentarios_relevantes %}
         <ul>
             {% for comentario in comentarios_relevantes %}
