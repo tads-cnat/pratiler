@@ -1,6 +1,6 @@
 # PratiLer
 
-<img src="https://drive.google.com/file/d/172H133ForZKME3waipR131ykK7J3ZiAX/view?usp=drive_link" width="200" height="200" />
+<img src="mysite/mainapp/static/images/pratiler-logo.png" height="150" />
 
 Sistema de leitura que promove a organização e o registro das leituras e a comunicação entre leitores.
 
