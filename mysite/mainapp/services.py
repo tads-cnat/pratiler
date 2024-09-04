@@ -62,3 +62,17 @@ class ComentariosRecentesService():
                     comentarios_recentes_todos.append(x)
             comentarios_recentes_todos.sort(key=lambda x: x.data_hora, reverse=True)
         return comentarios_recentes_todos
+    
+class ComentariosRelevantesService():
+    def ComentariosRelevantes():
+        comentarios = ComentariosRecentesService.ComentariosRecentesGeral()
+        comentarios_relevantes = []
+        if len(comentarios) > 10:
+            for i in range(0, 10):
+                if comentarios[i].curtida_set.count() > 2:
+                    comentarios_relevantes.append(comentarios[i])
+        else:
+            for i in comentarios:
+                if i.curtida_set.count() > 2:
+                    comentarios_relevantes.append(i)
+        return comentarios_relevantes

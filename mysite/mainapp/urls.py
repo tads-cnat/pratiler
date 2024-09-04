@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('feed/', views.VerFeedView.as_view(), name="feed"),
+    path('livros_populares/', views.VerLivrosPopulares.as_view()),
     #path('<slug:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor"),
     path('feed/', views.VerFeedView.as_view(), name="feed"),
     path('livros_populares/', views.VerLivrosPopulares.as_view(), name="livros_populares"),
