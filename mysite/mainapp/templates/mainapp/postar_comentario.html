@@ -1,16 +1,30 @@
-<form method="post" action="{% url 'feed' %}">
+<form method="post" action="{% url 'feed' %}" class="postar-comentario">
 {% csrf_token %}
+    <p>Escreva um comentário</p>
     {% if livros %}
-    <select class="livros" name="livro">
-        {% for l in livros %}
-        <option value="{{l.livro.id}}">{{ l.livro.titulo }}</option>
-        {% endfor %}
-    </select>
-    {% endif %}
-    <label>
-        Da página: <input type="number" name="pagina-inicial" min="0" value={{ ultima_pg }} readonly> 
-        Até a página: <input type="number" name="pagina-final" min="1">
+    <label class="select">Livro: 
+        <select id="livro-select" name="livro" onchange="atualizarPagina()">
+            <option value="0">Selecione</option>
+            {% for l in livros %}
+            {% with ultima_pagina=l.livro.comentario_set.last.pagina_final %}
+            <option value="{{l.livro.id}}" ultima-pagina="{{ ultima_pagina }}">{{ l.livro.titulo }}</option>
+            {% endwith %}
+            {% endfor %}
+        </select>
     </label>
-    <textarea name="conteudo">Escreva seu comentário...</textarea>
-    <input type='submit' value='Postar'>
+    {% endif %}
+    <div class="inputs-paginas">
+        <label>
+            Da página: <input type="number" name="pagina-inicial" id="pagina-inicial" min="0" readonly>
+        </label>
+        <label>
+            Até a página: <input type="number" name="pagina-final" min="1" max="{{l.livro.n_paginas}}">
+        </label>
+    </div>
+    <textarea name="conteudo" placeholder="Escreva seu comentário..."></textarea>
+    <input type='submit' value='Postar' class="botao">
 </form>
+
+{% if mensagem_erro %}
+<p>Selecione um livro</p>
+{%endif%}

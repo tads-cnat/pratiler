@@ -22,14 +22,18 @@ class VerFeedView(View):
         livro_id = request.POST.get('livro')
         pg_final = request.POST.get('pagina-final')
         leitor = Usuario.objects.get(user=request.user)
-        data_hora = timezone.now()
-        livro = Livro.objects.get(id=livro_id)
-        comentario = Comentario.objects.create(livro=livro, texto=texto, leitor=leitor, pagina_final=pg_final, data_hora=data_hora)
-        comentario.save()
-
-        livros = leitor.interage_set.filter(status='LN')
+        data_hora = timezone.now
 
         comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
+        livros = leitor.interage_set.filter(status='LN')
+
+        try:
+            livro = Livro.objects.get(id=livro_id)
+            comentario = Comentario.objects.create(livro=livro, texto=texto, leitor=leitor, pagina_final=pg_final, data_hora=data_hora)
+            comentario.save()
+        except:
+            mensagem_erro = "Selecione um livro"
+            return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
 
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
     
