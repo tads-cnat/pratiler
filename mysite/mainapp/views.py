@@ -46,7 +46,7 @@ class VerFeedSeguindoView(View):
     def post(self, request, *args, **kwargs):
         return
 
-class VerLivrosPopulares(View):
+class VerLivrosPopularesView(View):
     def get(self, request, *args, **kwargs):
         livros_populares = VerLivrosPopularesService.VerLivrosPopulares()
         # renderização dos livros populares 
@@ -148,6 +148,10 @@ class SeguirLeitorView(View):
             user_followed.seguidos_por.add(user)
 
         return redirect(request.GET["next"])
+
+class MeuPerfilView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html')
 
 def home(request): # Chaves
     return render(request, 'mainapp/home.html')

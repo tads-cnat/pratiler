@@ -1,6 +1,5 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
-
 {% block titulo %}Pratiler | Feed Relevantes{% endblock %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
@@ -18,7 +17,6 @@
     </script>
 {% endblock %}
 {% block conteudo %}
-    <h1>PraTiLer | Feed Relevantes </h1>
     <main>
         {% include 'mainapp/postar_comentario.html'%}
         {% if comentarios_relevantes %}

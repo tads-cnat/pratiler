@@ -3,10 +3,8 @@ from . import views
 
 urlpatterns = [
     path('feed/', views.VerFeedView.as_view(), name="feed"),
-    path('livros_populares/', views.VerLivrosPopulares.as_view()),
-    #path('<slug:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor"),
-    path('feed/', views.VerFeedView.as_view(), name="feed"),
-    path('livros_populares/', views.VerLivrosPopulares.as_view(), name="livros_populares"),
+    path('livros_populares/', views.VerLivrosPopularesView.as_view(), name="livros_populares"),
+    path('meu_perfil', views.MeuPerfilView.as_view(), name="meu_perfil"),
     path('livros/', views.GerenciarLivrosView.as_view(), name="index"),
     path('livros/add/', views.GerenciarLivrosView.get_adicionar, name="adicionar"),
     path('livros/adicionar/', views.GerenciarLivrosView.as_view(), name="adicionar_livros"),
