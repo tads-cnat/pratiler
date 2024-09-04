@@ -6,9 +6,8 @@
 .postar-comentario{
     border: 2px solid #D0C5FF;
     border-radius: 1.5rem;
-    width: 30rem;
+    width: 24.8rem;
     padding: 2rem;
-    margin: 3rem;
     margin-bottom: 0;
     display: flex;
     flex-direction: column;
@@ -28,7 +27,7 @@
 }
 
 .postar-comentario .select select{
-    width: 20.7rem;
+    width: 21.5rem;
     background-color: #F6F6F6;
     border: 1px solid #D0C5FF;
     border-radius: 5px;
@@ -36,7 +35,6 @@
 }
 
 .postar-comentario .inputs-paginas{
-    
     display: flex;
 }
 
@@ -54,6 +52,7 @@
     border: 1px solid #D0C5FF;
     border-radius: 10px;
     height: 8rem;
+    width: 23.1rem;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     resize: none;
@@ -69,6 +68,7 @@
     border-radius: 10px;
     padding: 0.3rem;
     font-family: var(--roboto);
+    margin-right: 0.5rem;
 }
 
 .error{

@@ -11,7 +11,7 @@ nav .search-bar{
     background-color: #E1DAFF;
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem;
+    padding: 1rem 2.5rem;
 }
 nav .search-bar h1{
     margin: 0;
@@ -54,15 +54,23 @@ nav .nav-bar{
 
 nav .nav-bar ul{
     margin: 0;
-    padding: 1rem;
+    padding: 1rem 2.5rem;
     list-style: none;
     display: flex;
 }
-
+nav .nav-bar ul li{
+    display: flex;
+}
 nav .nav-bar ul li a{
     padding-right: 1.5rem;
     font-family: var(--montserrat);
     font-weight:500;
     color: #221D57;
     text-decoration: none;
+    align-self: flex-start;
+    margin-left: 0.5rem;
+}
+
+main{
+    margin: 2.5rem;
 }
