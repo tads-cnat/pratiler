@@ -51,7 +51,15 @@ class VerLivrosPopulares(View):
         livros_populares = VerLivrosPopularesService.VerLivrosPopulares()
         # renderização dos livros populares 
         return render(request, 'mainapp/livros_populares.html', {'livros_populares': livros_populares})
-    
+
+class VerMinhaEstante(View):
+    def get(self, request, *args, **kwargs):
+        desejo_ler = request.user.usuario.interage_set.filter(status='QL')
+        lendo = request.user.usuario.interage_set.filter(status='LN')
+        lidos = request.user.usuario.interage_set.filter(status='LD')
+        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
+        return render(request, 'mainapp/minha_estante.html', contexto)
+
 class GerenciarLivrosView(View):
     def get(self, request, *args, **kwargs):
         '''
