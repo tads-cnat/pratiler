@@ -1,16 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+:root{
+    --montserrat: "Montserrat", sans-serif;
+    --roboto: "Roboto Flex", sans-serif;
+}
 .postar-comentario{
     border: 2px solid #D0C5FF;
     border-radius: 1.5rem;
     width: 30rem;
     padding: 2rem;
-    margin: 1.5rem;
+    margin: 3rem;
+    margin-bottom: 0;
     display: flex;
     flex-direction: column;
 }
-.postar-comentario p{
+
+.postar-comentario h1{
     font-size: 1.5rem;
     margin: 0;
     margin-bottom: 0.5rem;
+    font-family: var(--montserrat);
+    color: #221D57;
+}
+
+.postar-comentario label{
+    font-family: var(--roboto);
+    color: #221D57;
 }
 
 .postar-comentario .select select{
@@ -54,5 +68,13 @@
     border: none;
     border-radius: 10px;
     padding: 0.3rem;
+    font-family: var(--roboto);
 }
 
+.error{
+    font-family: var(--roboto);
+    color: #221D57;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 1.2rem;
+}

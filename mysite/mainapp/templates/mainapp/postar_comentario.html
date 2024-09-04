@@ -1,6 +1,8 @@
 <form method="post" action="{% url 'feed' %}" class="postar-comentario">
 {% csrf_token %}
-    <p>Escreva um comentário</p>
+    <h1>
+        Escreva um comentário
+    </h1>
     {% if livros %}
     <label class="select">Livro: 
         <select id="livro-select" name="livro" onchange="atualizarPagina()">
@@ -25,6 +27,3 @@
     <input type='submit' value='Postar' class="botao">
 </form>
 
-{% if mensagem_erro %}
-<p>Selecione um livro</p>
-{%endif%}

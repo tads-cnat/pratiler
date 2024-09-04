@@ -11,14 +11,19 @@
                 var ultimaPagina = selectedOption.getAttribute('ultima-pagina');
                 console.log("Livro selecionado:", selectedOption.text);
                 console.log("Última página lida:", ultimaPagina)
-                document.getElementById('pagina-inicial').placeholder = ultimaPagina;
+                document.getElementById('pagina-inicial').value = ultimaPagina;
             });
         }
     </script>
 {% endblock %}
 {% block conteudo %}
     <main>
-        {% include 'mainapp/postar_comentario.html'%}
+        <div>
+            {% include 'mainapp/postar_comentario.html'%}
+            {% if mensagem_erro %}
+                <p class="error">Selecione um livro.</p>
+            {%endif%}
+        </div>
         {% if comentarios_relevantes %}
         <ul>
             {% for comentario in comentarios_relevantes %}
