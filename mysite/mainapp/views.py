@@ -13,7 +13,7 @@ from django.utils import timezone
 
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
-        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
+        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes();
         
         usuario = Usuario.objects.get(user=request.user)
         livros = usuario.interage_set.filter(status='LN')
@@ -31,10 +31,13 @@ class VerFeedView(View):
 
         try:
             livro = Livro.objects.get(id=livro_id)
+            if pg_final < livro.comentario_set.last.pagina_final:
+                mensagem_erro = "Coloque uma página final maior que a anterior."
+                return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
             comentario = Comentario.objects.create(livro=livro, texto=texto, leitor=leitor, pagina_final=pg_final, data_hora=data_hora)
             comentario.save()
         except:
-            mensagem_erro = "Selecione um livro"
+            mensagem_erro = "Selecione um livro."
             return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
 
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
