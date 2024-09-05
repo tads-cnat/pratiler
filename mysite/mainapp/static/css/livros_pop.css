@@ -63,3 +63,16 @@ main #Livro-popular-lista .rank{
     color: #221D57;
     background-color: #D0C5FF;
 }
+
+.error{
+    margin: 0 13rem;
+    margin-bottom: 2rem;
+    font-family: var(--roboto);
+    font-weight: bold;
+    color: #221D57;
+    background-color: #D5F000;
+    width: 13rem;
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem 2rem;
+}
