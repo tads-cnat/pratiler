@@ -5,42 +5,100 @@
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante.css' %}">
+    <script>  
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('lista').value = "lendo";
+            tela();
+        });
+        function atualizarPagina(){
+            document.getElementById('select-listas').addEventListener('change', function() {
+                var selectedOption = this.options[this.selectedIndex];
+                var tipo = selectedOption.getAttribute('tipo');
+                document.getElementById('lista').value = tipo;
+            });
+            tela();
+        }
+        function tela(){
+            if (document.getElementById('lista').value == "lendo") {
+                document.getElementById('lendo').className = "";
+            } else {
+                document.getElementById('lendo').className = "escondido";
+            }
+            if (document.getElementById('lista').value == "desejo_ler") {
+                document.getElementById('desejo-ler').className = "";
+            } else {
+                document.getElementById('desejo-ler').className = "escondido";
+            }
+            if (document.getElementById('lista').value == "lidos") {
+                document.getElementById('lidos').className = "";
+            } else {
+                document.getElementById('lidos').className = "escondido";
+            }
+        }
+    </script>
+    <style>
+        .escondido{
+            display: none;
+        }
+    </style>
 {% endblock %}
 
 {% block conteudo %}
-    <div class="listas">
-        <div class="ler">
-            <ul>
-                <h2>Desejo ler</h2> <a href="">Adicionar Livro</a>
-                {% for interacao in desejo_ler %}
-                    <li>
-                        <h3>{{ interacao.livro }}</h3><br>
-                        <p>&emsp;{{ interacao.livro.descricao }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="lendo">
-            <ul>
-                <h2>Lendo</h2>
+    <form>
+        <select id="select-listas" onclick="atualizarPagina()">
+            <option tipo="lendo">
+                Leituras atuais
+            </option>
+            <option tipo="desejo_ler">
+                Desejo ler
+            </option>
+            <option tipo="lidos">
+                Livros lidos
+            </option>
+        </select>
+    </form>
+    <div id="lista">
+        <div class="escondido" id="lendo">
+            <button>
+                Adicionar livro
+            </button>
+            {% if lendo %}
                 {% for interacao in lendo %}
-                    <li>
-                        <h3>{{ interacao.livro }}</h3><br>
-                        <p>&emsp;{{ interacao.livro.descricao }}</p>
-                    </li>
+                    {% include 'mainapp/interacao_livro.html'%}
                 {% endfor %}
-            </ul>
+                <button>
+                    {{ interacao.comentariosLeitorLivro.last.pagina_final }}/{{ interacao.livro.n_paginas}} páginas
+                </button>
+            {% else %}
+                <p>Não há livros nesta lista.</p>
+            {% endif %}
         </div>
-        <div class="lido">
-            <ul>
-                <h2>Lidos</h2>
-                {% for interacao in lidos %}
-                    <li>
-                        <h3>{{ interacao.livro }}</h3><br>
-                        <p>&emsp;{{ interacao.livro.descricao }}</p>
-                    </li>
+        <div class="escondido" id="desejo-ler">
+            <button>
+                Adicionar livro
+            </button>
+            {% if desejo_ler %}
+                {% for interacao in desejo_ler %}
+                    {% include 'mainapp/interacao_livro.html'%}
                 {% endfor %}
-            </ul>
+                <button>
+                    Iniciar leitura
+                </button>
+            {% else %}
+                <p>Não há livros nesta lista.</p>
+            {% endif %}
+        </div>
+        <div class="escondido" id="lidos">
+            <button>
+                Adicionar livro
+            </button>
+            {% if lidos %}
+                {% for interacao in lidos %}
+                    {% include 'mainapp/interacao_livro.html'%}
+                {% endfor %}
+            {% else %}
+                <p>Não há livros nesta lista.</p>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
