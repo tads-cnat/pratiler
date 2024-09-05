@@ -1,0 +1,16 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block titulo %}Pratiler | {{request.user.username}}{% endblock %}
+{% block conteudo %}
+<form method="post">
+    {% csrf_token %} 
+    <select name="livro" id="">
+        {% for livro in livros %}
+            <option value="{{livro.titulo}}">{{livro.titulo}}</option>
+        {% endfor %}
+    </select>
+    <input name="titulo_resenha" type="text" placeholder="digite o titulo da resenha">
+    <textarea name="texto_resenha" id="" cols="30" rows="10"></textarea>
+    <input type="submit">
+</form>
+{% endblock%}

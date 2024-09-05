@@ -13,4 +13,31 @@
     </div>
 </div>
 <hr>
+
+<div class="perfil-nav">
+    <ul>
+       <li>
+            <a href="">Atualizações recentes</a>
+            <a href="">Minha estante</a>
+            <a href="{% url 'ver_resenha' %}">Resenhas</a>
+       </li>
+    </ul>
+</div>
+
+<div class="block-resenhas">
+    <p>Resenhas</p>
+    {%if resenhas %}
+    <div>
+        {% for resenha in resenhas %}
+            {{ resenha.leitor}} <br>
+            {{ resenha.titulo }}
+            {{ resenha.texto}}
+            <br> <br>
+        {% endfor %}
+        <a href="{% url 'escrever_resenha' %}">Escrever Resenha</a>
+    </div>
+    {%else%}
+    <p>Não há resenhas postadas ainda</p>
+    {% endif %}
+</div>
 {% endblock%}

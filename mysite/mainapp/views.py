@@ -9,6 +9,7 @@ from django.contrib import messages #Chaves
 from django.contrib.auth.decorators import login_required # Chaves
 from django.db.models import Q # Chaves
 from django.utils import timezone
+from django.urls import reverse
 
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
@@ -262,3 +263,38 @@ def livros_pesquisa(request):
     context = {'livros': livros}
 
     return render(request, 'mainapp/livros.html', context)
+
+class VerResenhas(View):
+    def get(self, request, *args, **kwargs):
+        resenhas = Resenha.objects.all()
+        print(resenhas)
+        return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html', {"resenhas": resenhas})
+
+class escrever_resenha(View):
+    def get(self, request, *args, **kwargs):
+        livros = Livro.objects.all()
+        context = {'livros': livros, }
+        return render(request, 'mainapp/escrever_resenha.html', context)
+
+    def post(self, request, *args, **kwargs):
+        livro_titulo = request.POST.get('livro')
+        livro = Livro.objects.get(titulo=livro_titulo)
+        titulo_resenha = request.POST.get('titulo_resenha')
+        texto_resenha = request.POST.get('texto_resenha')
+
+        user = request.user
+        leitor = Usuario.objects.get(user=user)
+
+        Resenha.objects.create(
+            livro = livro,
+            leitor = leitor,
+            titulo = titulo_resenha,
+            texto =  texto_resenha,
+        )
+
+        return redirect(reverse('feed'))
+
+
+
+    
+
