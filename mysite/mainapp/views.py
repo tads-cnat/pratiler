@@ -176,6 +176,15 @@ class MeuPerfilView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html')
 
+class PerfilEstante(View):
+    def get(self, request, *args, **kwargs):
+        usuario = Usuario.objects.get(id_username=kwargs['username'])
+        desejo_ler = usuario.interage_set.filter(status='QL')
+        lendo = usuario.interage_set.filter(status='LN')
+        lidos = usuario.interage_set.filter(status='LD')
+        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos, "leitor": usuario}
+        return render(request, 'mainapp/leitor_minha_estante.html', contexto)
+
 class VerMinhaEstante(View):
     def get(self, request, *args, **kwargs):
         usuario = Usuario.objects.get(user=request.user)
