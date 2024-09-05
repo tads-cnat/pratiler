@@ -64,8 +64,11 @@
             </button>
             {% if lendo %}
                 {% for interacao in lendo %}
-                    {% include 'mainapp/interacao_livro_lendo.html'%}
+                    {% include 'mainapp/interacao_livro.html'%}
                 {% endfor %}
+                <button>
+                    {{ interacao.comentariosLeitorLivro.last.pagina_final }}/{{ interacao.livro.n_paginas}} páginas
+                </button>
             {% else %}
                 <p>Não há livros nesta lista.</p>
             {% endif %}
