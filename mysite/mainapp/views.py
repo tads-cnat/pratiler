@@ -196,9 +196,10 @@ class VerMinhaEstanteView(View):
         lidos = usuario.interage_set.filter(status='LD')
         contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
         return render(request, 'mainapp/minha_estante.html', contexto)
-
-def home(request): # Chaves
-    return render(request, 'mainapp/home.html')
+    
+class LandingPageView(View):
+    def get(self, request, *args, **kwargs):
+        return redirect('feed') if request.user.is_authenticated else render(request, 'mainapp/home.html')
 
 def paginaLogin(request): # Chaves
     if request.method == 'POST':
