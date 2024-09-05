@@ -57,7 +57,7 @@ class VerLivrosPopularesView(View):
         # renderização dos livros populares 
         return render(request, 'mainapp/livros_populares.html', {'livros_populares': livros_populares})
 
-class VerMinhaEstante(View):
+class VerMinhaEstanteView(View):
     def get(self, request, *args, **kwargs):
         desejo_ler = request.user.usuario.interage_set.filter(status='QL')
         lendo = request.user.usuario.interage_set.filter(status='LN')
@@ -143,7 +143,7 @@ class GerenciarLivrosView(View):
         livro.delete()
         return redirect('index')
     
-class CurtirComentario(View):
+class CurtirComentarioView(View):
     def post(self, request,  *args, **kwargs): # envio de dados para o sistema
         comentario_id = kwargs.get('id')
         comentario_procurado = get_object_or_404(Comentario, id=comentario_id) # procura o comentario pelo id
@@ -171,13 +171,15 @@ class SeguirLeitorView(View):
             user.seguidores_de.add(user_followed)
             user_followed.seguidos_por.add(user)
 
-        return redirect(request.GET["next"])
+        return redirect(request.META["next"])
 
-class MeuPerfilView(View):
+class PerfilView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html')
+        leitor = get_object_or_404(Usuario, id_username=kwargs['username'])
+        context = {'leitor': leitor}
+        return render(request, 'mainapp/pagina_leitor.html', context)
 
-class PerfilEstante(View):
+class PerfilEstanteView(View):
     def get(self, request, *args, **kwargs):
         usuario = Usuario.objects.get(id_username=kwargs['username'])
         desejo_ler = usuario.interage_set.filter(status='QL')
@@ -186,7 +188,7 @@ class PerfilEstante(View):
         contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos, "leitor": usuario}
         return render(request, 'mainapp/leitor_minha_estante.html', contexto)
 
-class VerMinhaEstante(View):
+class VerMinhaEstanteView(View):
     def get(self, request, *args, **kwargs):
         usuario = Usuario.objects.get(user=request.user)
         desejo_ler = usuario.interage_set.filter(status='QL')

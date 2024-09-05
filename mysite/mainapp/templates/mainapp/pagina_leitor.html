@@ -10,14 +10,15 @@
 {% block navbar %}{% endblock %}
 {% block conteudo %}
     <!-- Adicionar campo para imagem -->
-    <h1>{{ leitor.user.username }}</h1>
+    <h1>{{ leitor.id_username }}</h1>
     <h4>{{ leitor.descricao }}</h4>
-    {% if leitor in user.usuario.seguidores_de.all %}
-        <a href="{% url 'seguir_leitor' leitor.id_username %}?next={% url 'pagina_leitor' leitor.id_username %}">Seguindo</a>
-    {% else %}
-        <a href="{% url 'seguir_leitor' leitor.id_username %}?next={% url 'pagina_leitor' leitor.id_username %}">Seguir leitor</a>
-    {% endif %} 
-
+    {% if leitor != user.usuario %}
+        {% if leitor in user.usuario.seguidores_de.all %}
+            <a href="{% url 'seguir_leitor' leitor.id_username %}?next={% url 'pagina_leitor' leitor.id_username %}">Seguindo</a>
+        {% else %}
+            <a href="{% url 'seguir_leitor' leitor.id_username %}?next={% url 'pagina_leitor' leitor.id_username %}">Seguir leitor</a>
+        {% endif %} 
+    {% endif %}
     <!-- Seguidores -->
     <p>Seguidores {{ leitor.seguidos_por.count }}&emsp;Seguindo {{ leitor.seguidores_de.count }}</p>
     <hr>
@@ -31,6 +32,9 @@
             </ul>
         </div>
         {% block main %}
-            {% include 'mainapp/postar_comentario.html' %}
+            {% if leitor == user.usuario %}
+                {% include 'mainapp/postar_comentario.html' %}
+            {% endif %}
+
         {% endblock %}
 {% endblock %}
