@@ -12,7 +12,7 @@ from django.utils import timezone
 
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
-        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes();
+        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
         
         usuario = Usuario.objects.get(user=request.user)
         livros = usuario.interage_set.filter(status='LN')
@@ -32,13 +32,11 @@ class VerFeedView(View):
         try:
             livro = Livro.objects.get(id=livro_id)
             if pg_final < livro.comentario_set.filter(leitor=usuario).last().pagina_final:
-                mensagem_erro = "Coloque uma página final maior que a anterior."
-                return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
+                messages.error(request, "Coloque uma página final maior que a anterior.")
             comentario = Comentario.objects.create(livro=livro, texto=texto, leitor=leitor, pagina_final=pg_final, data_hora=data_hora)
             comentario.save()
         except:
-            mensagem_erro = "Selecione um livro."
-            return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
+            messages.error(request, "Selecione um livro.")
 
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
     
@@ -103,8 +101,9 @@ class GerenciarLivrosView(View):
                 }
         try:
             Livro.objects.create(**dados)
-        except Exception as error:
-            return render(request, 'mainapp/mod_adicionar.html', {'feedback': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
+        except:
+            messages.error(request, f"Dados mal inseridos, por favor insira os dados corretamente!")
+            return redirect(request.META["HTTP_REFERER"])
         livro = Livro.objects.get(isbn=request.POST['isbn'])
         return redirect('index')
     
@@ -130,8 +129,9 @@ class GerenciarLivrosView(View):
             livro.n_paginas = dados['n_paginas']
             livro.autor = dados['autor']
             livro.save()
-        except Exception as error:
-            return render(request, 'mainapp/mod_editar.html', {'feedback': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
+        except:
+            messages.error(request, f"Dados mal inseridos, por favor insira os dados corretamente!")
+            return redirect('editar')
         return redirect('index')
     
     def delete(request, **kwargs):
@@ -208,10 +208,13 @@ def paginaLogin(request): # Chaves
         try:
             user = User.objects.get(email=email)
             user = authenticate(request, username=user.username, password=senha)
-            login(request, user)
-            return redirect('/feed') #mudar para redirecionar para o VerFeed
+            if user:
+                login(request, user)
+                return redirect('/feed') #mudar para redirecionar para o VerFeed
+            else:
+                messages.error(request, 'Dados inválidos, por favor corrija os dados inseridos e tente novamente')
         except:
-            messages.error(request, 'Usuario não existe')
+            messages.error(request, 'Usuario não existe, gostaria de se cadastrar?')
 
     return render(request, 'mainapp/login.html')
 

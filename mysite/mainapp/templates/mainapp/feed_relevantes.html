@@ -18,9 +18,11 @@
     <main>
         <div>
             {% include 'mainapp/postar_comentario.html'%}
-            {% if mensagem_erro %}
-                <p class="error">{{mensagem_erro}}</p>
-            {%endif%}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
         </div>
         {% if comentarios_relevantes %}
         <ul>

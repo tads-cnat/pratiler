@@ -19,6 +19,11 @@
     <!-- LOGIN -->
     <div class="auth-wrapper">
         <span class="auth-title"><b>Login</b><hr></span>
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
         <form action="#" class="auth-form" method="post">
             {% csrf_token %}
             <div class="auth-input-wrapper">
