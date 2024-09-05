@@ -47,72 +47,55 @@
     <form>
         <select id="select-listas" onclick="atualizarPagina()">
             <option tipo="lendo">
-                Lendo
+                Leituras atuais
             </option>
             <option tipo="desejo_ler">
                 Desejo ler
             </option>
             <option tipo="lidos">
-                Lidos
+                Livros lidos
             </option>
         </select>
     </form>
     <div id="lista">
-        <div id="lendo" value="lendo">
-            <h2>Lendo</h2>
-            {% for interacao in lendo %}
-                <h3>{{ interacao.livro }}</h3><br>
-                <p>&emsp;{{ interacao.livro.descricao }}</p>  
-            {% endfor %}
+        <div class="escondido" id="lendo">
+            <button>
+                Adicionar livro
+            </button>
+            {% if lendo %}
+                {% for interacao in lendo %}
+                    {% include 'mainapp/interacao_livro_lendo.html'%}
+                {% endfor %}
+            {% else %}
+                <p>Não há livros nesta lista.</p>
+            {% endif %}
         </div>
         <div class="escondido" id="desejo-ler">
-            <h2>Desejo ler</h2> <a href="">Adicionar Livro</a>
-            {% for interacao in desejo_ler %}
-                <h3>{{ interacao.livro }}</h3><br>
-                <p>&emsp;{{ interacao.livro.descricao }}</p>
-            {% endfor %}
+            <button>
+                Adicionar livro
+            </button>
+            {% if desejo_ler %}
+                {% for interacao in desejo_ler %}
+                    {% include 'mainapp/interacao_livro.html'%}
+                {% endfor %}
+                <button>
+                    Iniciar leitura
+                </button>
+            {% else %}
+                <p>Não há livros nesta lista.</p>
+            {% endif %}
         </div>
         <div class="escondido" id="lidos">
-            <h2>Lidos</h2>
-            {% for interacao in lidos %}
-                <h3>{{ interacao.livro }}</h3><br>
-                <p>&emsp;{{ interacao.livro.descricao }}</p>
-            {% endfor %}
+            <button>
+                Adicionar livro
+            </button>
+            {% if lidos %}
+                {% for interacao in lidos %}
+                    {% include 'mainapp/interacao_livro.html'%}
+                {% endfor %}
+            {% else %}
+                <p>Não há livros nesta lista.</p>
+            {% endif %}
         </div>
     </div>
-    <!-- <div class="listas">
-        <div class="ler">
-            <ul>
-                <h2>Desejo ler</h2> <a href="">Adicionar Livro</a>
-                {% for interacao in desejo_ler %}
-                    <li>
-                        <h3>{{ interacao.livro }}</h3><br>
-                        <p>&emsp;{{ interacao.livro.descricao }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="lendo">
-            <ul>
-                <h2>Lendo</h2>
-                {% for interacao in lendo %}
-                    <li>
-                        <h3>{{ interacao.livro }}</h3><br>
-                        <p>&emsp;{{ interacao.livro.descricao }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="lido">
-            <ul>
-                <h2>Lidos</h2>
-                {% for interacao in lidos %}
-                    <li>
-                        <h3>{{ interacao.livro }}</h3><br>
-                        <p>&emsp;{{ interacao.livro.descricao }}</p>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div> -->
 {% endblock %}
