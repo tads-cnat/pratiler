@@ -5,6 +5,7 @@
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/livro.css' %}">
     <script>  
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('lista').value = "lendo";
@@ -65,10 +66,10 @@
             {% if lendo %}
                 {% for interacao in lendo %}
                     {% include 'mainapp/interacao_livro.html'%}
+                    <button>
+                        {{ interacao.comentariosLeitorLivro.last.pagina_final }}/{{ interacao.livro.n_paginas}} páginas
+                    </button>
                 {% endfor %}
-                <button>
-                    {{ interacao.comentariosLeitorLivro.last.pagina_final }}/{{ interacao.livro.n_paginas}} páginas
-                </button>
             {% else %}
                 <p>Não há livros nesta lista.</p>
             {% endif %}

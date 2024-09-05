@@ -1,9 +1,11 @@
 <div class="interacao-livro">
     <img src="{{ interacao.livro.capa.url }}" height="200px">
-    <h1>
-        {{ interacao.livro.titulo }}
-    </h1>
-    <p>
-        {{ interacao.livro.descricao }}
-    </p>
+    <div class="conteudo">
+        <h1>
+            {{ interacao.livro.titulo }} - {{ interacao.livro.autor.nome }}
+        </h1>
+        <p>
+            {{ interacao.livro.descricao }}
+        </p>
+    </div>
 </div>

@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+:root{
+    --montserrat: "Montserrat", sans-serif;
+    --roboto: "Roboto Flex", sans-serif;
+}
 .interacao-livro{
-    margin: auto;
+    margin: 3rem 13rem;
+    display: flex;
+}
+.interacao-livro img{
+    margin-right: 2rem;
+}
+
+.interacao-livro .conteudo h1{
+    font-family: var(--montserrat);
+    font-size: 1.5rem;
+    color: #221D57;
+}
+
+.interacao-livro .conteudo p{
+    font-family: var(--roboto);
 }
