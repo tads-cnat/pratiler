@@ -23,7 +23,7 @@
 16. [CDU-015 - Realizar avaliação](cdu-015-realizar-avalicao/detalhamento-015.md)
 17. [CDU-016 - Escrever resenha](cdu-016-escrever-resenha/detalhamento-016.md)
 18. [CDU-017 - Ver feed geral](cdu-017-ver-feed-geral/detalhamento-017.md) ✅
-19. [CDU-018 - Atualizar leitura](cdu-018-atualizar-leitura/detalhamento-018.md)
+19. [CDU-018 - Atualizar leitura](cdu-018-atualizar-leitura/detalhamento-018.md) ✅
 20. [CDU-019 - Comentar postagem](cdu-019-comentar-postagem/detalhamento-019.md)
 21. [CDU-020 - Curtir postagem](cdu-020-curtir-postagem/detalhamento-020.md) ✅
 22. [CDU-021 - Ver feed dos seguindo](cdu-021-ver-feed-dos-seguindo/detalhamento-021.md) ✅
