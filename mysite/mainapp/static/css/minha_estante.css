@@ -1,27 +1,26 @@
-.listas{
-    display: flex;
-    justify-content: space-around;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+:root{
+    --montserrat: "Montserrat", sans-serif;
+    --roboto: "Roboto Flex", sans-serif;
 }
-
-.listas div{
-    margin-top: 20px;
-    text-align: justify;
-    border-radius: 30px;
-    background-color: #ece7ff;
-    display: flex;
-    width: 30%;
-}
-
-.listas div a{
-    padding: 5px;
+.select{
+    margin: 3rem 13rem;
+    margin-bottom: 0;
+    border: 1px solid #D0C5FF;
+    font-size: 1rem;
     border-radius: 10px;
-    background-color: #c4b7ff;
+    padding: 0.5rem;
+    font-family: var(--roboto);
 }
 
-li{
-    list-style: none;
-}
-
-li p{
-    padding-right: 30px;
+.add-livro{
+    margin: 1rem 13rem;
+    margin-bottom: 2rem;
+    color: white;
+    background-color: #221D57;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: var(--roboto);
 }

@@ -46,7 +46,7 @@
 
 {% block conteudo %}
     <form>
-        <select id="select-listas" onclick="atualizarPagina()">
+        <select id="select-listas" onclick="atualizarPagina()" class="select">
             <option tipo="lendo">
                 Leituras atuais
             </option>
@@ -59,10 +59,10 @@
         </select>
     </form>
     <div id="lista">
+        <button class="add-livro">
+            Adicionar livro
+        </button>
         <div class="escondido" id="lendo">
-            <button>
-                Adicionar livro
-            </button>
             {% if lendo %}
                 {% for interacao in lendo %}
                     {% include 'mainapp/interacao_livro.html'%}

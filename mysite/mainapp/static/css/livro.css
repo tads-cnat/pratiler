@@ -4,7 +4,7 @@
     --roboto: "Roboto Flex", sans-serif;
 }
 .interacao-livro{
-    margin: 3rem 13rem;
+    margin: 0 13rem;
     display: flex;
 }
 .interacao-livro img{
