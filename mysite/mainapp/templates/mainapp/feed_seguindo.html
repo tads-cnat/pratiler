@@ -17,15 +17,14 @@
 {% endblock %}
 
 {% block conteudo %}
-    <h1>Pratiler | Feed Seguindo</h1>
     <main>
         <div>
             {% include 'mainapp/postar_comentario.html' %}
             {% if mensagem_erro %}
-                    <p class="error">{{mensagem_erro}}</p>
-                {%endif%}
-            {%if comentarios_recentes%}
+                <p class="error">{{mensagem_erro}}</p>
+            {%endif%}
         </div>
+        {% if comentarios_recentes %}
         <ul>
             {% for comentario in comentarios_recentes %}
                 {% include 'mainapp/comentario.html' %}

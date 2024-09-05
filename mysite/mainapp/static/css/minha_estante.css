@@ -24,3 +24,47 @@
     font-size: 1rem;
     font-family: var(--roboto);
 }
+
+.interacao-livro{
+    margin: 0 13rem;
+    display: flex;
+}
+.interacao-livro img{
+    margin-right: 2rem;
+}
+.interacao-livro .conteudo{
+    margin-bottom: 2rem;
+}
+.interacao-livro .conteudo h1{
+    font-family: var(--montserrat);
+    font-size: 1.5rem;
+    color: #221D57;
+    margin-top: 0;
+}
+
+.interacao-livro .conteudo p{
+    font-family: var(--roboto);
+}
+
+.interacao-livro .conteudo button{
+    color: white;
+    background-color: #221D57;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: var(--roboto);
+}
+
+.mensagem{
+    margin: 0 13rem;
+    margin-bottom: 2rem;
+    font-family: var(--roboto);
+    font-weight: bold;
+    color: #221D57;
+    background-color: #D5F000;
+    width: 13rem;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+}

@@ -5,7 +5,6 @@
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/livro.css' %}">
     <script>  
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('lista').value = "lendo";
@@ -65,40 +64,70 @@
         <div class="escondido" id="lendo">
             {% if lendo %}
                 {% for interacao in lendo %}
-                    {% include 'mainapp/interacao_livro.html'%}
-                    <button>
-                        {{ interacao.comentariosLeitorLivro.last.pagina_final }}/{{ interacao.livro.n_paginas}} páginas
-                    </button>
+                    <div class="interacao-livro">
+                        <picture class="imagem">
+                            <img src="{{ interacao.livro.capa.url }}" height="200px">
+                        </picture>
+                        <div class="conteudo">
+                            <h1>
+                                {{ interacao.livro.titulo }} - {{ interacao.livro.autor.nome }}
+                            </h1>
+                            <p>
+                                {{ interacao.livro.descricao }}
+                            </p>
+                            <button>
+                                {{ interacao.comentariosLeitorLivro.last.pagina_final }}/{{ interacao.livro.n_paginas}} páginas
+                            </button>
+                        </div>
+                    </div>
                 {% endfor %}
             {% else %}
-                <p>Não há livros nesta lista.</p>
+                <p class="mensagem">Não há livros nesta lista.</p>
             {% endif %}
         </div>
         <div class="escondido" id="desejo-ler">
-            <button>
-                Adicionar livro
-            </button>
             {% if desejo_ler %}
                 {% for interacao in desejo_ler %}
-                    {% include 'mainapp/interacao_livro.html'%}
+                    <div class="interacao-livro">
+                        <picture class="imagem">
+                            <img src="{{ interacao.livro.capa.url }}" height="200px">
+                        </picture>
+                        <div class="conteudo">
+                            <h1>
+                                {{ interacao.livro.titulo }} - {{ interacao.livro.autor.nome }}
+                            </h1>
+                            <p>
+                                {{ interacao.livro.descricao }}
+                            </p>
+                            <button>
+                                Iniciar leitura
+                            </button>
+                        </div>
+                    </div>
                 {% endfor %}
-                <button>
-                    Iniciar leitura
-                </button>
             {% else %}
-                <p>Não há livros nesta lista.</p>
+                <p class="mensagem">Não há livros nesta lista.</p>
             {% endif %}
         </div>
         <div class="escondido" id="lidos">
-            <button>
-                Adicionar livro
-            </button>
             {% if lidos %}
                 {% for interacao in lidos %}
-                    {% include 'mainapp/interacao_livro.html'%}
+                <div class="interacao-livro">
+                    <picture class="imagem">
+                        <img src="{{ interacao.livro.capa.url }}" height="200px">
+                    </picture>
+                    <div class="conteudo">
+                        <h1>
+                            {{ interacao.livro.titulo }} - {{ interacao.livro.autor.nome }}
+                        </h1>
+                        <p>
+                            {{ interacao.livro.descricao }}
+                        </p>
+                    </div>
+                </div>
                 {% endfor %}
             {% else %}
-                <p>Não há livros nesta lista.</p>
+                <p class="mensagem">Não há livros nesta lista.</p>
             {% endif %}
         </div>
     </div>
