@@ -1,0 +1,28 @@
+<p>
+    {{ comentario.leitor.user.first_name }}
+    {% if comentario.leitor in user.usuario.seguidores_de.all %}
+        <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}?next={% url 'feed' %}">Seguindo</a>
+    {% else %}
+        <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}?next={% url 'feed' %}">Seguir leitor</a>
+    {% endif %}
+</p>
+<p>
+    <strong><a href="{% url 'pagina_leitor' comentario.leitor.id_username %}">{{ comentario.leitor.user.username}}</a></strong>
+</p>
+<p>
+    {{ comentario.livro.titulo }} - {{ comentario.livro.autor.nome }}
+</p>                        
+<p>
+    Página {{comentario.pagina_final}}/{{comentario.livro.n_paginas}}
+</p>
+<p>
+    {{ comentario.texto }}
+</p>
+<p>
+    {{ comentario.data_hora }}
+</p>
+
+<form method="post" action="{% url 'CurtirComentario' comentario.id %}">
+    {% csrf_token %}
+    <button type="submit">Curtir</button>
+</form>

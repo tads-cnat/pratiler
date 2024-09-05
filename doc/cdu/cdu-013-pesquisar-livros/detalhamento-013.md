@@ -7,7 +7,7 @@
 - **Pós-Condição**: Retorna uma lista de livros ou um único livro de acordo com o texto da pesquisa.
 
 ## Fluxo Principal
-1. &emsp;O Leitor acessa a página de pesquisa de livros.
+1. &emsp;O Leitor acessa o campo de pesquisa.
 2. &emsp;O Leitor insere o texto da pesquisa no campo apropriado.
 3. &emsp;O sistema processa a pesquisa e filtra os livros de acordo com o texto inserido.
 4. &emsp;O sistema exibe a lista de livros que correspondem aos critérios de pesquisa.

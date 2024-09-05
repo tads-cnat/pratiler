@@ -1,65 +1,35 @@
-<!DOCTYPE html>
+{% extends 'mainapp/base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PraTiLer | Feed Seguindo</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/feed_seguindo.css'%}">
-</head>
-<body>
-    <nav>
-        <div class="search-bar">
-            <h1>PraTiLer</h1>
-            <input type="text">
-        </div>
-        <div class="nav-bar">
-            <ul>
-                <li>
-                    <a href="">Minha estante</a>
-                    <a href="">Livros populares</a>
-                    <a href="">Publicações populares</a>
-                    <a href="">Seguindo</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <main>
-        <form method="post" action="">
-            {% csrf_token %}
-            
-        </form>
-        <div class="escreva-comentario">
-            <p>Escreva um comentário</p>
-            <p>Livro: <select></select></p>
-            <p>
-               De página:  <input type="number" name="pagina-inicial" min="1"> 
-               até página: <input type="number" name="pagina-inicial" min="1">
-            </p>
-            <textarea placeholder="O que você está achando do livro?"></textarea>
-            <button>Postar</button>
-        </div>
     
+{% block titulo %}Pratiler | Seguindo{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/feed_seguindo.css'%}">
+    <script>
+        function atualizarPagina(){
+            document.getElementById('livro-select').addEventListener('change', function() {
+                var selectedOption = this.options[this.selectedIndex];
+                var ultimaPagina = selectedOption.getAttribute('ultima-pagina');
+                console.log("Livro selecionado:", selectedOption.text);
+                console.log("Última página lida:", ultimaPagina)
+                document.getElementById('pagina-inicial').placeholder = ultimaPagina;
+            });
+        }
+    </script>
+{% endblock %}
+
+{% block conteudo %}
+    <h1>Pratiler | Feed Seguindo</h1>
+    <main>
+        {% include 'mainapp/postar_comentario.html' %}
         {%if comentarios_recentes%}
-        <div class="comentarios-seguindo">
-            {% for c in comentarios_recentes %}
-                <p>{{c.leitor.user.username}}</p>
-                <p>{{c.data_hora}}</p>
-                <p>{{c.livro.titulo}}</p>
-                <p>{{c.texto}}</p>
-                <p></p>
-                <p>Página final: {{c.pagina_final}}</p>
-                <form method="post" action="{% url 'CurtirComentario' c.id %}">
-                    {% csrf_token %}
-                    <button type="submit">Curtir</button>
-                </form>
-                ---------------------------------------
+        <ul>
+            {% for comentario in comentarios_recentes %}
+                {% include 'mainapp/comentario.html' %}
             {%endfor%}
-        </div>
+        </ul>
         {% else%}
             <p>Você não segue ninguém para ver os comentários de seguidores</p>
         {%endif%}
     </main>
-</body>
-</html>
+{% endblock %}

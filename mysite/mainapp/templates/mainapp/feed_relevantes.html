@@ -1,66 +1,38 @@
-<!DOCTYPE html>
+{% extends 'mainapp/base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css'%}">
-    <title>Pratiler | Feed Relevantes</title>
-</head>
-<body>
-    <nav>
-        <div class="search-bar">
-            <h1>PraTiLer</h1>
-            <input type="text">
-        </div>
-        <div class="nav-bar">
-            <ul>
-                <li>
-                    <a href="">Minha estante</a>
-                    <a href="">Livros populares</a>
-                    <a href="">Publicações populares</a>
-                    <a href="">Seguindo</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+{% block titulo %}Pratiler | Feed Relevantes{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/feed_geral.css' %}">
+    <script>
+        function atualizarPagina(){
+            document.getElementById('livro-select').addEventListener('change', function() {
+                var selectedOption = this.options[this.selectedIndex];
+                var ultimaPagina = selectedOption.getAttribute('ultima-pagina');
+                console.log("Livro selecionado:", selectedOption.text);
+                console.log("Última página lida:", ultimaPagina)
+                document.getElementById('pagina-inicial').value = ultimaPagina;
+            });
+        }
+    </script>
+{% endblock %}
+{% block conteudo %}
     <main>
-        <h1>PraTiLer | Feed Relevantes </h1>
+        <div>
+            {% include 'mainapp/postar_comentario.html'%}
+            {% if mensagem_erro %}
+                <p class="error">Selecione um livro.</p>
+            {%endif%}
+        </div>
         {% if comentarios_relevantes %}
         <ul>
             {% for comentario in comentarios_relevantes %}
-            <li>
-                <p>
-                    {{ comentario.leitor.user.first_name }}
-                    {% if comentario.leitor.user in user.seguidos_por.all %}  se estiver seguindo já 
-                    <a href="{% url 'seguir_leitor' comentario.leitor.user.username %}">Seguindo</a>
-                    {% else %} se não estiver seguindo
-                    <a href="{% url 'seguir_leitor' comentario.leitor.user.username %}">Seguir leitor</a>
-                    {% endif %} 
-                </p>
-                <p>
-                    <strong>{{ comentario.leitor.user.username}}</strong>
-                </p>
-                <p>
-                    {{ comentario.livro.titulo }} - {{ comentario.livro.autor.nome }}
-                </p>
-                
-                <p>
-                    Página {{comentario.pagina_final}}/{{comentario.livro.n_paginas}}
-                </p>
-                <p>
-                    {{ comentario.texto }}
-                </p>
-                <p>
-                    {{ comentario.data_hora }}
-                </p>
-            </li>
+                {% include 'mainapp/comentario.html' %}
             {% endfor %}
         </ul>
-           
-        {% else %}
+    {% else %}
         <p>Não há comentários relevantes no momento.</p>
-        {% endif %}
+    {% endif %}
     </main>
-</body>
-</html>
+{% endblock %}
+

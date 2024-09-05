@@ -1,0 +1,9 @@
+.perfil-nav ul{
+    list-style: none;
+    text-align: center;
+    
+}
+
+.perfil-nav ul li a{
+    padding-right: 5rem;
+}
