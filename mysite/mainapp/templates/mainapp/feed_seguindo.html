@@ -11,6 +11,9 @@
                 var selectedOption = this.options[this.selectedIndex];
                 var ultimaPagina = selectedOption.getAttribute('ultima-pagina');
                 document.getElementById('pagina-inicial').value = ultimaPagina;
+                if(ultimaPagina == null){
+                    document.getElementById('pagina-inicial').value = 0;
+                }
             });
         }
     </script>

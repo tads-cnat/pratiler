@@ -28,12 +28,10 @@
 .interacao-livro{
     margin: 0 13rem;
     display: flex;
+    margin-bottom: 2rem;
 }
 .interacao-livro img{
     margin-right: 2rem;
-}
-.interacao-livro .conteudo{
-    margin-bottom: 2rem;
 }
 .interacao-livro .conteudo h1{
     font-family: var(--montserrat);
