@@ -10,9 +10,7 @@
             document.getElementById('livro-select').addEventListener('change', function() {
                 var selectedOption = this.options[this.selectedIndex];
                 var ultimaPagina = selectedOption.getAttribute('ultima-pagina');
-                console.log("Livro selecionado:", selectedOption.text);
-                console.log("Última página lida:", ultimaPagina)
-                document.getElementById('pagina-inicial').placeholder = ultimaPagina;
+                document.getElementById('pagina-inicial').value = ultimaPagina;
             });
         }
     </script>

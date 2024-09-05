@@ -66,6 +66,10 @@ class Interage(models.Model):
 
     def __str__(self):
         return f'{self.leitor.user.username} - {self.livro.titulo} ({self.get_status_display()})'
+
+    def comentariosLeitorLivro(self):
+        comentarios = Comentario.objects.filter(leitor=self.leitor, livro=self.livro)
+        return comentarios
     
     class Meta:
         verbose_name_plural = "Interações"
