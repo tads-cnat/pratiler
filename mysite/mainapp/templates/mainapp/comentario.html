@@ -21,3 +21,8 @@
 <p>
     {{ comentario.data_hora }}
 </p>
+
+<form method="post" action="{% url 'CurtirComentario' comentario.id %}">
+    {% csrf_token %}
+    <button type="submit">Curtir</button>
+</form>

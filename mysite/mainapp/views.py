@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .services import VerLivrosPopularesService, ComentariosRecentesService, ComentariosRelevantesService
 from .models import *
+from django.shortcuts import get_object_or_404 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout #Chaves
 from django.contrib import messages #Chaves
 from django.contrib.auth.decorators import login_required # Chaves
 from django.db.models import Q # Chaves
 from django.utils import timezone
+
 
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
@@ -129,6 +131,17 @@ class GerenciarLivrosView(View):
         livro_1 = livro
         livro.delete()
         return redirect('index')
+    
+class CurtirComentario(View):
+    def post(self, request,  *args, **kwargs): # envio de dados para o sistema
+        comentario_id = kwargs.get('id')
+        comentario_procurado = get_object_or_404(Comentario, id=comentario_id) # procura o comentario pelo id
+        usuario = Usuario.objects.get(user=request.user)
+        curtida, created = Curtida.objects.get_or_create(comentario=comentario_procurado, usuario=usuario)
+        if not created: 
+            curtida.delete()  # se a curtida existe, vai deletar.
+
+        return redirect(request.META.get('HTTP_REFERER'))
 
 class SeguirLeitorView(View):
     def get(self, request, *args, **kwargs):
