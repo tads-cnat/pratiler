@@ -55,7 +55,15 @@ class VerLivrosPopularesView(View):
         livros_populares = VerLivrosPopularesService.VerLivrosPopulares()
         # renderização dos livros populares 
         return render(request, 'mainapp/livros_populares.html', {'livros_populares': livros_populares})
-    
+
+class VerMinhaEstante(View):
+    def get(self, request, *args, **kwargs):
+        desejo_ler = request.user.usuario.interage_set.filter(status='QL')
+        lendo = request.user.usuario.interage_set.filter(status='LN')
+        lidos = request.user.usuario.interage_set.filter(status='LD')
+        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
+        return render(request, 'mainapp/minha_estante.html', contexto)
+
 class GerenciarLivrosView(View):
     def get(self, request, *args, **kwargs):
         '''
@@ -167,6 +175,15 @@ class SeguirLeitorView(View):
 class MeuPerfilView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html')
+
+class PerfilEstante(View):
+    def get(self, request, *args, **kwargs):
+        usuario = Usuario.objects.get(id_username=kwargs['username'])
+        desejo_ler = usuario.interage_set.filter(status='QL')
+        lendo = usuario.interage_set.filter(status='LN')
+        lidos = usuario.interage_set.filter(status='LD')
+        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos, "leitor": usuario}
+        return render(request, 'mainapp/leitor_minha_estante.html', contexto)
 
 class VerMinhaEstante(View):
     def get(self, request, *args, **kwargs):
