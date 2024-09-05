@@ -14,9 +14,9 @@
     <h4>{{ leitor.descricao }}</h4>
     {% if leitor != user.usuario %}
         {% if leitor in user.usuario.seguidores_de.all %}
-            <a href="{% url 'seguir_leitor' leitor.id_username %}?next={% url 'pagina_leitor' leitor.id_username %}">Seguindo</a>
+            <a href="{% url 'seguir_leitor' leitor.id_username %}">Seguindo</a>
         {% else %}
-            <a href="{% url 'seguir_leitor' leitor.id_username %}?next={% url 'pagina_leitor' leitor.id_username %}">Seguir leitor</a>
+            <a href="{% url 'seguir_leitor' leitor.id_username %}">Seguir leitor</a>
         {% endif %} 
     {% endif %}
     <!-- Seguidores -->
