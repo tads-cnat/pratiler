@@ -1,12 +1,14 @@
 <form method="post" action="{% url 'feed' %}" class="postar-comentario">
 {% csrf_token %}
-    <p>Escreva um comentário</p>
+    <h1>
+        Escreva um comentário
+    </h1>
     {% if livros %}
     <label class="select">Livro: 
-        <select id="livro-select" name="livro" onchange="atualizarPagina()">
+        <select id="livro-select" name="livro" onclick="atualizarPagina()">
             <option value="0">Selecione</option>
             {% for l in livros %}
-            {% with ultima_pagina=l.livro.comentario_set.last.pagina_final %}
+            {% with ultima_pagina=l.comentariosLeitorLivro.last.pagina_final %}
             <option value="{{l.livro.id}}" ultima-pagina="{{ ultima_pagina }}">{{ l.livro.titulo }}</option>
             {% endwith %}
             {% endfor %}
@@ -25,6 +27,3 @@
     <input type='submit' value='Postar' class="botao">
 </form>
 
-{% if mensagem_erro %}
-<p>Selecione um livro</p>
-{%endif%}

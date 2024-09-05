@@ -66,6 +66,10 @@ class Interage(models.Model):
 
     def __str__(self):
         return f'{self.leitor.user.username} - {self.livro.titulo} ({self.get_status_display()})'
+
+    def comentariosLeitorLivro(self):
+        comentarios = Comentario.objects.filter(leitor=self.leitor, livro=self.livro)
+        return comentarios
     
     class Meta:
         unique_together = ('livro', 'leitor')
@@ -103,4 +107,4 @@ class Curtida(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.usuario.user.username + " curtiu comentário de " + self.comentario.leitor.user.username
+        return "id: "+ str(self.id) + " " + self.usuario.user.username + " curtiu comentário de " + self.comentario.leitor.user.username

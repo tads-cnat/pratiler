@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .services import VerLivrosPopularesService, ComentariosRecentesService, ComentariosRelevantesService
 from .models import *
+from django.shortcuts import get_object_or_404 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout #Chaves
 from django.contrib import messages #Chaves
@@ -11,7 +12,7 @@ from django.utils import timezone
 
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
-        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
+        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes();
         
         usuario = Usuario.objects.get(user=request.user)
         livros = usuario.interage_set.filter(status='LN')
@@ -29,10 +30,13 @@ class VerFeedView(View):
 
         try:
             livro = Livro.objects.get(id=livro_id)
+            if pg_final < livro.comentario_set.last.pagina_final:
+                mensagem_erro = "Coloque uma página final maior que a anterior."
+                return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
             comentario = Comentario.objects.create(livro=livro, texto=texto, leitor=leitor, pagina_final=pg_final, data_hora=data_hora)
             comentario.save()
         except:
-            mensagem_erro = "Selecione um livro"
+            mensagem_erro = "Selecione um livro."
             return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
 
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
@@ -46,7 +50,7 @@ class VerFeedSeguindoView(View):
     def post(self, request, *args, **kwargs):
         return
 
-class VerLivrosPopulares(View):
+class VerLivrosPopularesView(View):
     def get(self, request, *args, **kwargs):
         livros_populares = VerLivrosPopularesService.VerLivrosPopulares()
         # renderização dos livros populares 
@@ -137,6 +141,17 @@ class GerenciarLivrosView(View):
         livro_1 = livro
         livro.delete()
         return redirect('index')
+    
+class CurtirComentario(View):
+    def post(self, request,  *args, **kwargs): # envio de dados para o sistema
+        comentario_id = kwargs.get('id')
+        comentario_procurado = get_object_or_404(Comentario, id=comentario_id) # procura o comentario pelo id
+        usuario = Usuario.objects.get(user=request.user)
+        curtida, created = Curtida.objects.get_or_create(comentario=comentario_procurado, usuario=usuario)
+        if not created: 
+            curtida.delete()  # se a curtida existe, vai deletar.
+
+        return redirect(request.META.get('HTTP_REFERER'))
 
 class SeguirLeitorView(View):
     def get(self, request, *args, **kwargs):
@@ -156,6 +171,19 @@ class SeguirLeitorView(View):
             user_followed.seguidos_por.add(user)
 
         return redirect(request.GET["next"])
+
+class MeuPerfilView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html')
+
+class VerMinhaEstante(View):
+    def get(self, request, *args, **kwargs):
+        usuario = Usuario.objects.get(user=request.user)
+        desejo_ler = usuario.interage_set.filter(status='QL')
+        lendo = usuario.interage_set.filter(status='LN')
+        lidos = usuario.interage_set.filter(status='LD')
+        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
+        return render(request, 'mainapp/minha_estante.html', contexto)
 
 def home(request): # Chaves
     return render(request, 'mainapp/home.html')
