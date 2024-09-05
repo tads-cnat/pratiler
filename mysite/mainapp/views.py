@@ -21,16 +21,17 @@ class VerFeedView(View):
     def post(self, request, *args, **kwargs):
         texto = request.POST.get('conteudo')
         livro_id = request.POST.get('livro')
-        pg_final = request.POST.get('pagina-final')
+        pg_final = int(request.POST.get('pagina-final'))
         leitor = Usuario.objects.get(user=request.user)
         data_hora = timezone.now
 
         comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
         livros = leitor.interage_set.filter(status='LN')
-
+        usuario = Usuario.objects.get(user=request.user)
+        
         try:
             livro = Livro.objects.get(id=livro_id)
-            if pg_final < livro.comentario_set.last.pagina_final:
+            if pg_final < livro.comentario_set.filter(leitor=usuario).last().pagina_final:
                 mensagem_erro = "Coloque uma página final maior que a anterior."
                 return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
             comentario = Comentario.objects.create(livro=livro, texto=texto, leitor=leitor, pagina_final=pg_final, data_hora=data_hora)
