@@ -23,11 +23,13 @@
         <div class="perfil-nav">
             <ul>
                 <li>
-                    <a href="">Atualizações recentes</a>
-                    <a href="">Minha estante</a>
+                    <a href="{% url 'pagina_leitor' leitor.id_username %}">Atualizações recentes</a>
+                    <a href="{% url 'estante_leitor' leitor.id_username %}">Minha estante</a>
                     <a href="">Resenhas</a>
                 </li>
             </ul>
         </div>
-        {% include 'mainapp/postar_comentario.html' %}
+        {% block main %}
+            {% include 'mainapp/postar_comentario.html' %}
+        {% endblock %}
 {% endblock %}

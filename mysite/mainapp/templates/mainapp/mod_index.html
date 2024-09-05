@@ -23,7 +23,7 @@
             {% endif %}
                 {% for livro in livros %}
                     <div class="livro">
-                        <h3>{{ livro.titulo }} - {{ livro.autor.nome }}</h3>{{ livro.capa }}<br>
+                        <h3>{{ livro.titulo }} - {{ livro.autor.nome }}</h3><img src="{{ livro.capa.url }}" alt=""><br>
                             <p>&emsp;{{ livro.descricao }}</p>
                             <p class="options"><a href="{% url 'editar' livro.isbn %}">Editar livro</a> <a href="{% url 'deletar' livro.isbn %}">Excluir livro</a></p><br>
                     </div>
