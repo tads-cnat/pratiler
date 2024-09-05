@@ -21,5 +21,6 @@ urlpatterns = [
     path('livros_pesquisa/', views.livros_pesquisa, name="livros_pesquisa"), #Chaves
     path('feed_seguindo/', views.VerFeedSeguindoView.as_view(), name="seguindo"),
     path('<str:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor"),
-    path('feed_seguindo/<int:id>/', views.CurtirComentario.as_view(), name="CurtirComentario")
+    path('feed_seguindo/<int:id>/', views.CurtirComentario.as_view(), name="CurtirComentario"),
+    path('minha_estante/', views.VerMinhaEstante.as_view(), name="minha_estante")
 ]

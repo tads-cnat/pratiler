@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required # Chaves
 from django.db.models import Q # Chaves
 from django.utils import timezone
 
-
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
         comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes();
@@ -168,6 +167,15 @@ class SeguirLeitorView(View):
 class MeuPerfilView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html')
+
+class VerMinhaEstante(View):
+    def get(self, request, *args, **kwargs):
+        usuario = Usuario.objects.get(user=request.user)
+        desejo_ler = usuario.interage_set.filter(status='QL')
+        lendo = usuario.interage_set.filter(status='LN')
+        lidos = usuario.interage_set.filter(status='LD')
+        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
+        return render(request, 'mainapp/minha_estante.html', contexto)
 
 def home(request): # Chaves
     return render(request, 'mainapp/home.html')
