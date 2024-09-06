@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from .services import VerLivrosPopularesService, ComentariosRecentesService, ComentariosRelevantesService
+from .services import VerLivrosPopularesService, ComentariosRecentesService, ComentariosRelevantesService, LivrosDisponiveis
 from .models import *
 from django.shortcuts import get_object_or_404 
 from django.contrib.auth.models import User
@@ -196,9 +196,22 @@ class VerMinhaEstanteView(View):
         desejo_ler = usuario.interage_set.filter(status='QL')
         lendo = usuario.interage_set.filter(status='LN')
         lidos = usuario.interage_set.filter(status='LD')
-        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
+        livros = LivrosDisponiveis.livros_disponiveis(usuario)
+        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos, "livros": livros}
         return render(request, 'mainapp/minha_estante.html', contexto)
+
+class AdicionarLivroEstanteView(View):
+    def get(self, request, *args, **kwargs):
+        titulo = request.GET['livro']
+        livros = LivrosDisponiveis.livros_disponiveis(request.user.usuario).filter(titulo__contains=titulo)
+        return render(request, 'mainapp/minha_estante.html', {"livros": livros})
     
+    def post(self, request, *args, **kwargs):
+        livros = request.POST.getlist('selec-livro')
+        for livro in livros:
+            Interage.objects.create(leitor=request.user.usuario, livro=livro, status='QL')
+        return redirect(request.META['HTTP_REFERER'])
+
 class LandingPageView(View):
     def get(self, request, *args, **kwargs):
         return redirect('feed') if request.user.is_authenticated else render(request, 'mainapp/home.html')
