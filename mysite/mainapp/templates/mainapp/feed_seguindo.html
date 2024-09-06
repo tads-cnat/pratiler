@@ -11,21 +11,23 @@
                 var selectedOption = this.options[this.selectedIndex];
                 var ultimaPagina = selectedOption.getAttribute('ultima-pagina');
                 document.getElementById('pagina-inicial').value = ultimaPagina;
+                if(ultimaPagina == null){
+                    document.getElementById('pagina-inicial').value = 0;
+                }
             });
         }
     </script>
 {% endblock %}
 
 {% block conteudo %}
-    <h1>Pratiler | Feed Seguindo</h1>
     <main>
         <div>
             {% include 'mainapp/postar_comentario.html' %}
             {% if mensagem_erro %}
-                    <p class="error">{{mensagem_erro}}</p>
-                {%endif%}
-            {%if comentarios_recentes%}
+                <p class="error">{{mensagem_erro}}</p>
+            {%endif%}
         </div>
+        {% if comentarios_recentes %}
         <ul>
             {% for comentario in comentarios_recentes %}
                 {% include 'mainapp/comentario.html' %}

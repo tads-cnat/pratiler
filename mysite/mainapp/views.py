@@ -31,9 +31,10 @@ class VerFeedView(View):
         
         try:
             livro = Livro.objects.get(id=livro_id)
-            if pg_final < livro.comentario_set.filter(leitor=usuario).last().pagina_final:
-                mensagem_erro = "Coloque uma página final maior que a anterior."
-                return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
+            if int(request.POST.get('pagina-inicial')) != 0:
+                if pg_final < livro.comentario_set.filter(leitor=usuario).last().pagina_final:
+                    mensagem_erro = "Coloque uma página final maior que a anterior."
+                    return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
             comentario = Comentario.objects.create(livro=livro, texto=texto, leitor=leitor, pagina_final=pg_final, data_hora=data_hora)
             comentario.save()
         except:
