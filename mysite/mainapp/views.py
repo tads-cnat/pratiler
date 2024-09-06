@@ -12,7 +12,7 @@ from django.utils import timezone
 
 class VerFeedView(View):
     def get(self, request, *args, **kwargs):
-        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes();
+        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
         
         usuario = Usuario.objects.get(user=request.user)
         livros = usuario.interage_set.filter(status='LN')
@@ -33,13 +33,11 @@ class VerFeedView(View):
             livro = Livro.objects.get(id=livro_id)
             if int(request.POST.get('pagina-inicial')) != 0:
                 if pg_final < livro.comentario_set.filter(leitor=usuario).last().pagina_final:
-                    mensagem_erro = "Coloque uma página final maior que a anterior."
-                    return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
+                    messages.error(request, "Coloque uma página final maior que a anterior.")
             comentario = Comentario.objects.create(livro=livro, texto=texto, leitor=leitor, pagina_final=pg_final, data_hora=data_hora)
             comentario.save()
         except:
-            mensagem_erro = "Selecione um livro."
-            return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'mensagem_erro':mensagem_erro, 'livros':livros})
+            messages.error(request, "Selecione um livro.")
 
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
     
@@ -58,7 +56,7 @@ class VerLivrosPopularesView(View):
         # renderização dos livros populares 
         return render(request, 'mainapp/livros_populares.html', {'livros_populares': livros_populares})
 
-class VerMinhaEstante(View):
+class VerMinhaEstanteView(View):
     def get(self, request, *args, **kwargs):
         desejo_ler = request.user.usuario.interage_set.filter(status='QL')
         lendo = request.user.usuario.interage_set.filter(status='LN')
@@ -104,8 +102,9 @@ class GerenciarLivrosView(View):
                 }
         try:
             Livro.objects.create(**dados)
-        except Exception as error:
-            return render(request, 'mainapp/mod_adicionar.html', {'feedback': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
+        except:
+            messages.error(request, f"Dados mal inseridos, por favor insira os dados corretamente!")
+            return redirect(request.META["HTTP_REFERER"])
         livro = Livro.objects.get(isbn=request.POST['isbn'])
         return redirect('index')
     
@@ -131,8 +130,9 @@ class GerenciarLivrosView(View):
             livro.n_paginas = dados['n_paginas']
             livro.autor = dados['autor']
             livro.save()
-        except Exception as error:
-            return render(request, 'mainapp/mod_editar.html', {'feedback': f'Dados mal inseridos, por favor insira os dados corretamente!\nErro identificado: {error}'})
+        except:
+            messages.error(request, f"Dados mal inseridos, por favor insira os dados corretamente!")
+            return redirect('editar')
         return redirect('index')
     
     def delete(request, **kwargs):
@@ -144,7 +144,7 @@ class GerenciarLivrosView(View):
         livro.delete()
         return redirect('index')
     
-class CurtirComentario(View):
+class CurtirComentarioView(View):
     def post(self, request,  *args, **kwargs): # envio de dados para o sistema
         comentario_id = kwargs.get('id')
         comentario_procurado = get_object_or_404(Comentario, id=comentario_id) # procura o comentario pelo id
@@ -172,13 +172,15 @@ class SeguirLeitorView(View):
             user.seguidores_de.add(user_followed)
             user_followed.seguidos_por.add(user)
 
-        return redirect(request.GET["next"])
+        return redirect(request.META["next"])
 
-class MeuPerfilView(View):
+class PerfilView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html')
+        leitor = get_object_or_404(Usuario, id_username=kwargs['username'])
+        context = {'leitor': leitor}
+        return render(request, 'mainapp/pagina_leitor.html', context)
 
-class PerfilEstante(View):
+class PerfilEstanteView(View):
     def get(self, request, *args, **kwargs):
         usuario = Usuario.objects.get(id_username=kwargs['username'])
         desejo_ler = usuario.interage_set.filter(status='QL')
@@ -187,7 +189,7 @@ class PerfilEstante(View):
         contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos, "leitor": usuario}
         return render(request, 'mainapp/leitor_minha_estante.html', contexto)
 
-class VerMinhaEstante(View):
+class VerMinhaEstanteView(View):
     def get(self, request, *args, **kwargs):
         usuario = Usuario.objects.get(user=request.user)
         desejo_ler = usuario.interage_set.filter(status='QL')
@@ -195,9 +197,10 @@ class VerMinhaEstante(View):
         lidos = usuario.interage_set.filter(status='LD')
         contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
         return render(request, 'mainapp/minha_estante.html', contexto)
-
-def home(request): # Chaves
-    return render(request, 'mainapp/home.html')
+    
+class LandingPageView(View):
+    def get(self, request, *args, **kwargs):
+        return redirect('feed') if request.user.is_authenticated else render(request, 'mainapp/home.html')
 
 def paginaLogin(request): # Chaves
     if request.method == 'POST':
@@ -207,10 +210,13 @@ def paginaLogin(request): # Chaves
         try:
             user = User.objects.get(email=email)
             user = authenticate(request, username=user.username, password=senha)
-            login(request, user)
-            return redirect('/feed') #mudar para redirecionar para o VerFeed
+            if user:
+                login(request, user)
+                return redirect('/feed') #mudar para redirecionar para o VerFeed
+            else:
+                messages.error(request, 'Dados inválidos, por favor corrija os dados inseridos e tente novamente')
         except:
-            messages.error(request, 'Usuario não existe')
+            messages.error(request, 'Usuario não existe, gostaria de se cadastrar?')
 
     return render(request, 'mainapp/login.html')
 

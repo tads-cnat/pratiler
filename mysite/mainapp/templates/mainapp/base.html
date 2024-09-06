@@ -14,7 +14,7 @@
       <div class="search-bar">
         <h1>
           <a href="{% url 'feed' %}">
-            <img src="../static/images/pratiler-logo.png" class="logo">
+            <img src="{% static 'images/pratiler-logo.png' %}" class="logo">
           </a>
         </h1>
         <div class="barra-meu-perfil">
@@ -23,8 +23,8 @@
               <input name="q" placeholder="Pesquisar..." />
             </label>
           </form>
-          <a href="{% url 'meu_perfil' %}" class="meu-perfil"> <!-- ajeitar -->
-            <img  src="../static/images/perfil.png">
+          <a href="{% url 'pagina_leitor' user.usuario.id_username %}" class="meu-perfil"> <!-- ajeitar -->
+            <img src="{% static 'images/perfil.png' %}">
             <p>Meu perfil</p>
           </a>
         </div>
