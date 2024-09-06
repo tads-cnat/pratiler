@@ -4,7 +4,7 @@
     {% block head %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/livro.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/atualizacoes.css' %}">
     {% endblock %}
 
 {% block navbar %}{% endblock %}
@@ -32,9 +32,16 @@
             </ul>
         </div>
         {% block main %}
-            {% if leitor == user.usuario %}
-                {% include 'mainapp/postar_comentario.html' %}
-            {% endif %}
-
+            <div class="main">
+                {% if leitor == user.usuario %}
+                        {% include 'mainapp/postar_comentario.html' %}
+                {% endif %}
+                    {% for comentario in leitor.comentario_set.all %}
+                        <div class="comentario">
+                            <h4>{{ comentario }}&emsp;&emsp;<span class="data">{{ comentario.data_hora }}</span></h4>
+                            <p>{{ comentario.texto }}</p>
+                        </div>
+                    {% endfor %}
+            </div>
         {% endblock %}
 {% endblock %}

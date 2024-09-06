@@ -177,6 +177,7 @@ class SeguirLeitorView(View):
 class PerfilView(View):
     def get(self, request, *args, **kwargs):
         leitor = get_object_or_404(Usuario, id_username=kwargs['username'])
+        comentarios = leitor.comentario_set.all()
         context = {'leitor': leitor}
         return render(request, 'mainapp/pagina_leitor.html', context)
 
