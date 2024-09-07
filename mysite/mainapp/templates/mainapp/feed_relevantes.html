@@ -3,7 +3,7 @@
 {% block titulo %}Pratiler | Feed Relevantes{% endblock %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/feed_geral.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/feed_geral_1.css' %}">
     
     <script>
         function atualizarPagina(){
@@ -37,7 +37,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>Não há comentários relevantes no momento.</p>
+        <p class="sem-comentarios">Não há comentários relevantes no momento.</p>
     {% endif %}
     </main>
 {% endblock %}
