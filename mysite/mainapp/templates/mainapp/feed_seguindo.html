@@ -5,6 +5,7 @@
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/feed_seguindo.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/comentario.css'%}">
     <script>
         function atualizarPagina(){
             document.getElementById('livro-select').addEventListener('change', function() {
@@ -28,13 +29,13 @@
             {%endif%}
         </div>
         {% if comentarios_recentes %}
-        <ul>
+        <ul style="margin-top:0;">
             {% for comentario in comentarios_recentes %}
                 {% include 'mainapp/comentario.html' %}
             {%endfor%}
         </ul>
         {% else%}
-            <p>Você não segue ninguém para ver os comentários de seguidores</p>
+            <p class="sem-comentarios">Você não segue ninguém para ver os comentários de seguidores.</p>
         {%endif%}
     </main>
 {% endblock %}
