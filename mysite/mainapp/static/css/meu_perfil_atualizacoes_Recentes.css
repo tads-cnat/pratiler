@@ -1,0 +1,72 @@
+.perfil-nav ul, ol{
+    list-style: none;
+}
+.perfil-nav a{
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+.perfil-nav{
+    text-align: center;
+}
+.card-profile{
+    margin-top: 2rem;
+    margin-left: 3rem;
+    margin-right: 1rem;
+    display: flex;
+    gap: 2rem;
+}
+.card-profile img {
+    width: 148px;
+    height: 148px;
+}
+.card-profile-name{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    align-items: first baseline;
+}
+.card-profile-nickname{
+    margin-top: 0;
+}
+.estilo-hr-div{
+    border: 0;
+    border-top: 2px solid #E1DAFF;
+    width: 100%;
+    height: 1px;
+}
+.icon-perfil-nav{
+    width: 0.5rem;
+    height: 0.5rem;
+    vertical-align: middle;
+    margin-left: 1rem;
+}
+.icon-perfil-profile img{
+    width: 1.4rem;
+    height: 1.4rem;
+    vertical-align: middle;
+}
+.icon-perfil-profile{
+    margin-right: 0.3rem;
+}
+.block-resenhas{
+    margin: 0 20%;
+    border: 1px solid red;
+}
+.card-resenhas{
+    border: 1px solid red;
+    padding: 1rem;
+}
+.card-resenhas-2{
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+    border: 1px solid red;
+
+}
+.card-resenhas-content{
+    width: 70%;
+}
+.card-resenhas-content img{
+    width: 10rem;
+    height: 15rem;
+}

@@ -267,8 +267,13 @@ def livros_pesquisa(request):
 class VerResenhas(View):
     def get(self, request, *args, **kwargs):
         resenhas = Resenha.objects.all()
-        print(resenhas)
         return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html', {"resenhas": resenhas})
+    
+#class VerMinhasPublicacoesRecentes(View):
+    #def get(self, request, *args, **kwargs):
+        #resenhas = Resenha.objects.all()
+        #return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html', {"resenhas": resenhas})
+
 
 class escrever_resenha(View):
     def get(self, request, *args, **kwargs):
