@@ -22,6 +22,15 @@
 }
 .nome-botao-seguir-data .perfil{
     display: flex;
+    font-size: 1.1rem;
+}
+.nome-botao-seguir-data .perfil .nome p{
+    color: #221D57;
+}
+.nome-botao-seguir-data .perfil .nome a{
+    text-decoration: none;
+    color: #6761A8;
+    font-weight: 400;
 }
 .nome-botao-seguir-data .nome{
     margin: 0.5rem 1rem;
@@ -51,4 +60,5 @@
 }
 .paginas{
     margin-top: 0.3rem;
+    color: #6761A8;
 }
