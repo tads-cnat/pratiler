@@ -1,68 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+:root{
+    --montserrat: "Montserrat", sans-serif;
+    --roboto: "Roboto Flex", sans-serif;
+}
+body{
+    background-color: #F6F6F6;
+}
 header{
     display: flex;
+    justify-content: space-between;
+    padding: 1rem 2.5rem;
 }
-
+header img{
+    width: 10rem;
+}
 a{
     text-decoration: none;
     text-align: center;
     border-radius: 1.25rem;
 }
-
-header div{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+#login{
+    color: #221D57;
+    font-family: var(--roboto);
+    margin-right: 1.5rem;
+    font-weight: 700;
+    font-size: 1.3rem;
 }
-
-header div a{
-    width: 6rem;
-    margin-right: 1.25rem;
-    padding: 0.2rem;
-}
-
-#login, main a{
+#cadastro{
     background-color: #221D57;
     color: white;
+    padding: 0.5rem;
+    font-family: var(--roboto);
+    font-size: 1.3rem;
 }
-
-#cadastro{
-    background-color: #bdbdbd;
-    color: rgb(61, 61, 61);
-}
-
 main{
     margin-top: 200px;
 }
-
-main b{
-    color: #221D57;
-}
-
 .conteudo{
+    margin-left: 2.5rem;
+    font-family: var(--montserrat);
+    display: flex;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+}
+.conteudo img{
+    width: 35rem;
+    margin-right: 10rem;
+}
+.conteudo p{
+    max-width: 43rem;
     font-size: 2rem;
-    margin: 0 0 10px 30px;
+    color: #221D57;
+    margin-bottom: 3rem;
 }
-
-main a{
-    margin: 50px 0 0 50px;
-    padding: 10px;
+.conteudo p strong{
+    color: #4D45A5;
 }
-
+.conteudo a{
+    background-color: #221D57;
+    color: white;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+hr{
+   border-top: 1px dotted #4D45A5;
+   margin: 0;
+}
 .sobre-nos{
-    margin: 150px 0 0 0;
-    display: flex;
-    flex-direction: column;
-    font-size: 1rem;
+    margin: 4rem;
 }
-
-.sobre-nos div{
-    padding: 3rem;
-    display: flex;
-}
-
-.texto{
-    text-align: justify;
+.texto-1, .texto-2, .texto-3{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+}
+.texto-1 img{
+    width: 30rem;
+    margin: auto;
+}
+.texto-2 img{
+    width: 40rem;
+    margin: auto;
+}
+.texto-3 img{
+    width: 30rem;
+    margin: auto;
+}
+.texto{
+    text-align: justify;
+}
+.texto h3{
+    font-family: var(--montserrat);
+    color: #221D57;
+    font-weight: 400;
+    font-size: 2rem;
+}
+.texto p{
+    max-width: 40rem;
+    font-family: var(--roboto);
+    font-size: 1.5rem;
 }

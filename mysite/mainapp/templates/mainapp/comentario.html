@@ -9,7 +9,6 @@
                 <a href="{% url 'pagina_leitor' comentario.leitor.id_username %}">@{{ comentario.leitor.user.username}}</a>
             </div>
             {% if comentario.leitor in user.usuario.seguindo.all %}
-                <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}" class="botao-seguir">Seguir</a>
             {% else %}
                 <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}" class="botao-seguir">Seguir</a>
             {% endif %}
