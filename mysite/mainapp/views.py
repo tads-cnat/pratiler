@@ -58,10 +58,25 @@ class VerLivrosPopularesView(View):
 
 class VerMinhaEstanteView(View):
     def get(self, request, *args, **kwargs):
-        desejo_ler = request.user.usuario.interage_set.filter(status='QL')
-        lendo = request.user.usuario.interage_set.filter(status='LN')
-        lidos = request.user.usuario.interage_set.filter(status='LD')
-        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
+        # Obtém os livros interagidos pelo usuário com diferentes status
+        desejo_ler = request.user.usuario.interage_set.filter(status='QL').values_list('livro_id', flat=True)
+        lendo = request.user.usuario.interage_set.filter(status='LN').values_list('livro_id', flat=True)
+        lidos = request.user.usuario.interage_set.filter(status='LD').values_list('livro_id', flat=True)
+
+        # Cria uma lista única de IDs dos livros que estão na estante do usuário
+        livros_na_estante = set(desejo_ler) | set(lendo) | set(lidos)
+        
+        # Obtém todos os livros disponíveis no sistema, excluindo os que estão na estante do usuário
+        todos_livros = Livro.objects.exclude(id__in=livros_na_estante)
+
+        # Adiciona as variáveis ao contexto para o template
+        contexto = {
+            "desejo_ler": desejo_ler,
+            "lendo": lendo,
+            "lidos": lidos,
+            "todos_livros": todos_livros
+        }
+        
         return render(request, 'mainapp/minha_estante.html', contexto)
 
 class GerenciarLivrosView(View):
