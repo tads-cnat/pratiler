@@ -6,4 +6,6 @@
 
 .perfil-nav ul li a{
     padding-right: 5rem;
+    text-decoration: none;
+    color: black;
 }

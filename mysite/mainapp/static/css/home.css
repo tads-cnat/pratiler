@@ -1,0 +1,68 @@
+header{
+    display: flex;
+}
+
+a{
+    text-decoration: none;
+    text-align: center;
+    border-radius: 1.25rem;
+}
+
+header div{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header div a{
+    width: 6rem;
+    margin-right: 1.25rem;
+    padding: 0.2rem;
+}
+
+#login, main a{
+    background-color: #221D57;
+    color: white;
+}
+
+#cadastro{
+    background-color: #bdbdbd;
+    color: rgb(61, 61, 61);
+}
+
+main{
+    margin-top: 200px;
+}
+
+main b{
+    color: #221D57;
+}
+
+.conteudo{
+    font-size: 2rem;
+    margin: 0 0 10px 30px;
+}
+
+main a{
+    margin: 50px 0 0 50px;
+    padding: 10px;
+}
+
+.sobre-nos{
+    margin: 150px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+}
+
+.sobre-nos div{
+    padding: 3rem;
+    display: flex;
+}
+
+.texto{
+    text-align: justify;
+    display: flex;
+    flex-wrap: wrap;
+}

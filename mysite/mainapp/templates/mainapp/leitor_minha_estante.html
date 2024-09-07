@@ -2,7 +2,7 @@
 {% load static %}
     {% block titulo %}{{ leitor.user.username }}{% endblock %}
     {% block head %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/leitor_minha_estante.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
     {% endblock %}
 
@@ -11,34 +11,49 @@
     <div class="ler">
         <ul>
             <h2>Desejo ler</h2>
-            {% for interacao in desejo_ler %}
-                <li>
-                    <h3>{{ interacao.livro }}</h3><br>
-                    <p>&emsp;{{ interacao.livro.descricao }}</p>
-                </li>
-            {% endfor %}
+            {% if leitor == user.usuario %}
+                <p>Adicione livros a sua listagem <a href="">aqui</a></p>
+            {% endif %}
+            {% if desejo_ler %}
+                {% for interacao in desejo_ler %}
+                    <li>
+                        <h3>{{ interacao.livro }}</h3><br>
+                        <p>&emsp;{{ interacao.livro.descricao }}</p>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p>Você não tem nehum livro que deseja ler?</p>
+            {% endif %}
         </ul>
     </div>
     <div class="lendo">
         <ul>
             <h2>Lendo</h2>
-            {% for interacao in lendo %}
-                <li>
-                    <h3>{{ interacao.livro }}</h3><br>
-                    <p>&emsp;{{ interacao.livro.descricao }}</p>
-                </li>
-            {% endfor %}
+            {% if lendo %}
+                {% for interacao in lendo %}
+                    <li>
+                        <h3>{{ interacao.livro }}</h3><br>
+                        <p>&emsp;{{ interacao.livro.descricao }}</p>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p>Você não está lendo nenhum livro no momento.</p>
+            {% endif %}
         </ul>
     </div>
     <div class="lido">
         <ul>
             <h2>Lidos</h2>
-            {% for interacao in lidos %}
-                <li>
-                    <h3>{{ interacao.livro }}</h3><br>
-                    <p>&emsp;{{ interacao.livro.descricao }}</p>
-                </li>
-            {% endfor %}
+            {% if lidos %}
+                {% for interacao in lidos %}
+                    <li>
+                        <h3>{{ interacao.livro }}</h3><br>
+                        <p>&emsp;{{ interacao.livro.descricao }}</p>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p>Você não terminou nenhuma leitura ainda</p>
+            {% endif %}
         </ul>
     </div>
 </div>
