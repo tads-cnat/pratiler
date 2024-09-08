@@ -1,3 +1,10 @@
+.adicionar-livro{
+    width: 100%;
+    display: block;
+    position: fixed;
+    align-self: center;
+}
+
 .listas{
     display: flex;
     justify-content: space-around;

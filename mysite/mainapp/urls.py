@@ -22,5 +22,7 @@ urlpatterns = [
     path('feed_seguindo/', views.VerFeedSeguindoView.as_view(), name="seguindo"),
     path('<str:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor"),
     path('feed_seguindo/<int:id>/', views.CurtirComentarioView.as_view(), name="CurtirComentario"),
-    path('minha_estante/', views.VerMinhaEstanteView.as_view(), name="minha_estante")
+    path('minha_estante/', views.VerMinhaEstanteView.as_view(), name="minha_estante"),
+    path('pesquisa_estante/', views.AdicionarLivroEstanteView.as_view(), name="pesquisar_estante"),
+    path('adiciona_estante/', views.AdicionarLivroEstanteView.as_view(), name="adicionar_estante")
 ]
