@@ -4,8 +4,7 @@
     --roboto: "Roboto Flex", sans-serif;
 }
 .card-resenha-aberta{
-    margin:auto;
-    margin-top: 2rem;
+    margin: 2rem auto 1rem auto;
     border: 2px solid #D0C5FF;
     border-radius: 1.5rem;
     padding: 0rem 1rem 1rem 1rem;
