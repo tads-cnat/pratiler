@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+:root{
+    --montserrat: "Montserrat", sans-serif;
+    --roboto: "Roboto Flex", sans-serif;
+}
+.listas-perfil{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 90%;
+    border: 2px solid green;
+    justify-content: space-between;
+}
+.lendo-perfil{
+    border: 2px solid #D0C5FF;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    height: 15rem;
+    overflow-y: scroll;
+    width: 20rem;
+}
+.ler-perfil{
+    border: 2px solid #D0C5FF;
+    border-radius: 1.5rem;
+    margin: 0 2rem;
+    padding: 2rem;
+    height: 15rem;
+    overflow-y: scroll;
+    width: 20rem;
+}
+.lido-perfil{
+    border: 2px solid #D0C5FF;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    height: 15rem;
+    overflow-y: scroll;
+    width: 20rem;
+}
+.titulo-listas-perfil{
+    text-align: left;
+    color: #221D57;
+    font-family: var(--montserrat);
+}

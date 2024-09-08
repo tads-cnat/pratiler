@@ -1,7 +1,14 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 {% block titulo %}Pratiler | {{request.user.username}}{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/meu_perfil_atualizacoes_Recentes.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante_perfil.css' %}">
+{% endblock %}
 {% block conteudo %}
+
+{% include "mainapp/perfil_usuario_nav.html" %}
+
 <form method="post">
     {% csrf_token %} 
     <select name="livro" id="">

@@ -57,6 +57,7 @@ class VerLivrosPopularesView(View):
         # renderização dos livros populares 
         return render(request, 'mainapp/livros_populares.html', {'livros_populares': livros_populares})
 
+# Estante da página principal
 class VerMinhaEstante(View):
     def get(self, request, *args, **kwargs):
         desejo_ler = request.user.usuario.interage_set.filter(status='QL')
@@ -64,6 +65,15 @@ class VerMinhaEstante(View):
         lidos = request.user.usuario.interage_set.filter(status='LD')
         contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
         return render(request, 'mainapp/minha_estante.html', contexto)
+    
+# Estante da página pessoal do perfil
+class VerMinhaEstantePerfil(View):
+    def get(self, request, *args, **kwargs):
+        desejo_ler = request.user.usuario.interage_set.filter(status='QL')
+        lendo = request.user.usuario.interage_set.filter(status='LN')
+        lidos = request.user.usuario.interage_set.filter(status='LD')
+        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
+        return render(request, 'mainapp/meu_perfil_minha_estante.html', contexto)
 
 class GerenciarLivrosView(View):
     def get(self, request, *args, **kwargs):
@@ -264,10 +274,18 @@ def livros_pesquisa(request):
 
     return render(request, 'mainapp/livros.html', context)
 
+class AbrirResenhaEspecifica(View):
+    def get(self, request, *args, **kwargs):
+        # pegar a resenha específica selecionada
+        
+        return render(request, 'mainapp/resenha.html')
+    
 class VerResenhas(View):
     def get(self, request, *args, **kwargs):
-        resenhas = Resenha.objects.all()
-        return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html', {"resenhas": resenhas})
+        usuario = Usuario.objects.get(user=request.user)
+        #resenhas = Resenha.objects.filter(leitor=usuario)
+        resenhas = Resenha.objects.filter(leitor=usuario)
+        return render(request, 'mainapp/meu_perfil_resenhas.html', {"resenhas": resenhas})
     
 #class VerMinhasPublicacoesRecentes(View):
     #def get(self, request, *args, **kwargs):

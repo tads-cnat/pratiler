@@ -23,6 +23,7 @@ urlpatterns = [
     path('<str:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor"),
     path('feed_seguindo/<int:id>/', views.CurtirComentario.as_view(), name="CurtirComentario"),
     path('minha_estante/', views.VerMinhaEstante.as_view(), name="minha_estante"),
+    path('minha_estante_perfil/', views.VerMinhaEstantePerfil.as_view(), name="minha_estante_perfil"),
     path('estante/<str:username>/', views.PerfilEstante.as_view(), name="estante_leitor"),
     path('meu_perfil/ver_resenha', views.VerResenhas.as_view(), name="ver_resenha"),
     path('meu_perfil/escrever_resenha', views.escrever_resenha.as_view(), name="escrever_resenha"),
