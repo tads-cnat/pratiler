@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from .services import VerLivrosPopularesService, ComentariosRecentesService, ComentariosRelevantesService
+from .services import VerLivrosPopularesService, ComentariosRecentesService, ComentariosRelevantesService, LivrosDisponiveis
 from .models import *
 from django.shortcuts import get_object_or_404 
 from django.contrib.auth.models import User
@@ -58,10 +58,25 @@ class VerLivrosPopularesView(View):
 
 class VerMinhaEstanteView(View):
     def get(self, request, *args, **kwargs):
-        desejo_ler = request.user.usuario.interage_set.filter(status='QL')
-        lendo = request.user.usuario.interage_set.filter(status='LN')
-        lidos = request.user.usuario.interage_set.filter(status='LD')
-        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
+        # Obtém os livros interagidos pelo usuário com diferentes status
+        desejo_ler = request.user.usuario.interage_set.filter(status='QL').values_list('livro_id', flat=True)
+        lendo = request.user.usuario.interage_set.filter(status='LN').values_list('livro_id', flat=True)
+        lidos = request.user.usuario.interage_set.filter(status='LD').values_list('livro_id', flat=True)
+
+        # Cria uma lista única de IDs dos livros que estão na estante do usuário
+        livros_na_estante = set(desejo_ler) | set(lendo) | set(lidos)
+        
+        # Obtém todos os livros disponíveis no sistema, excluindo os que estão na estante do usuário
+        todos_livros = Livro.objects.exclude(id__in=livros_na_estante)
+
+        # Adiciona as variáveis ao contexto para o template
+        contexto = {
+            "desejo_ler": desejo_ler,
+            "lendo": lendo,
+            "lidos": lidos,
+            "todos_livros": todos_livros
+        }
+        
         return render(request, 'mainapp/minha_estante.html', contexto)
 
 class GerenciarLivrosView(View):
@@ -196,9 +211,23 @@ class VerMinhaEstanteView(View):
         desejo_ler = usuario.interage_set.filter(status='QL')
         lendo = usuario.interage_set.filter(status='LN')
         lidos = usuario.interage_set.filter(status='LD')
-        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos}
+        livros = LivrosDisponiveis.livros_disponiveis(usuario)
+        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos, "livros": livros}
         return render(request, 'mainapp/minha_estante.html', contexto)
+
+class AdicionarLivroEstanteView(View):
+    def get(self, request, *args, **kwargs):
+        titulo = request.GET['livro']
+        livros = LivrosDisponiveis.livros_disponiveis(request.user.usuario).filter(titulo__contains=titulo)
+        return render(request, 'mainapp/minha_estante.html', {"livros": livros})
     
+    def post(self, request, *args, **kwargs):
+        livro_id = request.POST.get('livro_id')
+        livro = Livro.objects.get(id=livro_id)
+        tipo_lista = request.POST.get('select')
+        Interage.objects.create(leitor=request.user.usuario, livro=livro, status=tipo_lista)
+        return redirect(request.META['HTTP_REFERER'])
+
 class LandingPageView(View):
     def get(self, request, *args, **kwargs):
         return redirect('feed') if request.user.is_authenticated else render(request, 'mainapp/home.html')

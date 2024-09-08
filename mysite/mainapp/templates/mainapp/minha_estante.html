@@ -5,60 +5,53 @@
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante.css' %}">
-    <script>  
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('lista').value = "lendo";
             tela();
+
+            // Event listener for the Add Book button
+            document.getElementById('add-livro-btn').addEventListener('click', function() {
+                document.getElementById('popup').style.display = 'block';
+            });
+
+            // Event listener for the Close button
+            document.getElementById('close-popup').addEventListener('click', function() {
+                document.getElementById('popup').style.display = 'none';
+            });
+
+            atualizarPagina();
         });
-        function atualizarPagina(){
+
+        function atualizarPagina() {
             document.getElementById('select-listas').addEventListener('change', function() {
                 var selectedOption = this.options[this.selectedIndex];
                 var tipo = selectedOption.getAttribute('tipo');
                 document.getElementById('lista').value = tipo;
+                tela();
             });
             tela();
         }
-        function tela(){
-            if (document.getElementById('lista').value == "lendo") {
-                document.getElementById('lendo').className = "";
-            } else {
-                document.getElementById('lendo').className = "escondido";
-            }
-            if (document.getElementById('lista').value == "desejo_ler") {
-                document.getElementById('desejo-ler').className = "";
-            } else {
-                document.getElementById('desejo-ler').className = "escondido";
-            }
-            if (document.getElementById('lista').value == "lidos") {
-                document.getElementById('lidos').className = "";
-            } else {
-                document.getElementById('lidos').className = "escondido";
-            }
+
+        function tela() {
+            var lista = document.getElementById('lista').value;
+            document.getElementById('lendo').className = lista === "lendo" ? "" : "escondido";
+            document.getElementById('desejo-ler').className = lista === "desejo_ler" ? "" : "escondido";
+            document.getElementById('lidos').className = lista === "lidos" ? "" : "escondido";
         }
     </script>
-    <style>
-        .escondido{
-            display: none;
-        }
-    </style>
 {% endblock %}
 
 {% block conteudo %}
     <form>
         <select id="select-listas" onclick="atualizarPagina()" class="select">
-            <option tipo="lendo">
-                Leituras atuais
-            </option>
-            <option tipo="desejo_ler">
-                Desejo ler
-            </option>
-            <option tipo="lidos">
-                Livros lidos
-            </option>
+            <option tipo="lendo">Leituras atuais</option>
+            <option tipo="desejo_ler">Desejo ler</option>
+            <option tipo="lidos">Livros lidos</option>
         </select>
     </form>
     <div id="lista">
-        <button class="add-livro">
+        <button id="add-livro-btn" class="add-livro">
             Adicionar livro
         </button>
         <div class="escondido" id="lendo">
@@ -128,6 +121,52 @@
                 {% endfor %}
             {% else %}
                 <p class="mensagem">Não há livros nesta lista.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Pop-up -->
+    <div id="popup">
+        <div id="popup-content">
+            <span id="close-popup" class="close">&times;</span>
+            <h2>Livros</h2>
+            <script>
+                function selecionarLivro(livroId) {
+                    document.querySelectorAll('.interacao-livro-1').forEach(function(div) {
+                        div.classList.remove('selecionado');
+                    });
+                    document.getElementById('interacao-livro-' + livroId).classList.add('selecionado');
+                }
+            </script>
+            {% if livros %}
+                <form action="{% url 'adicionar_estante' %}" method="post">
+                {% csrf_token %}
+                    <select id="select-listas-1" onclick="atualizarPagina()" class="select" name="select">
+                        <option value="LN">Leituras atuais</option>
+                        <option value="QL">Desejo ler</option>
+                        <option value="LD">Livros lidos</option>
+                    </select>
+                    {% for livro in livros %}
+                            <div class="interacao-livro-1" id="interacao-livro-{{livro.id}}">
+                                <input type="radio" name="livro_id" value="{{ livro.id }}" onclick="selecionarLivro({{ livro.id }})" class="input-radio">
+                                <picture class="imagem">
+                                    <img src="{{ livro.capa.url }}" width="200px" height="300px">
+                                </picture>
+                                <div class="conteudo">
+                                    <h1>
+                                        {{ livro.titulo }} - {{ livro.autor.nome }}
+                                    </h1>
+                                    <p>
+                                        {{ livro.descricao }}
+                                    </p>
+                                </div>
+                            </div>
+                    {% endfor %}
+                    <input type="submit" value="Adicionar livro" class="botao">
+                </form>
+            </form>
+            {% else %}
+                <p class="mensagem">Não há livros disponíveis.</p>
             {% endif %}
         </div>
     </div>
