@@ -1,0 +1,134 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block titulo %}Pratiler | Minha Estante{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante.css' %}">
+    <script>  
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('lista').value = "lendo";
+            tela();
+        });
+        function atualizarPagina(){
+            document.getElementById('select-listas').addEventListener('change', function() {
+                var selectedOption = this.options[this.selectedIndex];
+                var tipo = selectedOption.getAttribute('tipo');
+                document.getElementById('lista').value = tipo;
+            });
+            tela();
+        }
+        function tela(){
+            if (document.getElementById('lista').value == "lendo") {
+                document.getElementById('lendo').className = "";
+            } else {
+                document.getElementById('lendo').className = "escondido";
+            }
+            if (document.getElementById('lista').value == "desejo_ler") {
+                document.getElementById('desejo-ler').className = "";
+            } else {
+                document.getElementById('desejo-ler').className = "escondido";
+            }
+            if (document.getElementById('lista').value == "lidos") {
+                document.getElementById('lidos').className = "";
+            } else {
+                document.getElementById('lidos').className = "escondido";
+            }
+        }
+    </script>
+    <style>
+        .escondido{
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block conteudo %}
+    <form>
+        <select id="select-listas" onclick="atualizarPagina()" class="select">
+            <option tipo="lendo">
+                Leituras atuais
+            </option>
+            <option tipo="desejo_ler">
+                Desejo ler
+            </option>
+            <option tipo="lidos">
+                Livros lidos
+            </option>
+        </select>
+    </form>
+    <div id="lista">
+        <button class="add-livro">
+            Adicionar livro
+        </button>
+        <div class="escondido" id="lendo">
+            {% if lendo %}
+                {% for interacao in lendo %}
+                    <div class="interacao-livro">
+                        <picture class="imagem">
+                            <img src="{{ interacao.livro.capa.url }}" width="200px" height="300px">
+                        </picture>
+                        <div class="conteudo">
+                            <h1>
+                                {{ interacao.livro.titulo }} - {{ interacao.livro.autor.nome }}
+                            </h1>
+                            <p>
+                                {{ interacao.livro.descricao }}
+                            </p>
+                            <button>
+                                {{ interacao.comentariosLeitorLivro.last.pagina_final }}/{{ interacao.livro.n_paginas}} páginas
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="mensagem">Não há livros nesta lista.</p>
+            {% endif %}
+        </div>
+        <div class="escondido" id="desejo-ler">
+            {% if desejo_ler %}
+                {% for interacao in desejo_ler %}
+                    <div class="interacao-livro">
+                        <picture class="imagem">
+                            <img src="{{ interacao.livro.capa.url }}" width="200px" height="300px">
+                        </picture>
+                        <div class="conteudo">
+                            <h1>
+                                {{ interacao.livro.titulo }} - {{ interacao.livro.autor.nome }}
+                            </h1>
+                            <p>
+                                {{ interacao.livro.descricao }}
+                            </p>
+                            <button>
+                                Iniciar leitura
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="mensagem">Não há livros nesta lista.</p>
+            {% endif %}
+        </div>
+        <div class="escondido" id="lidos">
+            {% if lidos %}
+                {% for interacao in lidos %}
+                <div class="interacao-livro">
+                    <picture class="imagem">
+                        <img src="{{ interacao.livro.capa.url }}" width="200px" height="300px">
+                    </picture>
+                    <div class="conteudo">
+                        <h1>
+                            {{ interacao.livro.titulo }} - {{ interacao.livro.autor.nome }}
+                        </h1>
+                        <p>
+                            {{ interacao.livro.descricao }}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="mensagem">Não há livros nesta lista.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

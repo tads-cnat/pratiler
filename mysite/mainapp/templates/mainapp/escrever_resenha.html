@@ -2,23 +2,26 @@
 {% load static %}
 {% block titulo %}Pratiler | {{request.user.username}}{% endblock %}
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/meu_perfil_atualizacoes_Recentes.css'%}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante_perfil.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/perfil_usuario_nav.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/escrever_resenha.css' %}">
 {% endblock %}
 {% block conteudo %}
 
 {% include "mainapp/perfil_usuario_nav.html" %}
 
-<form method="post">
-    {% csrf_token %} 
-    <select name="livro" id="">
-        {% for livro in livros %}
-            <option value="{{livro.titulo}}">{{livro.titulo}}</option>
-        {% endfor %}
-    </select>
-    <input name="titulo_resenha" type="text" placeholder="digite o titulo da resenha">
-    <textarea name="texto_resenha" id="" cols="30" rows="10"></textarea>
-    <input type="submit">
-</form>
+<div class="form-escrever-resenha">
+    <label class="label-escrever-resenha" for="">Escreva sua resenha</label>
+    <form method="post">
+        {% csrf_token %} 
+        <select name="livro" id="" class="itens-forms-escrever-resenha">
+            {% for livro in livros %}
+                <option value="{{livro.titulo}}">{{livro.titulo}}</option>
+            {% endfor %}
+        </select>
+        <input name="titulo_resenha" type="text" placeholder="digite o titulo da resenha" class="itens-forms-escrever-resenha">
+        <textarea name="texto_resenha" id="" cols="30" rows="10" class="itens-forms-escrever-resenha" placeholder="Escreva sua resenha" ></textarea>
+        <input type="submit" class="itens-forms-escrever-resenha">
+    </form>
+
+</div>
 {% endblock%}

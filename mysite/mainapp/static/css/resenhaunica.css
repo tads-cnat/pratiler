@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+:root{
+    --montserrat: "Montserrat", sans-serif;
+    --roboto: "Roboto Flex", sans-serif;
+}
+.card-resenha-aberta{
+    margin:auto;
+    margin-top: 2rem;
+    border: 2px solid #D0C5FF;
+    border-radius: 1.5rem;
+    padding: 0rem 1rem 1rem 1rem;
+    width: 60%;
+}
+.conteudo-card-resenha-aberta{
+    margin: 0 1.5rem;
+}
+.resenha-aberta-titulo, .resenha-aberta-nome-livro{
+    font-family: var(--montserrat);
+}
+.resenha-aberta-nome-livro{
+    font-size: 16px;
+    color: #221D57;
+    font-weight: 400; 
+}
+.resenha-aberta-titulo{
+    font-size: 24px;
+    color: #221D57;
+}
+.resenha-aberta-texto{
+    font-family: var(--roboto);
+    font-size: 14px;
+}
