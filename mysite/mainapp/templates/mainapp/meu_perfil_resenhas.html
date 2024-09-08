@@ -18,7 +18,8 @@
                     <div class="card-resenhas-content">
                         <p><strong>{{resenha.livro.titulo}} - {{resenha.livro.autor.nome}}</strong></p>
                         <p>{{ resenha.titulo }}</p>
-                        <button>Ler resenha</button>
+                        <a href="{% url 'abrir_resenha_especifica' resenha.id%}" class="botao">Ler resenha</a>
+                    
                     </div>
                     <img src="{{ resenha.livro.capa }}">
                 </div>

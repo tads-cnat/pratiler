@@ -27,5 +27,6 @@ urlpatterns = [
     path('estante/<str:username>/', views.PerfilEstante.as_view(), name="estante_leitor"),
     path('meu_perfil/ver_resenha', views.VerResenhas.as_view(), name="ver_resenha"),
     path('meu_perfil/escrever_resenha', views.escrever_resenha.as_view(), name="escrever_resenha"),
+    path('meu_perfil/resenha/<int:pk>', views.AbrirResenhaEspecifica.as_view(), name="abrir_resenha_especifica"),
 
 ]

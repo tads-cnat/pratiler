@@ -33,7 +33,8 @@
 .resenhas .card-resenhas-content p strong{
     font-weight: bold;
 }
-.resenhas .card-resenhas-content button{
+.resenhas .card-resenhas-content .botado{
+    border: none;
     background-color: #221D57;
     color: white;
     border-radius: 1.5rem;

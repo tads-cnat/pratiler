@@ -1,0 +1,14 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block titulo %}Pratiler | {{request.user.username}}{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante_perfil.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/resenhas.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/meu_perfil_atualizacoes_Recentes.css'%}">
+{% endblock %}
+{% block conteudo %}
+    {% include "mainapp/perfil_usuario_nav.html" %}
+<!-- Opção Minhas Publicações Recentes / São os comentários -->
+    
+
+{% endblock%}

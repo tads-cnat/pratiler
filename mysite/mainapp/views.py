@@ -276,9 +276,13 @@ def livros_pesquisa(request):
 
 class AbrirResenhaEspecifica(View):
     def get(self, request, *args, **kwargs):
-        # pegar a resenha específica selecionada
-        
-        return render(request, 'mainapp/resenha.html')
+        resenha_id = kwargs['pk']
+        try:
+            resenha = Resenha.objects.get(id=resenha_id)
+            return render(request, 'mainapp/resenha.html', {'resenha':resenha})
+        except:
+            mensagem = "Essa resenha não existe."
+            return render(request, 'mainapp/resenha.html', {'mensagem':mensagem})
     
 class VerResenhas(View):
     def get(self, request, *args, **kwargs):
