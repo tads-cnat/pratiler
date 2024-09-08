@@ -2,8 +2,10 @@
 {% load static %}
 {% block titulo %}Pratiler | {{request.user.username}}{% endblock %}
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante_perfil.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/resenhaunica.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/perfil_usuario_nav.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/meu_perfil_atualizacoes_Recentes.css'%}">
+<!-- Página que aparece a resenha escolhida do leitor que tá logado, a própria resenha -->
 {% endblock %}
 {% block conteudo %}
     {% include "mainapp/perfil_usuario_nav.html" %}

@@ -14,7 +14,7 @@
       <div class="search-bar">
         <h1>
           <a href="{% url 'feed' %}">
-            <img src="../static/images/pratiler-logo.png" class="logo">
+            <img src="{% static 'images/pratiler-logo.png' %}" class="logo">
           </a>
         </h1>
         <div class="barra-meu-perfil">
@@ -33,25 +33,25 @@
       <div class="nav-bar">
         <ul>
           <li>
-            <img src="../static/images/livro-icone.png" style="align-self: center"> 
+            <img src="{% static 'images/livro-icone.png' %}" style="align-self: center"> 
             <a href="{% url 'minha_estante' %}">
               Minha estante
             </a>
           </li>
           <li>
-            <img src="../static/images/estrela-icone.png" style="align-self: center">
+            <img src="{% static 'images/estrela-icone.png' %}" style="align-self: center">
             <a href="{% url 'livros_populares' %}">  
               Livros populares
             </a>
           </li>
           <li>
-            <img src="../static/images/comentario-1-icone.png" style="align-self: center">
+            <img src="{% static 'images/comentario-1-icone.png' %}" style="align-self: center">
             <a href="{% url 'feed' %}">  
               Publicações populares
             </a>
           </li>
           <li>
-            <img src="../static/images/seguindo-icone.png" style="align-self: center">
+            <img src="{% static 'images/seguindo-icone.png' %}" style="align-self: center">
             <a href="{% url 'seguindo' %}">   
               Seguindo
             </a>

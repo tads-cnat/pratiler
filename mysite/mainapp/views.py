@@ -284,17 +284,18 @@ class AbrirResenhaEspecifica(View):
             mensagem = "Essa resenha não existe."
             return render(request, 'mainapp/resenha.html', {'mensagem':mensagem})
     
-class VerResenhas(View):
+class VerResenhas(View): # resenhas do usuário que tá logado 
     def get(self, request, *args, **kwargs):
         usuario = Usuario.objects.get(user=request.user)
         #resenhas = Resenha.objects.filter(leitor=usuario)
         resenhas = Resenha.objects.filter(leitor=usuario)
         return render(request, 'mainapp/meu_perfil_resenhas.html', {"resenhas": resenhas})
     
-#class VerMinhasPublicacoesRecentes(View):
-    #def get(self, request, *args, **kwargs):
-        #resenhas = Resenha.objects.all()
-        #return render(request, 'mainapp/meu_perfil_atualizacoes_recentes.html', {"resenhas": resenhas})
+class VerMinhasPublicacoesRecentes(View):
+    def get(self, request, *args, **kwargs):
+        usuario = Usuario.objects.get(user=request.user) # seleciona o user que tá logado 
+        comentarios_proprios = Comentario.objects.filter(leitor=usuario)
+        return render(request, 'mainapp/pub_recentes_perfil.html', {"comentarios_proprios": comentarios_proprios})
 
 
 class escrever_resenha(View):

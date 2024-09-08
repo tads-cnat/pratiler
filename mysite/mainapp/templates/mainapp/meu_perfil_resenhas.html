@@ -3,7 +3,7 @@
 {% block titulo %}Pratiler | {{request.user.username}}{% endblock %}
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante_perfil.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/meu_perfil_atualizacoes_Recentes.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/perfil_usuario_nav.css'%}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/resenhas.css' %}">
 {% endblock %}
 {% block conteudo %}
@@ -18,16 +18,16 @@
                     <div class="card-resenhas-content">
                         <p><strong>{{resenha.livro.titulo}} - {{resenha.livro.autor.nome}}</strong></p>
                         <p>{{ resenha.titulo }}</p>
-                        <a href="{% url 'abrir_resenha_especifica' resenha.id%}" class="botao">Ler resenha</a>
+                        <a href="{% url 'abrir_resenha_especifica' resenha.id%}" class="botao-ler-resenha">Ler resenha</a>
                     
                     </div>
                     <img src="{{ resenha.livro.capa }}">
                 </div>
             {% endfor %}
         {%else%}
-            <p class="mensagem"">Não há resenhas postadas ainda</p>
+            <p class="mensagem">Não há resenhas postadas ainda</p>
         {% endif %}
     </div>
-    <a href="{% url 'escrever_resenha' %s}">Escrever Resenha</a>
+    <a href="{% url 'escrever_resenha' %}" class="botao-escrever-resenha">Escrever Resenha</a>
 </div>
 {% endblock%}

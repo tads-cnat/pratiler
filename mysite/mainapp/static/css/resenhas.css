@@ -3,10 +3,34 @@
     --montserrat: "Montserrat", sans-serif;
     --roboto: "Roboto Flex", sans-serif;
 }
+.botao-escrever-resenha{
+    width: 5.6rem;
+    align-self: flex-end;
+    font-size: 1rem;
+    background-color: #221D57;
+    color: #F6F6F6;
+    border: none;
+    border-radius: 10px;
+    padding: 0.3rem;
+    font-family: var(--roboto);
+    text-decoration: none;
+}
+.botao-ler-resenha{
+    text-decoration: none;
+    width: 5.6rem;
+    align-self: flex-end;
+    font-size: 1rem;
+    background-color: #221D57;
+    color: #F6F6F6;
+    border: none;
+    border-radius: 10px;
+    padding: 0.3rem;
+    font-family: var(--roboto);
+}
 .block-resenhas{
     border: 2px solid #D0C5FF;
     border-radius: 1.5rem;
-    padding: 2rem;
+    padding: 0rem 2rem 2rem 2rem;
 }
 .block-resenhas p{
     color: #221D57;
@@ -21,7 +45,7 @@
 .resenhas .card-resenhas{
     border: 2px solid #D0C5FF;
     border-radius: 1.5rem;
-    padding: 2rem;
+    padding: 1rem 2rem 2rem 2rem;
     display: flex;
     margin-bottom: 0.5rem;
 }

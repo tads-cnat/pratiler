@@ -1,11 +1,11 @@
 {% load static %}
 <div class="card-profile">
-    <img src="{% static '../static/images/img-perfil.png'%}" alt="Imagem de perfil">
+    <img src="{% static 'images/img-perfil.png'%}" alt="Imagem de perfil">
     <div class="card-profile-content">
-        <p class="card-profile-name">Seu Nome</p>
-        <p class="card-profile-nickname">@seunick</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt soluta reprehenderit mollitia quos enim quis ducimus sit impedit fugiat culpa, alias incidunt obcaecati et pariatur dolores? Fugit deserunt, reiciendis error ut, tenetur, distinctio sequi aliquid iste non ipsum harum aliquam.</p>
-        <p> x seguidores x seguindo</p>
+        <p class="card-profile-name"><strong>{{request.user.first_name}}</strong></p>
+        <p class="card-profile-nickname">@{{request.user.username}}</p>
+        <p>{{request.user.usuario.descricao}}</p>
+        <p> {{request.user.usuario.seguidores.count}} seguidores {{request.user.usuario.seguindo.count}} seguindo</p>
         <p><span class="icon-perfil-profile"><img src="{% static 'images/configuracoes-icon.svg' %}" alt=""></span>Configurações</p>
     </div>
 </div>
@@ -16,7 +16,7 @@
        <li>
             <span class="icon-perfil-nav"><img src="{% static 'images/minha-estante-icon.svg' %}" alt="icone"></span><a href="{% url 'minha_estante_perfil' %}">Minha estante</a>
             <span class="icon-perfil-nav"><img src="{% static 'images/resenhas-icon.svg' %}" alt="icone"></span><a href="{% url 'ver_resenha' %}">Resenhas</a>
-            <span class="icon-perfil-nav"><img src="{% static 'images/publicacoes-icon.svg' %}" alt="icone"></span><a href="">Publicações recentes</a>
+            <span class="icon-perfil-nav"><img src="{% static 'images/publicacoes-icon.svg' %}" alt="icone"></span><a href="{% url 'publicacoes_recentes_perfil' %}">Publicações recentes</a>
        </li>
     </ul>
 </div>

@@ -4,11 +4,60 @@
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante_perfil.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/resenhas.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/meu_perfil_atualizacoes_Recentes.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/perfil_usuario_nav.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/pub_recentes_perfil.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
 {% endblock %}
 {% block conteudo %}
     {% include "mainapp/perfil_usuario_nav.html" %}
 <!-- Opção Minhas Publicações Recentes / São os comentários -->
-    
+ <div class="main-pub-recentes">
+    <div class="meu-perfil-postar-comentario">
+        {% include 'mainapp/postar_comentario.html'%}
+                {% if mensagem_erro %}
+                    <p class="error">{{mensagem_erro}}</p>
+            {%endif%}
+     </div>
+     <div class="comentarios-perfil">
+        {% if comentarios_proprios %}
+        {% for cp in comentarios_proprios %}
+        <div class="comentario">
+            <div class="nome-botao-seguir-data">
+                <div class="perfil">
+                    <img src="../static/images/foto-perfil.png">
+                    <div class="nome">
+                        <p>
+                            {{ cp.leitor.user.first_name }}
+                        </p>
+                        <a href="">@{{ cp.leitor.user.username}}</a>
+                    </div>
+                </div>
+                
+                <p class="data">
+                    {{ cp.data_hora|date:"d M, Y" }}
+                </p>
+            </div>
+            <p class="titulo-autor">
+                {{ cp.livro.titulo }} - {{ cp.livro.autor.nome }}
+            </p>
+            <p class="paginas">
+                Da página {{cp.pagina_final}} até a página {{cp.livro.n_paginas}}.
+            </p>
+            <p>
+                {{ cp.texto }}
+            </p>
+            
+            
+            <form method="post" action="">
+                {% csrf_token %}
+                <button type="submit">Curtir</button>
+            </form>
 
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+     </div>
+ </div>
+ 
 {% endblock%}
