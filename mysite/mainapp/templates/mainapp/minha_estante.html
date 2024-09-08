@@ -40,39 +40,6 @@
             document.getElementById('lidos').className = lista === "lidos" ? "" : "escondido";
         }
     </script>
-    <style>
-        .escondido {
-            display: none;
-        }
-        /* Styles for the pop-up */
-        #popup {
-            display: none;
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        #popup-content {
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        #popup .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-    </style>
 {% endblock %}
 
 {% block conteudo %}
@@ -162,23 +129,42 @@
     <div id="popup">
         <div id="popup-content">
             <span id="close-popup" class="close">&times;</span>
-            <h2>Todos os Livros</h2>
-            {% if todos_livros %}
-                {% for livro in todos_livros %}
-                    <div class="interacao-livro">
-                        <picture class="imagem">
-                            <img src="{{ livro.capa.url }}" width="200px" height="300px">
-                        </picture>
-                        <div class="conteudo">
-                            <h1>
-                                {{ livro.titulo }} - {{ livro.autor.nome }}
-                            </h1>
-                            <p>
-                                {{ livro.descricao }}
-                            </p>
-                        </div>
-                    </div>
-                {% endfor %}
+            <h2>Livros</h2>
+            <script>
+                function selecionarLivro(livroId) {
+                    document.querySelectorAll('.interacao-livro-1').forEach(function(div) {
+                        div.classList.remove('selecionado');
+                    });
+                    document.getElementById('interacao-livro-' + livroId).classList.add('selecionado');
+                }
+            </script>
+            {% if livros %}
+                <form action="{% url 'adicionar_estante' %}" method="post">
+                {% csrf_token %}
+                    <select id="select-listas-1" onclick="atualizarPagina()" class="select" name="select">
+                        <option value="LN">Leituras atuais</option>
+                        <option value="QL">Desejo ler</option>
+                        <option value="LD">Livros lidos</option>
+                    </select>
+                    {% for livro in livros %}
+                            <div class="interacao-livro-1" id="interacao-livro-{{livro.id}}">
+                                <input type="radio" name="livro_id" value="{{ livro.id }}" onclick="selecionarLivro({{ livro.id }})" class="input-radio">
+                                <picture class="imagem">
+                                    <img src="{{ livro.capa.url }}" width="200px" height="300px">
+                                </picture>
+                                <div class="conteudo">
+                                    <h1>
+                                        {{ livro.titulo }} - {{ livro.autor.nome }}
+                                    </h1>
+                                    <p>
+                                        {{ livro.descricao }}
+                                    </p>
+                                </div>
+                            </div>
+                    {% endfor %}
+                    <input type="submit" value="Adicionar livro" class="botao">
+                </form>
+            </form>
             {% else %}
                 <p class="mensagem">Não há livros disponíveis.</p>
             {% endif %}

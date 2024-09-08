@@ -222,9 +222,10 @@ class AdicionarLivroEstanteView(View):
         return render(request, 'mainapp/minha_estante.html', {"livros": livros})
     
     def post(self, request, *args, **kwargs):
-        livros = request.POST.getlist('selec-livro')
-        for livro in livros:
-            Interage.objects.create(leitor=request.user.usuario, livro=livro, status='QL')
+        livro_id = request.POST.get('livro_id')
+        livro = Livro.objects.get(id=livro_id)
+        tipo_lista = request.POST.get('select')
+        Interage.objects.create(leitor=request.user.usuario, livro=livro, status=tipo_lista)
         return redirect(request.META['HTTP_REFERER'])
 
 class LandingPageView(View):

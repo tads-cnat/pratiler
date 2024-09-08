@@ -81,4 +81,5 @@ class ComentariosRelevantesService:
 
 class LivrosDisponiveis:
     def livros_disponiveis(usuario):
-        return Livro.objects.all().exclude(isbn__in=usuario.interage_set.all())
+        return Livro.objects.all().exclude(id__in=usuario.interage_set.all())
+    
