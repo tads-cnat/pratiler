@@ -1,26 +1,54 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <title>Home | Pratiler</title>
 </head>
 <body>
-    <h1>Página Home</h1>
-
-    {% if request.user.is_authenticated %}
-        <span>Bem-vindo <strong>{{ request.user.username }}</strong></span>
-        <br>
-        <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-        <ul>
-            <li>
-                <a href="{% url 'login' %}">Login</a>
-            </li>
-            <li>
-                <a href="{% url 'cadastro' %}">Cadastre-se</a>
-            </li>
-        </ul>
-    {% endif %}
+    <header>
+        <img src="{% static 'images/pratiler-logo.png' %}" class="logo">
+        <div>
+            <a id="login" href="{% url 'login' %}">Entrar</a>
+            <a id="cadastro" href="{% url 'cadastro' %}">Cadastre-se</a>
+        </div>
+    </header>
+    <main>
+        <div class="conteudo">
+            <div>
+                <p>Uma rede social para <strong>compartilhar</strong> leituras e se <strong>motivar</strong> cada vez mais!</p>
+                <a href="{% url 'login' %}">COMECE AGORA</a>
+            </div>
+            <img src="../static/images/home-livros-coracoes.png">   
+        </div>
+        <hr>
+        <div class="sobre-nos">
+            <div class="texto-1">
+                <div class="texto">
+                    <h3><strong>Organize</strong> suas leituras</h3>
+                    <p>O sistema deixa sempre disponível as suas leituras atuais, futuras e finalizadas, além de estar sempre disponível para que você adicione livros a sua estante.</p>
+                    <p>Comente sobre suas leituras atuais, a partir da página que você comecou a ler até a página que você terminou a leitura, sempre dizendo o que você está achando do livro.</p>
+                </div>
+                <img src="../static/images/menina-lendo.png" alt="Menina lendo">
+                
+            </div>
+            <div class="texto-2">
+                <img src="../static/images/sereia.png" alt="Sereia">
+                <div class="texto">
+                    <h3><strong>Conheça</strong> outros leitores</h3>
+                    <p>Você poderá comentar e curtir postagens de outros leitores, além de poder seguir a conta desses leitores caso você queira continuar acompanhando as postagens. Você pode conhecer novas pessoas que gostam dos mesmos livros que você!</p>
+                </div>
+            </div>
+            <div class="texto-3">
+                <div class="texto">
+                    <h3><strong>Novas recomendações</strong> sempre </h3>
+                    <p>O sistema lista os livros mais populares, além de você poder visualizar os livros mais comentados pelos leitores que você segue.</p>
+                </div>
+                <img src="../static/images/duende.png" alt="Duende">
+            </div>
+        </div>
+    </main>
 </body>
 </html>

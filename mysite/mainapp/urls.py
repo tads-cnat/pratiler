@@ -3,11 +3,11 @@ from . import views
 
 urlpatterns = [
     path('feed/', views.VerFeedView.as_view(), name="feed"),
-    path('livros_populares/', views.VerLivrosPopularesView.as_view(), name="livros_populares"),
+    path('livros_populares/', views.VerLivrosPopularesView.as_view(), name="livros_populares"),   
     path('meu_perfil', views.MeuPerfilView.as_view(), name="meu_perfil"),
     path('livros/', views.GerenciarLivrosView.as_view(), name="index"),
     path('livros/add/', views.GerenciarLivrosView.get_adicionar, name="adicionar"),
-    path('livros/adicionar/', views.GerenciarLivrosView.as_view(), name="adicionar_livros"),
+    path('livros/adicionar/', views.GerenciarLivrosView.as_view(), name="adicionar_livros"), 
     path('livros/<int:isbn>/', views.GerenciarLivrosView.get_editar, name="editar"),
     path('livros/<int:isbn>/editar/', views.GerenciarLivrosView.patch, name="editar_livro"),
     path('livros/<int:isbn>/deletar/', views.GerenciarLivrosView.delete, name="deletar"),
@@ -21,7 +21,7 @@ urlpatterns = [
     path('livros_pesquisa/', views.livros_pesquisa, name="livros_pesquisa"), #Chaves
     path('feed_seguindo/', views.VerFeedSeguindoView.as_view(), name="seguindo"),
     path('<str:username>/seguir/', views.SeguirLeitorView.as_view(), name="seguir_leitor"),
-    path('feed_seguindo/<int:id>/', views.CurtirComentario.as_view(), name="CurtirComentario"),
+    path('feed_seguindo/<int:id>/', views.CurtirComentario.as_view(), name="CurtirComentario"), 
     path('minha_estante/', views.VerMinhaEstante.as_view(), name="minha_estante"),
     path('minha_estante_perfil/', views.VerMinhaEstantePerfil.as_view(), name="minha_estante_perfil"),
     path('estante/<str:username>/', views.PerfilEstante.as_view(), name="estante_leitor"),

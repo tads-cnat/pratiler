@@ -3,13 +3,19 @@
 {% block titulo %}Pratiler | Feed Relevantes{% endblock %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/feed_geral.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/feed_geral_1.css' %}">
+    
     <script>
         function atualizarPagina(){
             document.getElementById('livro-select').addEventListener('change', function() {
                 var selectedOption = this.options[this.selectedIndex];
-                var ultimaPagina = selectedOption.getAttribute('ultima-pagina');
-                document.getElementById('pagina-inicial').value = ultimaPagina;
+                var ultimaPagina = selectedOption.getAttribute('ultima-pagina');   
+                if(!ultimaPagina){
+                    document.getElementById('pagina-inicial').value = 0;
+                }
+                else{
+                    document.getElementById('pagina-inicial').value = ultimaPagina;
+                }
             });
         }
     </script>
@@ -18,9 +24,11 @@
     <main>
         <div>
             {% include 'mainapp/postar_comentario.html'%}
-            {% if mensagem_erro %}
-                <p class="error">{{mensagem_erro}}</p>
-            {%endif%}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
         </div>
         {% if comentarios_relevantes %}
         <ul>
@@ -29,7 +37,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>Não há comentários relevantes no momento.</p>
+        <p class="sem-comentarios">Não há comentários relevantes no momento.</p>
     {% endif %}
     </main>
 {% endblock %}

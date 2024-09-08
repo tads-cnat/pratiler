@@ -1,8 +1,8 @@
-from .models import Comentario, Usuario
+from .models import Comentario, Usuario, Livro
 import datetime
 from django.utils import timezone
 
-class VerLivrosPopularesService():
+class VerLivrosPopularesService:
     def VerLivrosPopulares():
         #ver comentários mais recentes
         data_recente = timezone.now() - datetime.timedelta(days=15) # cálculo de 15 dias atras
@@ -31,7 +31,7 @@ class VerLivrosPopularesService():
                 livros.remove(livro_popular)
         return livros_populares # retorna os 3 livros mais populares 
 
-class ComentariosRecentesService():
+class ComentariosRecentesService:
     def ComentariosRecentesGeral():
         data_recente = timezone.now() - datetime.timedelta(days=15)
         comentarios_recentes = []
@@ -65,7 +65,7 @@ class ComentariosRecentesService():
 
 # Função de verificar se comentário foi curtido pelo usuário 
     
-class ComentariosRelevantesService():
+class ComentariosRelevantesService:
     def ComentariosRelevantes():
         comentarios = ComentariosRecentesService.ComentariosRecentesGeral()
         comentarios_relevantes = []
@@ -78,3 +78,8 @@ class ComentariosRelevantesService():
                 if i.curtida_set.count() > 2:
                     comentarios_relevantes.append(i)
         return comentarios_relevantes
+
+class LivrosDisponiveis:
+    def livros_disponiveis(usuario):
+        return Livro.objects.all().exclude(id__in=usuario.interage_set.all())
+    

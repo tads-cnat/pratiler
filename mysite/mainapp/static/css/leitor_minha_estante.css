@@ -1,0 +1,34 @@
+.adicionar-livro{
+    width: 100%;
+    display: block;
+    position: fixed;
+    align-self: center;
+}
+
+.listas{
+    display: flex;
+    justify-content: space-around;
+}
+
+.listas div{
+    margin-top: 20px;
+    text-align: justify;
+    border-radius: 30px;
+    background-color: #ece7ff;
+    display: flex;
+    width: 30%;
+}
+
+.listas div a{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #c4b7ff;
+}
+
+li{
+    list-style: none;
+}
+
+li p{
+    padding-right: 30px;
+}

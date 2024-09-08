@@ -13,8 +13,10 @@
                 <h1><a href="{% url 'home' %}">PraTiLer</a></h1>
             </div>
         </div>
-        {% if feedback %}
-        <p>{{ feedback }}</p>
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
         {% endif %}
         <div>
             <form action="{% url 'adicionar_livros' %}" method="post">
