@@ -10,18 +10,15 @@ from django.contrib.auth.decorators import login_required # Chaves
 from django.db.models import Q # Chaves
 from django.utils import timezone
 
-class VerFeedView(View):
-    def get(self, request, *args, **kwargs):
-        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
-        
-        usuario = Usuario.objects.get(user=request.user)
-        livros = usuario.interage_set.filter(status='LN')
-
-        return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
+class PostarComentarioView(View):
     def post(self, request, *args, **kwargs):
         texto = request.POST.get('conteudo')
         livro_id = request.POST.get('livro')
-        pg_final = int(request.POST.get('pagina-final'))
+        try:
+            pg_final = int(request.POST.get('pagina-final'))
+        except:
+            messages.error(request, "Adicione a página em que parou.")
+            return redirect(request.META["HTTP_REFERER"])
         leitor = Usuario.objects.get(user=request.user)
         data_hora = timezone.now
 
@@ -39,6 +36,15 @@ class VerFeedView(View):
         except:
             messages.error(request, "Selecione um livro.")
 
+        return redirect(request.META["HTTP_REFERER"])
+    
+class VerFeedView(View):
+    def get(self, request, *args, **kwargs):
+        comentarios_relevantes = ComentariosRelevantesService.ComentariosRelevantes()
+        
+        usuario = Usuario.objects.get(user=request.user)
+        livros = usuario.interage_set.filter(status='LN')
+
         return render(request, 'mainapp/feed_relevantes.html', {'comentarios_relevantes':comentarios_relevantes, 'livros':livros})
     
 class VerFeedSeguindoView(View):
@@ -47,8 +53,6 @@ class VerFeedSeguindoView(View):
         comentarios = ComentariosRecentesService.ComentariosRecentesSeguindo(usuario.id)
         livros = usuario.interage_set.filter(status='LN')
         return render(request, 'mainapp/feed_seguindo.html', {'comentarios_recentes': comentarios, 'livros':livros})
-    def post(self, request, *args, **kwargs):
-        return
 
 class VerLivrosPopularesView(View):
     def get(self, request, *args, **kwargs):
@@ -164,7 +168,7 @@ class SeguirLeitorView(View):
             user.seguidores_de.add(user_followed)
             user_followed.seguidos_por.add(user)
 
-        return redirect(request.META["next"])
+        return redirect(request.META["HTTP_REFERER"])
 
 class PerfilView(View):
     def get(self, request, *args, **kwargs):
@@ -179,7 +183,8 @@ class PerfilEstanteView(View):
         desejo_ler = usuario.interage_set.filter(status='QL')
         lendo = usuario.interage_set.filter(status='LN')
         lidos = usuario.interage_set.filter(status='LD')
-        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos, "leitor": usuario}
+        livros = LivrosDisponiveis.livros_disponiveis(usuario)
+        contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos, "livros": livros, "leitor": usuario}
         return render(request, 'mainapp/leitor_minha_estante.html', contexto)
 
 class VerMinhaEstanteView(View):
@@ -196,7 +201,7 @@ class AdicionarLivroEstanteView(View):
     def get(self, request, *args, **kwargs):
         titulo = request.GET['livro']
         livros = LivrosDisponiveis.livros_disponiveis(request.user.usuario).filter(titulo__contains=titulo)
-        return render(request, 'mainapp/minha_estante.html', {"livros": livros})
+        return render(request, 'mainapp/leitor_minha_estante.html', {"livros": livros})
     
     def post(self, request, *args, **kwargs):
         livro_id = request.POST.get('livro_id')
@@ -299,18 +304,15 @@ class AbrirResenhaEspecifica(View):
             mensagem = "Essa resenha não existe."
             return render(request, 'mainapp/resenha.html', {'mensagem':mensagem})
     
-class VerResenhas(View): # resenhas do usuário que tá logado 
+class PerfilResenhasView(View): 
     def get(self, request, *args, **kwargs):
-        usuario = Usuario.objects.get(user=request.user)
-        #resenhas = Resenha.objects.filter(leitor=usuario)
-        resenhas = Resenha.objects.filter(leitor=usuario)
-        return render(request, 'mainapp/meu_perfil_resenhas.html', {"resenhas": resenhas})
+        leitor = Usuario.objects.get(id_username=kwargs['username'])
+        return render(request, 'mainapp/leitor_resenhas.html', {"leitor": leitor})
     
-class VerMinhasPublicacoesRecentes(View):
+class PerfilPublicacoesRecentesView(View):
     def get(self, request, *args, **kwargs):
-        usuario = Usuario.objects.get(user=request.user) # seleciona o user que tá logado 
-        comentarios_proprios = Comentario.objects.filter(leitor=usuario)
-        return render(request, 'mainapp/pub_recentes_perfil.html', {"comentarios_proprios": comentarios_proprios})
+        leitor = Usuario.objects.get(id_username=kwargs['username'])
+        return render(request, 'mainapp/leitor_pub_recentes.html', {"leitor": leitor})
 
 
 class escrever_resenha(View):

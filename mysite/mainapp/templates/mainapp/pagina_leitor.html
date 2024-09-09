@@ -1,47 +1,41 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
-    {% block titulo %}{{ leitor.user.username }}{% endblock %}
+    {% block titulo %}{{ leitor.id_username }}{% endblock %}
     {% block head %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/atualizacoes.css' %}">
     {% endblock %}
 
-{% block navbar %}{% endblock %}
 {% block conteudo %}
-    <!-- Adicionar campo para imagem -->
-    <h1>{{ leitor.id_username }}</h1>
-    <h4>{{ leitor.descricao }}</h4>
-    {% if leitor != user.usuario %}
-        {% if leitor in user.usuario.seguidores_de.all %}
-            <a href="{% url 'seguir_leitor' leitor.id_username %}">Seguindo</a>
-        {% else %}
-            <a href="{% url 'seguir_leitor' leitor.id_username %}">Seguir leitor</a>
-        {% endif %} 
-    {% endif %}
-    <!-- Seguidores -->
-    <p>Seguidores {{ leitor.seguidos_por.count }}&emsp;Seguindo {{ leitor.seguidores_de.count }}</p>
-    <hr>
-        <div class="perfil-nav">
-            <ul>
-                <li>
-                    <a href="{% url 'pagina_leitor' leitor.id_username %}">Atualizações recentes</a>
-                    <a href="{% url 'estante_leitor' leitor.id_username %}">Minha estante</a>
-                    <a href="">Resenhas</a>
-                </li>
-            </ul>
+    <div class="card-profile">
+        <img src="{% static 'images/img-perfil.png'%}" alt="Imagem de perfil">
+        <div class="card-profile-content">
+            <p class="card-profile-name"><strong>{{ leitor.user.first_name }}</strong></p>
+            <p class="card-profile-nickname">@{{ leitor.id_username }}</p>
+            <p>{{ leitor.descricao }}</p>
+            {% if leitor != user.usuario %}
+                {% if leitor in user.usuario.seguidores_de.all %}
+                    <a href="{% url 'seguir_leitor' leitor.id_username %}">Seguindo</a>
+                {% else %}
+                    <a href="{% url 'seguir_leitor' leitor.id_username %}">Seguir leitor</a>
+                {% endif %} 
+            {% endif %}
+            <p> {{ leitor.seguidores.count }} seguidores {{ leitor.seguindo.count }} seguindo</p>
+            {% if leitor == user.usuario %}
+                <p><span class="icon-perfil-profile"><img src="{% static 'images/configuracoes-icon.svg' %}" alt=""></span>Configurações</p>
+            {% endif %}
         </div>
-        {% block main %}
-            <div class="main">
-                {% if leitor == user.usuario %}
-                        {% include 'mainapp/postar_comentario.html' %}
-                {% endif %}
-                    {% for comentario in leitor.comentario_set.all %}
-                        <div class="comentario">
-                            <h4>{{ comentario }}&emsp;&emsp;<span class="data">{{ comentario.data_hora }}</span></h4>
-                            <p>{{ comentario.texto }}</p>
-                        </div>
-                    {% endfor %}
-            </div>
-        {% endblock %}
+    </div>
+    <div class="estilo-hr-div"></div>
+<!-- Nav com opções -->
+    <div class="perfil-nav">
+        <ul>
+           <li>
+                <span class="icon-perfil-nav"><img src="{% static 'images/minha-estante-icon.svg' %}" alt="icone"></span><a href="{% url 'estante_leitor' leitor.id_username %}">Minha estante</a>
+                <span class="icon-perfil-nav"><img src="{% static 'images/resenhas-icon.svg' %}" alt="icone"></span><a href="{% url 'resenhas_leitor' leitor.id_username %}">Resenhas</a>
+                <span class="icon-perfil-nav"><img src="{% static 'images/publicacoes-icon.svg' %}" alt="icone"></span><a href="{% url 'publicacoes_recentes_leitor' leitor.id_username %}">Publicações recentes</a>
+           </li>
+        </ul>
+    </div>
+    {% block main %}{% endblock %}
 {% endblock %}

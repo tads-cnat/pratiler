@@ -51,6 +51,7 @@ class Comentario(models.Model):
     
     class Meta:
         verbose_name = "Comentário"
+        ordering = ['-data_hora']
     
 class Interage(models.Model):
     leitor = models.ForeignKey(Usuario, on_delete=models.CASCADE)

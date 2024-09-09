@@ -1,35 +1,35 @@
-{% extends 'mainapp/base.html' %}
+{% extends 'mainapp/pagina_leitor.html' %}
 {% load static %}
-{% block titulo %}Pratiler | {{request.user.username}}{% endblock %}
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/minha_estante_perfil.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/resenhas.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/perfil_usuario_nav.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/pub_recentes_perfil.css'%}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
 {% endblock %}
-{% block conteudo %}
-    {% include "mainapp/perfil_usuario_nav.html" %}
+{% block main %}
 <!-- Opção Minhas Publicações Recentes / São os comentários -->
  <div class="main-pub-recentes">
     <div class="meu-perfil-postar-comentario">
-        {% include 'mainapp/postar_comentario.html'%}
-                {% if mensagem_erro %}
-                    <p class="error">{{mensagem_erro}}</p>
-            {%endif%}
+        {% if leitor == user.usuario %}
+            {% include 'mainapp/postar_comentario.html'%}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
      </div>
      <div class="comentarios-perfil">
-        {% if comentarios_proprios %}
-        {% for cp in comentarios_proprios %}
+        {% if leitor.comentario_set.all %}
+        {% for cp in leitor.comentario_set.all %}
         <div class="comentario">
             <div class="nome-botao-seguir-data">
                 <div class="perfil">
-                    <img src="../static/images/foto-perfil.png">
+                    <img src="{% static 'images/foto-perfil.png' %}">
                     <div class="nome">
                         <p>
                             {{ cp.leitor.user.first_name }}
                         </p>
-                        <a href="">@{{ cp.leitor.user.username}}</a>
+                        <a href="">@{{ cp.leitor.id_username}}</a>
                     </div>
                 </div>
                 
