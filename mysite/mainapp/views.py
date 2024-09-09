@@ -299,7 +299,7 @@ class AbrirResenhaEspecifica(View):
         resenha_id = kwargs['pk']
         try:
             resenha = Resenha.objects.get(id=resenha_id)
-            return render(request, 'mainapp/resenha.html', {'resenha':resenha})
+            return render(request, 'mainapp/resenha.html', {'resenha':resenha, 'leitor': request.user.usuario})
         except:
             mensagem = "Essa resenha não existe."
             return render(request, 'mainapp/resenha.html', {'mensagem':mensagem})
@@ -317,24 +317,28 @@ class PerfilPublicacoesRecentesView(View):
 
 class escrever_resenha(View):
     def get(self, request, *args, **kwargs):
-        livros = Livro.objects.all()
-        context = {'livros': livros, }
+        livros = request.user.usuario.interage_set.filter(status='LD')
+        livros_lidos = [interacao.livro for interacao in livros]
+        context = {'livros': livros_lidos, 'leitor': request.user.usuario}
         return render(request, 'mainapp/escrever_resenha.html', context)
 
     def post(self, request, *args, **kwargs):
-        livro_titulo = request.POST.get('livro')
-        livro = Livro.objects.get(titulo=livro_titulo)
-        titulo_resenha = request.POST.get('titulo_resenha')
-        texto_resenha = request.POST.get('texto_resenha')
+        try:
+            livro_titulo = request.POST.get('livro')
+            livro = Livro.objects.get(titulo=livro_titulo)
+            titulo_resenha = request.POST.get('titulo_resenha')
+            texto_resenha = request.POST.get('texto_resenha')
+        except:
+            messages.error(request, "Preencha todos os dados acima para escrever a resenha")
+            return redirect('escrever_resenha')
+        else:
+            user = request.user
+            leitor = Usuario.objects.get(user=user)
 
-        user = request.user
-        leitor = Usuario.objects.get(user=user)
-
-        Resenha.objects.create(
-            livro = livro,
-            leitor = leitor,
-            titulo = titulo_resenha,
-            texto =  texto_resenha,
-        )
-
-        return redirect(reverse('feed'))
+            Resenha.objects.create(
+                livro = livro,
+                leitor = leitor,
+                titulo = titulo_resenha,
+                texto =  texto_resenha,
+            )
+        return redirect('resenhas_leitor', args=(user.usuario.id_username,))

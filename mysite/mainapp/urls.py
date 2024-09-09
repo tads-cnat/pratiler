@@ -28,6 +28,6 @@ urlpatterns = [
     path('minha_estante/', views.VerMinhaEstanteView.as_view(), name="minha_estante"),
     path('pesquisa_estante/', views.AdicionarLivroEstanteView.as_view(), name="pesquisar_estante"),
     path('adiciona_estante/', views.AdicionarLivroEstanteView.as_view(), name="adicionar_estante"),
-    path('meu_perfil/escrever_resenha', views.escrever_resenha.as_view(), name="escrever_resenha"),
-    path('meu_perfil/resenha/<int:pk>', views.AbrirResenhaEspecifica.as_view(), name="abrir_resenha_especifica"),
+    path('escrever_resenha/', views.escrever_resenha.as_view(), name="escrever_resenha"),
+    path('resenha/<int:pk>/', views.AbrirResenhaEspecifica.as_view(), name="abrir_resenha_especifica"),
 ]

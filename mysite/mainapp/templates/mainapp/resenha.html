@@ -1,13 +1,11 @@
-{% extends 'mainapp/base.html' %}
+{% extends 'mainapp/pagina_leitor.html' %}
 {% load static %}
-{% block titulo %}Pratiler | {{request.user.username}}{% endblock %}
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/perfil_usuario_nav.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'css/resenhaunica.css' %}">
 <!-- Página que aparece a resenha escolhida do leitor que tá logado, a própria resenha -->
 {% endblock %}
-{% block conteudo %}
-    {% include "mainapp/perfil_usuario_nav.html" %}
+{% block main %}
     <!-- Resenha solicitada : -->
     {% if resenha %}
     <div class="card-resenha-aberta">

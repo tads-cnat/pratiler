@@ -22,3 +22,10 @@
     display: block;
     margin: 0.5rem 0;
 }
+.error{
+    font-family: var(--roboto);
+    color: #221D57;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 1.2rem;
+}
