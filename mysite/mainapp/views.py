@@ -329,16 +329,19 @@ class escrever_resenha(View):
             titulo_resenha = request.POST.get('titulo_resenha')
             texto_resenha = request.POST.get('texto_resenha')
         except:
-            messages.error(request, "Preencha todos os dados acima para escrever a resenha")
+            messages.error(request, "Preencha todos os dados acima para escrever a resenha.")
             return redirect('escrever_resenha')
         else:
             user = request.user
             leitor = Usuario.objects.get(user=user)
-
-            Resenha.objects.create(
-                livro = livro,
-                leitor = leitor,
-                titulo = titulo_resenha,
-                texto =  texto_resenha,
-            )
-        return redirect('resenhas_leitor', args=(user.usuario.id_username,))
+            try:
+                Resenha.objects.create(
+                    livro = livro,
+                    leitor = leitor,
+                    titulo = titulo_resenha,
+                    texto =  texto_resenha,
+                )
+            except:
+                messages.error(request, "Já existe uma resenha sua com este livro.")
+                return redirect('escrever_resenha')
+        return redirect('resenhas_leitor', kwargs={'username': request.user.usuario.id_username})
