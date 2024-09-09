@@ -2,77 +2,44 @@
 {% load static %}
     {% block titulo %}{{ leitor.user.username }}{% endblock %}
     {% block head %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/leitor_minha_estante.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/leitor_leitor_minha_estante.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
     {% endblock %}
 
 {% block main %}
-<!-- Em uma tela HTML, quero fazer uma telinha aparecer quando clicar em um botão, 
- nesta telinha vou selecionar itens de uma coleção, posso selecionar mais de um item nesta lista. 
- Quando terminar de selecionar, terei um botão final, que fará um processamento e esconderá a telinha de novo,
-  como faço isso? -->
-    <div class="adicionar-livro">
-        <form action="{% url 'pesquisar_estante' %}" method="get">
-            {% csrf_token %}
-            <input type="text" placeholder="Pesquisar livro..." name="livro">
-        </form>
-        <form action="{% url 'adicionar_estante' %}" method="post">
-            {% csrf_token %}
-            <p>Escolha quais livros deseja ler!</p>
-            {% for livro in livros %}
-                <input type="checkbox" name="selec-livro" value="{{ livro }}">
+<div class="listas">
+    <div class="ler">
+        <ul>
+            <h2>Desejo ler</h2>
+            {% for interacao in desejo_ler %}
+                <li>
+                    <h3>{{ interacao.livro }}</h3><br>
+                    <p>&emsp;{{ interacao.livro.descricao }}</p>
+                </li>
             {% endfor %}
-                <input type="submit" value="Adicionar livros">
-        </form>
+        </ul>
     </div>
-    <div class="listas">
-        <div class="ler">
-            <ul>
-                <h2>Desejo ler</h2>
-                {% if leitor == user.usuario %}
-                    <p>Adicione livros a sua listagem <a href="">aqui</a></p>
-                {% endif %}
-                {% if desejo_ler %}
-                    {% for interacao in desejo_ler %}
-                        <li>
-                            <h3>{{ interacao.livro }}</h3><br>
-                            <p>&emsp;{{ interacao.livro.descricao }}</p>
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    <p>Você não tem nehum livro que deseja ler?</p>
-                {% endif %}
-            </ul>
-        </div>
-        <div class="lendo">
-            <ul>
-                <h2>Lendo</h2>
-                {% if lendo %}
-                    {% for interacao in lendo %}
-                        <li>
-                            <h3>{{ interacao.livro }}</h3><br>
-                            <p>&emsp;{{ interacao.livro.descricao }}</p>
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    <p>Você não está lendo nenhum livro no momento.</p>
-                {% endif %}
-            </ul>
-        </div>
-        <div class="lido">
-            <ul>
-                <h2>Lidos</h2>
-                {% if lidos %}
-                    {% for interacao in lidos %}
-                        <li>
-                            <h3>{{ interacao.livro }}</h3><br>
-                            <p>&emsp;{{ interacao.livro.descricao }}</p>
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    <p>Você não terminou nenhuma leitura ainda</p>
-                {% endif %}
-            </ul>
-        </div>
+    <div class="lendo">
+        <ul>
+            <h2>Lendo</h2>
+            {% for interacao in lendo %}
+                <li>
+                    <h3>{{ interacao.livro }}</h3><br>
+                    <p>&emsp;{{ interacao.livro.descricao }}</p>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
+    <div class="lido">
+        <ul>
+            <h2>Lidos</h2>
+            {% for interacao in lidos %}
+                <li>
+                    <h3>{{ interacao.livro }}</h3><br>
+                    <p>&emsp;{{ interacao.livro.descricao }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}
