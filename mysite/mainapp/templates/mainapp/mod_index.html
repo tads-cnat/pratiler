@@ -18,8 +18,10 @@
         <div class="conteudo">
             <h1>Livros</h1>
             <p class="options"><a href="{% url 'adicionar' %}">Adicionar livro</a></p>
-            {% if feedback %}
-            <p>{{ feedback }}</p>
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
             {% endif %}
                 {% for livro in livros %}
                     <div class="livro">

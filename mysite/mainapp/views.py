@@ -89,18 +89,19 @@ class GerenciarLivrosView(View):
         Caso haja exceções, renderiza a página de adicionar livro com uma mensagem de erro
         '''
         autor = Autor.objects.get(nome=request.POST['autor'])
-        dados = {'titulo': request.POST['titulo'],
-                 'descricao': request.POST['descricao'],
-                 'capa': request.POST['capa'],
-                 'isbn': request.POST['isbn'],
-                 'n_paginas': request.POST['n_paginas'],
-                 'autor': autor,
-                }
         try:
+            dados = {'titulo': request.POST['titulo'],
+                     'descricao': request.POST['descricao'],
+                     'capa': request.POST['capa'],
+                     'isbn': request.POST['isbn'],
+                     'n_paginas': request.POST['n_paginas'],
+                     'autor': autor,
+                    }
             Livro.objects.create(**dados)
+            messages.error(request, "Livro adicionado com sucesso!")
         except:
             messages.error(request, f"Dados mal inseridos, por favor insira os dados corretamente!")
-            return redirect(request.META["HTTP_REFERER"])
+            return redirect('adicionar')
         livro = Livro.objects.get(isbn=request.POST['isbn'])
         return redirect('index')
     
@@ -110,14 +111,14 @@ class GerenciarLivrosView(View):
         Caso haja exceções, renderiza a página de editar livro com uma mensagem de erro
         '''
         autor = Autor.objects.get(nome=request.POST['autor'])
-        dados = {'titulo': request.POST['titulo'],
-                 'descricao': request.POST['descricao'],
-                 'capa': request.POST['capa'],
-                 'isbn': request.POST['isbn'],
-                 'n_paginas': request.POST['n_paginas'],
-                 'autor': autor
-                }
         try:
+            dados = {'titulo': request.POST['titulo'],
+                     'descricao': request.POST['descricao'],
+                     'capa': request.POST['capa'],
+                     'isbn': request.POST['isbn'],
+                     'n_paginas': request.POST['n_paginas'],
+                     'autor': autor
+                    }
             livro = Livro.objects.get(isbn=kwargs['isbn'])
             livro.titulo = dados['titulo']
             livro.descricao = dados['descricao']
@@ -126,6 +127,7 @@ class GerenciarLivrosView(View):
             livro.n_paginas = dados['n_paginas']
             livro.autor = dados['autor']
             livro.save()
+            messages.success(request, f"Livro {livro.titulo} atualizado com sucesso!")
         except:
             messages.error(request, f"Dados mal inseridos, por favor insira os dados corretamente!")
             return redirect('editar')
@@ -136,8 +138,8 @@ class GerenciarLivrosView(View):
         Deleta um livro e retorna para a página principal do moderador
         '''
         livro = Livro.objects.get(isbn=kwargs['isbn'])
-        livro_1 = livro
         livro.delete()
+        messages.success(request, "livro deletado com sucesso!")
         return redirect('index')
     
 class CurtirComentarioView(View):
@@ -224,7 +226,7 @@ def paginaLogin(request): # Chaves
             user = authenticate(request, username=user.username, password=senha)
             if user:
                 login(request, user)
-                return redirect('/feed') #mudar para redirecionar para o VerFeed
+                return redirect('feed') if not user.usuario.moderador else redirect('index') #mudar para redirecionar para o VerFeed
             else:
                 messages.error(request, 'Dados inválidos, por favor corrija os dados inseridos e tente novamente')
         except:
@@ -263,11 +265,6 @@ def paginaCadastro(request): # Chaves
 def logoutUser(request): # Chaves
     logout(request)
     return redirect('/')
-
-def paginaLeitor(request, username): # Chaves
-    leitor = get_object_or_404(Usuario, id_username=username)
-    context = {'leitor': leitor}
-    return render(request, 'mainapp/pagina_leitor.html', context)
 
 def livros_pesquisa(request):
     q = ''
@@ -315,7 +312,7 @@ class PerfilPublicacoesRecentesView(View):
         return render(request, 'mainapp/leitor_pub_recentes.html', {"leitor": leitor})
 
 
-class escrever_resenha(View):
+class EscreverResenhaView(View):
     def get(self, request, *args, **kwargs):
         livros = request.user.usuario.interage_set.filter(status='LD')
         livros_lidos = [interacao.livro for interacao in livros]
