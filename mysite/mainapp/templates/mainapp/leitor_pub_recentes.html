@@ -22,16 +22,16 @@
 {% block main %}
 <!-- Opção Minhas Publicações Recentes / São os comentários -->
  <div class="main-pub-recentes">
+    {% if leitor == user.usuario %}
     <div class="meu-perfil-postar-comentario">
-        {% if leitor == request.user.usuario %}
             {% include 'mainapp/postar_comentario.html'%}
             {% if messages %}
                 {% for message in messages %}
                     <p class="error">{{ message }}</p>
                 {% endfor %}
             {% endif %}
-        {% endif %}
      </div>
+     {% endif %}
      <div class="comentarios-perfil">
         {% if leitor.comentario_set.all %}
         {% for cp in leitor.comentario_set.all %}
