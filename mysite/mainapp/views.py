@@ -308,8 +308,9 @@ class PerfilResenhasView(View):
     
 class PerfilPublicacoesRecentesView(View):
     def get(self, request, *args, **kwargs):
-        leitor = Usuario.objects.get(id_username=kwargs['username'])
-        return render(request, 'mainapp/leitor_pub_recentes.html', {"leitor": leitor})
+        leitor = Usuario.objects.get(user=request.user)
+        livros = leitor.interage_set.filter(status='LN')
+        return render(request, 'mainapp/leitor_pub_recentes.html', {"leitor": leitor, "livros":livros})
 
 
 class EscreverResenhaView(View):
