@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.urls import reverse
 from .services import VerLivrosPopularesService, ComentariosRecentesService, ComentariosRelevantesService, LivrosDisponiveis
 from .models import *
 from django.shortcuts import get_object_or_404 
@@ -9,6 +10,8 @@ from django.contrib import messages #Chaves
 from django.contrib.auth.decorators import login_required # Chaves
 from django.db.models import Q # Chaves
 from django.utils import timezone
+
+import pdb
 
 class PostarComentarioView(View):
     def post(self, request, *args, **kwargs):
@@ -186,7 +189,6 @@ class PerfilEstanteView(View):
         lendo = usuario.interage_set.filter(status='LN')
         lidos = usuario.interage_set.filter(status='LD')
         livros = LivrosDisponiveis.livros_disponiveis(usuario)
-        breakpoint()
         contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos, "livros": livros, "leitor": usuario}
         return render(request, 'mainapp/leitor_minha_estante.html', contexto)
 
@@ -343,5 +345,5 @@ class EscreverResenhaView(View):
             except:
                 messages.error(request, "Já existe uma resenha sua com este livro.")
                 return redirect('escrever_resenha')
-        return redirect('resenhas_leitor')
+        return redirect(reverse('resenhas_leitor', args=[request.user.usuario.id_username]))
     # kwargs={'username': request.user.usuario.id_username}
