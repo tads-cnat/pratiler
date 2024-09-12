@@ -8,7 +8,7 @@
             <option value="0">Selecione</option>
             {% if livros %}
                 {% for l in livros %}
-                    {% with ultima_pagina=l.comentariosLeitorLivro.last.pagina_final %}
+                    {% with ultima_pagina=l.comentariosLeitorLivro.first.pagina_final %}
                         <option value="{{l.livro.id}}" ultima-pagina="{{ ultima_pagina }}">{{ l.livro.titulo }}</option>
                     {% endwith %}
                 {% endfor %}

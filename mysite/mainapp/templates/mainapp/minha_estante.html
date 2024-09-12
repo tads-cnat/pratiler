@@ -59,7 +59,11 @@
                 {% for interacao in lendo %}
                     <div class="interacao-livro">
                         <picture class="imagem">
+                            {% if interacao.livro.capa.url %}
                             <img src="{{ interacao.livro.capa.url }}" width="200px" height="300px">
+                            {% else %}
+                            <img src="../media/capa/default.jpg" width="200px" height="300px">
+                            {% endif %}
                         </picture>
                         <div class="conteudo">
                             <h1>
@@ -83,7 +87,12 @@
                 {% for interacao in desejo_ler %}
                     <div class="interacao-livro">
                         <picture class="imagem">
-                            <img src="{{ interacao.livro.capa.url }}" width="200px" height="300px">
+                            <!--<img src="{{ interacao.livro.capa.url }}" width="200px" height="300px"> -->
+                            {% if interacao.livro.capa.url %}
+                                <img src="{{ interacao.livro.capa.url }}" width="200px" height="300px">
+                            {% else %}
+                                <img src="../media/capa/default.jpg" width="200px" height="300px">
+                            {% endif %}
                         </picture>
                         <div class="conteudo">
                             <h1>
