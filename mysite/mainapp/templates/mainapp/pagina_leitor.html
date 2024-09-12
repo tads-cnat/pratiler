@@ -23,7 +23,9 @@
             <p> {{ leitor.seguidores.count }} seguidores {{ leitor.seguindo.count }} seguindo</p>
             {% if leitor == user.usuario %}
                 <p><span class="icon-perfil-profile"><img src="{% static 'images/configuracoes-icon.svg' %}" alt=""></span>Configurações</p>
+                <a href="{% url 'login' %}">Sair</a>
             {% endif %}
+
         </div>
     </div>
     <div class="estilo-hr-div"></div>
