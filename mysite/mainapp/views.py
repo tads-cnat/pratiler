@@ -186,6 +186,7 @@ class PerfilEstanteView(View):
         lendo = usuario.interage_set.filter(status='LN')
         lidos = usuario.interage_set.filter(status='LD')
         livros = LivrosDisponiveis.livros_disponiveis(usuario)
+        breakpoint()
         contexto = {"desejo_ler": desejo_ler, "lendo": lendo, "lidos": lidos, "livros": livros, "leitor": usuario}
         return render(request, 'mainapp/leitor_minha_estante.html', contexto)
 
@@ -342,4 +343,5 @@ class EscreverResenhaView(View):
             except:
                 messages.error(request, "Já existe uma resenha sua com este livro.")
                 return redirect('escrever_resenha')
-        return redirect('resenhas_leitor', kwargs={'username': request.user.usuario.id_username})
+        return redirect('resenhas_leitor')
+    # kwargs={'username': request.user.usuario.id_username}
