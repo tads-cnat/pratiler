@@ -10,6 +10,7 @@ from django.contrib import messages #Chaves
 from django.contrib.auth.decorators import login_required # Chaves
 from django.db.models import Q # Chaves
 from django.utils import timezone
+from unidecode import unidecode
 
 import pdb
 
@@ -270,18 +271,16 @@ def logoutUser(request): # Chaves
     return redirect('/')
 
 def livros_pesquisa(request):
-    q = ''
 
     if request.GET.get('q') != None:
-        q = request.GET.get('q')
-    
-    livros = Livro.objects.filter(
-        Q(titulo__icontains=q)
-    )
-
+        qa = unidecode(request.GET.get('q'))
+        livros = Livro.objects.all()
+        livros_lista = [livro for livro in livros]
+        livros = [livro for livro in livros_lista if qa.lower() in unidecode(livro.titulo.lower())]
     context = {'livros': livros}
 
     return render(request, 'mainapp/livros.html', context)
+
 class VerMinhaEstantePerfil(View):
     def get(self, request, *args, **kwargs):
         desejo_ler = request.user.usuario.interage_set.filter(status='QL')
