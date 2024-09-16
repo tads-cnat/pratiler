@@ -10,7 +10,7 @@
 
 ## Modelo Relacional
 
-> Texto e imagem do Modelo Relacional...
+![Mod_Relacionalpratiler](mod_relacional/mod_relacional.png)
 
 ## Dicionário de Dados
 
