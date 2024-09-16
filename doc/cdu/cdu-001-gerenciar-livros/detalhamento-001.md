@@ -29,4 +29,4 @@
 
 ## Diagrama de Classes de Projeto
 
-> Substituir pela imagem contendo as classes (modelo, visão e templates) que implementam o respectivo CDU...
+![CDU_001](../diagramas_projapp/CDU_001.jpg)
