@@ -82,3 +82,19 @@
     width: 10rem;
     height: 15rem;
 }
+
+.seguir{
+    background-color: #221D57;
+    color: white;
+}
+
+.seguir, .seguindo{
+    padding: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.seguindo{
+    border: 2px solid #E1DAFF;
+    color: #221D57;
+}
