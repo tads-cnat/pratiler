@@ -22,7 +22,7 @@
 
 ## Diagrama de Interação (Sequência ou Comunicação)
 
-> Substituir pela imagem correspondente...
+![lorem](../sequencia/AtualizarLeitura%20-%20Diagrama%20Sequencia.jpg)
 
 ## Diagrama de Classes de Projeto
 
