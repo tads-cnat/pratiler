@@ -21,7 +21,7 @@
 
 ## Diagrama de Interação (Sequência ou Comunicação)
 
-> Substituir pela imagem correspondente...
+![CDU_014](../sequencia/VerLivrosPopulares%20-%20Diagrama%20Sequencia.jpg)
 
 ## Diagrama de Classes de Projeto
 

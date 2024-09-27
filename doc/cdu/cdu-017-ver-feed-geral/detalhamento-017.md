@@ -16,3 +16,11 @@
 ## Fluxo de Exceção I - Feed vazio
 1. &emsp;Se não houver comentários disponíveis para exibir no feed:
    - &emsp;O sistema exibe uma mensagem informando que não há comentários disponíveis no momento.
+
+## Diagrama de Interação (Sequência ou Comunicação)
+
+![CDU_017](../sequencia/VerFeedGeral%20-%20Diagrama%20Sequencia.jpg)
+
+## Diagrama de Classes de Projeto
+
+> Substituir pela imagem contendo as classes (modelo, visão e templates) que implementam o respectivo CDU...
