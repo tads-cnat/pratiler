@@ -21,4 +21,4 @@
 
 ## Diagrama de Classes de Projeto
 
-![CDU_002](../diagramas_projapp/CDU_002.jpg)
+![CDU_002](../../projeto/CDU_002.jpg)

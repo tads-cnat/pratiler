@@ -34,4 +34,4 @@
 
 ## Diagrama de Classes de Projeto
 
-![CDU_003](../diagramas_projapp/CDU_003.jpg)
+![CDU_003](../../projeto/CDU_003.jpg)

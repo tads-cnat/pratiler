@@ -268,7 +268,7 @@ def paginaCadastro(request): # Chaves
         
 def logoutUser(request): # Chaves
     logout(request)
-    return redirect('/')
+    return redirect('login')
 
 def livros_pesquisa(request):
 
