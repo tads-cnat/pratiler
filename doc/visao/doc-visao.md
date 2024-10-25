@@ -25,7 +25,7 @@ Temos como objetivo neste projeto o incentivo da leitura para o Brasil atual, le
 
 | Nome | Descrição | Responsabilidade |
 | :-: | - | - |
-| Visitante | Usuário que ainda não teve uma primeira experiência com o produto e o visitou a fim de conhecê-lo. | - Acesso à landing page do sistema, para conhecê-lo<br>- Poderá se cadastrar-se como um novo usuário |
+| Visitante | Usuário que ainda não está autenticado no software ou visitou a fim de conhecê-lo. | - Acesso à landing page do sistema, para conhecê-lo<br>- Poderá se cadastrar-se como um novo usuário |
 | Leitor | Pessoa cadastrada na rede social que deseja organizar, criar ou fortalecer o hábito de leitura. | - Realizam comentários sobre livros que está lendo, colocando a página em que terminou de ler o livro<br>- Seguir leitores<br>- Realizar resenhas de livros lidos<br>- Criar listas de livros para ler, no estilo de uma to do list<br>- Avaliar um livro que terminou de ler<br>- Comentar e curtir postagens de outros usuários |
 
 ## 4. Descrição do ambiente dos usuários
@@ -64,19 +64,19 @@ Temos como objetivo neste projeto o incentivo da leitura para o Brasil atual, le
 
 | Código | Nome | Descrição | Prioridade |
 | - | - | - | :-: |
-| F01 | Efetuar login de usuário | O leitor consegue acesso ao sistema através do login | <kbd>Alta</kbd> |
-| F02 | Efetuar cadastro de usuário | O visitante pode se cadastrar clicando em um botão de cadastro e inserindo dados (nome, e-mail, senha etc) | <kbd>Alta</kbd> |
-| F03 | Realizar comentários nas postagens | O leitor pode deixar um comentário em qualquer postagem  | <kbd>Alta</kbd> |
-| F04 | Fazer postagens | O leitor pode fazer postagens no feed sobre seus livros, atualizando as leituras. Os comentários devem ser textos curtos e devem ser sobre um livro específico. Nesses comentários, o leitor deve dizer em que página ele terminou de ler o livro. | <kbd>Alta</kbd> |
-| F05 | Seguir outros leitores | O leitor pode seguir outros leitores a fim de acompanhar as postagens do leitor seguido | <kbd>Média</kbd> |
-| F06 | Adicionar livro à estante | O leitor pode registrar os livros que começou ou quer começar a ler, a fim de gerenciar a leitura sobre ele. | <kbd>Alta</kbd> |
-| F07 | Criar resenha | O leitor poderá adicionar a resenha sobre um livro que leu. Uma resenha se tratará de uma discussão sobre um livro que o usuário terminou de ler, que poderá ser mais longo do que uma avaliação, além de possuir título. | <kbd>Alta</kbd> |
-| F08 | Efetuar logout usuário | O leitor deixa de ter acesso ao sistema até o seu próximo login | <kbd>Alta</kbd> |
-| F09 | Pesquisar leitores e livros | O leitor pode pesquisar em uma barra de pesquisa por perfis de leitores e por livros já cadastrados no sistema | <kbd>Média</kbd> |
-| F10 | Adicionar avaliações | Ao terminar de ler um livro, o leitor pode adicionar uma nota e dizer o que achou do livro com um breve texto. O leitor pode também adicionar um livro que ele já leu para avaliar, sem necessidade de monitorar pelo app. | <kbd>Média</kbd> |
-| F11 | Editar informações do perfil do leitor | O leitor pode editar as informações sobre o seu perfil. Através do botão de configurações | <kbd>Baixa</kbd> |
-| F12 | Curtir postagens | O leitor poderá curtir postagens | <kbd>Média</kbd> |
-| F13 | Marcar os dias em que leu | Será exibido no perfil do leitor um calendário que mostra marcado os dias em que ele adicionou comentários ao sistema | <kbd>Baixa</kbd> |
+| F01 | Login de usuário | O leitor consegue acesso ao sistema através do login | <kbd>Alta</kbd> |
+| F02 | Cadastro de usuário | O visitante pode se cadastrar clicando em um botão de cadastro e inserindo dados (nome, e-mail, senha etc) | <kbd>Alta</kbd> |
+| F03 | Realização de comentários nas postagens | O leitor pode deixar um comentário em qualquer postagem  | <kbd>Alta</kbd> |
+| F04 | Realização de postagens | O leitor pode fazer postagens no feed sobre seus livros, atualizando as leituras. Os comentários devem ser textos curtos e devem ser sobre um livro específico. Nesses comentários, o leitor deve dizer em que página ele terminou de ler o livro. | <kbd>Alta</kbd> |
+| F05 | Vínculo com leitores | O leitor pode seguir outros leitores a fim de acompanhar as postagens do leitor seguido | <kbd>Média</kbd> |
+| F06 | Adição de livros na estante própria | O leitor pode registrar os livros que começou, que quer começar a ler ou que já terminou de ler a fim de gerenciar as suas leituras. | <kbd>Alta</kbd> |
+| F07 | Postagem de resenhas | O leitor poderá adicionar a resenha sobre um livro que leu. Uma resenha se tratará de uma discussão sobre um livro que o usuário terminou de ler, que poderá ser mais longo do que uma avaliação, além de possuir título. | <kbd>Alta</kbd> |
+| F08 | Logout do usuário | O leitor deixa de ter acesso ao sistema até o seu próximo login | <kbd>Alta</kbd> |
+| F09 | Pesquisa de leitores e livros | O leitor pode pesquisar em uma barra de pesquisa por perfis de leitores e por livros já cadastrados no sistema | <kbd>Média</kbd> |
+| F10 | Postagem de avaliações | Ao terminar de ler um livro, o leitor pode adicionar uma nota e dizer o que achou do livro com um breve texto. O leitor pode também adicionar um livro que ele já leu para avaliar, sem necessidade de monitorar pelo app. | <kbd>Média</kbd> |
+| F11 | Atualização de informações do perfil do leitor | O leitor pode editar as informações sobre o seu perfil. Através do botão de configurações | <kbd>Baixa</kbd> |
+| F12 | Curtidas em postagens | O leitor poderá curtir postagens | <kbd>Média</kbd> |
+| F13 | Marcação dos dias em que leu | Será exibido no perfil do leitor um calendário que mostra marcado os dias em que ele adicionou comentários ao sistema, caracterizando uma leitura no dia | <kbd>Baixa</kbd> |
 ## 9. Requisitos não-funcionais
 
 | Código              |  Nome               |          Descrição  |  Categoria          |  Classificação      |
