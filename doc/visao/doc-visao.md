@@ -77,6 +77,11 @@ Temos como objetivo neste projeto o incentivo da leitura para o Brasil atual, le
 | F11 | Atualização de informações do perfil do leitor | O leitor pode editar as informações sobre o seu perfil. Através do botão de configurações | <kbd>Baixa</kbd> |
 | F12 | Curtidas em postagens | O leitor poderá curtir postagens | <kbd>Média</kbd> |
 | F13 | Marcação dos dias em que leu | Será exibido no perfil do leitor um calendário que mostra marcado os dias em que ele adicionou comentários ao sistema, caracterizando uma leitura no dia | <kbd>Baixa</kbd> |
+| F14 | Acompanhamento de leitores | Será possível acessar o perfil dos leitores, acessando visualmente as suas postagens feitas, a sua estante, e as suas resenhas publicadas | <kbd>Média</kbd> |
+| F15 | Visualização de livros mais populares | Poderá ser acessado uma página com os livros mais comentados em um período de 15 dias, intitulados de "Livros Populares" no sistema | <kbd>Alta</kbd> |
+| F16 | Visualização de postagens gerais | O leitor terá acesso a uma página onde terão as publicações de todos os leitores, ordenadas pela data de publicação de forma decrescente | <kbd>Alta</kbd> |
+| F17 | Visualização de postagens de leitores vinculados | O leitor terá acesso a uma página onde terão as publicações de todos os seus leitores vinculados, ou seja, que o leitor está seguindo. As publicações serão ordenadas pela data de publicação de forma decrescente | <kbd>Alta</kbd> |
+
 ## 9. Requisitos não-funcionais
 
 | Código              |  Nome               |          Descrição  |  Categoria          |  Classificação      |
