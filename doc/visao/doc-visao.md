@@ -66,13 +66,13 @@ Temos como objetivo neste projeto o incentivo da leitura para o Brasil atual, le
 | - | - | - | :-: |
 | F01 | Login de usuário | O leitor consegue acesso ao sistema através do login | <kbd>Alta</kbd> |
 | F02 | Cadastro de usuário | O visitante pode se cadastrar clicando em um botão de cadastro e inserindo dados (nome, e-mail, senha etc) | <kbd>Alta</kbd> |
-| F03 | Realização de comentários nas postagens | O leitor pode deixar um comentário em qualquer postagem  | <kbd>Alta</kbd> |
+| F03 | Comentários nas postagens | O leitor pode deixar um comentário em qualquer postagem  | <kbd>Alta</kbd> |
 | F04 | Realização de postagens | O leitor pode fazer postagens no feed sobre seus livros, atualizando as leituras. Os comentários devem ser textos curtos e devem ser sobre um livro específico. Nesses comentários, o leitor deve dizer em que página ele terminou de ler o livro. | <kbd>Alta</kbd> |
 | F05 | Vínculo com leitores | O leitor pode seguir outros leitores a fim de acompanhar as postagens do leitor seguido | <kbd>Média</kbd> |
 | F06 | Adição de livros na estante própria | O leitor pode registrar os livros que começou, que quer começar a ler ou que já terminou de ler a fim de gerenciar as suas leituras. | <kbd>Alta</kbd> |
 | F07 | Postagem de resenhas | O leitor poderá adicionar a resenha sobre um livro que leu. Uma resenha se tratará de uma discussão sobre um livro que o usuário terminou de ler, que poderá ser mais longo do que uma avaliação, além de possuir título. | <kbd>Alta</kbd> |
 | F08 | Logout do usuário | O leitor deixa de ter acesso ao sistema até o seu próximo login | <kbd>Alta</kbd> |
-| F09 | Pesquisa de leitores e livros | O leitor pode pesquisar em uma barra de pesquisa por perfis de leitores e por livros já cadastrados no sistema | <kbd>Média</kbd> |
+| F09 | Pesquisa de leitores | O leitor pode pesquisar em uma barra de pesquisa por perfis de leitores já cadastrados no sistema | <kbd>Média</kbd> |
 | F10 | Postagem de avaliações | Ao terminar de ler um livro, o leitor pode adicionar uma nota e dizer o que achou do livro com um breve texto. O leitor pode também adicionar um livro que ele já leu para avaliar, sem necessidade de monitorar pelo app. | <kbd>Média</kbd> |
 | F11 | Atualização de informações do perfil do leitor | O leitor pode editar as informações sobre o seu perfil. Através do botão de configurações | <kbd>Baixa</kbd> |
 | F12 | Curtidas em postagens | O leitor poderá curtir postagens | <kbd>Média</kbd> |
@@ -81,6 +81,9 @@ Temos como objetivo neste projeto o incentivo da leitura para o Brasil atual, le
 | F15 | Visualização de livros mais populares | Poderá ser acessado uma página com os livros mais comentados em um período de 15 dias, intitulados de "Livros Populares" no sistema | <kbd>Alta</kbd> |
 | F16 | Visualização de postagens gerais | O leitor terá acesso a uma página onde terão as publicações de todos os leitores, ordenadas pela data de publicação de forma decrescente | <kbd>Alta</kbd> |
 | F17 | Visualização de postagens de leitores vinculados | O leitor terá acesso a uma página onde terão as publicações de todos os seus leitores vinculados, ou seja, que o leitor está seguindo. As publicações serão ordenadas pela data de publicação de forma decrescente | <kbd>Alta</kbd> |
+| F18 | Pesquisa de livros | O leitor poderá pesquisar os livros cadastrados no sistema. | <kbd>Alta</kbd> |
+| F19 | Leitura de resenha | O leitor poderá ler as resenhas postadas no site. | <kbd>Alta</kbd> |
+| F20 | Visualização das postagens do leitor | O leitor poderá visualizar as próprias postagens. | <kbd>Alta</kbd> |
 
 ## 9. Requisitos não-funcionais
 
