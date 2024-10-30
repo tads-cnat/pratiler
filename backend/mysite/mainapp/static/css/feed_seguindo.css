@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+:root{
+    --roboto: "Roboto Flex", sans-serif;
+}
+main{
+    display: flex;
+}
+
+.sem-comentarios{
+    font-family: var(--roboto);
+    font-weight: bold;
+    margin-left: 4rem;
+    color: #221D57;
+    background-color: #D5F000;
+    width: 13rem;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    height: 6.5rem;
+}

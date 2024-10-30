@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+:root{
+    --montserrat: "Montserrat", sans-serif;
+    --roboto: "Roboto Flex", sans-serif;
+}
+.botao-escrever-resenha{
+    width: 5.6rem;
+    align-self: flex-end;
+    font-size: 1rem;
+    background-color: #221D57;
+    color: #F6F6F6;
+    border: none;
+    border-radius: 10px;
+    padding: 0.3rem;
+    font-family: var(--roboto);
+    text-decoration: none;
+}
+.botao-ler-resenha{
+    text-decoration: none;
+    width: 5.6rem;
+    align-self: flex-end;
+    font-size: 1rem;
+    background-color: #221D57;
+    color: #F6F6F6;
+    border: none;
+    border-radius: 10px;
+    padding: 0.3rem;
+    font-family: var(--roboto);
+}
+.block-resenhas{
+    border: 2px solid #D0C5FF;
+    border-radius: 1.5rem;
+    padding: 0rem 2rem 2rem 2rem;
+}
+.block-resenhas p{
+    color: #221D57;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: var(--montserrat);
+}
+.resenhas{
+    height: 22rem;
+    overflow-y: scroll;
+}
+.resenhas .card-resenhas{
+    border: 2px solid #D0C5FF;
+    border-radius: 1.5rem;
+    padding: 1rem 2rem 2rem 2rem;
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+.resenhas .card-resenhas-content p{
+    font-family: var(--roboto);
+    color: black;
+    font-weight: 400;
+}
+.resenhas .card-resenhas-content p strong{
+    font-weight: bold;
+}
+.resenhas .card-resenhas-content .botado{
+    border: none;
+    background-color: #221D57;
+    color: white;
+    border-radius: 1.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.mensagem{
+    font-family: var(--roboto);
+    color: #221D57;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 1.2rem;
+}

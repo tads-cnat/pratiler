@@ -1,0 +1,36 @@
+<div class="comentario">
+    <div class="nome-botao-seguir-data">
+        <div class="perfil">
+            <img src="../static/images/foto-perfil.png">
+            <div class="nome">
+                <p>
+                    {{ comentario.leitor.user.first_name }}
+                </p>
+                <a href="{% url 'pagina_leitor' comentario.leitor.id_username %}">@{{ comentario.leitor.user.username}}</a>
+            </div>
+            {% if comentario.leitor in user.usuario.seguindo.all %}
+            {% else %}
+                <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}" class="botao-seguir">Seguir</a>
+            {% endif %}
+        </div>
+        
+        <p class="data">
+            {{ comentario.data_hora|date:"d M, Y" }}
+        </p>
+    </div>
+    <p class="titulo-autor">
+        {{ comentario.livro.titulo }} - {{ comentario.livro.autor.nome }}
+    </p>
+    <p class="paginas">
+        Da página {{comentario.pagina_final}} até a página {{comentario.livro.n_paginas}}.
+    </p>
+    <p>
+        {{ comentario.texto }}
+    </p>
+    
+    
+    <form method="post" action="{% url 'CurtirComentario' comentario.id %}">
+        {% csrf_token %}
+        <button type="submit">Curtir</button>
+    </form>
+</div>

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}">
+    {% block head %}
+    {% endblock %}
+    <title>{% block titulo %} Pratiler | Base {% endblock %}</title>
+  </head>
+  <body>
+    <nav>
+      <div class="search-bar">
+        <h1>
+          <a href="{% url 'feed' %}">
+            <img src="{% static 'images/pratiler-logo.png' %}" class="logo">
+          </a>
+        </h1>
+        <div class="barra-meu-perfil">
+          <form class="header__search" method="get" action="{% url 'livros_pesquisa' %}">
+            <label>
+              <input name="q" placeholder="Pesquisar..." />
+            </label>
+          </form>
+          <a href="{% url 'pagina_leitor' user.usuario.id_username %}" class="meu-perfil">
+            <img  src="{% static 'images/perfil.png' %}">
+            <p>Meu perfil</p>
+          </a>
+        </div>
+      </div>
+      {% block navbar %}
+      <div class="nav-bar">
+        <ul>
+          <li>
+            <img src="{% static 'images/livro-icone.png' %}" style="align-self: center"> 
+            <a href="{% url 'minha_estante' %}">
+              Minha estante
+            </a>
+          </li>
+          <li>
+            <img src="{% static 'images/estrela-icone.png' %}" style="align-self: center">
+            <a href="{% url 'livros_populares' %}">  
+              Livros populares
+            </a>
+          </li>
+          <li>
+            <img src="{% static 'images/comentario-1-icone.png' %}" style="align-self: center">
+            <a href="{% url 'feed' %}">  
+              Publicações populares
+            </a>
+          </li>
+          <li>
+            <img src="{% static 'images/seguindo-icone.png' %}" style="align-self: center">
+            <a href="{% url 'seguindo' %}">   
+              Seguindo
+            </a>
+          </li>
+        </ul>
+      </div>
+      {% endblock %}
+    </nav>
+    {% block conteudo %}
+    {% endblock %}
+  </body>
+</html>

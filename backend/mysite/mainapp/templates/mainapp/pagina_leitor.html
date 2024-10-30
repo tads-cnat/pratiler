@@ -1,0 +1,43 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+    {% block titulo %}{{ leitor.id_username }}{% endblock %}
+    {% block head %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/postar_comentario.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/perfil.css' %}">
+    {% endblock %}
+
+{% block conteudo %}
+    <div class="card-profile">
+        <img src="{% static 'images/img-perfil.png'%}" alt="Imagem de perfil">
+        <div class="card-profile-content">
+            <p class="card-profile-name"><strong>{{ leitor.user.first_name }}</strong></p>
+            <p class="card-profile-nickname">@{{ leitor.id_username }}</p>
+            <p>{{ leitor.descricao }}</p>
+            {% if leitor != user.usuario %}
+                {% if leitor in user.usuario.seguidores_de.all %}
+                    <a class="seguindo" href="{% url 'seguir_leitor' leitor.id_username %}">Seguindo</a>
+                {% else %}
+                    <a class="seguir" href="{% url 'seguir_leitor' leitor.id_username %}">Seguir leitor</a>
+                {% endif %} 
+            {% endif %}
+            <p> {{ leitor.seguidores.count }} seguidores {{ leitor.seguindo.count }} seguindo</p>
+            {% if leitor == user.usuario %}
+                <p><span class="icon-perfil-profile"><img src="{% static 'images/configuracoes-icon.svg' %}" alt=""></span>Configurações</p>
+                <a href="{% url 'logout' %}">Sair</a>
+            {% endif %}
+
+        </div>
+    </div>
+    <div class="estilo-hr-div"></div>
+<!-- Nav com opções -->
+    <div class="perfil-nav">
+        <ul>
+           <li>
+                <span class="icon-perfil-nav"><img src="{% static 'images/minha-estante-icon.svg' %}" alt="icone"></span><a href="{% url 'estante_leitor' leitor.id_username %}">Minha estante</a>
+                <span class="icon-perfil-nav"><img src="{% static 'images/resenhas-icon.svg' %}" alt="icone"></span><a href="{% url 'resenhas_leitor' leitor.id_username %}">Resenhas</a>
+                <span class="icon-perfil-nav"><img src="{% static 'images/publicacoes-icon.svg' %}" alt="icone"></span><a href="{% url 'publicacoes_recentes_leitor' leitor.id_username %}">Publicações recentes</a>
+           </li>
+        </ul>
+    </div>
+    {% block main %}{% endblock %}
+{% endblock %}
