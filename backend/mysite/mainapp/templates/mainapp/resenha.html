@@ -1,0 +1,19 @@
+{% extends 'mainapp/pagina_leitor.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/perfil_usuario_nav.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/resenhaunica.css' %}">
+<!-- Página que aparece a resenha escolhida do leitor que tá logado, a própria resenha -->
+{% endblock %}
+{% block main %}
+    <!-- Resenha solicitada : -->
+    {% if resenha %}
+    <div class="card-resenha-aberta">
+        <div class="conteudo-card-resenha-aberta">
+            <h1 class="resenha-aberta-titulo">{{ resenha.titulo }}</h1>
+            <h2 class="resenha-aberta-nome-livro">Livro '{{resenha.livro.titulo}}'</h2>
+            <p class="resenha-aberta-texto">{{ resenha.texto }}</p>
+        </div>
+    </div>
+    {% endif %}
+{% endblock%}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PraTiLer | Entrar</title>
+    <link rel="stylesheet" href="{% static 'css/authlc.css'%}">
+</head>
+<body>
+    <div class="tela">
+        <div class="header-auth">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'images/pratiler-logo.png' %}" width="20%" alt="">
+            </a>
+            <div class="content">
+                <h1>
+                    Não possui uma conta ainda?
+                </h1>
+                <h2>
+                    Cadastre-se na nossa rede!
+                </h2>
+                <a href="{% url 'cadastro' %}">Criar conta</a>
+            </div>
+        </div>
+        <div class="auth-wrapper">
+            <div class="auth">
+                <h1 class="auth-title">Login</h1>
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                <form action="#" class="auth-form" method="post">
+                    {% csrf_token %}
+                    <div class="auth-input-wrapper">
+                        <div class="auth-input">
+                            <input type="text" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="auth-input">
+                            <input type="password" name="senha" placeholder="Senha" required>
+                        </div>
+                    </div>
+                    <div class="auth-submit">
+                        <input type="submit" value="Login">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

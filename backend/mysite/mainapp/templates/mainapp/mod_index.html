@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Pratiler</title>
+    <link rel="stylesheet" href="{% static 'css/navbar.css'%}">
+    <link rel="stylesheet" href="{% static 'css/auth.css'%}">
+    <link rel="stylesheet" href="{% static 'css/mod.css'%}">
+</head>
+    <body>
+        <nav>
+            <div class="header-auth">
+                <h1><a href="{% url 'index' %}">PraTiLer</a></h1>
+            </div>
+        </nav>
+        <div class="conteudo">
+            <h1>Livros</h1>
+            <p class="options"><a href="{% url 'adicionar' %}">Adicionar livro</a></p>
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+                {% for livro in livros %}
+                    <div class="livro">
+                        <h3>{{ livro.titulo }} - {{ livro.autor.nome }}</h3><img src="{{ livro.capa.url }}" alt=""><br>
+                            <p>&emsp;{{ livro.descricao }}</p>
+                            <p class="options"><a href="{% url 'editar' livro.isbn %}">Editar livro</a> <a href="{% url 'deletar' livro.isbn %}">Excluir livro</a></p><br>
+                    </div>
+                {% endfor %}
+        </div>
+    </body>
+</html>

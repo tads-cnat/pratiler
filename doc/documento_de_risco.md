@@ -28,12 +28,10 @@ Plano de Contingência: Escolha de um mediador para itervir entre os interessado
 
 Id: R03
 
-Nome: Orçamento.
+Nome: Saída de integrantes da equipe
 
-Descrição: Erro no cálculo de custos e orçamento.
+Descrição: Saída de integrantes da equipe, gerando desistabilização das tarefas e sobrecarga dos outros participantes.
 
-Indicador: Custos elevados, com tarefas ainda em andamento.
+Estratégia de Mitigação: Divisão mais elaborada das tarefas e discussão com o orientador do projeto para ajudar a organizar melhor as tarefas para equipe de uma forma que seja possível trabalhar de forma eficiente. 
 
-Estratégia de Mitigação: Orçamento bem definido, e respeito aos requisitos propostos, sem alterações futuras.
-
-Plano de Contingência: Negociação de projeto e reorganização de custos.
+Plano de Contingência: Contratar outra pessoa para equipe. 

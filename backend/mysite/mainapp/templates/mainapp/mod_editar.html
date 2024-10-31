@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Pratiler</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css'%}">
+</head>
+    <body>
+        <div>
+            <div class="header-auth">
+                <h1><a href="{% url 'index' %}">PraTiLer</a></h1>
+            </div>
+        </div>
+        <div>
+            <form action="{% url 'editar_livro' livro.isbn %}" method="post">
+                {% csrf_token %}
+                <label for="titulo">Título: 
+                    <input type="text" value="{{ livro.titulo }}" name="titulo">
+                </label>
+                <label for="descricao">Descrição: 
+                    <textarea name="descricao">{{ livro.descricao }}</textarea>
+                </label>
+                <label for="isbn">ISBN: 
+                    <input type="text" value="{{ livro.isbn }}" name="isbn">
+                </label>
+                <label for="n_paginas">Nº de páginas: 
+                    <input type="number" value="{{ livro.n_paginas }}" name="n_paginas">
+                </label>
+                <label for="capa">Capa: 
+                    <input type="file" value="{{ livro.capa }}" name="capa" accept="image/*">
+                </label>
+                <label for="autor">Autor: 
+                    <select name="autor">
+                        {% for autor in autores %}
+                            <option value="{{ autor }}">{{ autor.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <input type="submit" value="Atualizar">
+            </form>
+        </div>
+    </body>
+</html>

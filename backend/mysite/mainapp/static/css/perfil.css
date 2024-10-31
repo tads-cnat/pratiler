@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+:root{
+    --montserrat: "Montserrat", sans-serif;
+    --roboto: "Roboto Flex", sans-serif;
+}
+.perfil-nav ul, ol{
+    list-style: none;
+}
+.perfil-nav a{
+    text-decoration: none;
+    margin-left: 0.5rem;
+    font-family: var(--montserrat);
+    color: #221D57;
+}
+.perfil-nav{
+    text-align: center;
+    margin-bottom: 1.2rem;
+}
+.card-profile{
+    margin-top: 2rem;
+    margin-left: 3rem;
+    margin-right: 1rem;
+    display: flex;
+    gap: 2rem;
+    font-family: var(--roboto);
+    margin-bottom: 2rem;
+}
+.card-profile img {
+    width: 148px;
+    height: 148px;
+}
+.card-profile strong{
+    color: #221D57;
+    font-weight: bold;
+}
+.card-profile-name{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    align-items: first baseline;
+    color: #221D57;
+}
+.card-profile-nickname{
+    margin-top: 0;
+    color: #221D57;
+}
+.estilo-hr-div{
+    border: 0;
+    border-top: 2px solid #E1DAFF;
+    width: 100%;
+    height: 1px;
+}
+.icon-perfil-nav{
+    width: 0.5rem;
+    height: 0.5rem;
+    vertical-align: middle;
+    margin-left: 1rem;
+}
+.icon-perfil-profile img{
+    width: 1.4rem;
+    height: 1.4rem;
+    vertical-align: middle;
+}
+.icon-perfil-profile{
+    margin-right: 0.3rem;
+}
+.block-resenhas{
+    margin: 0 20%;
+}
+.card-resenhas{
+    padding: 1rem;
+}
+.card-resenhas-2{
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+}
+.card-resenhas-content{
+    width: 70%;
+}
+.card-resenhas-content img{
+    width: 10rem;
+    height: 15rem;
+}
+
+.seguir{
+    background-color: #221D57;
+    color: white;
+}
+
+.seguir, .seguindo{
+    padding: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.seguindo{
+    border: 2px solid #E1DAFF;
+    color: #221D57;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PraTiLer | Cadastro</title>
+    <link rel="stylesheet" href="{% static 'css/authlc.css'%}">
+</head>
+<body>
+    <div class="tela">
+        <div class="header-auth">
+            <a href="{% url 'home' %}"><img src="{% static 'images/pratiler-logo.png' %}" width="20%" alt=""></a>
+            <div class="content">
+                <h1>
+                    Já está cadastrado?
+                </h1>
+                <h2>
+                    Acesse nossa rede com a sua conta!
+                </h2>
+                <a href="{% url 'login' %}">Entrar</a>
+            </div>
+        </div>
+        <div class="auth-wrapper">
+            <h1 class="auth-title">Cadastro</h1>
+            <form action="#" class="auth-form" method="post">
+                {% csrf_token %}
+                <div class="auth-input-wrapper">
+                    <div class="auth-input">
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="auth-input">
+                        <input type="text" name="primeiro_nome" placeholder="Primeiro nome" required>
+                    </div>
+                    <div class="auth-input">
+                        <input type="text" name="username" placeholder="Nome de usuario" required>
+                    </div>
+                    <div class="auth-input">
+                        <input type="password" name="senha" placeholder="Senha" required>                    
+                    </div>
+                </div>
+                <div class="auth-submit">
+                    <input type="submit" value="Cadastre-se">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
