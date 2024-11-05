@@ -1,0 +1,24 @@
+:root{
+    /* Fontes  */
+    --font-family: "Montserrat", sans-serif;
+    --h1-title: 800 1.5rem/135% var(--font-family) ;
+    --h2-title: 800 1.25rem/140% var(--font-family);
+    --h3-title: 600 1rem/140% var(--font-family);
+    --text-md: 600 1rem/140% var(--font-family);
+
+    /* Cores */
+    --night: #131313;
+    --penn-blue: #221D57;
+    --ultra-violet: #6761A8;
+    --periwinkle: #D0C5FF;
+    --periwinkle-light: #E1DAFF;
+    --chartreuse: #D5F000;
+    --plum: #F399DD;
+    --white: #f6f6f6;
+}
+
+.container{
+    background-color: var(--penn-blue);
+    width: 50%;
+    display: flex;
+}
