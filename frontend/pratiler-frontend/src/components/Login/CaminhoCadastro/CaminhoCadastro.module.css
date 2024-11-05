@@ -18,6 +18,25 @@
 }
 
 .container{
-    background-color: var(--penn-blue);
+    background-color: var(--periwinkle-light);
     width: 50%;
+    color: var(--penn-blue);
+    text-align: center;
+    height: 100vh; 
+    align-content: center;
+}
+
+.container h2{
+    padding: 2rem;
+    font-weight: lighter;
+}
+
+.container input{
+    background-color: var(--penn-blue);
+    border-radius: 15px;
+    padding: 10px;
+    color: var(--white);
+    font-weight: bolder;
+    width: 10rem;
+    border: none;
 }

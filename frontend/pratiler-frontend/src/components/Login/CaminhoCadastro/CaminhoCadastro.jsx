@@ -3,7 +3,13 @@ import caminhoCSS from './CaminhoCadastro.module.css'
 export function CaminhoCadastro(){
     return(
         <div className={caminhoCSS.container}>
-            <p>tatata</p>
+            <h1>
+                Não possui uma conta?
+            </h1>
+            <h2>
+                Cadastre-se na nossa rede!
+            </h2>
+            <input type="button" value="Cadastro"/>
         </div>
     )
 }

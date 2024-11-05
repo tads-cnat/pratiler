@@ -18,7 +18,5 @@
 }
 
 .container{
-    background-color: var(--penn-blue);
-    width: 50%;
     display: flex;
 }
