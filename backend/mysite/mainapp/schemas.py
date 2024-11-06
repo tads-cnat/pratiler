@@ -1,20 +1,33 @@
-from typing import Optional, Literal
-from pydantic import HttpUrl
-from ninja import Schema
+from ninja import ModelSchema
+from django.contrib.auth.models import User
+from .models import Autor, Livro, Leitor
 
-class LivroSchema(Schema):
-    id: int
-    titulo:str 
-    descricao:Optional[str]
-    capa:  Optional[HttpUrl]
-    isbn: str
-    n_paginas:int
-    autor:str 
+class AutorSchema(ModelSchema):
+    class Config:
+        model = Autor
+        model_fields = '__all__'  # Defini todos os campos para a API
 
-class AutorSchema(Schema):
-    id: int
-    nome: str
+class LivroSchema(ModelSchema):
+    class Config:
+        model = Livro 
+        model_fields = '__all__'
 
-# falta comentario, resenha, avaliacao, curtida e interage 
+class UserSchema(ModelSchema):
+    class Config:
+        model = User
+        model_fields = ['id', 'username', 'email', 'first_name', 'last_name']
 
+class LeitorSchema(ModelSchema):
+    class Config:
+        model = Leitor
+        model_fields = '__all__'
 
+# class ResenhaSchema(ModelSchema):
+#     class Config:
+#         model = Resenha 
+#         model_fields = ['id', 'livro', 'leitor', 'texto', 'data_hora']
+
+# class ComentarioSchema(ModelSchema):
+#     class Config:
+#         model = Comentario  
+#         model_fields = ['id', 'livro', 'leitor', 'texto', 'data_hora', 'pagina_final']
