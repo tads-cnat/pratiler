@@ -1,11 +1,6 @@
 from django.contrib import admin
-from .models import *
+from .models import Autor, Livro, Leitor
 
-admin.site.register(Usuario)
 admin.site.register(Autor)
 admin.site.register(Livro)
-admin.site.register(Comentario)
-admin.site.register(Interage)
-admin.site.register(Resenha)
-admin.site.register(Avaliacao)
-admin.site.register(Curtida)
+admin.site.register(Leitor)
