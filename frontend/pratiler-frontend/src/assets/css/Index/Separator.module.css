@@ -1,0 +1,6 @@
+.separator {
+    margin-block: 48px;
+    height: 4px;
+    width: 100%;
+    background-color: var(--periwinkle);
+}
