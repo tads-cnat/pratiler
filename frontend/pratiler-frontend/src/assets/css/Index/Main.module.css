@@ -1,0 +1,46 @@
+.section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-inline: 10%;
+    padding-block: 4rem;
+    justify-content: space-between;
+}
+
+.section img {
+    height: 468px;
+    width: auto;
+    padding-block-start: 4rem;
+}
+
+.section_text_btn {
+    display:flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 700px;
+}
+
+.section_text_btn p {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--penn-blue);
+    line-height: 135%;
+}
+
+.section_text_btn strong {
+    font-weight: 800;
+    color: #4D45A5;
+}
+
+.section_text_btn button {
+    max-width: 220px;
+    border: none;
+    font:var(--h2-title) ;
+    background-color: var(--penn-blue);
+    color: var(--white);
+    border-radius: 16px;
+    padding-block: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}

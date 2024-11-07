@@ -1,4 +1,4 @@
-import loginCss from './LoginFormulario.module.css'
+import loginCss from '../../assets/css/Login/LoginFormulario.module.css'
 
 export function LoginFormulario(){
     return(

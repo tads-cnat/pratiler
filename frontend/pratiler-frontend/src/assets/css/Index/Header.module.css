@@ -1,0 +1,47 @@
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline: 4%;
+    padding-block: 3rem;
+}
+.logo {
+    height: 36px;
+    width: auto;
+}
+
+.buttons {
+    display: flex;
+    gap: 24px;
+}
+.buttons button {
+    border: none;
+    cursor: pointer;
+}
+.box_in {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.box_in img {
+  height: 24px;
+  width: auto;  
+}
+
+.box_in span {
+    font: var(--h2-title);
+    color: var(--penn-blue);
+    font-weight: 600;
+}
+
+.btn_register{
+    background-color: var(--penn-blue);
+    color: var(--white);
+    font: var(--h2-title);
+    font-weight: 600;
+    padding-block: 12px;
+    padding-inline: 26px;
+    border-radius: 16px;
+}

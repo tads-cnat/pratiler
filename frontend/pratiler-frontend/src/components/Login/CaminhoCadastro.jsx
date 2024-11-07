@@ -1,4 +1,4 @@
-import caminhoCSS from './CaminhoCadastro.module.css'
+import caminhoCSS from '../../assets/css/Login/CaminhoCadastro.module.css'
 
 export function CaminhoCadastro(){
     return(
