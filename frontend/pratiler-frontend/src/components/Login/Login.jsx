@@ -5,8 +5,8 @@ import { LoginFormulario } from "./LoginFormulario";
 export function Login(){
     return(
         <div className={loginCss.container}>
-            <CaminhoCadastro></CaminhoCadastro>
-            <LoginFormulario></LoginFormulario>
+            <CaminhoCadastro />
+            <LoginFormulario />
         </div>
     )
 }

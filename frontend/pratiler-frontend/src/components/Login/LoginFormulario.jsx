@@ -1,5 +1,5 @@
 import loginCss from '../../assets/css/Login/LoginFormulario.module.css'
-
+import { Button } from '../Utilities/Button'
 import { Link } from 'react-router-dom'
 
 export function LoginFormulario(){
@@ -10,8 +10,8 @@ export function LoginFormulario(){
                 <input type="text" placeholder='Email' className={loginCss.inputText}/>
                 <input type="text" placeholder='Senha' className={loginCss.inputText}/>
                 <p>Recuperar senha?</p>
-                <Link to='/livros'>
-                    <input type="submit" value="Entrar" className={loginCss.inputSubmit}/>
+                <Link to='/livros' className={loginCss.inputSubmit}>
+                    <Button type="submit" name="Entrar"/>
                 </Link>
             </form>
         </div>
