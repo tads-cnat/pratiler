@@ -51,11 +51,14 @@
 }
 
 .inputSubmit{
+    margin: auto;
+    margin-top: 1rem;
+}
+
+.inputSubmit input{
     background-color: var(--penn-blue);
     border-radius: 15px;
     padding: 10px;
-    margin: auto;
-    margin-top: 1rem;
     color: var(--white);
     font-weight: bolder;
     width: 10rem;
