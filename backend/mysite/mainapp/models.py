@@ -66,18 +66,18 @@ class Livro(models.Model):
 #         unique_together = ('livro', 'leitor')
 #         verbose_name_plural = "Interações"
 
-# class Resenha(models.Model):
-#     # Um livro pode ter muitas avaliações, mas um leitor pode fazer apenas 
-#     # uma avaliação por livro
-#     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
-#     leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
-#     titulo = models.CharField(max_length=120)
-#     texto = models.TextField()
-#     data_hora = models.DateTimeField(auto_now_add=True)
-#     def __str__(self):
-#         return f"{self.titulo} - {self.leitor.id_username}"
-#     class Meta:
-#         unique_together = ('livro', 'leitor')
+class Resenha(models.Model):
+     # Um livro pode ter muitas avaliações, mas um leitor pode fazer apenas 
+     # uma avaliação por livro
+     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
+     leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
+     titulo = models.CharField(max_length=120)
+     texto = models.TextField()
+     data_hora = models.DateTimeField(auto_now_add=True)
+     def __str__(self):
+         return f"{self.titulo} - {self.leitor.id_username}"
+     class Meta:
+         unique_together = ('livro', 'leitor')
 
 # class Avaliacao(models.Model):
 #     # Só pode ter uma avaliação de um leitor por livro

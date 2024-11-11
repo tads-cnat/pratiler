@@ -1,6 +1,6 @@
 from ninja import ModelSchema
 from django.contrib.auth.models import User
-from .models import Autor, Livro, Leitor
+from .models import Autor, Livro, Leitor, Resenha
 
 class AutorSchema(ModelSchema):
     class Config:
@@ -22,10 +22,10 @@ class LeitorSchema(ModelSchema):
         model = Leitor
         model_fields = '__all__'
 
-# class ResenhaSchema(ModelSchema):
-#     class Config:
-#         model = Resenha 
-#         model_fields = ['id', 'livro', 'leitor', 'texto', 'data_hora']
+class ResenhaSchema(ModelSchema):
+     class Config:
+         model = Resenha 
+         model_fields = ['id', 'livro', 'leitor', 'texto', 'data_hora']
 
 # class ComentarioSchema(ModelSchema):
 #     class Config:
