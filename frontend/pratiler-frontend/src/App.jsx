@@ -16,6 +16,8 @@ import { SectionInverted } from './components/Index/SectionInverted'
 import girlReading from './assets/img/menina-lendo.png'
 import sereia from './assets/img/sereia.png'
 import gnomo from './assets/img/duende.png'
+import { Bookcase } from './components/Bookcase/Bookcase';
+import { Cadastro } from './components/Cadastro/Cadastro';
 
 
 
@@ -27,6 +29,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path='/livros' element={<Bookcase />} />
+          <Route path='/cadastro' element={<Cadastro />} />
         </Routes>
       </Router>
       
