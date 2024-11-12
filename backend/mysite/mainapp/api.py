@@ -1,3 +1,4 @@
+from django.conf import settings
 from ninja import NinjaAPI
 from ninja.responses import JsonResponse # Retornar Json ao inves de Dict
 from .schemas import AutorSchema, LivroSchema, LeitorSchema, UserSchema
@@ -13,7 +14,23 @@ def listar_autores(request):
 @api.get("/livros", response=list[LivroSchema])
 def listar_livros(request):
     """Lista todos os livros."""
-    return Livro.objects.all()
+    livros = Livro.objects.all()
+    livros_resposta = []
+
+    for livro in livros:
+        livro_data = {
+            "id": livro.id,
+            "titulo": livro.titulo,
+            "descricao": livro.descricao,
+            "paginas": livro.n_paginas,
+            "isbn": livro.isbn,              
+            "n_paginas": livro.n_paginas,    
+            "autor_id": livro.autor_id,
+            "capa": f"http://127.0.0.1:8000{livro.capa.url.replace('/media', '')}" if livro.capa else None,
+        }
+        livros_resposta.append(livro_data)
+
+    return livros_resposta
 
 @api.get("/leitores", response=list[LeitorSchema])
 def listar_leitores(request):
