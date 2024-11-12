@@ -42,7 +42,7 @@ def listar_user_do_leitor(request, leitor_id: int):
     except Leitor.DoesNotExist:
         return JsonResponse({"detalhe": "leitor não encontrado"}, status=404)
 
-@api.get("/resenhas", response=list[LivroSchema])
+@api.get("/resenhas", response=list[ResenhaSchema])
 def listar_resenhas(request):
     """Lista todoas as resenhas."""
     return Resenha.objects.all()

@@ -75,7 +75,7 @@ class Resenha(models.Model):
      texto = models.TextField()
      data_hora = models.DateTimeField(auto_now_add=True)
      def __str__(self):
-         return f"{self.titulo} - {self.leitor.id_username}"
+         return f"{self.titulo}" # apaguei - {self.leitor.id_username} porque nao tem mais
      class Meta:
          unique_together = ('livro', 'leitor')
 
