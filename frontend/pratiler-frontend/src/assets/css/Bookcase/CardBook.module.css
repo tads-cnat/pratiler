@@ -1,0 +1,41 @@
+.card {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.description h3 {
+    color: var(--penn-blue);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.description p {
+    font: var(--text-md);
+    font-size: 0.875rem;
+    color: var(--night);
+    font-weight: 500;
+}
+
+.description button {
+    align-self: flex-start;
+    border: none;
+    background-color: var(--penn-blue);
+    color: var(--white);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
