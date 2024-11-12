@@ -1,4 +1,4 @@
-import loginCss from '../../assets/css/Login/LoginFormulario.module.css'
+import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css'
 import { Button } from '../Utilities/Button'
 import { Link } from 'react-router-dom'
 

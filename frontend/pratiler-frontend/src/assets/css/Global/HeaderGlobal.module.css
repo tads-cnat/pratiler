@@ -1,0 +1,98 @@
+.header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--periwinkle-light);
+    padding-block: 1.25rem;
+    align-items: center;
+    padding-inline: 4%;
+}
+
+
+.logo {
+    height: 2.25rem;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    gap: 2.25rem;
+    align-items: center;
+}
+
+.info form {
+    width: max-content;
+    padding: 0.5rem;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 0.750rem;
+}
+
+.info form input {
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.perfilBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.icon {
+    height: 2rem;
+    width: 2rem;
+    background-color: var(--penn-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.titlePerfil{
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--penn-blue);
+    cursor: pointer;
+}
+
+.secondHeader{
+    width: 100%;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.13);
+
+}
+
+.secHeaderContent{
+    max-width: 1440px;
+    display: flex;
+    padding: 1rem;
+    gap: 3rem;
+}
+
+.secHeaderContent a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    text-decoration: none;
+}
+
+.secHeaderContent a span {
+    color: var(--penn-blue);
+    font-size: 1rem;
+    font-weight: 400;
+}
