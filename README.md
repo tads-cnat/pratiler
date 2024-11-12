@@ -23,3 +23,7 @@ Sistema de leitura que promove a organização e o registro das leituras e a com
 # Manual da Desenvolvedor
 
 [Orientações para os desenvolvedores do projeto](doc/guia-ds/guia.md)
+
+# Rodar projeto React
+- Entrar na pasta pratiler-frontend
+- Rodar no terminal o comando .\script.ps1
