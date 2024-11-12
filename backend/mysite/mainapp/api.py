@@ -45,7 +45,7 @@ def listar_user_do_leitor(request, leitor_id: int):
 @api.get("/resenhas", response=list[LivroSchema])
 def listar_resenhas(request):
     """Lista todoas as resenhas."""
-    return Resenha.Objects.all()
+    return Resenha.objects.all()
 
 # fazer os POSTS
 ## Não vai ter post livro no momento porque vamos consumir uma API depois ao invés de criar os livros manualmente
@@ -61,10 +61,34 @@ def criar_resenha(request, data: ResenhaSchema):
          # Verifica se já existe uma resenha desse leitor para este livro
         if not Resenha.objects.filter(livro=livro, leitor=leitor).exists():
             # se  não existe, cria resenha
+            resenha = Resenha.objects.create(
+                 livro=livro,
+                leitor=leitor,
+                texto=data.texto,
+                data_hora=data.data_hora
+            )
+            return resenha
 
-
-
+        else:
+            return JsonResponse({"detalhe": "Resenha já existe para este livro e leitor."}, status=400)
+        
 # fazer os PUTS
+@api.put("/resenhas/{resenha_id}", response=ResenhaSchema) 
+def atualizar_resenha(request, resenha_id: int, data: ResenhaSchema):
+    """Atualiza uma resenha existente."""
+    resenha = get_object_or_404(Resenha, id=resenha_id) # seleciona a resenha pelo id
+
+    for attr, value in data.dict().items():
+        setattr(resenha, attr, value)
+
+        resenha.save()
+        return resenha
+    
 
 
 # fazer os DELETES
+@api.delete("/resenhas/{resenha_id}", response={204: None})
+def deletar_resenha(request, resenha_id: int):
+    resenha = get_object_or_404(Resenha, id=resenha_id)
+    resenha.delete()
+    return 204, None
