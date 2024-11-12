@@ -1,4 +1,4 @@
-import cadastroCss from '../../assets/css/Login/Login.module.css'
+import cadastroCss from '../../assets/css/LoginCadastro/LoginCadastro.module.css'
 import { CaminhoLogin } from './CaminhoLogin'
 import { CadastroFormulario } from './CadastroFormulario'
 

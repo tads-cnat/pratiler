@@ -1,4 +1,4 @@
-import caminhoCSS from '../../assets/css/Login/CaminhoCadastro.module.css'
+import caminhoCSS from '../../assets/css/LoginCadastro/Caminho.module.css'
 import { Button } from '../Utilities/Button'
 import { Link } from 'react-router-dom'
 
