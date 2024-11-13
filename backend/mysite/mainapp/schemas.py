@@ -25,7 +25,7 @@ class LeitorSchema(ModelSchema):
 class ResenhaSchema(ModelSchema):
      class Config:
          model = Resenha 
-         model_fields = ['id', 'livro', 'leitor', 'texto', 'data_hora']
+         model_fields = '__all__' 
 
 # class ComentarioSchema(ModelSchema):
 #     class Config:

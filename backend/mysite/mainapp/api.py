@@ -13,7 +13,7 @@ def listar_autores(request):
     """Lista todos os autores."""
     return Autor.objects.all()
 
-@api.get("/livros", response=list[LivroSchema])
+@api.get("/livros", response=list[LivroSchema]) 
 def listar_livros(request):
     """Lista todos os livros."""
     return Livro.objects.all()
@@ -62,7 +62,8 @@ def criar_resenha(request, data: ResenhaSchema):
         if not Resenha.objects.filter(livro=livro, leitor=leitor).exists():
             # se  não existe, cria resenha
             resenha = Resenha.objects.create(
-                 livro=livro,
+                livro=livro,
+                titulo=data.titulo,
                 leitor=leitor,
                 texto=data.texto,
                 data_hora=data.data_hora
@@ -78,14 +79,18 @@ def atualizar_resenha(request, resenha_id: int, data: ResenhaSchema):
     """Atualiza uma resenha existente."""
     resenha = get_object_or_404(Resenha, id=resenha_id) # seleciona a resenha pelo id
 
-    for attr, value in data.dict().items():
-        setattr(resenha, attr, value)
+    livro = get_object_or_404(Livro, id=data.livro)
+    leitor = get_object_or_404(Leitor, id=data.leitor)
 
-        resenha.save()
-        return resenha
+    resenha.livro = livro
+    resenha.titulo = data.titulo
+    resenha.leitor = leitor
+    resenha.texto = data.texto
+    resenha.data_hora = data.data_hora
+
+    resenha.save()
+    return resenha
     
-
-
 # fazer os DELETES
 @api.delete("/resenhas/{resenha_id}", response={204: None})
 def deletar_resenha(request, resenha_id: int):
