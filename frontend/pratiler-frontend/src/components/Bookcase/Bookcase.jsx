@@ -21,7 +21,7 @@ export function Bookcase() {
             const response = await axios.get('http://127.0.0.1:8000/api/livros')
             setBooks(response.data)
         } catch (error) {
-            console.error("Erro ao buscar Lviros: ", error);
+            console.error("Erro ao buscar Livros: ", error);
             setError("Erro ao mostrar os Livros")
         } finally {
             setLoading(false);
