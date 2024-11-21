@@ -41,9 +41,9 @@ def user(request):
 
 
 @api.post("/register")
-def register(request, payload: schemas.SignInSchema):
+def register(request, payload: schemas.RegisterSchema):
     try:
-        models.Leitor.objects.create_user(username=payload.email, email=payload.email, password=payload.password)
+        models.Leitor.objects.create_user(username=payload.username, email=payload.email, password=payload.password)
         return {"success": "User registered successfully"}
     except Exception as e:
         return {"error": str(e)}
