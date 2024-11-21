@@ -5,10 +5,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.middleware.csrf import get_token
 from ninja.responses import JsonResponse
 
-from . import schemas
+from . import schemas, models
 
 from .schemas import AutorSchema, LivroSchema, LeitorSchema, UserSchema
-from .models import Autor, Livro, Leitor
 
 # API com CSRF ativado para autenticação e endpoints sensíveis
 api = NinjaAPI(csrf=True)
@@ -62,7 +61,7 @@ def listar_autores(request):
 @api.get("/livros", response=list[LivroSchema])
 def listar_livros(request):
     """Lista todos os livros."""
-    livros = Livro.objects.all()
+    livros = models.Livro.objects.all()
     livros_resposta = []
 
     for livro in livros:
