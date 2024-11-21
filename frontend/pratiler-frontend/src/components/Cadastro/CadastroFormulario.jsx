@@ -1,20 +1,76 @@
+/* eslint-disable no-unused-vars */
 import cadastroCss from '../../assets/css/LoginCadastro/Formulario.module.css'
 import { Button } from '../Utilities/Button'
-import { Link } from 'react-router-dom'
+
+import { useNavigate } from 'react-router-dom';
+import { getCookie } from '../Global/authStore';
+
+import axios from 'axios'
+import { useState } from "react"
 
 export function CadastroFormulario(){
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+    });
+
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(false);
+
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    // Enviando os dados do formulário para a API
+    const handleSubmit = async (e) => {
+        e.preventDefault(); 
+        setError(null);
+
+        try {
+            const csrftoken = getCookie('csrftoken'); 
+            const response = await axios.post(
+                'http://localhost:8000/api/register',
+                formData,
+                {
+                    headers: {
+                        'X-CSRFToken': csrftoken,
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true,
+                }
+            );
+            
+            if (response.data.success) {
+                setSuccess(true);
+                setTimeout(() => navigate('/login'), 1000); // Redireciona para a página de login após 2 segundos
+            } else {
+                setError(response.data.error || 'Ocorreu um erro ao registrar o usuário.');
+            }
+        } catch (err) {
+            setError(err.response?.data?.error || 'Erro no servidor. Tente novamente mais tarde.');
+        }
+    };
+
+
     return(
         <div className={cadastroCss.formularioLogin}>
             <h1>Cadastrar-se</h1>
-            <form className={cadastroCss.formulario}>
-                <input type="text" placeholder='Nome' className={cadastroCss.inputText}/>
-                <input type="text" placeholder='Nome de usuário' className={cadastroCss.inputText}/>
-                <input type="text" placeholder='Email' className={cadastroCss.inputText}/>
-                <input type="text" placeholder='Senha' className={cadastroCss.inputText}/>
-                <Link to='/login' className={cadastroCss.inputSubmit}>
-                    <Button type="submit" name="Criar conta" />
-                </Link>
+            <form className={cadastroCss.formulario} onSubmit={handleSubmit}>
+                {/* <input type="text" placeholder='Nome' className={cadastroCss.inputText}/> */}
+                <input type="text" name='username' placeholder='Nome de usuário' className={cadastroCss.inputText} value={formData.username} onChange={handleChange}/>
+                <input type="text" name='email' placeholder='Email' className={cadastroCss.inputText} value={formData.email} onChange={handleChange}/>
+                <input type="password" name='password' placeholder='Senha' className={cadastroCss.inputText} value={formData.password} onChange={handleChange}/>
+                
+                <Button type="submit" name="Criar conta" />
             </form>
+            {success && <p className={cadastroCss.successMessage}>Conta criada com sucesso! Redirecionando...</p>}
+            {error && <p className={cadastroCss.errorMessage}>{error}</p>}
         </div>
     )
 }
