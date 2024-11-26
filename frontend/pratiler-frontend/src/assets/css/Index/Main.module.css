@@ -15,6 +15,7 @@
 }
 
 .section_text_btn {
+    text-decoration: none;
     display:flex;
     flex-direction: column;
     gap: 24px;
