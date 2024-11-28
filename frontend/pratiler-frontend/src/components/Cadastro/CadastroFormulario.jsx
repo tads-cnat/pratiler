@@ -16,7 +16,7 @@ export function CadastroFormulario(){
     });
 
     const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(false);
+    const [success, setSuccess] = useState(null);
 
     const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ export function CadastroFormulario(){
 
     // Enviando os dados do formulário para a API
     const handleSubmit = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         setError(null);
 
         try {
@@ -47,7 +47,7 @@ export function CadastroFormulario(){
             );
             
             if (response.data.success) {
-                setSuccess(true);
+                setSuccess("Conta criada com sucesso! Redirecionando...");
                 setTimeout(() => navigate('/login'), 1000); // Redireciona para a página de login após 2 segundos
             } else {
                 setError(response.data.error || 'Ocorreu um erro ao registrar o usuário.');
@@ -69,7 +69,7 @@ export function CadastroFormulario(){
                 
                 <Button type="submit" name="Criar conta" />
             </form>
-            {success && <p className={cadastroCss.successMessage}>Conta criada com sucesso! Redirecionando...</p>}
+            {success && <p className={cadastroCss.successMessage}>{success}</p>}
             {error && <p className={cadastroCss.errorMessage}>{error}</p>}
         </div>
     )
