@@ -90,7 +90,7 @@ export function getCookie(name) {
     if (!navigator.cookieEnabled) {
         throw new Error('Cookies are disabled in this browser.');
     }
-
+    document.cookie = fetch("127.0.0.1:8000/api/set-csrf-token").then((response) => response.data)
     const cookies = document.cookie?.split(';') || [];
     const cookie = cookies.find(c => c.trim().startsWith(`${name}=`));
     if (!cookie) {

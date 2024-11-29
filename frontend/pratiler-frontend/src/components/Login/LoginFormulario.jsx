@@ -1,25 +1,43 @@
 /* eslint-disable no-unused-vars */
+import { getCookie } from '../Global/authStore'
+import { useNavigate } from 'react-router-dom'
 import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css'
 import { Button } from '../Utilities/Button'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from "react"
 
 export function LoginFormulario(){
     const [user, setUser] = useState(null)
     const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(null)
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     })
 
-    const fetchLogin = async () => {
+    const navigate = useNavigate()
+
+    const fetchLogin = async (e) => {
+        e.preventDefault();
+        setError(null);
+
         try{
-            const response = await axios.post('http://127.0.0.1:8000/api/login', formData)
-            setUser(response.data)
+            const csrftoken = getCookie('csrftoken')
+            const response = await axios.post('http://localhost:8000/api/login', formData, {
+                    headers: {
+                        'X-CSRFToken': csrftoken,
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true,
+                }
+            )
+            if(response.data.success){
+                setSuccess("Login efetuado com sucesso! Sinta-se a vontade.")
+                setTimeout(() => navigate('/livros'), 1000)
+            }
+            else setError(response.data.message)
         } catch (error){
-            console.error("Erro ao fazer login: ", error)
-            setError("Erro ao fazer login")
+            setError("Erro ao fazer login: " + error)
         }
     }
 
@@ -35,10 +53,11 @@ export function LoginFormulario(){
                 <input type="text" placeholder='Email' className={loginCss.inputText} name="email"  value={formData.email} onChange={handleChange}/>
                 <input type="password" placeholder='Senha' className={loginCss.inputText} name="password" value={formData.password} onChange={handleChange}/>
                 <p>Recuperar senha?</p>
-                <Link to='/livros' className={loginCss.inputSubmitLogin}>
-                    <Button type="submit" name="Entrar"/>
-                </Link>
+                
+                <Button type="submit" name="Entrar"/>
             </form>
+            {success && <p className={loginCss.successMessage}>{success}</p>}
+            {error && <p className={loginCss.errorMessage}>{error}</p>}
         </div>
         
     )
