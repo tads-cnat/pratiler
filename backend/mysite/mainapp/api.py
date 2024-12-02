@@ -19,11 +19,15 @@ def get_csrf_token(request):
 
 @api.post("/login")
 def login_view(request, payload: schemas.SignInSchema):
-    user = authenticate(request, username=payload.email, password=payload.password)
-    if user is not None:
-        login(request, user)
-        return {"success": True}
-    return {"success": False, "message": "Invalid credentials"}
+    try:
+        user = authenticate(request, username=payload.email, password=payload.password)
+        if user is not None:
+            login(request, user)
+            return {"success": True}
+        return {"success": False, "message": "Credenciais inválidas, por favor tente novamente"}
+    except Exception:
+        return {"success": False, "message": "Credenciais inválidas, por favor tente novamente"}
+
 
 
 @api.post("/logout", auth=django_auth)

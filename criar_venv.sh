@@ -13,6 +13,6 @@ source $ENV_NAME/bin/activate
 
 echo "Ambiente virtual '$ENV_NAME' criado e ativado!"
 
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 
 echo "Instalando o requirements.txt com sucesso!"

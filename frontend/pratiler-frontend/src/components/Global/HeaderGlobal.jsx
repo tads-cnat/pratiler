@@ -1,22 +1,31 @@
 /* eslint-disable no-unused-vars */
-import headerCss from '../../assets/css/Global/HeaderGlobal.module.css'
-import { MagnifyingGlass, User, UserPlus, Books, Star, ChatText } from 'phosphor-react'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import pratilerLogo from '../../assets/img/pratiler-logo.png'
+import headerCss from '../../assets/css/Global/HeaderGlobal.module.css';
+import { MagnifyingGlass, User, UserPlus, Books, Star, ChatText } from 'phosphor-react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { getCookie } from '../Global/authStore';
+import pratilerLogo from '../../assets/img/pratiler-logo.png';
+import { useState } from 'react';
 
 export function Header() {
+    const [error, setError] = useState(null);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const logout = () => {
         try{
-            const response = axios.post('http://localhost:8000/api/logout')
-            setTimeout(() => navigate('/'), 1000)
+            const response = axios.post('http://localhost:8000/api/logout', {}, {
+                headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true,
+            });
+            setTimeout(() => navigate('/'), 1000);
         } catch(error){
-            console.log("deu erro viu: " + error)
+            setError("deu erro viu: " + error);
         }
-    }
+    };
 
     return(
         <>
@@ -31,8 +40,9 @@ export function Header() {
                         <div className={headerCss.icon}>
                             <User weight='fill' color='#f6f6f6' size={18} />
                         </div>
-                        <span className={headerCss.titlePerfil}>Walber Ranneire</span>
+                        <span className={headerCss.titlePerfil}>Walber Ranniere</span>
                         <button onClick={logout}>Sair</button>
+                        {error && <p>{error}</p>}
                     </div>
                 </div>
             </header>

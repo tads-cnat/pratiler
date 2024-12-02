@@ -1,5 +1,5 @@
-import mainCss from '../../assets/css/Index/Main.module.css'
-import bookImage from '../../assets/img/home-livros-coracoes.png'
+import mainCss from '../../assets/css/Index/Main.module.css';
+import bookImage from '../../assets/img/home-livros-coracoes.png';
 import { Link } from 'react-router-dom';
 
 
@@ -17,5 +17,5 @@ export function Main(){
                 <img src={bookImage} alt="" />
             </main>
         </>
-    )
+    );
 }
