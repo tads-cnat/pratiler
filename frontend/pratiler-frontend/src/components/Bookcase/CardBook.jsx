@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import cardBookCss from '../../assets/css/Bookcase/CardBook.module.css'
-import { Plus } from 'phosphor-react'
+import cardBookCss from '../../assets/css/Bookcase/CardBook.module.css';
+import { Plus } from 'phosphor-react';
 import PropTypes from 'prop-types';
 
 export function CardBook(props){
@@ -24,4 +24,4 @@ CardBook.propTypes = {
     description: PropTypes.string,
     title: PropTypes.string,
     pages: PropTypes.number,
-}
+};

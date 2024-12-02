@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import sectionCss from '../../assets/css/Index/Section.module.css'
+import sectionCss from '../../assets/css/Index/Section.module.css';
 
 export function SectionInverted(props){
     return (
@@ -12,7 +12,7 @@ export function SectionInverted(props){
                 </div>
             </section>
         </>
-    )
+    );
 }
 
 SectionInverted.propTypes = {

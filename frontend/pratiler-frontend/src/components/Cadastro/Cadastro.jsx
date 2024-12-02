@@ -1,6 +1,6 @@
-import cadastroCss from '../../assets/css/LoginCadastro/LoginCadastro.module.css'
-import { CaminhoLogin } from './CaminhoLogin'
-import { CadastroFormulario } from './CadastroFormulario'
+import cadastroCss from '../../assets/css/LoginCadastro/LoginCadastro.module.css';
+import { CaminhoLogin } from './CaminhoLogin';
+import { CadastroFormulario } from './CadastroFormulario';
 
 export function Cadastro() {
     return (
@@ -8,5 +8,5 @@ export function Cadastro() {
             <CaminhoLogin />
             <CadastroFormulario />
         </div>
-    )
+    );
 }

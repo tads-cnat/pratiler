@@ -1,28 +1,27 @@
 /* eslint-disable no-unused-vars */
-import { getCookie } from '../Global/authStore'
-import { useNavigate } from 'react-router-dom'
-import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css'
-import { Button } from '../Utilities/Button'
-import axios from 'axios'
-import { useState } from "react"
+import { getCookie } from '../Global/authStore';
+import { useNavigate } from 'react-router-dom';
+import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css';
+import { Button } from '../Utilities/Button';
+import axios from 'axios';
+import { useState } from "react";
 
 export function LoginFormulario(){
-    const [user, setUser] = useState(null)
-    const [error, setError] = useState(null)
-    const [success, setSuccess] = useState(null)
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-    })
+    });
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const fetchLogin = async (e) => {
         e.preventDefault();
         setError(null);
 
         try{
-            const csrftoken = getCookie('csrftoken')
+            const csrftoken = getCookie('csrftoken');
             const response = await axios.post('http://localhost:8000/api/login', formData, {
                     headers: {
                         'X-CSRFToken': csrftoken,
@@ -30,14 +29,14 @@ export function LoginFormulario(){
                     },
                     withCredentials: true,
                 }
-            )
+            );
             if(response.data.success){
-                setSuccess("Login efetuado com sucesso! Sinta-se a vontade.")
-                setTimeout(() => navigate('/livros'), 1000)
+                setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
+                setTimeout(() => navigate('/livros'), 1000);
             }
-            else setError(response.data.message)
+            else setError(response.data.message);
         } catch (error){
-            setError("Erro ao fazer login: " + error)
+            setError("Erro ao fazer login: " + error);
         }
     }
 
@@ -59,6 +58,5 @@ export function LoginFormulario(){
             {success && <p className={loginCss.successMessage}>{success}</p>}
             {error && <p className={loginCss.errorMessage}>{error}</p>}
         </div>
-        
-    )
+    );
 }

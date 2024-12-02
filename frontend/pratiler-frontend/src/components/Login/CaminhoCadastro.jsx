@@ -1,6 +1,6 @@
-import caminhoCSS from '../../assets/css/LoginCadastro/Caminho.module.css'
-import { Button } from '../Utilities/Button'
-import { Link } from 'react-router-dom'
+import caminhoCSS from '../../assets/css/LoginCadastro/Caminho.module.css';
+import { Button } from '../Utilities/Button';
+import { Link } from 'react-router-dom';
 
 export function CaminhoCadastro(){
     return(
@@ -15,5 +15,5 @@ export function CaminhoCadastro(){
                 <Button type="button" name="Cadastro"/>
             </Link>
         </div>
-    )
+    );
 }

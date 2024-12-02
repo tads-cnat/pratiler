@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import headerCss from '../../assets/css/Index/Header.module.css'
-import pratilerLogo from "../../assets/img/pratiler-logo.png"
-import iconIn from "../../assets/img/icon-going.png"
+import headerCss from '../../assets/css/Index/Header.module.css';
+import pratilerLogo from "../../assets/img/pratiler-logo.png";
+import iconIn from "../../assets/img/icon-going.png";
 
 
 export function Header(){
@@ -23,5 +23,5 @@ export function Header(){
                 </div>
             </header>
         </>
-    )
+    );
 }

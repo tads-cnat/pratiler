@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import cadastroCss from '../../assets/css/LoginCadastro/Formulario.module.css'
-import { Button } from '../Utilities/Button'
+import cadastroCss from '../../assets/css/LoginCadastro/Formulario.module.css';
+import { Button } from '../Utilities/Button';
 
 import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../Global/authStore';
 
-import axios from 'axios'
-import { useState } from "react"
+import axios from 'axios';
+import { useState } from "react";
 
 export function CadastroFormulario(){
     const [formData, setFormData] = useState({
@@ -72,5 +72,5 @@ export function CadastroFormulario(){
             {success && <p className={cadastroCss.successMessage}>{success}</p>}
             {error && <p className={cadastroCss.errorMessage}>{error}</p>}
         </div>
-    )
+    );
 }

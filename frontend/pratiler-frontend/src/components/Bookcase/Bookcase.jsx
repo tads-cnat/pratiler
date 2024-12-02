@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react"
-import axios from 'axios'
-import { Plus, CaretCircleDown } from 'phosphor-react'
-
+import { useState, useEffect } from "react";
+import axios from 'axios';
+import { getCookie } from "../Global/authStore";
+import { Plus, CaretCircleDown } from 'phosphor-react';
 import { Header } from "../Global/HeaderGlobal";
 import { CardBook } from "./CardBook";
 
@@ -14,15 +14,21 @@ export function Bookcase() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    
-
+    const user = axios.get('http://localhost:8000/api/user', {
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+    });
+    console.log(user)
     const fetchBooks = async () => {
         try{
-            const response = await axios.get('http://127.0.0.1:8000/api/livros')
-            setBooks(response.data)
+            const response = await axios.get('http://localhost:8000/api/livros');
+            setBooks(response.data);
         } catch (error) {
             console.error("Erro ao buscar Livros: ", error);
-            setError("Erro ao mostrar os Livros")
+            setError("Erro ao mostrar os Livros");
         } finally {
             setLoading(false);
         }
@@ -30,8 +36,8 @@ export function Bookcase() {
 
 
     useEffect(() =>{
-        fetchBooks()
-    }, [])
+        fetchBooks();
+    }, []);
 
     if (loading) {
         return <p>Carregando Dados....</p>;
@@ -41,7 +47,7 @@ export function Bookcase() {
 
     return(
         <>
-            <Header />
+            <Header user={user} />
             <div className={bookcaseCss.sectionBox}>
                 <div className={bookcaseCss.listButtons}>
                     <form action="#">
@@ -72,5 +78,5 @@ export function Bookcase() {
                 </div>
             </div>
         </>
-    )
+    );
 }
