@@ -1,10 +1,23 @@
 /* eslint-disable no-unused-vars */
 import headerCss from '../../assets/css/Global/HeaderGlobal.module.css'
 import { MagnifyingGlass, User, UserPlus, Books, Star, ChatText } from 'phosphor-react'
-
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import pratilerLogo from '../../assets/img/pratiler-logo.png'
 
 export function Header() {
+
+    const navigate = useNavigate()
+
+    const logout = () => {
+        try{
+            const response = axios.post('http://localhost:8000/api/logout')
+            setTimeout(() => navigate('/'), 1000)
+        } catch(error){
+            console.log("deu erro viu: " + error)
+        }
+    }
+
     return(
         <>
             <header className={headerCss.header}>
@@ -19,6 +32,7 @@ export function Header() {
                             <User weight='fill' color='#f6f6f6' size={18} />
                         </div>
                         <span className={headerCss.titlePerfil}>Walber Ranneire</span>
+                        <button onClick={logout}>Sair</button>
                     </div>
                 </div>
             </header>
