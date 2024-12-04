@@ -5,10 +5,25 @@ import { getCookie } from "../Global/authStore";
 import { Plus, CaretCircleDown } from 'phosphor-react';
 import { Header } from "../Global/HeaderGlobal";
 import { CardBook } from "./CardBook";
+import { useNavigate } from "react-router-dom";
+
 
 import bookcaseCss from '../../assets/css/Bookcase/Bookcase.module.css';
 
 export function Bookcase() {
+
+    const csrftoken = getCookie('csrftoken');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        async function checkAuth() {
+          const response = await fetch('http://localhost:8000/api/user', { credentials: 'include' });
+          if (!response.ok) {
+            navigate('/login'); // Redireciona para login se não autenticado
+          }
+        }
+        checkAuth();
+    }, [navigate]);
 
     const [books, setBooks] = useState([]);
     const [error, setError] = useState(null);
@@ -21,10 +36,15 @@ export function Bookcase() {
         },
         withCredentials: true,
     });
-    console.log(user)
+    
     const fetchBooks = async () => {
         try{
-            const response = await axios.get('http://localhost:8000/api/livros');
+            const response = await axios.get('http://localhost:8000/api/livros',{
+                headers: {
+                    'X-CSRFToken': csrftoken, // Inclui o CSRF token
+                },
+                withCredentials: true,
+            }) ;
             setBooks(response.data);
         } catch (error) {
             console.error("Erro ao buscar Livros: ", error);

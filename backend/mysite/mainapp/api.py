@@ -4,6 +4,7 @@ from ninja.security import django_auth
 from django.contrib.auth import authenticate, login, logout
 from django.middleware.csrf import get_token
 from ninja.responses import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 from . import schemas, models
 
@@ -55,16 +56,18 @@ def register(request, payload: schemas.RegisterSchema):
         models.Leitor.objects.create_user(username=payload.username, email=payload.email, password=payload.password)
         return {"success": "User registered successfully"}
     except Exception as e:
+        if "UNIQUE constraint failed" in str(e):
+            return {"error": "Email already exists."}
         return {"error": str(e)}
+    
 
 @api.get("/autores", response=list[AutorSchema])
 def listar_autores(request):
     """Lista todos os autores."""
     return models.Autor.objects.all()
 
-@api.get("/livros", response=list[LivroSchema])
+@api.get("/livros", response=list[LivroSchema], auth=django_auth)
 def listar_livros(request):
-    """Lista todos os livros."""
     livros = models.Livro.objects.all()
     livros_resposta = []
 
