@@ -1,4 +1,4 @@
-<img src="backend/mysite/mainapp/static/images/pratiler-logo.png" height="150"/>
+<img src="frontend/static/images/pratiler-logo.png" height="150"/>
 
 Sistema de leitura que promove a organização e o registro das leituras e a comunicação entre leitores.
 
