@@ -89,3 +89,11 @@
     margin: auto;
 }
 
+.mensagem{
+    color: var(--night);
+    font-weight: bolder;
+}
+.mensagem a{
+    color: var(--ultra-violet);
+    font-weight: 200;
+}

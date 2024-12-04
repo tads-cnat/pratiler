@@ -6,6 +6,7 @@ import { Button } from '../Utilities/Button';
 import axios from 'axios';
 import { useState } from "react";
 import imageLogin from '../../assets/img/imagem-login.png';
+import { Link } from 'react-router-dom';
 
 export function LoginFormulario(){
     const [error, setError] = useState(null);
@@ -62,6 +63,9 @@ export function LoginFormulario(){
                 </form>
                 {success && <p className={loginCss.successMessage}>{success}</p>}
                 {error && <p className={loginCss.errorMessage}>{error}</p>}
+                <p className={loginCss.mensagem}>
+                    Não possui uma conta? <Link to="/cadastro"><a>Cadastre-se na nossa rede</a></Link>
+                </p>
             </div>
         </div>
         

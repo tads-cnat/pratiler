@@ -10,6 +10,8 @@ import { useState } from "react";
 
 import imageCadastro from "../../assets/img/imagem-cadastro.png";
 
+import { Link } from 'react-router-dom';
+
 export function CadastroFormulario(){
     const [formData, setFormData] = useState({
         username: '',
@@ -78,6 +80,9 @@ export function CadastroFormulario(){
                     </form>
                     {success && <p className={cadastroCss.successMessage}>{success}</p>}
                     {error && <p className={cadastroCss.errorMessage}>{error}</p>}
+                    <p className={cadastroCss.mensagem}>
+                        Já possui uma conta? <Link to="/login"><a>Entre na nossa rede</a> </Link>
+                    </p>
                 </div>
         </div>
     );
