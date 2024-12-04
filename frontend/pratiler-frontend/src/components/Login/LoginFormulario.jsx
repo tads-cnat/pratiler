@@ -5,6 +5,8 @@ import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css';
 import { Button } from '../Utilities/Button';
 import axios from 'axios';
 import { useState } from "react";
+import imageLogin from '../../assets/img/imagem-login.png';
+import { Link } from 'react-router-dom';
 
 export function LoginFormulario(){
     const [error, setError] = useState(null);
@@ -46,17 +48,26 @@ export function LoginFormulario(){
     };
 
     return(
-        <div className={loginCss.formularioLogin}>
-            <h1>Entrar</h1>
-            <form className={loginCss.formulario} onSubmit={fetchLogin}>
-                <input type="text" placeholder='Email' className={loginCss.inputText} name="email"  value={formData.email} onChange={handleChange}/>
-                <input type="password" placeholder='Senha' className={loginCss.inputText} name="password" value={formData.password} onChange={handleChange}/>
-                <p>Recuperar senha?</p>
-                
-                <Button type="submit" name="Entrar"/>
-            </form>
-            {success && <p className={loginCss.successMessage}>{success}</p>}
-            {error && <p className={loginCss.errorMessage}>{error}</p>}
+        <div className={loginCss.return}>
+            <div className={loginCss.container}>
+                <img src={ imageLogin }/>
+            </div>
+            <div className={loginCss.formularioLogin}>
+                <h1>Entrar</h1>
+                <form className={loginCss.formulario} onSubmit={fetchLogin}>
+                    <input type="text" placeholder='Email' className={loginCss.inputText} name="email"  value={formData.email} onChange={handleChange}/>
+                    <input type="password" placeholder='Senha' className={loginCss.inputText} name="password" value={formData.password} onChange={handleChange}/>
+                    <p>Recuperar senha?</p>
+                    
+                    <Button type="submit" name="Entrar"/>
+                </form>
+                {success && <p className={loginCss.successMessage}>{success}</p>}
+                {error && <p className={loginCss.errorMessage}>{error}</p>}
+                <p className={loginCss.mensagem}>
+                    Não possui uma conta? <Link to="/cadastro"><a>Cadastre-se na nossa rede</a></Link>
+                </p>
+            </div>
         </div>
+        
     );
 }

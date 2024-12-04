@@ -8,6 +8,10 @@ import { getCookie } from '../Global/authStore';
 import axios from 'axios';
 import { useState } from "react";
 
+import imageCadastro from "../../assets/img/imagem-cadastro.png";
+
+import { Link } from 'react-router-dom';
+
 export function CadastroFormulario(){
     const [formData, setFormData] = useState({
         username: '',
@@ -59,18 +63,27 @@ export function CadastroFormulario(){
 
 
     return(
-        <div className={cadastroCss.formularioLogin}>
-            <h1>Cadastrar-se</h1>
-            <form className={cadastroCss.formulario} onSubmit={handleSubmit}>
-                {/* <input type="text" placeholder='Nome' className={cadastroCss.inputText}/> */}
-                <input type="text" name='username' placeholder='Nome de usuário' className={cadastroCss.inputText} value={formData.username} onChange={handleChange}/>
-                <input type="text" name='email' placeholder='Email' className={cadastroCss.inputText} value={formData.email} onChange={handleChange}/>
-                <input type="password" name='password' placeholder='Senha' className={cadastroCss.inputText} value={formData.password} onChange={handleChange}/>
+        <div className={cadastroCss.return}>
+            <div className={cadastroCss.container}>
+                <img src={imageCadastro}/>
+            </div>
+            
+                <div className={cadastroCss.formularioLogin}>
+                    <h1>Cadastrar-se</h1>
+                    <form className={cadastroCss.formulario} onSubmit={handleSubmit}>
+                        {/* <input type="text" placeholder='Nome' className={cadastroCss.inputText}/> */}
+                        <input type="text" name='username' placeholder='Nome de usuário' className={cadastroCss.inputText} value={formData.username} onChange={handleChange}/>
+                        <input type="text" name='email' placeholder='Email' className={cadastroCss.inputText} value={formData.email} onChange={handleChange}/>
+                        <input type="password" name='password' placeholder='Senha' className={cadastroCss.inputText} value={formData.password} onChange={handleChange}/>
                 
-                <Button type="submit" name="Criar conta" />
-            </form>
-            {success && <p className={cadastroCss.successMessage}>{success}</p>}
-            {error && <p className={cadastroCss.errorMessage}>{error}</p>}
+                        <Button type="submit" name="Criar conta" />
+                    </form>
+                    {success && <p className={cadastroCss.successMessage}>{success}</p>}
+                    {error && <p className={cadastroCss.errorMessage}>{error}</p>}
+                    <p className={cadastroCss.mensagem}>
+                        Já possui uma conta? <Link to="/login"><a>Entre na nossa rede</a> </Link>
+                    </p>
+                </div>
         </div>
     );
 }
