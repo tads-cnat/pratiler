@@ -3,6 +3,7 @@ import { getCookie } from '../Global/authStore';
 import { useNavigate } from 'react-router-dom';
 import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css';
 import { Button } from '../Utilities/Button';
+import { AuthSuccessful } from "../Global/AuthSuccessful";
 import axios from 'axios';
 import { useState } from "react";
 
@@ -32,7 +33,7 @@ export function LoginFormulario(){
             );
             if(response.data.success){
                 setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
-                setTimeout(() => navigate('/livros'), 1000);
+                setTimeout(() => navigate('/livros'), 2000);
             }
             else setError(response.data.message);
         } catch (error){
@@ -55,7 +56,7 @@ export function LoginFormulario(){
                 
                 <Button type="submit" name="Entrar"/>
             </form>
-            {success && <p className={loginCss.successMessage}>{success}</p>}
+            {success && <AuthSuccessful message={success} />}
             {error && <p className={loginCss.errorMessage}>{error}</p>}
         </div>
     );

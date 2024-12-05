@@ -37,45 +37,47 @@ class Livro(models.Model):
     def __str__(self):
         return self.titulo
     
+class Comentario(models.Model):
+    livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
+    leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
+    texto = models.TextField()
+    data_hora = models.DateTimeField(auto_now_add=True)
+    pagina_final = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'Comentário de {self.leitor.user.username} em {self.livro.titulo}'
+    
+    class Meta:
+        verbose_name = "Comentário"
+    
+class Interação(models.Model):
+    leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
+    livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
+    
+    STATUS_CHOICES = (
+        ('QL', 'Quero Ler'),
+        ('LN', 'Lendo'),
+        ('LD', 'Lido'),
+    )
+
+    status = models.CharField(max_length=2, choices=STATUS_CHOICES)
+
+    def __str__(self):
+        return f'{self.leitor.username} - {self.livro.titulo} ({self.get_status_display()})'
+
+    def comentariosLeitorLivro(self):
+        comentarios = Comentario.objects.filter(leitor=self.leitor, livro=self.livro)
+        return comentarios
+    
+    class Meta:
+        unique_together = ('livro', 'leitor')
+        verbose_name_plural = "Interações"
+    
 # Rever nossas entidades
 # 👇👇👇👇👇👇👇👇👇👇👇
-
-# class Comentario(models.Model):
-#     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
-#     leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
-#     texto = models.TextField()
-#     data_hora = models.DateTimeField(auto_now_add=True)
-#     pagina_final = models.IntegerField(default=0)
-
-#     def __str__(self):
-#         return f'Comentário de {self.leitor.user.username} em {self.livro.titulo}'
     
-#     class Meta:
-#         verbose_name = "Comentário"
 
-    
-# class Interage(models.Model):
-#     leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
-#     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
-    
-#     STATUS_CHOICES = (
-#         ('QL', 'Quero Ler'),
-#         ('LN', 'Lendo'),
-#         ('LD', 'Lido'),
-#     )
 
-#     status = models.CharField(max_length=2, choices=STATUS_CHOICES)
-
-#     def __str__(self):
-#         return f'{self.leitor.user.username} - {self.livro.titulo} ({self.get_status_display()})'
-
-#     def comentariosLeitorLivro(self):
-#         comentarios = Comentario.objects.filter(leitor=self.leitor, livro=self.livro)
-#         return comentarios
-    
-#     class Meta:
-#         unique_together = ('livro', 'leitor')
-#         verbose_name_plural = "Interações"
 
 # class Resenha(models.Model):
 #     # Um livro pode ter muitas avaliações, mas um leitor pode fazer apenas 

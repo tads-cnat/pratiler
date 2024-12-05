@@ -29,22 +29,23 @@ export function Bookcase() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const user = axios.get('http://localhost:8000/api/user', {
+    /* const user = axios.get('http://localhost:8000/api/user', {
         headers: {
             'X-CSRFToken': getCookie('csrftoken'),
             'Content-Type': 'application/json',
         },
         withCredentials: true,
-    });
+    }); */
     
     const fetchBooks = async () => {
         try{
-            const response = await axios.get('http://localhost:8000/api/livros',{
+            const response = await axios.get('http://localhost:8000/api/interacoes/leitor',{
                 headers: {
                     'X-CSRFToken': csrftoken, // Inclui o CSRF token
                 },
                 withCredentials: true,
             }) ;
+            console.log("Dados recebidos:", response.data);
             setBooks(response.data);
         } catch (error) {
             console.error("Erro ao buscar Livros: ", error);
@@ -67,7 +68,7 @@ export function Bookcase() {
 
     return(
         <>
-            <Header user={user} />
+            <Header />
             <div className={bookcaseCss.sectionBox}>
                 <div className={bookcaseCss.listButtons}>
                     <form action="#">
@@ -80,7 +81,7 @@ export function Bookcase() {
                     </form>
                     <button className={bookcaseCss.btnPlusBook}>
                         Adicionar Livro
-                        <Plus weight="bold" size={20} color="#f6f6f6" />
+                        <Plus className={bookcaseCss.iconPlus} weight="bold" />
                     </button>
                 </div>  
                 <img src="" alt="" />
@@ -89,10 +90,10 @@ export function Bookcase() {
                     {books.map((book) => (
                         <CardBook 
                             key={book.id}
-                            img={book.capa} 
-                            title={book.titulo} 
-                            description={book.descricao}
-                            pages={book.n_paginas}
+                            img={book.livro.capa} 
+                            title={book.livro.titulo} 
+                            description={book.livro.descricao}
+                            pages={book.livro.n_paginas}
                         />
                     ))}
                 </div>

@@ -21,9 +21,9 @@ export function Header() {
                     },
                     withCredentials: true,
             });
-            setTimeout(() => navigate('/'), 1000);
+            setTimeout(() => navigate('/login'), 200);
         } catch(error){
-            setError("deu erro viu: " + error);
+            setError("Erro ao Deslogar: " + error);
         }
     };
 
@@ -41,7 +41,7 @@ export function Header() {
                             <User weight='fill' color='#f6f6f6' size={18} />
                         </div>
                         <span className={headerCss.titlePerfil}>Walber Ranniere</span>
-                        <button onClick={logout}>Sair</button>
+                        <button className={headerCss.logout} onClick={logout}>Sair</button>
                         {error && <p>{error}</p>}
                     </div>
                 </div>

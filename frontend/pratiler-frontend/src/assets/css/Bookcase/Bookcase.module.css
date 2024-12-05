@@ -17,13 +17,20 @@
     align-items: center;
 }
 
+.listButtons select:hover {
+    outline: 2px solid var(--penn-blue);
+    border-radius: 8px;
+}
+
 .listButtons select {
     font-size: 0.875rem;
     padding: 0.5rem;
     border-radius: 8px;
     color: var(--penn-blue);
-    border: 1px solid var(--periwinkle);
+    outline: 1px solid var(--periwinkle);
     background-color: var(--white);
+    cursor: pointer;
+    transition: 100ms;
 }
 
 .btnPlusBook {
@@ -39,7 +46,26 @@
     gap: 0.625rem;
     font-size: 0.875rem;
     cursor: pointer;
+    transition: 200ms;
 }
+
+.btnPlusBook:hover {
+    background-color: var(--white);
+    outline: 2px solid var(--penn-blue);
+    color: var(--penn-blue);
+
+    .iconPlus {
+        color: var(--penn-blue);
+    }
+}
+
+.iconPlus {
+    height: 20px;
+    width: 20px;
+    color: var(--white);
+}
+
+
 
 .sectionCards {
     display: flex;
