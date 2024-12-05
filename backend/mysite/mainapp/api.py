@@ -31,7 +31,7 @@ def login_view(request, payload: schemas.SignInSchema):
 
 
 
-@api.post("/logout", auth=django_auth)
+@api.get("/logout", auth=django_auth)
 def logout_view(request):
     logout(request)
     return {"message": "Logged out"}
@@ -44,8 +44,10 @@ def user(request):
         "it becomes a mysterious, awesome, indescribably magnificent world in itself."
     )
     return {
+        "descricao": request.user.descricao,
         "username": request.user.username,
         "email": request.user.email,
+        "foto_perfil": f"http://127.0.0.1:8000{request.user.foto_perfil.url.replace('/media', '')}" if request.user.foto_perfil else None,
         "secret_fact": secret_fact
     }
 
