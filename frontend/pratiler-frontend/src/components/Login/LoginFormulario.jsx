@@ -64,7 +64,7 @@ export function LoginFormulario(){
                 {success && <p className={loginCss.successMessage}>{success}</p>}
                 {error && <p className={loginCss.errorMessage}>{error}</p>}
                 <p className={loginCss.mensagem}>
-                    Não possui uma conta? <Link to="/cadastro"><a>Cadastre-se na nossa rede</a></Link>
+                    Não possui uma conta? <Link to="/cadastro">Cadastre-se na nossa rede</Link>
                 </p>
             </div>
         </div>
