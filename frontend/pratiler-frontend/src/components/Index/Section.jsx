@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import sectionCss from '../../assets/css/Index/Section.module.css'
+import sectionCss from '../../assets/css/Index/Section.module.css';
 
 export function Section(props){
     return (
@@ -13,7 +13,7 @@ export function Section(props){
                 <img src={props.img} alt="" className={sectionCss.box_img}/>
             </section>
         </>
-    )
+    );
 }
 
 Section.propTypes = {

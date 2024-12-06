@@ -1,22 +1,30 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
-class Leitor(models.Model):
-    user_django = models.OneToOneField(User, on_delete=models.CASCADE)
+class Leitor(AbstractUser):
+    email = models.EmailField(unique=True) # e-mail unico
+    #nome = models.CharField(max_length=120)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
     foto_perfil = models.ImageField(blank=True, null=True)
     descricao = models.TextField(blank=True)
     
     seguidores = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='seguidores_de')
     seguindo = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='seguidos_por')
-
-    class Meta:
-        verbose_name_plural = "Leitores" # Exibir "Leitores" ao invés de "Leitors"
     
+    class Meta:
+        verbose_name_plural = "Leitores"
+
 class Autor(models.Model):
     nome = models.CharField(max_length=120)
 
     class Meta:
         verbose_name_plural = "Autores"
+
+    def __str__(self):
+        return self.nome
 
 class Livro(models.Model):
     titulo = models.CharField(max_length=120)
@@ -25,6 +33,9 @@ class Livro(models.Model):
     isbn = models.CharField(max_length=13, unique=True)
     n_paginas = models.IntegerField()
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.titulo
     
 # Rever nossas entidades
 # 👇👇👇👇👇👇👇👇👇👇👇

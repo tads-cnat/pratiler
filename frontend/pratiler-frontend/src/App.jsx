@@ -1,21 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 /* CSS */
-import './assets/css/global.css'
+import './assets/css/Global/global.css';
 
 /* Componentes */
 import { Login } from './components/Login/Login';
-import { Header } from './components/Index/Header'
-import { Main } from './components/Index/Main'
-import { Separator } from './components/Index/Separator'
-import { Section } from './components/Index/Section'
-import { SectionInverted } from './components/Index/SectionInverted'
+import { Header } from './components/Index/Header';
+import { Main } from './components/Index/Main';
+import { Separator } from './components/Index/Separator';
+import { Section } from './components/Index/Section';
+import { SectionInverted } from './components/Index/SectionInverted';
 
 /* Images */
 
-import girlReading from './assets/img/menina-lendo.png'
-import sereia from './assets/img/sereia.png'
-import gnomo from './assets/img/duende.png'
+import girlReading from './assets/img/menina-lendo.png';
+import sereia from './assets/img/sereia.png';
+import gnomo from './assets/img/duende.png';
 import { Bookcase } from './components/Bookcase/Bookcase';
 import { Cadastro } from './components/Cadastro/Cadastro';
 
@@ -35,7 +35,7 @@ function App() {
       </Router>
       
     </>
-  )
+  );
 }
 
 function Home(){
@@ -64,7 +64,7 @@ function Home(){
         img={gnomo}
       />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,12 +1,10 @@
-import loginCss from '../../assets/css/Login/Login.module.css'
-import { CaminhoCadastro } from "./CaminhoCadastro";
+import loginCss from '../../assets/css/LoginCadastro/LoginCadastro.module.css';
 import { LoginFormulario } from "./LoginFormulario";
 
 export function Login(){
     return(
         <div className={loginCss.container}>
-            <CaminhoCadastro />
             <LoginFormulario />
         </div>
-    )
+    );
 }

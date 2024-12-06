@@ -1,6 +1,15 @@
-from ninja import ModelSchema
+from ninja import ModelSchema, Schema
 from django.contrib.auth.models import User
 from .models import Autor, Livro, Leitor, Resenha
+
+class SignInSchema(Schema):
+    email: str
+    password: str
+
+class RegisterSchema(Schema):
+    email: str
+    password: str
+    username: str
 
 class AutorSchema(ModelSchema):
     class Config:
