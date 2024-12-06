@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from ninja import NinjaAPI
 from django.conf import settings
 from ninja.security import django_auth
@@ -6,9 +7,9 @@ from django.middleware.csrf import get_token
 from ninja.responses import JsonResponse
 from django.contrib.auth.decorators import login_required
 
-from . import schemas, models
+from .models import *
 
-from .schemas import AutorSchema, LivroSchema, LeitorSchema, UserSchema, InteracaoSchema
+from .schemas import *
 
 # API com CSRF ativado para autenticação e endpoints sensíveis
 api = NinjaAPI(csrf=True)
@@ -19,7 +20,7 @@ def get_csrf_token(request):
 
 
 @api.post("/login", include_in_schema=False)
-def login_view(request, payload: schemas.SignInSchema):
+def login_view(request, payload: SignInSchema):
     try:
         user = authenticate(request, username=payload.email, password=payload.password)
         if user is not None:
@@ -51,7 +52,7 @@ def user(request):
 
 
 @api.post("/register", include_in_schema=False)
-def register(request, payload: schemas.RegisterSchema):
+def register(request, payload: RegisterSchema):
     try:
         models.Leitor.objects.create_user(username=payload.username, email=payload.email, password=payload.password)
         return {"success": "User registered successfully"}
@@ -174,3 +175,59 @@ def listar_interacoes_por_leitor(request):
         }
         for interacao in interacoes
     ]
+
+@api.get("/resenhas", response=list[ResenhaSchema])
+def listar_resenhas(request):
+    """Lista todoas as resenhas."""
+    return Resenha.objects.all()
+
+# fazer os POSTS
+## Não vai ter post livro no momento porque vamos consumir uma API depois ao invés de criar os livros manualmente
+@api.post("/resenhas/", response=ResenhaSchema)
+def criar_resenha(request, data: ResenhaSchema):
+        """Cria uma nova resenha."""
+
+        # o livro e o leitor existem?? (Verificação)
+        livro = get_object_or_404(Livro, id=data.livro)
+        leitor = get_object_or_404(Leitor, id=data.leitor)
+
+        # Já foi feita uma resenha para esse livro?? 
+         # Verifica se já existe uma resenha desse leitor para este livro
+        if not Resenha.objects.filter(livro=livro, leitor=leitor).exists():
+            # se  não existe, cria resenha
+            resenha = Resenha.objects.create(
+                livro=livro,
+                titulo=data.titulo,
+                leitor=leitor,
+                texto=data.texto,
+                data_hora=data.data_hora
+            )
+            return resenha
+
+        else:
+            return JsonResponse({"detalhe": "Resenha já existe para este livro e leitor."}, status=400)
+        
+# fazer os PUTS
+@api.put("/resenhas/{resenha_id}", response=ResenhaSchema) 
+def atualizar_resenha(request, resenha_id: int, data: ResenhaSchema):
+    """Atualiza uma resenha existente."""
+    resenha = get_object_or_404(Resenha, id=resenha_id) # seleciona a resenha pelo id
+
+    livro = get_object_or_404(Livro, id=data.livro)
+    leitor = get_object_or_404(Leitor, id=data.leitor)
+
+    resenha.livro = livro
+    resenha.titulo = data.titulo
+    resenha.leitor = leitor
+    resenha.texto = data.texto
+    resenha.data_hora = data.data_hora
+
+    resenha.save()
+    return resenha
+    
+# fazer os DELETES
+@api.delete("/resenhas/{resenha_id}", response={204: None})
+def deletar_resenha(request, resenha_id: int):
+    resenha = get_object_or_404(Resenha, id=resenha_id)
+    resenha.delete()
+    return 204, None

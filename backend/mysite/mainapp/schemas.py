@@ -1,7 +1,7 @@
 from ninja import ModelSchema, Schema
 from django.contrib.auth.models import User
 from pydantic import HttpUrl
-from .models import Autor, Livro, Leitor, Interação
+from .models import *
 
 class SignInSchema(Schema):
     email: str
@@ -37,10 +37,10 @@ class InteracaoSchema(Schema):
     livro: LivroSchema
     status: str
 
-# class ResenhaSchema(ModelSchema):
-#     class Config:
-#         model = Resenha 
-#         model_fields = ['id', 'livro', 'leitor', 'texto', 'data_hora']
+class ResenhaSchema(ModelSchema):
+     class Config:
+         model = Resenha 
+         model_fields = '__all__' 
 
 # class ComentarioSchema(ModelSchema):
 #     class Config:
