@@ -1,0 +1,28 @@
+name: Backend Pipeline
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: '3.11'
+
+    steps:
+    - uses: actions/checkout@v4.3
+
+    - name: Use python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4.1
+      with:
+        python-version: ${{ matrix.node-version }}
+        cache: 'python'
+
+    - name: run python venv
+    run: criar_venv.bat
