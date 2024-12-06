@@ -24,5 +24,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-    - name: install node dependencies
-    run: frontend/pratiler-frontend/script.ps1
+    - name: install project dependencies
+      run: ./construir_frontend.sh
