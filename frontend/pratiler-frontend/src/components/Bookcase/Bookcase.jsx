@@ -28,6 +28,7 @@ export function Bookcase() {
     const [books, setBooks] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [filter, setFilter] = useState("Lendo");
 
     /* const user = axios.get('http://localhost:8000/api/user', {
         headers: {
@@ -36,10 +37,17 @@ export function Bookcase() {
         },
         withCredentials: true,
     }); */
-    
+
     const fetchBooks = async () => {
+        setLoading(true);
         try{
-            const response = await axios.get('http://localhost:8000/api/interacoes/leitor',{
+            const endpoint = {
+                "Lendo": "http://localhost:8000/api/interacoes/leitor",
+                "Quero Ler": "http://localhost:8000/api/interacoes/leitor/quero_ler",
+                "Lidos": "http://localhost:8000/api/interacoes/leitor/lidos",
+            }[filter];
+
+            const response = await axios.get(endpoint,{
                 headers: {
                     'X-CSRFToken': csrftoken, // Inclui o CSRF token
                 },
@@ -58,7 +66,9 @@ export function Bookcase() {
 
     useEffect(() =>{
         fetchBooks();
-    }, []);
+    }, [filter]);
+
+
 
     if (loading) {
         return <p>Carregando Dados....</p>;
@@ -72,11 +82,10 @@ export function Bookcase() {
             <div className={bookcaseCss.sectionBox}>
                 <div className={bookcaseCss.listButtons}>
                     <form action="#">
-                        <select name="categories" id="categorie">
-                            <option value="leituras-atuais">Leituras Atuais <CaretCircleDown /> </option>
-                            <option value="saab">Leituras Antigas</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
+                        <select name="categories" id="categorie" value={filter} onChange={(e) => setFilter(e.target.value)}>
+                            <option value="Lendo">Leituras Atuais <CaretCircleDown /> </option>
+                            <option value="Quero Ler">Querendo Ler</option>
+                            <option value="Lidos">Lidos</option>
                         </select>
                     </form>
                     <button className={bookcaseCss.btnPlusBook}>
@@ -90,10 +99,14 @@ export function Bookcase() {
                     {books.map((book) => (
                         <CardBook 
                             key={book.id}
+                            id={book.id}
                             img={book.livro.capa} 
                             title={book.livro.titulo} 
-                            description={book.livro.descricao}
+                            autor={book.livro.autor.nome}
                             pages={book.livro.n_paginas}
+                            status={book.status}
+                            onDetailsClick={(id) => navigate(`/interacoes/${id}`)}
+                            onUpdate={() => fetchBooks()}
                         />
                     ))}
                 </div>

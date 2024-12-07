@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css';
 import { Button } from '../Utilities/Button';
 import { AuthSuccessful } from "../Global/AuthSuccessful";
+import { AuthFail } from "../Global/AuthFail";
 import axios from 'axios';
 import { useState } from "react";
 import imageLogin from '../../assets/img/imagem-login.png';
@@ -62,8 +63,8 @@ export function LoginFormulario(){
                     
                     <Button type="submit" name="Entrar"/>
                 </form>
-                {success && <p className={loginCss.successMessage}>{success}</p>}
-                {error && <p className={loginCss.errorMessage}>{error}</p>}
+                {success && <AuthSuccessful message={success}/>}
+                {error && <AuthFail message={error}/>}
                 <p className={loginCss.mensagem}>
                     Não possui uma conta? <Link to="/cadastro"><a>Cadastre-se na nossa rede</a></Link>
                 </p>

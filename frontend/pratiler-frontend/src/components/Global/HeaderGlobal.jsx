@@ -48,7 +48,7 @@ export function Header() {
             </header>
             <div className={headerCss.secondHeader}>
                 <div className={headerCss.secHeaderContent}>
-                    <a href='#' className={headerCss.categories}>
+                    <a href='/livros' className={headerCss.categories}>
                         <Books size={24} color='#221D57' weight='fill'/>
                         <span>Minhas Estante</span>
                     </a>

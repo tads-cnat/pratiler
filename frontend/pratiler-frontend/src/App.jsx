@@ -18,6 +18,7 @@ import sereia from './assets/img/sereia.png';
 import gnomo from './assets/img/duende.png';
 import { Bookcase } from './components/Bookcase/Bookcase';
 import { Cadastro } from './components/Cadastro/Cadastro';
+import { Interaction } from './components/Interaction/Interaction'
 
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path='/livros' element={<Bookcase />} />
           <Route path='/cadastro' element={<Cadastro />} />
+          <Route path='/interacoes/:id' element={<Interaction />}/>
         </Routes>
       </Router>
       

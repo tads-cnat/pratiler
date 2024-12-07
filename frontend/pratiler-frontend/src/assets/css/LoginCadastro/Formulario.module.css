@@ -83,10 +83,17 @@
     width: 10rem;
     border: none;
     cursor: pointer;
+    transition: 300ms;
 }
 
 .inputSubmitLogin{
     margin: auto;
+}
+
+.inputSubmit:hover {
+    outline: 3px solid var(--penn-blue);
+    background-color: var(--white);
+    color: var(--penn-blue);
 }
 
 .mensagem{
@@ -97,3 +104,4 @@
     color: var(--ultra-violet);
     font-weight: 200;
 }
+

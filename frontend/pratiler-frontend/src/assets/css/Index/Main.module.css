@@ -8,10 +8,15 @@
     justify-content: space-between;
 }
 
-.section img {
+.img{
     height: 468px;
     width: auto;
     padding-block-start: 4rem;
+    transition: 300ms ease-in-out;
+}
+
+.img:hover{
+    transform: translateY(-1.5rem);
 }
 
 .section_text_btn {
@@ -34,7 +39,7 @@
     color: #4D45A5;
 }
 
-.section_text_btn button {
+.begin {
     max-width: 220px;
     border: none;
     font:var(--h2-title) ;
@@ -44,4 +49,12 @@
     padding-block: 16px;
     font-weight: 600;
     cursor: pointer;
+    transition: 300ms;
 }
+
+.begin:hover{
+    outline: 4px solid var(--penn-blue);
+    background-color: var(--white);
+    color: var(--penn-blue);
+}
+

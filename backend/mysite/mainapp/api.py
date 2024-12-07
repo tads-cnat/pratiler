@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from ninja import NinjaAPI
 from django.conf import settings
@@ -147,10 +148,10 @@ def listar_interacoes(request):
 
 
 @api.get("/interacoes/leitor", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
-def listar_interacoes_por_leitor(request):
+def listar_interacoes_lendo_por_leitor(request):
     leitor = request.user
 
-    interacoes = models.Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor)
+    interacoes = models.Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LN")
 
     # Serializando
     return [
@@ -175,6 +176,144 @@ def listar_interacoes_por_leitor(request):
         }
         for interacao in interacoes
     ]
+
+@api.get("/interacoes/leitor/quero_ler", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
+def listar_interacoes_quero_ler_por_leitor(request):
+    leitor = request.user
+
+    interacoes = models.Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status='QL')
+    print(interacoes)
+
+    # Serializando
+    return [
+        {
+            "id": interacao.id,
+            "leitor": {
+                "id": interacao.leitor.id,
+                "username": interacao.leitor.username
+            },
+            "livro": {
+                "id": interacao.livro.id,
+                "titulo": interacao.livro.titulo,
+                "descricao": interacao.livro.descricao,
+                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "n_paginas": interacao.livro.n_paginas,
+                "autor":{
+                    "id": interacao.livro.autor.id,
+                    "nome": interacao.livro.autor.nome
+                }
+            },
+            "status": interacao.status,
+        }
+        for interacao in interacoes
+    ]
+
+@api.get("/interacoes/leitor/lidos", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
+def listar_interacoes_lidas_por_leitor(request):
+    leitor = request.user
+
+    interacoes = models.Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LD")
+
+    # Serializando
+    return [
+        {
+            "id": interacao.id,
+            "leitor": {
+                "id": interacao.leitor.id,
+                "username": interacao.leitor.username
+            },
+            "livro": {
+                "id": interacao.livro.id,
+                "titulo": interacao.livro.titulo,
+                "descricao": interacao.livro.descricao,
+                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "n_paginas": interacao.livro.n_paginas,
+                "autor":{
+                    "id": interacao.livro.autor.id,
+                    "nome": interacao.livro.autor.nome
+                }
+            },
+            "status": interacao.status,
+        }
+        for interacao in interacoes
+    ]
+
+@api.post("/interacoes/leitor", response=InteracaoSchema, tags=['Interações Livro/Leitor'])
+def criar_interacao(request, livro_id: int, status: str):
+    leitor = request.user
+
+    try:
+        livro = models.Livro.objects.get(id=livro_id)
+    except models.Livro.DoesNotExist:
+        return api.create_response(request, {"error": "Livro não encontrado"}, status=404)
+
+    interacao = models.Interação.objects.create(
+        leitor=leitor,
+        livro=livro,
+        status=status
+    )
+
+    return {
+        "id": interacao.id,
+        "leitor": {
+            "id": interacao.leitor.id,
+            "username": interacao.leitor.username
+        },
+        "livro": {
+            "id": interacao.livro.id,
+            "titulo": interacao.livro.titulo,
+            "descricao": interacao.livro.descricao,
+            "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+            "n_paginas": interacao.livro.n_paginas,
+            "autor": {
+                "id": interacao.livro.autor.id,
+                "nome": interacao.livro.autor.nome
+            }
+        },
+        "status": interacao.status,
+    }
+
+@api.get("interacoes/leitor/{int:id}", response=InteracaoSchema, tags=['Interações Livro/Leitor'])
+def listar_interacao_id(request, id:int):
+    try:
+        leitor = request.user
+        interacao = models.Interação.objects.select_related('leitor', 'livro__autor').get(id=id, leitor=leitor)
+
+        return{
+            "id": interacao.id,
+            "leitor": {
+                "id": interacao.leitor.id,
+                "username": interacao.leitor.username
+            },
+            "livro": {
+                "id": interacao.livro.id,
+                "titulo": interacao.livro.titulo,
+                "descricao": interacao.livro.descricao,
+                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "n_paginas": interacao.livro.n_paginas,
+                "autor": {
+                    "id": interacao.livro.autor.id,
+                    "nome": interacao.livro.autor.nome
+                }
+            },
+            "status": interacao.status,
+        }
+    except models.Interação.DoesNotExist:
+        return api.create_response(request, {"detail": "Interação não encontrada ou não pertence ao usuário"}, status=404)
+    
+
+@api.put("/interacoes/{id}/marcar-como-lido", tags=["Interações Livro/Leitor"])
+def marcar_como_lido(request, id:int):
+    try:
+        interacao = models.Interação.objects.get(id=id, leitor=request.user)
+        interacao.status = "LD"
+        interacao.save()
+        return {"success": True, "message":"Livro marcado como lido com sucesso!"}
+    except models.Interação.DoesNotExist:
+        raise Http404("Interação não encontrada")
+
+
+
 
 @api.get("/resenhas", response=list[ResenhaSchema])
 def listar_resenhas(request):
