@@ -25,4 +25,5 @@ jobs:
         cache: 'pip'
 
     - name: create python venv with dependencies
+      run:  chmod +x ./construir_backend.sh
       run: ./construir_backend.sh
