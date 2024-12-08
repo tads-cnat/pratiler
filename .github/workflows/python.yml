@@ -16,13 +16,13 @@ jobs:
         python-version: [3.11]
 
     steps:
-    - uses: actions/checkout@v4.3
+    - uses: actions/checkout@v4
 
     - name: Use python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4.1
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-        cache: 'python'
 
     - name: create python venv with dependencies
-      run: ./construir_backend.sh
+      run:  chmod +x ./construir_backend.sh
+            ./construir_backend.sh
