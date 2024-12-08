@@ -26,4 +26,4 @@ jobs:
 
     - name: create python venv with dependencies
       run:  chmod +x ./construir_backend.sh
-      run: ./construir_backend.sh
+            ./construir_backend.sh
