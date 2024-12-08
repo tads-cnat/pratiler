@@ -7,24 +7,18 @@ import { getCookie } from '../Global/authStore';
 import pratilerLogo from '../../assets/img/pratiler-logo.png';
 import { useState } from 'react';
 
-export function Header() {
-    const [error, setError] = useState(null);
-
+export function Header({ user }) {
     const navigate = useNavigate();
 
     const logout = () => {
-        try{
-            const response = axios.post('http://localhost:8000/api/logout', {}, {
-                headers: {
-                        'X-CSRFToken': getCookie('csrftoken'),
-                        'Content-Type': 'application/json',
-                    },
-                    withCredentials: true,
-            });
-            setTimeout(() => navigate('/'), 1000);
-        } catch(error){
-            setError("deu erro viu: " + error);
-        }
+        const response = axios.get('http://localhost:8000/api/logout', {
+            headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true,
+        });
+        setTimeout(() => navigate('/'), 1000);
     };
 
     return(
@@ -40,9 +34,8 @@ export function Header() {
                         <div className={headerCss.icon}>
                             <User weight='fill' color='#f6f6f6' size={18} />
                         </div>
-                        <span className={headerCss.titlePerfil}>Walber Ranniere</span>
+                        <span className={headerCss.titlePerfil}>{user.username}</span>
                         <button onClick={logout}>Sair</button>
-                        {error && <p>{error}</p>}
                     </div>
                 </div>
             </header>

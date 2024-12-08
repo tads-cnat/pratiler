@@ -28,14 +28,18 @@ export function Bookcase() {
     const [books, setBooks] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState({});
 
-    const user = axios.get('http://localhost:8000/api/user', {
-        headers: {
-            'X-CSRFToken': getCookie('csrftoken'),
-            'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-    });
+    const fetchUser = async () => {
+        const user = await axios.get('http://localhost:8000/api/user', {
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json',
+            },
+            withCredentials: true,
+        });
+        setUser(user.data);
+    }
     
     const fetchBooks = async () => {
         try{
@@ -56,6 +60,7 @@ export function Bookcase() {
 
 
     useEffect(() =>{
+        fetchUser();
         fetchBooks();
     }, []);
 

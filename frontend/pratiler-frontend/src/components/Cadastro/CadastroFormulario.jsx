@@ -81,7 +81,7 @@ export function CadastroFormulario(){
                     {success && <p className={cadastroCss.successMessage}>{success}</p>}
                     {error && <p className={cadastroCss.errorMessage}>{error}</p>}
                     <p className={cadastroCss.mensagem}>
-                        Já possui uma conta? <Link to="/login"><a>Entre na nossa rede</a> </Link>
+                        Já possui uma conta? <Link to="/login">Entre na nossa rede</Link>
                     </p>
                 </div>
         </div>
