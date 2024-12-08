@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: '3.11'
+        python-version: [3.11]
 
     steps:
     - uses: actions/checkout@v4.3
@@ -21,8 +21,8 @@ jobs:
     - name: Use python ${{ matrix.python-version }}
       uses: actions/setup-python@v4.1
       with:
-        python-version: ${{ matrix.node-version }}
+        python-version: ${{ matrix.python-version }}
         cache: 'python'
 
-    - name: run python venv
-    run: criar_venv.bat
+    - name: create python venv with dependencies
+      run: ./construir_backend.sh

@@ -16,3 +16,6 @@ echo "Ambiente virtual '$ENV_NAME' criado e ativado!"
 pip install -r backend/requirements.txt
 
 echo "Instalando o requirements.txt com sucesso!"
+echo "Inicializando o projeto..."
+
+python backend/mysite/manage.py runserver
