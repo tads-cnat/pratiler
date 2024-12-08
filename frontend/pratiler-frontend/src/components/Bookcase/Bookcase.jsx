@@ -6,6 +6,7 @@ import { Plus, CaretCircleDown } from 'phosphor-react';
 import { Header } from "../Global/HeaderGlobal";
 import { CardBook } from "./CardBook";
 import { useNavigate } from "react-router-dom";
+import noBooks from '../../assets/img/no-books.png'
 
 
 import bookcaseCss from '../../assets/css/Bookcase/Bookcase.module.css';
@@ -93,8 +94,13 @@ export function Bookcase() {
                         <Plus className={bookcaseCss.iconPlus} weight="bold" />
                     </button>
                 </div>  
-                <img src="" alt="" />
                 <div className={bookcaseCss.sectionCards}>
+                    {books.length === 0 && (
+                        <div className={bookcaseCss.boxNoBooks}>
+                            <h1 className={bookcaseCss.titleNoBooks}> Sem Livros por aqui</h1>
+                            <img className={bookcaseCss.noBooks} src={noBooks} alt="Nenhum livro encontrado" />
+                        </div>
+                    )}
                     {error && <p>{error}</p>}
                     {books.map((book) => (
                         <CardBook 

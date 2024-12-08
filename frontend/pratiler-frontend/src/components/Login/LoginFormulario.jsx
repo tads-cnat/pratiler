@@ -63,11 +63,11 @@ export function LoginFormulario(){
                     
                     <Button type="submit" name="Entrar"/>
                 </form>
-                {success && <AuthSuccessful message={success}/>}
-                {error && <AuthFail message={error}/>}
                 <p className={loginCss.mensagem}>
                     Não possui uma conta? <Link to="/cadastro"><a>Cadastre-se na nossa rede</a></Link>
                 </p>
+                {success && <AuthSuccessful message={success}/>}
+                {error && <AuthFail message={error}/>}
             </div>
         </div>
         

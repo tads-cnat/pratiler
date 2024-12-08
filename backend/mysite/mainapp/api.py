@@ -8,7 +8,7 @@ from django.middleware.csrf import get_token
 from ninja.responses import JsonResponse
 from django.contrib.auth.decorators import login_required
 
-from .models import *
+from .models import Livro, Autor, Interação, Leitor, Resenha
 
 from .schemas import *
 
@@ -55,7 +55,7 @@ def user(request):
 @api.post("/register", include_in_schema=False)
 def register(request, payload: RegisterSchema):
     try:
-        models.Leitor.objects.create_user(username=payload.username, email=payload.email, password=payload.password)
+        Leitor.objects.create_user(username=payload.username, email=payload.email, password=payload.password)
         return {"success": "User registered successfully"}
     except Exception as e:
         if "UNIQUE constraint failed" in str(e):
@@ -66,11 +66,11 @@ def register(request, payload: RegisterSchema):
 @api.get("/autores", response=list[AutorSchema], tags=["Autores"])
 def listar_autores(request):
     """Lista todos os autores."""
-    return models.Autor.objects.all()
+    return Autor.objects.all()
 
 @api.get("/livros", response=list[LivroSchema], auth=django_auth, tags=["Livros"])
 def listar_livros(request):
-    livros = models.Livro.objects.select_related('autor').all()
+    livros = Livro.objects.select_related('autor').all()
     livros_resposta = []
 
     for livro in livros:
@@ -94,25 +94,25 @@ def listar_livros(request):
 @api.get("/leitores", response=list[LeitorSchema], tags=["Leitores"])
 def listar_leitores(request):
     """Lista todos os leitores."""
-    return models.Leitor.objects.all()
+    return Leitor.objects.all()
 
 @api.get("/leitores/{leitor_id}", response=LeitorSchema, tags=["Leitores"])
 def listar_leitor(request, leitor_id: int):
     """Lista um leitor específico."""
     try:
-        leitor = models.Leitor.objects.get(id=leitor_id)
+        leitor = Leitor.objects.get(id=leitor_id)
         return leitor
-    except models.Leitor.DoesNotExist:
+    except Leitor.DoesNotExist:
         return JsonResponse({"detalhe": "leitor não encontrado"}, status=404)
 
 @api.get("/leitores/{leitor_id}/user", response=UserSchema, tags=["Leitores"])
 def listar_user_do_leitor(request, leitor_id: int):
     """Lista um User (Django) específico"""
     try:
-        leitor = models.Leitor.objects.get(id=leitor_id)
+        leitor = Leitor.objects.get(id=leitor_id)
         user = leitor.user_django  # Pega o User relacionado ao Leitor
         return user
-    except models.Leitor.DoesNotExist:
+    except Leitor.DoesNotExist:
         return JsonResponse({"detalhe": "leitor não encontrado"}, status=404)
     
 
@@ -120,7 +120,7 @@ def listar_user_do_leitor(request, leitor_id: int):
 
 @api.get("/interacoes", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
 def listar_interacoes(request):
-    interacoes = models.Interação.objects.select_related('leitor', 'livro__autor').all()
+    interacoes = Interação.objects.select_related('leitor', 'livro__autor').all()
 
     # Serializando
     return [
@@ -151,7 +151,7 @@ def listar_interacoes(request):
 def listar_interacoes_lendo_por_leitor(request):
     leitor = request.user
 
-    interacoes = models.Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LN")
+    interacoes = Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LN")
 
     # Serializando
     return [
@@ -181,8 +181,7 @@ def listar_interacoes_lendo_por_leitor(request):
 def listar_interacoes_quero_ler_por_leitor(request):
     leitor = request.user
 
-    interacoes = models.Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status='QL')
-    print(interacoes)
+    interacoes = Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status='QL')
 
     # Serializando
     return [
@@ -212,7 +211,7 @@ def listar_interacoes_quero_ler_por_leitor(request):
 def listar_interacoes_lidas_por_leitor(request):
     leitor = request.user
 
-    interacoes = models.Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LD")
+    interacoes = Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LD")
 
     # Serializando
     return [
@@ -243,11 +242,11 @@ def criar_interacao(request, livro_id: int, status: str):
     leitor = request.user
 
     try:
-        livro = models.Livro.objects.get(id=livro_id)
-    except models.Livro.DoesNotExist:
+        livro = Livro.objects.get(id=livro_id)
+    except Livro.DoesNotExist:
         return api.create_response(request, {"error": "Livro não encontrado"}, status=404)
 
-    interacao = models.Interação.objects.create(
+    interacao = Interação.objects.create(
         leitor=leitor,
         livro=livro,
         status=status
@@ -277,7 +276,7 @@ def criar_interacao(request, livro_id: int, status: str):
 def listar_interacao_id(request, id:int):
     try:
         leitor = request.user
-        interacao = models.Interação.objects.select_related('leitor', 'livro__autor').get(id=id, leitor=leitor)
+        interacao = Interação.objects.select_related('leitor', 'livro__autor').get(id=id, leitor=leitor)
 
         return{
             "id": interacao.id,
@@ -298,31 +297,31 @@ def listar_interacao_id(request, id:int):
             },
             "status": interacao.status,
         }
-    except models.Interação.DoesNotExist:
+    except Interação.DoesNotExist:
         return api.create_response(request, {"detail": "Interação não encontrada ou não pertence ao usuário"}, status=404)
     
 
 @api.put("/interacoes/{id}/marcar-como-lido", tags=["Interações Livro/Leitor"])
 def marcar_como_lido(request, id:int):
     try:
-        interacao = models.Interação.objects.get(id=id, leitor=request.user)
+        interacao = Interação.objects.get(id=id, leitor=request.user)
         interacao.status = "LD"
         interacao.save()
         return {"success": True, "message":"Livro marcado como lido com sucesso!"}
-    except models.Interação.DoesNotExist:
+    except Interação.DoesNotExist:
         raise Http404("Interação não encontrada")
 
 
 
 
-@api.get("/resenhas", response=list[ResenhaSchema])
+@api.get("/resenhas", response=list[ResenhaSchema], tags=["Resenhas"])
 def listar_resenhas(request):
     """Lista todoas as resenhas."""
     return Resenha.objects.all()
 
 # fazer os POSTS
 ## Não vai ter post livro no momento porque vamos consumir uma API depois ao invés de criar os livros manualmente
-@api.post("/resenhas/", response=ResenhaSchema)
+@api.post("/resenhas/", response=ResenhaSchema, tags=["Resenhas"])
 def criar_resenha(request, data: ResenhaSchema):
         """Cria uma nova resenha."""
 
@@ -347,7 +346,7 @@ def criar_resenha(request, data: ResenhaSchema):
             return JsonResponse({"detalhe": "Resenha já existe para este livro e leitor."}, status=400)
         
 # fazer os PUTS
-@api.put("/resenhas/{resenha_id}", response=ResenhaSchema) 
+@api.put("/resenhas/{resenha_id}", response=ResenhaSchema, tags=["Resenhas"]) 
 def atualizar_resenha(request, resenha_id: int, data: ResenhaSchema):
     """Atualiza uma resenha existente."""
     resenha = get_object_or_404(Resenha, id=resenha_id) # seleciona a resenha pelo id
@@ -365,7 +364,7 @@ def atualizar_resenha(request, resenha_id: int, data: ResenhaSchema):
     return resenha
     
 # fazer os DELETES
-@api.delete("/resenhas/{resenha_id}", response={204: None})
+@api.delete("/resenhas/{resenha_id}", response={204: None}, tags=["Resenhas"])
 def deletar_resenha(request, resenha_id: int):
     resenha = get_object_or_404(Resenha, id=resenha_id)
     resenha.delete()
