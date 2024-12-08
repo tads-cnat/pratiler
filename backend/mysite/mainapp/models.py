@@ -28,9 +28,9 @@ class Autor(models.Model):
 
 class Livro(models.Model):
     titulo = models.CharField(max_length=120)
-    descricao = models.TextField(blank=True)
+    sinopse = models.TextField()
     capa = models.ImageField(blank=True, null=True, upload_to="capa/", default="capa/default.jpg") 
-    isbn = models.CharField(max_length=13, unique=True)
+    isbn = models.CharField(max_length=13, primary_key=True)
     n_paginas = models.IntegerField()
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
 
@@ -43,7 +43,7 @@ class Livro(models.Model):
 # class Comentario(models.Model):
 #     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
 #     leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
-#     texto = models.TextField()
+#     conteudo = models.TextField()
 #     data_hora = models.DateTimeField(auto_now_add=True)
 #     pagina_final = models.IntegerField(default=0)
 
@@ -82,7 +82,7 @@ class Resenha(models.Model):
      # uma avaliação por livro
      livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
      leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
-     titulo = models.CharField(max_length=120)
+     titulo = models.CharField(max_length=50)
      texto = models.TextField()
      data_hora = models.DateTimeField(auto_now_add=True)
      def __str__(self):
@@ -97,7 +97,7 @@ class Resenha(models.Model):
 #     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
 #     data_hora = models.DateTimeField(auto_now_add=True)
 #     nota  = models.IntegerField()
-#     conteudo = models.TextField()
+#     conteudo = models.TextField(blank=True, null=True)
 
 #     class Meta:
 #         unique_together = ('livro', 'leitor') # Garante que um leitor possa avaliar um livro apenas uma vez
