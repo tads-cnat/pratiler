@@ -25,4 +25,4 @@ jobs:
         cache: 'npm'
 
     - name: install project dependencies
-      run: ./construir_frontend.sh
+      run: cd ${{ github.workspace }} && ./construir_frontend.sh
