@@ -23,6 +23,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: install project dependencies
+    - name: change file permissions
       run: chmod +x ./construir_frontend.sh
-           ./construir_frontend.sh
+    - name: install project dependencies
+      run: ./construir_frontend.sh
