@@ -23,6 +23,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: create python venv with dependencies
+    - name: change file permissions
       run:  chmod +x ./construir_backend.sh
-            ./construir_backend.sh
+    - name: create python venv with dependencies
+      run: ./construir_backend.sh
