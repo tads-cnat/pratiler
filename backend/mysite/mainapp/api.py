@@ -39,16 +39,11 @@ def logout_view(request):
 
 @api.get("/user", auth=django_auth)
 def user(request):
-    secret_fact = (
-        "The moment one gives close attention to any thing, even a blade of grass",
-        "it becomes a mysterious, awesome, indescribably magnificent world in itself."
-    )
     return {
-        "descricao": request.user.descricao,
+        "biografia": request.user.biografia,
         "username": request.user.username,
         "email": request.user.email,
-        "foto_perfil": f"http://127.0.0.1:8000{request.user.foto_perfil.url.replace('/media', '')}" if request.user.foto_perfil else None,
-        "secret_fact": secret_fact
+        "foto_perfil": f"http://127.0.0.1:8000{request.user.foto_perfil.url.replace('/media', '')}" if request.user.foto_perfil else None
     }
 
 
