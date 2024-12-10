@@ -11,10 +11,10 @@ export function Main(){
                     <p>Uma rede social para <strong>compartilhar</strong> leituras
                     e se <strong>motivar</strong> cada vez mais!</p>
                     <Link to="/login" className={mainCss.section_text_btn}>
-                        <button>Comece Agora</button>
+                        <button className={mainCss.begin}>Comece Agora</button>
                     </Link>
                 </div>
-                <img src={bookImage} alt="" />
+                <img className={mainCss.img} src={bookImage} alt="" />
             </main>
         </>
     );

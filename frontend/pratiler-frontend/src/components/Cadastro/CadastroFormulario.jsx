@@ -7,6 +7,8 @@ import { getCookie } from '../Global/authStore';
 
 import axios from 'axios';
 import { useState } from "react";
+import { AuthSuccessful } from '../Global/AuthSuccessful';
+import { AuthFail } from '../Global/AuthFail';
 
 import imageCadastro from "../../assets/img/imagem-cadastro.png";
 
@@ -52,7 +54,7 @@ export function CadastroFormulario(){
             
             if (response.data.success) {
                 setSuccess("Conta criada com sucesso! Redirecionando...");
-                setTimeout(() => navigate('/login'), 1000); // Redireciona para a página de login após 2 segundos
+                setTimeout(() => navigate('/login'), 2000); // Redireciona para a página de login após 2 segundos
             } else {
                 setError(response.data.error || 'Ocorreu um erro ao registrar o usuário.');
             }
@@ -78,8 +80,8 @@ export function CadastroFormulario(){
                 
                         <Button type="submit" name="Criar conta" />
                     </form>
-                    {success && <p className={cadastroCss.successMessage}>{success}</p>}
-                    {error && <p className={cadastroCss.errorMessage}>{error}</p>}
+                    {success && <AuthSuccessful message={success}/>}
+                    {error && <AuthFail message={error}/>}
                     <p className={cadastroCss.mensagem}>
                         Já possui uma conta? <Link to="/login">Entre na nossa rede</Link>
                     </p>

@@ -29,6 +29,7 @@
     align-items: center;
     gap: 0.75rem;
     border-radius: 0.750rem;
+    transition: 200ms;
 }
 
 .info form input {
@@ -36,6 +37,10 @@
     border: none;
     outline: none;
     background: transparent;
+}
+
+.info form:hover{
+    box-shadow: 0 0 8px #0000003a;
 }
 
 .perfilBox{
@@ -89,10 +94,35 @@
     justify-content: center;
     gap: 0.375rem;
     text-decoration: none;
+    transition: 200ms;
 }
 
 .secHeaderContent a span {
     color: var(--penn-blue);
     font-size: 1rem;
     font-weight: 400;
+}
+
+.categories:hover {
+    transform: scale(1.1);
+}
+
+.logout {
+    display: flex;
+    border: none;
+    border-radius: 0.5rem;
+
+    padding: 0.375rem;
+    color: var(--penn-blue);
+
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.logout:hover {
+    background-color: var(--penn-blue);
+    color: var(--white);
+    font-weight: bold;
+    box-shadow: none;
 }
