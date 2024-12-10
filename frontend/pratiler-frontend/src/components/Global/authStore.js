@@ -86,17 +86,18 @@ export const useAuthStore = create(
   )
 );
 
-export function getCookie(name) {
-    if (!navigator.cookieEnabled) {
-        throw new Error('Cookies are disabled in this browser.');
-    }
-    document.cookie = fetch("http://localhost:8000/api/set-csrf-token").then((response) => response.data)
-    const cookies = document.cookie?.split(';') || [];
-    const cookie = cookies.find(c => c.trim().startsWith(`${name}=`));
-    if (!cookie) {
-        console.warn(`Cookie ${name} not found. Ensure it is set before making requests.`);
-        return null;
-    }
+export function getCSRF() {
+  	const CSRF_TOKEN = "csrftoken";
+  	if (!navigator.cookieEnabled) {
+  	    throw new Error('Cookies are disabled in this browser.');
+  	}
+  	const cookies = document.cookie?.split(';') || [];
+  	const csrfCookie = cookies.find(c => c.trim().startsWith(`${CSRF_TOKEN}=`));
+  	if(!csrfCookie) document.cookie += fetch("http://localhost:8000/api/set-csrf-token").then((response) => response.data)
+  	return decodeURIComponent(csrfCookie.trim().substring(CSRF_TOKEN.length + 1));
+}
 
-    return decodeURIComponent(cookie.trim().substring(name.length + 1));
+export function getUser() {
+  	const DATA = ["biografia", "username", "email", "foto_perfil"];
+	  // em desenvolvimento
 }
