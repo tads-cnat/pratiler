@@ -55,6 +55,11 @@ export function Bookcase() {
                 withCredentials: true,
             }) ;
             console.log("Dados recebidos:", response.data);
+
+            response.data.forEach(book => {
+                console.log("Descrição do livro:", book.livro.descricao);
+            });
+
             setBooks(response.data);
         } catch (error) {
             console.error("Erro ao buscar Livros: ", error);
@@ -89,7 +94,7 @@ export function Bookcase() {
                             <option value="Lidos">Lidos</option>
                         </select>
                     </form>
-                    <button className={bookcaseCss.btnPlusBook}>
+                    <button className={bookcaseCss.btnPlusBook} onClick={() => navigate(`/adicionar-livro`)}>
                         Adicionar Livro
                         <Plus className={bookcaseCss.iconPlus} weight="bold" />
                     </button>
@@ -111,6 +116,7 @@ export function Bookcase() {
                             autor={book.livro.autor.nome}
                             pages={book.livro.n_paginas}
                             status={book.status}
+                            descricao={book.livro.descricao}
                             onDetailsClick={(id) => navigate(`/interacoes/${id}`)}
                             onUpdate={() => fetchBooks()}
                         />

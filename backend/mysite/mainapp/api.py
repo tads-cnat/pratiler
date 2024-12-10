@@ -237,7 +237,7 @@ def listar_interacoes_lidas_por_leitor(request):
         for interacao in interacoes
     ]
 
-@api.post("/interacoes/leitor", response=InteracaoSchema, tags=['Interações Livro/Leitor'])
+@api.post("/interacoes/leitor", auth=django_auth, response=InteracaoSchema, tags=['Interações Livro/Leitor'])
 def criar_interacao(request, livro_id: int, status: str):
     leitor = request.user
 
@@ -250,6 +250,41 @@ def criar_interacao(request, livro_id: int, status: str):
         leitor=leitor,
         livro=livro,
         status=status
+    )
+
+    return {
+        "id": interacao.id,
+        "leitor": {
+            "id": interacao.leitor.id,
+            "username": interacao.leitor.username
+        },
+        "livro": {
+            "id": interacao.livro.id,
+            "titulo": interacao.livro.titulo,
+            "descricao": interacao.livro.descricao,
+            "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+            "n_paginas": interacao.livro.n_paginas,
+            "autor": {
+                "id": interacao.livro.autor.id,
+                "nome": interacao.livro.autor.nome
+            }
+        },
+        "status": interacao.status,
+    }
+
+@api.post("/interacoes/leitor/lendo", auth=django_auth, response=InteracaoSchema, tags=['Interações Livro/Leitor'])
+def criar_interacao_lendo(request, livro_id: int):
+    leitor = request.user
+
+    try:
+        livro = Livro.objects.get(id=livro_id)
+    except Livro.DoesNotExist:
+        return api.create_response(request, {"error": "Livro não encontrado"}, status=404)
+
+    interacao = Interação.objects.create(
+        leitor=leitor,
+        livro=livro,
+        status='LN'
     )
 
     return {
@@ -369,3 +404,34 @@ def deletar_resenha(request, resenha_id: int):
     resenha = get_object_or_404(Resenha, id=resenha_id)
     resenha.delete()
     return 204, None
+
+
+@api.get("/livros-disponiveis", response=list[LivroSchema], auth=django_auth, tags=['Livros'])
+def livros_disponiveis(request):
+    try:
+        leitor = request.user
+        interacoes_leitor = Interação.objects.filter(leitor=leitor).values_list('livro_id', flat=True)
+
+        livros_disponiveis = Livro.objects.exclude(id__in=interacoes_leitor)
+
+        livros_resposta = []
+
+        for livro in livros_disponiveis:
+            livro_data = {
+                "id": livro.id,
+                "titulo": livro.titulo,
+                "descricao": livro.descricao,
+                "paginas": livro.n_paginas,
+                "isbn": livro.isbn,              
+                "n_paginas": livro.n_paginas,    
+                "autor":{
+                        "id": livro.autor.id,
+                        "nome": livro.autor.nome
+                },
+                "capa": f"http://127.0.0.1:8000{livro.capa.url.replace('/media', '')}" if livro.capa else None,
+            }
+            livros_resposta.append(livro_data)
+
+        return livros_resposta
+    except Livro.DoesNotExist:
+        return api.create_response(request, {"detail": "Livros não encontrados"}, status=404)

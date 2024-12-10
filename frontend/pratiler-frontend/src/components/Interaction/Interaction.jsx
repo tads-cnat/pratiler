@@ -45,6 +45,7 @@ export function Interaction(){
                     img={interaction.livro.capa}
                     title={interaction.livro.titulo}
                     autor={interaction.livro.autor.nome}
+                    descricao={interaction.livro.descricao}
                     status={interaction.status}
                 />
             </div>
