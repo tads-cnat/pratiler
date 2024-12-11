@@ -1,71 +1,54 @@
 /* eslint-disable no-unused-vars */
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import axios from 'axios';
 
 export const useAuthStore = create(
   persist(
     (set, get) => ({
       user: null,
       isAuthenticated: false,
+      csrfToken: null,
 
       setCsrfToken: async () => {
-        const response = await fetch('http://localhost:8000/api/set-csrf-token', {
-          method: 'GET',
-          credentials: 'include'
-        });
-        const data = await response.json();
-        return data.csrftoken;
+        const response = await axios.get('http://localhost:8000/api/set-csrf-token');
+        set({csrfToken: response.data});
       },
 
-      login: async (email, password) => {
-        const csrftoken = await get().setCsrfToken();
-        const response = await fetch('http://localhost:8000/api/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken
-          },
-          body: JSON.stringify({ email, password }),
-          credentials: 'include'
-        });
-        const data = await response.json();
-        if (data.success) {
-          set({ isAuthenticated: true });
-          get().fetchUser();
-        } else {
-          set({ user: null, isAuthenticated: false });
-        }
-        return data.success;
+      login: async ({ email, password }) => {
+        credentials = {email: email, password: password}
+        const response = await axios.post('http://localhost:8000/api/login', 
+          credentials, 
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': get().csrfToken
+            },
+            withCredentials: true
+          }
+        );
+        if (response.data.success) get().fetchUser();
+        return response
       },
 
       logout: async () => {
-        try {
-          const csrftoken = await get().setCsrfToken();
-          const response = await fetch('http://localhost:8000/api/logout', {
-            method: 'POST',
+          const response = await axios.get('http://localhost:8000/api/logout', {
             headers: {
-              'X-CSRFToken': csrftoken
+              'X-CSRFToken': get().csrfToken
             },
             credentials: 'include'
           });
-          if (response.ok) {
-            set({ user: null, isAuthenticated: false });
-          }
-        } catch (error) {
-          console.error('Logout failed', error);
-          throw error;
-        }
+          set({ user: null, isAuthenticated: false });
       },
 
       fetchUser: async () => {
         try {
-          const csrftoken = await get().setCsrfToken();
-          const response = await fetch('http://localhost:8000/api/user', {
-            credentials: 'include',
+          const response = await axios.get('http://localhost:8000/api/user', {
             headers: {
               'Content-Type': 'application/json',
-              'X-CSRFToken': csrftoken
+              'X-CSRFToken': get().csrfToken
             },
+            withCredentials: true
           });
           if (response.ok) {
             const data = await response.json();
@@ -86,14 +69,12 @@ export const useAuthStore = create(
   )
 );
 
-export function getCSRF() {
+export function getCookie(name) {
   	const CSRF_TOKEN = "csrftoken";
-  	if (!navigator.cookieEnabled) {
-  	    throw new Error('Cookies are disabled in this browser.');
-  	}
+  	if (!navigator.cookieEnabled) throw new Error('Cookies are disabled in this browser.');
   	const cookies = document.cookie?.split(';') || [];
   	const csrfCookie = cookies.find(c => c.trim().startsWith(`${CSRF_TOKEN}=`));
-  	if(!csrfCookie) document.cookie += fetch("http://localhost:8000/api/set-csrf-token").then((response) => response.data)
+  	if(!csrfCookie) document.cookie += axios.get("http://localhost:8000/api/set-csrf-token").then((response) => response.data)
   	return decodeURIComponent(csrfCookie.trim().substring(CSRF_TOKEN.length + 1));
 }
 
