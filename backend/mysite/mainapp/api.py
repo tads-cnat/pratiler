@@ -33,7 +33,7 @@ def login_view(request, payload: SignInSchema):
 
 
 
-@api.post("/logout", auth=django_auth, include_in_schema=False)
+@api.get("/logout", auth=django_auth, include_in_schema=False)
 def logout_view(request):
     logout(request)
     return {"message": "Logged out"}
@@ -77,7 +77,7 @@ def listar_livros(request):
         livro_data = {
             "id": livro.id,
             "titulo": livro.titulo,
-            "descricao": livro.descricao,
+            "sinopse": livro.sinopse,
             "paginas": livro.n_paginas,
             "isbn": livro.isbn,              
             "n_paginas": livro.n_paginas,    
@@ -133,7 +133,7 @@ def listar_interacoes(request):
             "livro": {
                 "id": interacao.livro.id,
                 "titulo": interacao.livro.titulo,
-                "descricao": interacao.livro.descricao,
+                "sinopse": interacao.livro.sinopse,
                 "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor":{
@@ -164,7 +164,7 @@ def listar_interacoes_lendo_por_leitor(request):
             "livro": {
                 "id": interacao.livro.id,
                 "titulo": interacao.livro.titulo,
-                "descricao": interacao.livro.descricao,
+                "sinopse": interacao.livro.sinopse,
                 "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor":{
@@ -194,7 +194,7 @@ def listar_interacoes_quero_ler_por_leitor(request):
             "livro": {
                 "id": interacao.livro.id,
                 "titulo": interacao.livro.titulo,
-                "descricao": interacao.livro.descricao,
+                "sinopse": interacao.livro.sinopse,
                 "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor":{
@@ -224,7 +224,7 @@ def listar_interacoes_lidas_por_leitor(request):
             "livro": {
                 "id": interacao.livro.id,
                 "titulo": interacao.livro.titulo,
-                "descricao": interacao.livro.descricao,
+                "sinopse": interacao.livro.sinopse,
                 "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor":{
@@ -261,7 +261,7 @@ def criar_interacao(request, livro_id: int, status: str):
         "livro": {
             "id": interacao.livro.id,
             "titulo": interacao.livro.titulo,
-            "descricao": interacao.livro.descricao,
+            "sinopse": interacao.livro.sinopse,
             "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
             "n_paginas": interacao.livro.n_paginas,
             "autor": {
@@ -296,7 +296,7 @@ def criar_interacao_lendo(request, livro_id: int):
         "livro": {
             "id": interacao.livro.id,
             "titulo": interacao.livro.titulo,
-            "descricao": interacao.livro.descricao,
+            "sinopse": interacao.livro.sinopse,
             "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
             "n_paginas": interacao.livro.n_paginas,
             "autor": {
@@ -322,7 +322,7 @@ def listar_interacao_id(request, id:int):
             "livro": {
                 "id": interacao.livro.id,
                 "titulo": interacao.livro.titulo,
-                "descricao": interacao.livro.descricao,
+                "sinopse": interacao.livro.sinopse,
                 "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor": {
@@ -420,7 +420,7 @@ def livros_disponiveis(request):
             livro_data = {
                 "id": livro.id,
                 "titulo": livro.titulo,
-                "descricao": livro.descricao,
+                "sinopse": livro.sinopse,
                 "paginas": livro.n_paginas,
                 "isbn": livro.isbn,              
                 "n_paginas": livro.n_paginas,    
