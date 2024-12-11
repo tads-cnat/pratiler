@@ -1,3 +1,5 @@
+from django.http import Http404
+from django.shortcuts import get_object_or_404
 from ninja import NinjaAPI
 from django.conf import settings
 from ninja.security import django_auth
@@ -6,20 +8,20 @@ from django.middleware.csrf import get_token
 from ninja.responses import JsonResponse
 from django.contrib.auth.decorators import login_required
 
-from . import schemas, models
+from .models import Livro, Autor, Interação, Leitor, Resenha
 
-from .schemas import AutorSchema, LivroSchema, LeitorSchema, UserSchema, ResenhaSchema
+from .schemas import *
 
 # API com CSRF ativado para autenticação e endpoints sensíveis
 api = NinjaAPI(csrf=True)
 
-@api.get("/set-csrf-token")
+@api.get("/set-csrf-token", include_in_schema=False)
 def get_csrf_token(request):
     return {"csrftoken": get_token(request)}
 
 
-@api.post("/login")
-def login_view(request, payload: schemas.SignInSchema):
+@api.post("/login", include_in_schema=False)
+def login_view(request, payload: SignInSchema):
     try:
         user = authenticate(request, username=payload.email, password=payload.password)
         if user is not None:
@@ -31,13 +33,13 @@ def login_view(request, payload: schemas.SignInSchema):
 
 
 
-@api.get("/logout", auth=django_auth)
+@api.get("/logout", auth=django_auth, include_in_schema=False)
 def logout_view(request):
     logout(request)
     return {"message": "Logged out"}
 
 
-@api.get("/user", auth=django_auth)
+@api.get("/user", auth=django_auth, tags=["Leitores"])
 def user(request):
     return {
         "biografia": request.user.biografia,
@@ -47,10 +49,10 @@ def user(request):
     }
 
 
-@api.post("/register")
-def register(request, payload: schemas.RegisterSchema):
+@api.post("/register", include_in_schema=False)
+def register(request, payload: RegisterSchema):
     try:
-        models.Leitor.objects.create_user(username=payload.username, email=payload.email, password=payload.password)
+        Leitor.objects.create_user(username=payload.username, email=payload.email, password=payload.password)
         return {"success": "User registered successfully"}
     except Exception as e:
         if "UNIQUE constraint failed" in str(e):
@@ -58,64 +60,300 @@ def register(request, payload: schemas.RegisterSchema):
         return {"error": str(e)}
     
 
-# GETS
-@api.get("/autores", response=list[AutorSchema])
+@api.get("/autores", response=list[AutorSchema], tags=["Autores"])
 def listar_autores(request):
     """Lista todos os autores."""
-    return models.Autor.objects.all()
+    return Autor.objects.all()
 
-@api.get("/livros", response=list[LivroSchema], auth=django_auth)
+@api.get("/livros", response=list[LivroSchema], auth=django_auth, tags=["Livros"])
 def listar_livros(request):
-    livros = models.Livro.objects.all()
+    livros = Livro.objects.select_related('autor').all()
     livros_resposta = []
 
     for livro in livros:
         livro_data = {
             "id": livro.id,
             "titulo": livro.titulo,
-            "descricao": livro.descricao,
+            "sinopse": livro.sinopse,
             "paginas": livro.n_paginas,
             "isbn": livro.isbn,              
             "n_paginas": livro.n_paginas,    
-            "autor_id": livro.autor_id,
+            "autor":{
+                    "id": livro.autor.id,
+                    "nome": livro.autor.nome
+            },
             "capa": f"http://127.0.0.1:8000{livro.capa.url.replace('/media', '')}" if livro.capa else None,
         }
         livros_resposta.append(livro_data)
 
     return livros_resposta
 
-@api.get("/leitores", response=list[LeitorSchema])
+@api.get("/leitores", response=list[LeitorSchema], tags=["Leitores"])
 def listar_leitores(request):
     """Lista todos os leitores."""
-    return models.Leitor.objects.all()
+    return Leitor.objects.all()
 
-@api.get("/leitores/{leitor_id}", response=LeitorSchema)
+@api.get("/leitores/{leitor_id}", response=LeitorSchema, tags=["Leitores"])
 def listar_leitor(request, leitor_id: int):
     """Lista um leitor específico."""
     try:
-        leitor = models.Leitor.objects.get(id=leitor_id)
+        leitor = Leitor.objects.get(id=leitor_id)
         return leitor
-    except models.Leitor.DoesNotExist:
+    except Leitor.DoesNotExist:
         return JsonResponse({"detalhe": "leitor não encontrado"}, status=404)
 
-@api.get("/leitores/{leitor_id}/user", response=UserSchema)
+@api.get("/leitores/{leitor_id}/user", response=UserSchema, tags=["Leitores"])
 def listar_user_do_leitor(request, leitor_id: int):
     """Lista um User (Django) específico"""
     try:
-        leitor = models.Leitor.objects.get(id=leitor_id)
+        leitor = Leitor.objects.get(id=leitor_id)
         user = leitor.user_django  # Pega o User relacionado ao Leitor
         return user
-    except models.Leitor.DoesNotExist:
+    except Leitor.DoesNotExist:
         return JsonResponse({"detalhe": "leitor não encontrado"}, status=404)
+    
 
-@api.get("/resenhas", response=list[ResenhaSchema])
+###### Endpoints Interação
+
+@api.get("/interacoes", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
+def listar_interacoes(request):
+    interacoes = Interação.objects.select_related('leitor', 'livro__autor').all()
+
+    # Serializando
+    return [
+        {
+            "id": interacao.id,
+            "leitor": {
+                "id": interacao.leitor.id,
+                "username": interacao.leitor.username
+            },
+            "livro": {
+                "id": interacao.livro.id,
+                "titulo": interacao.livro.titulo,
+                "sinopse": interacao.livro.sinopse,
+                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "n_paginas": interacao.livro.n_paginas,
+                "autor":{
+                    "id": interacao.livro.autor.id,
+                    "nome": interacao.livro.autor.nome
+                }
+            },
+            "status": interacao.status,
+        }
+        for interacao in interacoes
+    ]
+
+
+@api.get("/interacoes/leitor", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
+def listar_interacoes_lendo_por_leitor(request):
+    leitor = request.user
+
+    interacoes = Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LN")
+
+    # Serializando
+    return [
+        {
+            "id": interacao.id,
+            "leitor": {
+                "id": interacao.leitor.id,
+                "username": interacao.leitor.username
+            },
+            "livro": {
+                "id": interacao.livro.id,
+                "titulo": interacao.livro.titulo,
+                "sinopse": interacao.livro.sinopse,
+                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "n_paginas": interacao.livro.n_paginas,
+                "autor":{
+                    "id": interacao.livro.autor.id,
+                    "nome": interacao.livro.autor.nome
+                }
+            },
+            "status": interacao.status,
+        }
+        for interacao in interacoes
+    ]
+
+@api.get("/interacoes/leitor/quero_ler", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
+def listar_interacoes_quero_ler_por_leitor(request):
+    leitor = request.user
+
+    interacoes = Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status='QL')
+
+    # Serializando
+    return [
+        {
+            "id": interacao.id,
+            "leitor": {
+                "id": interacao.leitor.id,
+                "username": interacao.leitor.username
+            },
+            "livro": {
+                "id": interacao.livro.id,
+                "titulo": interacao.livro.titulo,
+                "sinopse": interacao.livro.sinopse,
+                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "n_paginas": interacao.livro.n_paginas,
+                "autor":{
+                    "id": interacao.livro.autor.id,
+                    "nome": interacao.livro.autor.nome
+                }
+            },
+            "status": interacao.status,
+        }
+        for interacao in interacoes
+    ]
+
+@api.get("/interacoes/leitor/lidos", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
+def listar_interacoes_lidas_por_leitor(request):
+    leitor = request.user
+
+    interacoes = Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LD")
+
+    # Serializando
+    return [
+        {
+            "id": interacao.id,
+            "leitor": {
+                "id": interacao.leitor.id,
+                "username": interacao.leitor.username
+            },
+            "livro": {
+                "id": interacao.livro.id,
+                "titulo": interacao.livro.titulo,
+                "sinopse": interacao.livro.sinopse,
+                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "n_paginas": interacao.livro.n_paginas,
+                "autor":{
+                    "id": interacao.livro.autor.id,
+                    "nome": interacao.livro.autor.nome
+                }
+            },
+            "status": interacao.status,
+        }
+        for interacao in interacoes
+    ]
+
+@api.post("/interacoes/leitor", auth=django_auth, response=InteracaoSchema, tags=['Interações Livro/Leitor'])
+def criar_interacao(request, livro_id: int, status: str):
+    leitor = request.user
+
+    try:
+        livro = Livro.objects.get(id=livro_id)
+    except Livro.DoesNotExist:
+        return api.create_response(request, {"error": "Livro não encontrado"}, status=404)
+
+    interacao = Interação.objects.create(
+        leitor=leitor,
+        livro=livro,
+        status=status
+    )
+
+    return {
+        "id": interacao.id,
+        "leitor": {
+            "id": interacao.leitor.id,
+            "username": interacao.leitor.username
+        },
+        "livro": {
+            "id": interacao.livro.id,
+            "titulo": interacao.livro.titulo,
+            "sinopse": interacao.livro.sinopse,
+            "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+            "n_paginas": interacao.livro.n_paginas,
+            "autor": {
+                "id": interacao.livro.autor.id,
+                "nome": interacao.livro.autor.nome
+            }
+        },
+        "status": interacao.status,
+    }
+
+@api.post("/interacoes/leitor/lendo", auth=django_auth, response=InteracaoSchema, tags=['Interações Livro/Leitor'])
+def criar_interacao_lendo(request, livro_id: int):
+    leitor = request.user
+
+    try:
+        livro = Livro.objects.get(id=livro_id)
+    except Livro.DoesNotExist:
+        return api.create_response(request, {"error": "Livro não encontrado"}, status=404)
+
+    interacao = Interação.objects.create(
+        leitor=leitor,
+        livro=livro,
+        status='LN'
+    )
+
+    return {
+        "id": interacao.id,
+        "leitor": {
+            "id": interacao.leitor.id,
+            "username": interacao.leitor.username
+        },
+        "livro": {
+            "id": interacao.livro.id,
+            "titulo": interacao.livro.titulo,
+            "sinopse": interacao.livro.sinopse,
+            "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+            "n_paginas": interacao.livro.n_paginas,
+            "autor": {
+                "id": interacao.livro.autor.id,
+                "nome": interacao.livro.autor.nome
+            }
+        },
+        "status": interacao.status,
+    }
+
+@api.get("interacoes/leitor/{int:id}", response=InteracaoSchema, tags=['Interações Livro/Leitor'])
+def listar_interacao_id(request, id:int):
+    try:
+        leitor = request.user
+        interacao = Interação.objects.select_related('leitor', 'livro__autor').get(id=id, leitor=leitor)
+
+        return{
+            "id": interacao.id,
+            "leitor": {
+                "id": interacao.leitor.id,
+                "username": interacao.leitor.username
+            },
+            "livro": {
+                "id": interacao.livro.id,
+                "titulo": interacao.livro.titulo,
+                "sinopse": interacao.livro.sinopse,
+                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "n_paginas": interacao.livro.n_paginas,
+                "autor": {
+                    "id": interacao.livro.autor.id,
+                    "nome": interacao.livro.autor.nome
+                }
+            },
+            "status": interacao.status,
+        }
+    except Interação.DoesNotExist:
+        return api.create_response(request, {"detail": "Interação não encontrada ou não pertence ao usuário"}, status=404)
+    
+
+@api.put("/interacoes/{id}/marcar-como-lido", tags=["Interações Livro/Leitor"])
+def marcar_como_lido(request, id:int):
+    try:
+        interacao = Interação.objects.get(id=id, leitor=request.user)
+        interacao.status = "LD"
+        interacao.save()
+        return {"success": True, "message":"Livro marcado como lido com sucesso!"}
+    except Interação.DoesNotExist:
+        raise Http404("Interação não encontrada")
+
+
+
+
+@api.get("/resenhas", response=list[ResenhaSchema], tags=["Resenhas"])
 def listar_resenhas(request):
     """Lista todoas as resenhas."""
     return Resenha.objects.all()
 
 # fazer os POSTS
 ## Não vai ter post livro no momento porque vamos consumir uma API depois ao invés de criar os livros manualmente
-@api.post("/resenhas/", response=ResenhaSchema)
+@api.post("/resenhas/", response=ResenhaSchema, tags=["Resenhas"])
 def criar_resenha(request, data: ResenhaSchema):
         """Cria uma nova resenha."""
 
@@ -140,7 +378,7 @@ def criar_resenha(request, data: ResenhaSchema):
             return JsonResponse({"detalhe": "Resenha já existe para este livro e leitor."}, status=400)
         
 # fazer os PUTS
-@api.put("/resenhas/{resenha_id}", response=ResenhaSchema) 
+@api.put("/resenhas/{resenha_id}", response=ResenhaSchema, tags=["Resenhas"]) 
 def atualizar_resenha(request, resenha_id: int, data: ResenhaSchema):
     """Atualiza uma resenha existente."""
     resenha = get_object_or_404(Resenha, id=resenha_id) # seleciona a resenha pelo id
@@ -158,8 +396,39 @@ def atualizar_resenha(request, resenha_id: int, data: ResenhaSchema):
     return resenha
     
 # fazer os DELETES
-@api.delete("/resenhas/{resenha_id}", response={204: None})
+@api.delete("/resenhas/{resenha_id}", response={204: None}, tags=["Resenhas"])
 def deletar_resenha(request, resenha_id: int):
     resenha = get_object_or_404(Resenha, id=resenha_id)
     resenha.delete()
     return 204, None
+
+
+@api.get("/livros-disponiveis", response=list[LivroSchema], auth=django_auth, tags=['Livros'])
+def livros_disponiveis(request):
+    try:
+        leitor = request.user
+        interacoes_leitor = Interação.objects.filter(leitor=leitor).values_list('livro_id', flat=True)
+
+        livros_disponiveis = Livro.objects.exclude(id__in=interacoes_leitor)
+
+        livros_resposta = []
+
+        for livro in livros_disponiveis:
+            livro_data = {
+                "id": livro.id,
+                "titulo": livro.titulo,
+                "sinopse": livro.sinopse,
+                "paginas": livro.n_paginas,
+                "isbn": livro.isbn,              
+                "n_paginas": livro.n_paginas,    
+                "autor":{
+                        "id": livro.autor.id,
+                        "nome": livro.autor.nome
+                },
+                "capa": f"http://127.0.0.1:8000{livro.capa.url.replace('/media', '')}" if livro.capa else None,
+            }
+            livros_resposta.append(livro_data)
+
+        return livros_resposta
+    except Livro.DoesNotExist:
+        return api.create_response(request, {"detail": "Livros não encontrados"}, status=404)

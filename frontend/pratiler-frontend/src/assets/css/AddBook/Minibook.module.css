@@ -1,0 +1,78 @@
+.book {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 2rem;
+    max-width: 12rem;
+}
+
+.imgBook{
+    width: 12rem;
+    height: auto;
+    box-shadow: 0px 0px 8px rgb(0, 0, 0.5);
+}
+
+.titleBook{
+    font-size: 1.25rem;
+    color: var(--penn-blue);
+}
+
+.titleAuthor {
+    font-size: 0.875rem;
+    color: var(--ultra-violet);
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 3.5rem;
+
+    padding-block: 1rem;
+}
+
+.readBegin {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--penn-blue);
+    color: var(--white);
+    font-weight: 700;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+.readBegin:hover {
+    background-color: var(--white);
+    outline: 2px solid var(--penn-blue);
+    color: var(--penn-blue);
+}
+
+.addList {
+    border: none;
+    height: 2.5rem;
+    cursor: pointer;
+
+    svg {
+        width: 2.5rem;
+        height: auto;
+        color: var(--ultra-violet);
+        transition: 300ms;
+    }
+}
+
+.addList:hover{
+    svg{
+        transform: scale(1.1);
+        color: var(--penn-blue);
+    }
+}
+
+.addList:active{
+    svg{
+       fill: var(--penn-blue);
+    }
+}

@@ -32,4 +32,9 @@
 .box_img {
     height: 468px;
     width: auto;
+    transition: 300ms ease-in-out;
+}
+
+.box_img:hover {
+    transform: translateY(-1.5rem);
 }

@@ -3,6 +3,8 @@ import { getCookie } from '../Global/authStore';
 import { useNavigate } from 'react-router-dom';
 import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css';
 import { Button } from '../Utilities/Button';
+import { AuthSuccessful } from "../Global/AuthSuccessful";
+import { AuthFail } from "../Global/AuthFail";
 import axios from 'axios';
 import { useState } from "react";
 import imageLogin from '../../assets/img/imagem-login.png';
@@ -34,7 +36,7 @@ export function LoginFormulario(){
             );
             if(response.data.success){
                 setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
-                setTimeout(() => navigate('/livros'), 1000);
+                setTimeout(() => navigate('/livros'), 2000);
             }
             else setError(response.data.message);
         } catch (error){
@@ -61,11 +63,11 @@ export function LoginFormulario(){
                     
                     <Button type="submit" name="Entrar"/>
                 </form>
-                {success && <p className={loginCss.successMessage}>{success}</p>}
-                {error && <p className={loginCss.errorMessage}>{error}</p>}
                 <p className={loginCss.mensagem}>
                     Não possui uma conta? <Link to="/cadastro">Cadastre-se na nossa rede</Link>
                 </p>
+                {success && <AuthSuccessful message={success}/>}
+                {error && <AuthFail message={error}/>}
             </div>
         </div>
         

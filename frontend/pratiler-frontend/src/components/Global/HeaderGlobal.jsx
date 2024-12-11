@@ -11,6 +11,7 @@ export function Header({ user }) {
     const navigate = useNavigate();
 
     const logout = () => {
+<<<<<<< HEAD
         const response = axios.get('http://localhost:8000/api/logout', {
             headers: {
                     'X-CSRFToken': getCookie('csrftoken'),
@@ -19,6 +20,20 @@ export function Header({ user }) {
                 withCredentials: true,
         });
         setTimeout(() => navigate('/'), 1000);
+=======
+        try{
+            const response = axios.post('http://localhost:8000/api/logout', {}, {
+                headers: {
+                        'X-CSRFToken': getCookie('csrftoken'),
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true,
+            });
+            setTimeout(() => navigate('/login'), 200);
+        } catch(error){
+            setError("Erro ao Deslogar: " + error);
+        }
+>>>>>>> 90-terminar-a-parte-de-cadastro-de-livros
     };
 
     return(
@@ -34,14 +49,20 @@ export function Header({ user }) {
                         <div className={headerCss.icon}>
                             <User weight='fill' color='#f6f6f6' size={18} />
                         </div>
+<<<<<<< HEAD
                         <span className={headerCss.titlePerfil}>{user.username}</span>
                         <button onClick={logout}>Sair</button>
+=======
+                        <span className={headerCss.titlePerfil}>Walber Ranniere</span>
+                        <button className={headerCss.logout} onClick={logout}>Sair</button>
+                        {error && <p>{error}</p>}
+>>>>>>> 90-terminar-a-parte-de-cadastro-de-livros
                     </div>
                 </div>
             </header>
             <div className={headerCss.secondHeader}>
                 <div className={headerCss.secHeaderContent}>
-                    <a href='#' className={headerCss.categories}>
+                    <a href='/livros' className={headerCss.categories}>
                         <Books size={24} color='#221D57' weight='fill'/>
                         <span>Minhas Estante</span>
                     </a>

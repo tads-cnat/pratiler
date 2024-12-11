@@ -1,0 +1,8 @@
+.section {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    padding-block: 6rem;
+}

@@ -1,6 +1,7 @@
 from ninja import ModelSchema, Schema
 from django.contrib.auth.models import User
-from .models import Autor, Livro, Leitor, Resenha
+from pydantic import HttpUrl
+from .models import *
 
 class SignInSchema(Schema):
     email: str
@@ -11,25 +12,30 @@ class RegisterSchema(Schema):
     password: str
     username: str
 
-class AutorSchema(ModelSchema):
-    class Config:
-        model = Autor
-        model_fields = '__all__'  # Defini todos os campos para a API
+class AutorSchema(Schema):
+    id: int
+    nome: str
 
 class LivroSchema(ModelSchema):
+    autor: AutorSchema
     class Config:
-        model = Livro 
-        model_fields = '__all__'
+        model = Livro
+        model_fields = [ 'id','titulo', 'sinopse', 'capa', 'n_paginas', 'autor']
 
 class UserSchema(ModelSchema):
     class Config:
         model = User
         model_fields = ['id', 'username', 'email', 'first_name', 'last_name']
 
-class LeitorSchema(ModelSchema):
-    class Config:
-        model = Leitor
-        model_fields = '__all__'
+class LeitorSchema(Schema):
+    id: int
+    username: str
+
+class InteracaoSchema(Schema):
+    id: int
+    leitor: LeitorSchema
+    livro: LivroSchema
+    status: str
 
 class ResenhaSchema(ModelSchema):
      class Config:

@@ -24,6 +24,11 @@
     align-items: center;
     gap: 4px;
     text-decoration: none;
+    transition: 250ms;
+}
+
+.box_in:hover {
+    transform: scale(1.1);
 }
 
 .box_in img {
@@ -46,4 +51,11 @@
     padding-block: 12px;
     padding-inline: 26px;
     border-radius: 16px;
+    transition: 300ms;
+}
+
+.btn_register:hover {
+    outline: 4px solid var(--penn-blue);
+    background-color: var(--white);
+    color: var(--penn-blue);
 }

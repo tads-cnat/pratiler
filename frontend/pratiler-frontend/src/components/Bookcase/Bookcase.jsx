@@ -6,6 +6,7 @@ import { Plus, CaretCircleDown } from 'phosphor-react';
 import { Header } from "../Global/HeaderGlobal";
 import { CardBook } from "./CardBook";
 import { useNavigate } from "react-router-dom";
+import noBooks from '../../assets/img/no-books.png'
 
 
 import bookcaseCss from '../../assets/css/Bookcase/Bookcase.module.css';
@@ -28,6 +29,7 @@ export function Bookcase() {
     const [books, setBooks] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [filter, setFilter] = useState("Lendo");
     const [user, setUser] = useState({});
 
     const fetchUser = async () => {
@@ -42,13 +44,26 @@ export function Bookcase() {
     }
     
     const fetchBooks = async () => {
+        setLoading(true);
         try{
-            const response = await axios.get('http://localhost:8000/api/livros',{
+            const endpoint = {
+                "Lendo": "http://localhost:8000/api/interacoes/leitor",
+                "Quero Ler": "http://localhost:8000/api/interacoes/leitor/quero_ler",
+                "Lidos": "http://localhost:8000/api/interacoes/leitor/lidos",
+            }[filter];
+
+            const response = await axios.get(endpoint,{
                 headers: {
                     'X-CSRFToken': csrftoken, // Inclui o CSRF token
                 },
                 withCredentials: true,
             }) ;
+            console.log("Dados recebidos:", response.data);
+
+            response.data.forEach(book => {
+                console.log("Descrição do livro:", book.livro.descricao);
+            });
+
             setBooks(response.data);
         } catch (error) {
             console.error("Erro ao buscar Livros: ", error);
@@ -62,7 +77,9 @@ export function Bookcase() {
     useEffect(() =>{
         fetchUser();
         fetchBooks();
-    }, []);
+    }, [filter]);
+
+
 
     if (loading) {
         return <p>Carregando Dados....</p>;
@@ -72,32 +89,41 @@ export function Bookcase() {
 
     return(
         <>
-            <Header user={user} />
+            <Header />
             <div className={bookcaseCss.sectionBox}>
                 <div className={bookcaseCss.listButtons}>
                     <form action="#">
-                        <select name="categories" id="categorie">
-                            <option value="leituras-atuais">Leituras Atuais <CaretCircleDown /> </option>
-                            <option value="saab">Leituras Antigas</option>
-                            <option value="opel">Opel</option>
-                            <option value="audi">Audi</option>
+                        <select name="categories" id="categorie" value={filter} onChange={(e) => setFilter(e.target.value)}>
+                            <option value="Lendo">Leituras Atuais <CaretCircleDown /> </option>
+                            <option value="Quero Ler">Querendo Ler</option>
+                            <option value="Lidos">Lidos</option>
                         </select>
                     </form>
-                    <button className={bookcaseCss.btnPlusBook}>
+                    <button className={bookcaseCss.btnPlusBook} onClick={() => navigate(`/adicionar-livro`)}>
                         Adicionar Livro
-                        <Plus weight="bold" size={20} color="#f6f6f6" />
+                        <Plus className={bookcaseCss.iconPlus} weight="bold" />
                     </button>
                 </div>  
-                <img src="" alt="" />
                 <div className={bookcaseCss.sectionCards}>
+                    {books.length === 0 && (
+                        <div className={bookcaseCss.boxNoBooks}>
+                            <h1 className={bookcaseCss.titleNoBooks}> Sem Livros por aqui</h1>
+                            <img className={bookcaseCss.noBooks} src={noBooks} alt="Nenhum livro encontrado" />
+                        </div>
+                    )}
                     {error && <p>{error}</p>}
                     {books.map((book) => (
                         <CardBook 
                             key={book.id}
-                            img={book.capa} 
-                            title={book.titulo} 
-                            description={book.descricao}
-                            pages={book.n_paginas}
+                            id={book.id}
+                            img={book.livro.capa} 
+                            title={book.livro.titulo} 
+                            autor={book.livro.autor.nome}
+                            pages={book.livro.n_paginas}
+                            status={book.status}
+                            descricao={book.livro.descricao}
+                            onDetailsClick={(id) => navigate(`/interacoes/${id}`)}
+                            onUpdate={() => fetchBooks()}
                         />
                     ))}
                 </div>
