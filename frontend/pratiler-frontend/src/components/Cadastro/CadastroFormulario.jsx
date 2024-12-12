@@ -3,8 +3,7 @@ import cadastroCss from '../../assets/css/LoginCadastro/Formulario.module.css';
 import { Button } from '../Utilities/Button';
 
 import { useNavigate } from 'react-router-dom';
-import { getCookie } from '../Global/authStore';
-
+import { useAuthStore } from '../Global/authStore';
 import axios from 'axios';
 import { useState } from "react";
 import { AuthSuccessful } from '../Global/AuthSuccessful';
@@ -25,36 +24,44 @@ export function CadastroFormulario(){
     const [success, setSuccess] = useState(null);
 
     const navigate = useNavigate();
-
+    
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
     };
-
+    
     // Enviando os dados do formulário para a API
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
-
+        
         try {
-            const csrftoken = getCookie('csrftoken'); 
+            const { setCsrfToken, csrfToken, login, isAuthenticated } = useAuthStore();
+            setCsrfToken();
             const response = await axios.post(
                 'http://localhost:8000/api/register',
                 formData,
                 {
                     headers: {
-                        'X-CSRFToken': csrftoken,
+                        'X-CSRFToken': csrfToken,
                         'Content-Type': 'application/json',
                     },
                     withCredentials: true,
                 }
             );
-            
             if (response.data.success) {
-                setSuccess("Conta criada com sucesso! Redirecionando...");
-                setTimeout(() => navigate('/login'), 2000); // Redireciona para a página de login após 2 segundos
+                const { email, password } = formData;
+                const loginRequest = login(email, password);
+                if(isAuthenticated){
+                    setSuccess("Conta criada com sucesso! Estamos te autenticando...");
+                    setTimeout(() => navigate('/livros'), 2000); // Redireciona para a página de livros após autenticação após 2 segundos
+                }
+                else{
+                    setError(loginRequest.data.message || 'Ocorreu um erro ao se autenticar após o cadastro.');
+                    setTimeout(() => navigate('/login'), 2000); // Redireciona para a página de login se falhar a autenticação após 2 segundos
+                }
             } else {
                 setError(response.data.error || 'Ocorreu um erro ao registrar o usuário.');
             }

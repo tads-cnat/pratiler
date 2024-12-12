@@ -2,7 +2,6 @@
 import cardBookCss from '../../assets/css/Bookcase/CardBook.module.css';
 import { MagnifyingGlass } from 'phosphor-react';
 import { CheckCircle } from 'phosphor-react';
-import { getCookie } from "../Global/authStore";
 
 import { useState } from 'react';
 import axios from 'axios';
@@ -16,16 +15,7 @@ export function CardBook({ img, autor, status, title, pages, id, onDetailsClick,
     const handleMarkAsRead = async (id) => {
         try {
             const response = await axios.put(
-                `http://localhost:8000/api/interacoes/${id}/marcar-como-lido`,
-                {},
-                {
-                    headers: {
-                        'X-CSRFToken': getCookie('csrftoken'),
-                        'Content-Type': 'application/json',
-                    },
-                    withCredentials: true,
-                }
-            );
+                `http://localhost:8000/api/interacoes/${id}/marcar-como-lido`, {});
             setSuccessMessage(response.data.message || "Livro marcado como lido!");
 
             setTimeout(() => {

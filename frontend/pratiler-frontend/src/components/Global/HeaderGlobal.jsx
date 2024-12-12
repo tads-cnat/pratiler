@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getCookie } from '../Global/authStore';
 import pratilerLogo from '../../assets/img/pratiler-logo.png';
-import { useState } from 'react';
+import { useAuthStore } from '../Global/authStore';
 
 export function Header({ user }) {
     const navigate = useNavigate();
-
+    const { user } = useAuthStore((state) => state.user);
     const logout = () => {
         const response = axios.get('http://localhost:8000/api/logout', {
             headers: {

@@ -1,25 +1,25 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import axios from 'axios';
-import { getCookie } from "../Global/authStore";
+import { getCookie, useAuthStore } from "../Global/authStore";
 import { Plus, CaretCircleDown } from 'phosphor-react';
 import { Header } from "../Global/HeaderGlobal";
 import { CardBook } from "./CardBook";
 import { useNavigate } from "react-router-dom";
 import noBooks from '../../assets/img/no-books.png'
+import { useAuthStore } from "../Global/authStore";
 
 
 import bookcaseCss from '../../assets/css/Bookcase/Bookcase.module.css';
 
 export function Bookcase() {
 
-    const csrftoken = getCookie('csrftoken');
+    const { csrfToken, isAuthenticated } = useAuthStore();
     const navigate = useNavigate();
 
     useEffect(() => {
         async function checkAuth() {
-          const response = await fetch('http://localhost:8000/api/user', { credentials: 'include' });
-          if (!response.ok) {
+          if (!isAuthenticated) {
             navigate('/login'); // Redireciona para login se não autenticado
           }
         }
@@ -30,18 +30,6 @@ export function Bookcase() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState("Lendo");
-    const [user, setUser] = useState({});
-
-    const fetchUser = async () => {
-        const user = await axios.get('http://localhost:8000/api/user', {
-            headers: {
-                'X-CSRFToken': getCookie('csrftoken'),
-                'Content-Type': 'application/json',
-            },
-            withCredentials: true,
-        });
-        setUser(user.data);
-    }
     
     const fetchBooks = async () => {
         setLoading(true);
@@ -52,12 +40,7 @@ export function Bookcase() {
                 "Lidos": "http://localhost:8000/api/interacoes/leitor/lidos",
             }[filter];
 
-            const response = await axios.get(endpoint,{
-                headers: {
-                    'X-CSRFToken': csrftoken, // Inclui o CSRF token
-                },
-                withCredentials: true,
-            }) ;
+            const response = await axios.get(endpoint);
             console.log("Dados recebidos:", response.data);
 
             response.data.forEach(book => {
@@ -75,7 +58,6 @@ export function Bookcase() {
 
 
     useEffect(() =>{
-        fetchUser();
         fetchBooks();
     }, [filter]);
 

@@ -15,7 +15,7 @@ export const useAuthStore = create(
         set({csrfToken: response.data});
       },
 
-      login: async ({ email, password }) => {
+      login: async (email, password) => {
         credentials = {email: email, password: password}
         const response = await axios.post('http://localhost:8000/api/login', 
           credentials, 
@@ -38,7 +38,7 @@ export const useAuthStore = create(
             },
             credentials: 'include'
           });
-          set({ user: null, isAuthenticated: false });
+          set({ user: null, isAuthenticated: false, csrfToken: null });
       },
 
       fetchUser: async () => {
@@ -50,15 +50,9 @@ export const useAuthStore = create(
             },
             withCredentials: true
           });
-          if (response.ok) {
-            const data = await response.json();
-            set({ user: data, isAuthenticated: true });
-          } else {
-            set({ user: null, isAuthenticated: false });
-          }
+          if (response.ok) set({ user: response.data, isAuthenticated: true });
         } catch (error) {
           console.error('Failed to fetch user', error);
-          set({ user: null, isAuthenticated: false });
         }
       },
     }),

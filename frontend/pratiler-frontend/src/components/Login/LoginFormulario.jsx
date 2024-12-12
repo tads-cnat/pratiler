@@ -6,6 +6,7 @@ import { Button } from '../Utilities/Button';
 import { AuthSuccessful } from "../Global/AuthSuccessful";
 import { AuthFail } from "../Global/AuthFail";
 import axios from 'axios';
+import { useAuthStore } from '../Global/authStore';
 import { useState } from "react";
 import imageLogin from '../../assets/img/imagem-login.png';
 import { Link } from 'react-router-dom';
@@ -25,20 +26,15 @@ export function LoginFormulario(){
         setError(null);
 
         try{
-            const csrftoken = getCookie('csrftoken');
-            const response = await axios.post('http://localhost:8000/api/login', formData, {
-                    headers: {
-                        'X-CSRFToken': csrftoken,
-                        'Content-Type': 'application/json',
-                    },
-                    withCredentials: true,
-                }
-            );
-            if(response.data.success){
+            const { setCsrfToken, login, isAuthenticated } = useAuthStore();
+            setCsrfToken();
+            const { email, password } = formData;
+            const loginRequest = login(email, password);
+            if(isAuthenticated){
                 setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
                 setTimeout(() => navigate('/livros'), 2000);
             }
-            else setError(response.data.message);
+            else setError(loginRequest.data.message);
         } catch (error){
             setError("Erro ao fazer login: " + error);
         }
