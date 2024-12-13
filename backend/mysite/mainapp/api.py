@@ -1,12 +1,10 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from ninja import NinjaAPI
-from django.conf import settings
 from ninja.security import django_auth
 from django.contrib.auth import authenticate, login, logout
 from django.middleware.csrf import get_token
 from ninja.responses import JsonResponse
-from django.contrib.auth.decorators import login_required
 
 from .models import Livro, Autor, Interação, Leitor, Resenha
 
@@ -56,7 +54,7 @@ def register(request, payload: RegisterSchema):
         return {"success": "User registered successfully"}
     except Exception as e:
         if "UNIQUE constraint failed" in str(e):
-            return {"error": "Email already exists."}
+            return {"error": "Email ou nome de usuário já está em uso."}
         return {"error": str(e)}
     
 
@@ -147,7 +145,6 @@ def listar_interacoes(request):
 @api.get("/interacoes/leitor", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
 def listar_interacoes_lendo_por_leitor(request):
     leitor = request.user
-
     interacoes = Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LN")
 
     # Serializando
