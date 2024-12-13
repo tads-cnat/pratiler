@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+
+/* CSS */
 import authCss from "../../assets/css/Global/AuthSuccessful.module.css"
 
 export function AuthSuccessful(props){
@@ -9,7 +11,7 @@ export function AuthSuccessful(props){
             </div>
         </>
     )
-}
+};
 
 AuthSuccessful.propTypes = {
     message: PropTypes.string,

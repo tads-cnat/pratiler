@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 
+/* CSS */
 import headerCss from '../../assets/css/Index/Header.module.css';
+
+/* Images */
 import pratilerLogo from "../../assets/img/pratiler-logo.png";
 import iconIn from "../../assets/img/icon-going.png";
 

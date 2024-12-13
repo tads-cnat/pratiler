@@ -1,15 +1,19 @@
 /* eslint-disable no-unused-vars */
-import { getCookie } from '../Global/authStore';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+
+/* CSS */
 import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css';
+
+/* Componentes */
 import { Button } from '../Utilities/Button';
 import { AuthSuccessful } from "../Global/AuthSuccessful";
 import { AuthFail } from "../Global/AuthFail";
-import axios from 'axios';
 import { useAuthStore } from '../Global/authStore';
-import { useState } from "react";
+
+/* Images */
 import imageLogin from '../../assets/img/imagem-login.png';
-import { Link } from 'react-router-dom';
+
 
 export function LoginFormulario(){
     const [error, setError] = useState(null);
@@ -19,6 +23,7 @@ export function LoginFormulario(){
         password: "",
     });
 
+    const { setCsrfToken, login } = useAuthStore();
     const navigate = useNavigate();
 
     const fetchLogin = async (e) => {
@@ -26,15 +31,13 @@ export function LoginFormulario(){
         setError(null);
 
         try{
-            const { setCsrfToken, login, isAuthenticated } = useAuthStore();
-            setCsrfToken();
             const { email, password } = formData;
-            const loginRequest = login(email, password);
-            if(isAuthenticated){
+            const loginRequest = await login(email, password);
+            if(loginRequest.success){
                 setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
                 setTimeout(() => navigate('/livros'), 2000);
             }
-            else setError(loginRequest.data.message);
+            else setError(loginRequest.message);
         } catch (error){
             setError("Erro ao fazer login: " + error);
         }

@@ -1,6 +1,11 @@
-import mainCss from '../../assets/css/Index/Main.module.css';
-import bookImage from '../../assets/img/home-livros-coracoes.png';
 import { Link } from 'react-router-dom';
+
+/* CSS */
+import mainCss from '../../assets/css/Index/Main.module.css';
+
+
+/* Images */
+import bookImage from '../../assets/img/home-livros-coracoes.png';
 
 
 export function Main(){

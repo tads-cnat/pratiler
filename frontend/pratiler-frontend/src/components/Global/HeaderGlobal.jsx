@@ -2,24 +2,16 @@
 import headerCss from '../../assets/css/Global/HeaderGlobal.module.css';
 import { MagnifyingGlass, User, UserPlus, Books, Star, ChatText } from 'phosphor-react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { getCookie } from '../Global/authStore';
-import pratilerLogo from '../../assets/img/pratiler-logo.png';
+
+/* Store */
 import { useAuthStore } from '../Global/authStore';
 
-export function Header({ user }) {
+/* Images */
+import pratilerLogo from '../../assets/img/pratiler-logo.png';
+
+export function Header() {
     const navigate = useNavigate();
-    const { user } = useAuthStore((state) => state.user);
-    const logout = () => {
-        const response = axios.get('http://localhost:8000/api/logout', {
-            headers: {
-                    'X-CSRFToken': getCookie('csrftoken'),
-                    'Content-Type': 'application/json',
-                },
-                withCredentials: true,
-        });
-        setTimeout(() => navigate('/'), 1000);
-    };
+    const { user, logout } = useAuthStore();
 
     return(
         <>
@@ -35,7 +27,11 @@ export function Header({ user }) {
                             <User weight='fill' color='#f6f6f6' size={18} />
                         </div>
                         <span className={headerCss.titlePerfil}>{user.username}</span>
-                        <button onClick={logout}>Sair</button>
+                        <button onClick={() => {
+                                logout();
+                                setTimeout(navigate('/'), 1000);
+                            }
+                        }>Sair</button>
                     </div>
                 </div>
             </header>

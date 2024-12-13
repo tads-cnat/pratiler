@@ -1,17 +1,22 @@
 /* eslint-disable no-unused-vars */
-import cadastroCss from '../../assets/css/LoginCadastro/Formulario.module.css';
-import { Button } from '../Utilities/Button';
-
-import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../Global/authStore';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from "react";
+
+/* Store */
+import { useAuthStore } from '../Global/authStore';
+
+/* CSS */
+import cadastroCss from '../../assets/css/LoginCadastro/Formulario.module.css';
+
+/* Componentes */
+import { Button } from '../Utilities/Button';
 import { AuthSuccessful } from '../Global/AuthSuccessful';
 import { AuthFail } from '../Global/AuthFail';
 
+/* Images */
 import imageCadastro from "../../assets/img/imagem-cadastro.png";
 
-import { Link } from 'react-router-dom';
 
 export function CadastroFormulario(){
     const [formData, setFormData] = useState({
@@ -19,6 +24,7 @@ export function CadastroFormulario(){
         email: '',
         password: '',
     });
+    const { register } = useAuthStore();
 
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
@@ -38,36 +44,17 @@ export function CadastroFormulario(){
         setError(null);
         
         try {
-            const { setCsrfToken, csrfToken, login, isAuthenticated } = useAuthStore();
-            setCsrfToken();
-            const response = await axios.post(
-                'http://localhost:8000/api/register',
-                formData,
-                {
-                    headers: {
-                        'X-CSRFToken': csrfToken,
-                        'Content-Type': 'application/json',
-                    },
-                    withCredentials: true,
-                }
-            );
-            if (response.data.success) {
-                const { email, password } = formData;
-                const loginRequest = login(email, password);
-                if(isAuthenticated){
+            const { username, email, password } = formData;
+            const response = await register(username, email, password);
+                if(response.success){
                     setSuccess("Conta criada com sucesso! Estamos te autenticando...");
                     setTimeout(() => navigate('/livros'), 2000); // Redireciona para a página de livros após autenticação após 2 segundos
                 }
-                else{
-                    setError(loginRequest.data.message || 'Ocorreu um erro ao se autenticar após o cadastro.');
-                    setTimeout(() => navigate('/login'), 2000); // Redireciona para a página de login se falhar a autenticação após 2 segundos
-                }
-            } else {
-                setError(response.data.error || 'Ocorreu um erro ao registrar o usuário.');
+                else setError(response.message || response.error || 'Ocorreu um erro ao se autenticar ou ao se registrar.');
+            } catch (err) {
+                setError(err.response?.data?.error || 'Erro no servidor. Tente novamente mais tarde.');
             }
-        } catch (err) {
-            setError(err.response?.data?.error || 'Erro no servidor. Tente novamente mais tarde.');
-        }
+         
     };
 
 

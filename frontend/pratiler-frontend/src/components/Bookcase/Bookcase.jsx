@@ -1,22 +1,28 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import axios from 'axios';
-import { getCookie, useAuthStore } from "../Global/authStore";
 import { Plus, CaretCircleDown } from 'phosphor-react';
-import { Header } from "../Global/HeaderGlobal";
-import { CardBook } from "./CardBook";
 import { useNavigate } from "react-router-dom";
-import noBooks from '../../assets/img/no-books.png'
+
+/* CSS */
+import bookcaseCss from '../../assets/css/Bookcase/Bookcase.module.css';
+
+/* Store */
 import { useAuthStore } from "../Global/authStore";
 
+/* Componentes */
+import { Header } from "../Global/HeaderGlobal";
+import { CardBook } from "./CardBook";
 
-import bookcaseCss from '../../assets/css/Bookcase/Bookcase.module.css';
+/* Images */
+import noBooks from '../../assets/img/no-books.png'
+
 
 export function Bookcase() {
 
-    const { csrfToken, isAuthenticated } = useAuthStore();
     const navigate = useNavigate();
-
+    
+    const { isAuthenticated } = useAuthStore();
     useEffect(() => {
         async function checkAuth() {
           if (!isAuthenticated) {
@@ -40,23 +46,23 @@ export function Bookcase() {
                 "Lidos": "http://localhost:8000/api/interacoes/leitor/lidos",
             }[filter];
 
-            const response = await axios.get(endpoint);
-            console.log("Dados recebidos:", response.data);
-
-            response.data.forEach(book => {
-                console.log("Descrição do livro:", book.livro.descricao);
+            const response = await axios.get(endpoint, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials: true
             });
 
             setBooks(response.data);
         } catch (error) {
             console.error("Erro ao buscar Livros: ", error);
-            setError("Erro ao mostrar os Livros");
+            setError("Erro ao mostrar os Livros: ", error);
         } finally {
             setLoading(false);
         }
     }
-
-
+    
+    
     useEffect(() =>{
         fetchBooks();
     }, [filter]);
@@ -103,7 +109,6 @@ export function Bookcase() {
                             autor={book.livro.autor.nome}
                             pages={book.livro.n_paginas}
                             status={book.status}
-                            descricao={book.livro.descricao}
                             onDetailsClick={(id) => navigate(`/interacoes/${id}`)}
                             onUpdate={() => fetchBooks()}
                         />

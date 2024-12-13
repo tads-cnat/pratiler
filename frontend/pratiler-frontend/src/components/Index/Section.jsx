@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+
+/* CSS */
 import sectionCss from '../../assets/css/Index/Section.module.css';
 
 export function Section(props){
@@ -20,6 +22,6 @@ Section.propTypes = {
     strong: PropTypes.string,
     title: PropTypes.string,
     text: PropTypes.string.isRequired,
-    text_two: PropTypes.string.isRequired,
+    text_two: PropTypes.string,
     img: PropTypes.string,
 };
