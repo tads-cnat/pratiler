@@ -10,35 +10,55 @@ export const useAuthStore = create(
       isAuthenticated: false,
       csrfToken: null,
 
-      setCsrfToken: async () => {
-        const response = await axios.get('http://localhost:8000/api/set-csrf-token');
-        set({csrfToken: response.data});
-      },
+      getCsrfToken: async () => get().csrfToken,
 
-      login: async (email, password) => {
-        credentials = {email: email, password: password}
-        const response = await axios.post('http://localhost:8000/api/login', 
-          credentials, 
-          {
+      setCsrfToken: async () => {
+        const token = await axios.get("http://localhost:8000/api/set-csrf-token").then((response) => response.data);
+        document.cookie = `csrftoken=${token.csrftoken}`
+        set({csrfToken: token.csrftoken});
+      },
+      
+      register: async (username, email, password) => {
+        await get().setCsrfToken();
+        const credentials = {username: username, email: email, password: password};
+        const response = await axios.post(
+          'http://localhost:8000/api/register', credentials, {
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': get().csrfToken
+            },
+            withCredentials: true,
+          });
+          return response.data.success ? await get().login(email, password): response.data;
+        },
+        
+        login: async (email, password) => {
+          if(!get().csrfToken) await get().setCsrfToken();
+          const credentials = {email: email, password: password}
+          const response = await axios.post('http://localhost:8000/api/login', credentials, {
             headers: {
               'Content-Type': 'application/json',
               'X-CSRFToken': get().csrfToken
             },
             withCredentials: true
-          }
-        );
-        if (response.data.success) get().fetchUser();
-        return response
-      },
+          }).then((response) => response.data);
+          if (response.success) await get().fetchUser();
+          return response;
+        },
 
       logout: async () => {
+        try{
           const response = await axios.get('http://localhost:8000/api/logout', {
             headers: {
               'X-CSRFToken': get().csrfToken
             },
-            credentials: 'include'
+            withCredentials: true
           });
           set({ user: null, isAuthenticated: false, csrfToken: null });
+          document.cookies = '';
+        } catch(error){
+          console.log(error);
+        }
       },
 
       fetchUser: async () => {
@@ -50,7 +70,7 @@ export const useAuthStore = create(
             },
             withCredentials: true
           });
-          if (response.ok) set({ user: response.data, isAuthenticated: true });
+          set({ user: response.data, isAuthenticated: true });
         } catch (error) {
           console.error('Failed to fetch user', error);
         }
@@ -62,17 +82,3 @@ export const useAuthStore = create(
     }
   )
 );
-
-export function getCookie(name) {
-  	const CSRF_TOKEN = "csrftoken";
-  	if (!navigator.cookieEnabled) throw new Error('Cookies are disabled in this browser.');
-  	const cookies = document.cookie?.split(';') || [];
-  	const csrfCookie = cookies.find(c => c.trim().startsWith(`${CSRF_TOKEN}=`));
-  	if(!csrfCookie) document.cookie += axios.get("http://localhost:8000/api/set-csrf-token").then((response) => response.data)
-  	return decodeURIComponent(csrfCookie.trim().substring(CSRF_TOKEN.length + 1));
-}
-
-export function getUser() {
-  	const DATA = ["biografia", "username", "email", "foto_perfil"];
-	  // em desenvolvimento
-}
