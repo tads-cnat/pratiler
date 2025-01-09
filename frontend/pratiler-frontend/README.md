@@ -1,8 +1,11 @@
-# React + Vite
+# 📔 Guia de configuração de ambiente
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Rodar nosso projeto na sua máquina nunca foi tão simples. Neste caso tudo que você precisa é ter o [Node.js](https://nodejs.org/pt/download) instalado.
 
-Currently, two official plugins are available:
+## 🪟 Windows
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Apenas execute o seguinte arquivo no seu powershell -> `.\rodar_frontend.bat`
+
+## 🐧 Linux
+
+Apenas execute o seguinte arquivo na sua bash -> `./rodar_frontend.sh`
