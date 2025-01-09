@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+
+/* CSS */
 import sectionCss from '../../assets/css/Index/Section.module.css';
 
 export function SectionInverted(props){

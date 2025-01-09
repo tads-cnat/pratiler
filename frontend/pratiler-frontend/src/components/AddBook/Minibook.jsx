@@ -3,29 +3,27 @@ import css from "../../assets/css/AddBook/Minibook.module.css"
 import { BookmarkSimple } from "phosphor-react"
 import PropTypes from 'prop-types';
 import { useState } from "react";
-import { getCookie } from "../Global/authStore";
 import axios from "axios";
+import { useAuthStore } from "../Global/authStore";
 
 import { useNavigate } from 'react-router-dom';
 export function Minibook({img, autor, title, id, handleMarkAsReading}){
 
     const [weight, setWeight] = useState("regular");
     const navigate = useNavigate();
+    const { setCsrfToken, getCsrfToken } = useAuthStore();
 
-    const handleInteraction = async () => {
+    const handleInteraction = async () => {   
         try {
-            console.log("Livro ID enviado:", id);
+            await setCsrfToken();
             await axios.post(
-            `http://localhost:8000/api/interacoes/leitor/lendo?livro_id=${id}`, 
-            {}, // Envia o ID do livro
-            {
+            `http://localhost:8000/api/interacoes/leitor/lendo?livro_id=${id}`, {}, {
                 headers: {
-                'X-CSRFToken': getCookie('csrftoken'),
-                'Content-Type': 'application/json',
+                    'X-CSRFToken': await getCsrfToken(),
+                    'Content-Type': 'application/json'
                 },
-                withCredentials: true,
-            }
-            );
+                withCredentials: true
+            });
             navigate('/livros');
         } catch (error) {
             console.error("Erro ao criar interação:", error);

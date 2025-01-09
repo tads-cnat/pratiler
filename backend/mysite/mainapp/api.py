@@ -1,12 +1,10 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from ninja import NinjaAPI
-from django.conf import settings
 from ninja.security import django_auth
 from django.contrib.auth import authenticate, login, logout
 from django.middleware.csrf import get_token
 from ninja.responses import JsonResponse
-from django.contrib.auth.decorators import login_required
 
 from .models import Livro, Autor, Interação, Leitor, Resenha
 
@@ -41,14 +39,11 @@ def logout_view(request):
 
 @api.get("/user", auth=django_auth, tags=["Leitores"])
 def user(request):
-    secret_fact = (
-        "The moment one gives close attention to any thing, even a blade of grass",
-        "it becomes a mysterious, awesome, indescribably magnificent world in itself."
-    )
     return {
+        "biografia": request.user.biografia,
         "username": request.user.username,
         "email": request.user.email,
-        "secret_fact": secret_fact
+        "foto_perfil": f"http://127.0.0.1:8000{request.user.foto_perfil.url.replace('/media', '')}" if request.user.foto_perfil else None
     }
 
 
@@ -59,7 +54,7 @@ def register(request, payload: RegisterSchema):
         return {"success": "User registered successfully"}
     except Exception as e:
         if "UNIQUE constraint failed" in str(e):
-            return {"error": "Email already exists."}
+            return {"error": "Email ou nome de usuário já está em uso."}
         return {"error": str(e)}
     
 
@@ -150,7 +145,6 @@ def listar_interacoes(request):
 @api.get("/interacoes/leitor", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
 def listar_interacoes_lendo_por_leitor(request):
     leitor = request.user
-
     interacoes = Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LN")
 
     # Serializando

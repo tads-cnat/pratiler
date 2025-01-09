@@ -1,3 +1,4 @@
+/* CSS */
 import separatorCss from '../../assets/css/Index/Separator.module.css';
 
 export function Separator(){

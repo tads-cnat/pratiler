@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import PropTypes from 'prop-types';
-import authCss from "../../assets/css/Global/AuthFail.module.css"
+
+/* CSS */
+import authCss from "../../assets/css/Global/AuthFail.module.css";
 
 export function AuthFail(props){
     return(
@@ -10,8 +12,8 @@ export function AuthFail(props){
             </div>
         </>
     )
-}
+};
 
-AuthFail.PropTypes = {
+AuthFail.propTypes = {
     message: PropTypes.string,
-}
+};

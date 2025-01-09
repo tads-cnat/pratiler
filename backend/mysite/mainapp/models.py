@@ -9,7 +9,7 @@ class Leitor(AbstractUser):
     REQUIRED_FIELDS = ['username']
 
     foto_perfil = models.ImageField(blank=True, null=True)
-    descricao = models.TextField(blank=True)
+    biografia = models.TextField(blank=True)
     
     seguidores = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='seguidores_de')
     seguindo = models.ManyToManyField('self', symmetrical=False, blank=True, related_name='seguidos_por')

@@ -3,10 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import css from '../../assets/css/Interaction/Interaction.module.css'
+/* CSS */
+import css from '../../assets/css/Interaction/Interaction.module.css';
 
-
-import { Header } from '../Global/HeaderGlobal'
+/* Componentes */
+import { Header } from '../Global/HeaderGlobal';
 import { Book } from './Book';
 
 export function Interaction(){
@@ -45,7 +46,7 @@ export function Interaction(){
                     img={interaction.livro.capa}
                     title={interaction.livro.titulo}
                     autor={interaction.livro.autor.nome}
-                    descricao={interaction.livro.descricao}
+                    sinopse={interaction.livro.sinopse}
                     status={interaction.status}
                 />
             </div>

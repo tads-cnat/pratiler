@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-import css from '../../assets/css/Interaction/Book.module.css'
+/* CSS */
+import css from '../../assets/css/Interaction/Book.module.css';
 
 export function Book(props){
 
@@ -16,7 +17,7 @@ export function Book(props){
                         <p className={css.autor}>{props.autor}</p>
                     </div>
                     <div className={css.sinopseButtons}>
-                        <p className={css.sinopse}>{props.descricao}</p>
+                        <p className={css.sinopse}>{props.sinopse}</p>
                         <div className={css.buttons}>
                             <button className={css.btnBegin}>Marcar como Lido</button>
                             <button className={css.btnAdd}>Fazer Resenha</button>
@@ -34,5 +35,5 @@ Book.propTypes = {
     autor: PropTypes.string,
     title: PropTypes.string,
     status: PropTypes.string,
-    descricao: PropTypes.string,
+    sinopse: PropTypes.string,
 };

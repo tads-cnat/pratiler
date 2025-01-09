@@ -10,21 +10,18 @@ import { Main } from './components/Index/Main';
 import { Separator } from './components/Index/Separator';
 import { Section } from './components/Index/Section';
 import { SectionInverted } from './components/Index/SectionInverted';
+import { Bookcase } from './components/Bookcase/Bookcase';
+import { Cadastro } from './components/Cadastro/Cadastro';
+import { Interaction } from './components/Interaction/Interaction';
+import { AddBook } from './components/AddBook/AddBook';
 
 /* Images */
-
 import girlReading from './assets/img/menina-lendo.png';
 import sereia from './assets/img/sereia.png';
 import gnomo from './assets/img/duende.png';
-import { Bookcase } from './components/Bookcase/Bookcase';
-import { Cadastro } from './components/Cadastro/Cadastro';
-import { Interaction } from './components/Interaction/Interaction'
-import { AddBook } from './components/AddBook/AddBook';
 
 
-
-
-function App() {
+export default function App() {
   return (
     <>
       <Router>
@@ -70,5 +67,3 @@ function Home(){
     </>
   );
 }
-
-export default App;
