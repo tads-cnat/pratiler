@@ -1,4 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
+/* Store */
+import { useAuthStore } from './components/Global/authStore';
 
 /* CSS */
 import './assets/css/Global/global.css';
@@ -40,6 +44,18 @@ export default function App() {
 }
 
 function Home(){
+  const navigate = useNavigate();
+  const { isAuthenticated, login, user } = useAuthStore();
+  useEffect(() => {
+    async function checkAuth(){
+      if(isAuthenticated){
+        await login(user.email, user.senha);
+        navigate("/livros");
+      }
+    }
+    checkAuth();
+  }, [])
+
   return(
     <>
       <Header />
