@@ -30,7 +30,7 @@ export function Bookcase() {
           }
         }
         checkAuth();
-    }, [navigate]);
+    }, [navigate, isAuthenticated]);
 
     const [books, setBooks] = useState([]);
     const [error, setError] = useState(null);

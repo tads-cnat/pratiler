@@ -23,7 +23,7 @@ export function LoginFormulario(){
         password: "",
     });
 
-    const { setCsrfToken, login } = useAuthStore();
+    const { login } = useAuthStore();
     const navigate = useNavigate();
 
     const fetchLogin = async (e) => {
