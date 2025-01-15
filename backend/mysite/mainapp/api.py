@@ -40,6 +40,7 @@ def logout_view(request):
 @api.get("/user", auth=django_auth, tags=["Leitores"])
 def user(request):
     return {
+        "senha": request.user.password,
         "biografia": request.user.biografia,
         "username": request.user.username,
         "email": request.user.email,

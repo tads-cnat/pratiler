@@ -21,7 +21,7 @@ export function CardBook({ img, autor, status, title, pages, id, onDetailsClick,
             const response = await axios.put(`http://localhost:8000/api/interacoes/${id}/marcar-como-lido`, {}, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': csrfToken
+                    'X-Csrftoken': csrfToken
                 },
                 withCredentials: true
             });

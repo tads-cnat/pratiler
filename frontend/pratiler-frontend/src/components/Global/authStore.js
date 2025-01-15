@@ -9,23 +9,15 @@ export const useAuthStore = create(
       user: null,
       isAuthenticated: false,
       csrfToken: null,
-
-      getCsrfToken: async () => get().csrfToken,
-
-      setCsrfToken: async () => {
-        const token = await axios.get("http://localhost:8000/api/set-csrf-token").then((response) => response.data);
-        document.cookie = `csrftoken=${token.csrftoken}`
-        set({csrfToken: token.csrftoken});
-      },
       
       register: async (username, email, password) => {
-        await get().setCsrfToken();
+        await setCsrf();
         const credentials = {username: username, email: email, password: password};
         const response = await axios.post(
           'http://localhost:8000/api/register', credentials, {
             headers: {
               'Content-Type': 'application/json',
-              'X-CSRFToken': get().csrfToken
+              'X-Csrftoken': await getCsrf()
             },
             withCredentials: true,
           });
@@ -33,31 +25,31 @@ export const useAuthStore = create(
         },
         
         login: async (email, password) => {
-          if(!get().csrfToken) await get().setCsrfToken();
+          if(!(await getCsrf())) await setCsrf();
           const credentials = {email: email, password: password}
           const response = await axios.post('http://localhost:8000/api/login', credentials, {
             headers: {
               'Content-Type': 'application/json',
-              'X-CSRFToken': get().csrfToken
+              'X-Csrftoken': await getCsrf()
             },
             withCredentials: true
-          }).then((response) => response.data);
+          }).then((response) => response.data)
           if (response.success) await get().fetchUser();
           return response;
         },
 
       logout: async () => {
         try{
-          const response = await axios.get('http://localhost:8000/api/logout', {
+          await axios.get('http://localhost:8000/api/logout', {
             headers: {
-              'X-CSRFToken': get().csrfToken
+              'X-Csrftoken': await getCsrf()
             },
             withCredentials: true
           });
           set({ user: null, isAuthenticated: false, csrfToken: null });
           document.cookies = '';
         } catch(error){
-          console.log(error);
+          console.error(error);
         }
       },
 
@@ -66,7 +58,7 @@ export const useAuthStore = create(
           const response = await axios.get('http://localhost:8000/api/user', {
             headers: {
               'Content-Type': 'application/json',
-              'X-CSRFToken': get().csrfToken
+              'X-Csrftoken': await getCsrf()
             },
             withCredentials: true
           });
@@ -82,3 +74,14 @@ export const useAuthStore = create(
     }
   )
 );
+
+export async function getCsrf(){ 
+  const { csrfToken } = useAuthStore.getState(); 
+  return csrfToken;
+}
+
+export async function setCsrf(){
+  const token = await axios.get("http://localhost:8000/api/set-csrf-token").then((response) => response.data)
+  document.cookie = `csrftoken=${token.csrftoken}`
+  useAuthStore.setState({csrfToken: token.csrftoken});
+}

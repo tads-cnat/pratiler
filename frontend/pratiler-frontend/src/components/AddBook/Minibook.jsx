@@ -19,7 +19,7 @@ export function Minibook({img, autor, title, id, handleMarkAsReading}){
             await axios.post(
             `http://localhost:8000/api/interacoes/leitor/lendo?livro_id=${id}`, {}, {
                 headers: {
-                    'X-CSRFToken': await getCsrfToken(),
+                    'X-Csrftoken': await getCsrfToken(),
                     'Content-Type': 'application/json'
                 },
                 withCredentials: true

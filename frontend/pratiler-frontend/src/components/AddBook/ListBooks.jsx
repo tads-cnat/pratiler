@@ -32,7 +32,6 @@ export function ListBooks(){
                 },
                 withCredentials: true
             });
-            console.log("Dados recebidos:", response.data);
             setBooks(response.data);
         } catch(error){
             setError("Erro ao mostrar os Livros");
