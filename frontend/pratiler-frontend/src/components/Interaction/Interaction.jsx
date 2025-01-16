@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { internalAxios } from '../Global/axiosInstances';
 
 /* CSS */
 import css from '../../assets/css/Interaction/Interaction.module.css';
@@ -20,7 +20,7 @@ export function Interaction(){
     useEffect(() => {
         const fetchInteraction = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/interacoes/leitor/${id}`, {
+                const response = await internalAxios.get(`interacoes/leitor/${id}`, {
                     withCredentials: true,
                 });
                 setInteraction(response.data);
