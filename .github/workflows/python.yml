@@ -23,9 +23,9 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: cd to backend directory
-      run: cd ./backend/mysite
     - name: change file permissions
-      run:  chmod +x ./construir_backend.sh
+      run: cd ./backend/mysite
+      run: chmod +x ./construir_backend.sh
     - name: create python venv with dependencies
+      run: cd ./backend/mysite
       run: ./construir_backend.sh
