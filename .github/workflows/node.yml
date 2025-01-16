@@ -23,9 +23,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: cd to frontend directory
-      run: cd ./frontend/pratiler-frontend
     - name: change file permissions
+      run: cd ./frontend/pratiler-frontend
       run: chmod +x ./construir_frontend.sh
     - name: install project dependencies
+      run: cd ./frontend/pratiler-frontend
       run: ./construir_frontend.sh
