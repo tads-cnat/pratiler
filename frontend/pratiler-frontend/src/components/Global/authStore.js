@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import axios from 'axios';
+import { internalAxios } from './axiosInstances';
 
 export const useAuthStore = create(
   persist(
@@ -13,10 +13,9 @@ export const useAuthStore = create(
       register: async (username, email, password) => {
         await setCsrf();
         const credentials = {username: username, email: email, password: password};
-        const response = await axios.post(
-          'http://localhost:8000/api/register', credentials, {
+        const response = await internalAxios.post(
+          'register', credentials, {
             headers: {
-              'Content-Type': 'application/json',
               'X-Csrftoken': await getCsrf()
             },
             withCredentials: true,
@@ -27,9 +26,8 @@ export const useAuthStore = create(
         login: async (email, password) => {
           if(!(await getCsrf())) await setCsrf();
           const credentials = {email: email, password: password}
-          const response = await axios.post('http://localhost:8000/api/login', credentials, {
+          const response = await internalAxios.post('login', credentials, {
             headers: {
-              'Content-Type': 'application/json',
               'X-Csrftoken': await getCsrf()
             },
             withCredentials: true
@@ -40,7 +38,7 @@ export const useAuthStore = create(
 
       logout: async () => {
         try{
-          await axios.get('http://localhost:8000/api/logout', {
+          await internalAxios.get('logout', {
             headers: {
               'X-Csrftoken': await getCsrf()
             },
@@ -55,9 +53,8 @@ export const useAuthStore = create(
 
       fetchUser: async () => {
         try {
-          const response = await axios.get('http://localhost:8000/api/user', {
+          const response = await internalAxios.get('user', {
             headers: {
-              'Content-Type': 'application/json',
               'X-Csrftoken': await getCsrf()
             },
             withCredentials: true
@@ -81,7 +78,7 @@ export async function getCsrf(){
 }
 
 export async function setCsrf(){
-  const token = await axios.get("http://localhost:8000/api/set-csrf-token").then((response) => response.data)
+  const token = await internalAxios.get("set-csrf-token").then((response) => response.data)
   document.cookie = `csrftoken=${token.csrftoken}`
   useAuthStore.setState({csrfToken: token.csrftoken});
 }

@@ -2,9 +2,9 @@
 import css from '../../assets/css/AddBook/ListBooks.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useAuthStore } from '../Global/authStore';
 import { Minibook } from './Minibook';
+import { internalAxios } from '../Global/axiosInstances';
 export function ListBooks(){
 
     const navigate = useNavigate();
@@ -26,10 +26,7 @@ export function ListBooks(){
     const fetchBooks = async () => {
         setLoading(true);
         try{
-            const response = await axios.get('http://localhost:8000/api/livros-disponiveis', {
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+            const response = await internalAxios.get('livros-disponiveis', {
                 withCredentials: true
             });
             setBooks(response.data);

@@ -3,7 +3,7 @@ import css from "../../assets/css/AddBook/Minibook.module.css"
 import { BookmarkSimple } from "phosphor-react"
 import PropTypes from 'prop-types';
 import { useState } from "react";
-import axios from "axios";
+import { internalAxios } from "../Global/axiosInstances";
 import { useAuthStore } from "../Global/authStore";
 
 import { useNavigate } from 'react-router-dom';
@@ -16,11 +16,10 @@ export function Minibook({img, autor, title, id, handleMarkAsReading}){
     const handleInteraction = async () => {   
         try {
             await setCsrfToken();
-            await axios.post(
-            `http://localhost:8000/api/interacoes/leitor/lendo?livro_id=${id}`, {}, {
+            await internalAxios.post(
+            `interacoes/leitor/lendo?livro_id=${id}`, {}, {
                 headers: {
-                    'X-Csrftoken': await getCsrfToken(),
-                    'Content-Type': 'application/json'
+                    'X-Csrftoken': await getCsrfToken()
                 },
                 withCredentials: true
             });

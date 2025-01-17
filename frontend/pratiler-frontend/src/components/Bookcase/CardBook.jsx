@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { CheckCircle, MagnifyingGlass } from 'phosphor-react';
 import { useState } from 'react';
-import axios from 'axios';
+import { internalAxios } from '../Global/axiosInstances';
 import PropTypes from 'prop-types';
 
 /* Store */
@@ -18,9 +18,8 @@ export function CardBook({ img, autor, status, title, pages, id, onDetailsClick,
 
     const handleMarkAsRead = async (id) => {
         try {
-            const response = await axios.put(`http://localhost:8000/api/interacoes/${id}/marcar-como-lido`, {}, {
+            const response = await internalAxios.put(`interacoes/${id}/marcar-como-lido`, {}, {
                 headers: {
-                    'Content-Type': 'application/json',
                     'X-Csrftoken': csrfToken
                 },
                 withCredentials: true

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import { internalAxios } from "../Global/axiosInstances";
 import { Plus, CaretCircleDown } from 'phosphor-react';
 import { useNavigate } from "react-router-dom";
 
@@ -41,15 +41,12 @@ export function Bookcase() {
         setLoading(true);
         try{
             const endpoint = {
-                "Lendo": "http://localhost:8000/api/interacoes/leitor",
-                "Quero Ler": "http://localhost:8000/api/interacoes/leitor/quero_ler",
-                "Lidos": "http://localhost:8000/api/interacoes/leitor/lidos",
+                "Lendo": "interacoes/leitor",
+                "Quero Ler": "interacoes/leitor/quero_ler",
+                "Lidos": "interacoes/leitor/lidos",
             }[filter];
 
-            const response = await axios.get(endpoint, {
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+            const response = await internalAxios.get(endpoint, {
                 withCredentials: true
             });
 
