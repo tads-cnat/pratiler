@@ -18,3 +18,18 @@
     width: 2rem;
     align-self: flex-end;
 }
+
+.booksResult{
+    background-color: white;
+    padding: 2rem;
+    width: 18rem;
+    margin-left: 10px;
+}
+
+.booksResult ul{
+    list-style: none;
+}
+
+.booksResult ul li{
+    margin-bottom: 10px;
+}

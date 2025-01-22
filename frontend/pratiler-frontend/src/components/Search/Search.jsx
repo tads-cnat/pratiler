@@ -42,12 +42,13 @@ export function Search(){
                     <img src={lupaImg} alt="Ícone lupa."/>
                 </button>
             </div>
-            <div>
+            <div className={searchCss.booksResult}>
                 <ul>
                     {books.items?.map( (b) => (
                         <li key={b.id}>
-                            <p>{b.volumeInfo.title}</p>
-                            <img src={b.volumeInfo.imageLinks?.thumbnail} alt="Capa do livro." />
+                            <img src={b.volumeInfo.imageLinks?.smallThumbnail} alt="Capa do livro." />
+                            <h3>{b.volumeInfo.title}</h3>
+                            <p>Autor(a): {b.volumeInfo.authors}</p>
                         </li>
                     ))}
                 </ul>
