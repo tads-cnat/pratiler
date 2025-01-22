@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+:root{
+    --montserrat: "Montserrat", sans-serif;
+    --roboto: "Roboto Flex", sans-serif;
+}
+
+.content{
+    display: flex;
+    margin-top: 2rem;
+    justify-content: space-around;
+}
