@@ -2,32 +2,45 @@ import { externalAxios } from "../Global/axiosInstances";
 import { useState } from "react";
 
 export function Search(){
-    const [book, setBook] = useState([]);
+    const [books, setBooks] = useState({});
+    const [search, setSearch] = useState("");
 
-    const key = 'AIzaSyAk5yGHrwwr_CH_3f3UeuA__GBUpT0MOr8'
+    const getBooks = async () => {
+        const url = 'https://www.googleapis.com/books/v1/volumes?q=' + search + '&key=AIzaSyAk5yGHrwwr_CH_3f3UeuA__GBUpT0MOr8';
 
-    const url = 'https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=' + key
-
-    const getBook = async () => {
         try{
-            const response = await externalAxios.get(url, {
-                withCredentials: true
-            })
+            const response = await externalAxios.get(url);
 
-            setBook(response.data)
+            setBooks(response.data);
         }
 
         catch(error){
-            console.error("deu ruim")
+            console.error("Erro na busca dos livros: ", error);
         }
     };
+
+    const handleChange = (e) => {
+        const input_content = e.target.value;
+        setSearch(input_content);
+    };
+
     return( 
         <>
-            <div style="width: 600px; height: 500px" onLoad={getBook()}>
-                <p>{book}</p>
+            <div>
+                <input type="text" name='search_bar' value={search} onChange={handleChange}/>
+                <button onClick={getBooks}>Pesquisar</button>
+            </div>
+            <div>
+                <h1>Livros</h1>
+                <ul>
+                    {books.items?.map( b => {
+                        <li key={b.id}>
+                            <p>{b.volumeInfo.title}</p>
+                            <img src={b.imageLinks?.thumbnail} alt="" />
+                        </li>
+                    })}
+                </ul>
             </div>
         </>
-
-        
     );
 }
