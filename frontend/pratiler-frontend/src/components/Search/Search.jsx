@@ -2,7 +2,7 @@ import { externalAxios } from "../Global/axiosInstances";
 import { useState } from "react";
 
 export function Search(){
-    const [books, setBooks] = useState({});
+    const [books, setBooks] = useState([]);
     const [search, setSearch] = useState("");
 
     const getBooks = async () => {
@@ -12,6 +12,8 @@ export function Search(){
             const response = await externalAxios.get(url);
 
             setBooks(response.data);
+
+            console.log(response.data)
         }
 
         catch(error){
@@ -33,12 +35,12 @@ export function Search(){
             <div>
                 <h1>Livros</h1>
                 <ul>
-                    {books.items?.map( b => {
+                    {books.items?.map( (b) => (
                         <li key={b.id}>
                             <p>{b.volumeInfo.title}</p>
-                            <img src={b.imageLinks?.thumbnail} alt="" />
+                            <img src={b.volumeInfo.imageLinks?.thumbnail} alt="" />
                         </li>
-                    })}
+                    ))}
                 </ul>
             </div>
         </>
