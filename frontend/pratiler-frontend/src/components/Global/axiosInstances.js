@@ -7,6 +7,9 @@ export const internalAxios = axios.create({
     }
 });
 
-// const externalAxios = axios.create({
-//     baseURL: ""
-// })
+export const externalAxios = axios.create({
+    baseURL: "",
+    headers: {
+        'Content-Type': 'application/json',
+    }
+});
