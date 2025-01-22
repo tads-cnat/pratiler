@@ -1,5 +1,7 @@
 import { externalAxios } from "../Global/axiosInstances";
 import { useState } from "react";
+import searchCss from "../../assets/css/Search/Search.module.css"
+import lupaImg from "../../assets/img/lupa.png"
 
 export function Search(){
     const [books, setBooks] = useState([]);
@@ -21,6 +23,12 @@ export function Search(){
         }
     };
 
+    const searchKeyPress = (evt) => {
+        if(evt.key === "Enter"){
+            getBooks();
+        }
+    }
+
     const handleChange = (e) => {
         const input_content = e.target.value;
         setSearch(input_content);
@@ -29,16 +37,17 @@ export function Search(){
     return( 
         <>
             <div>
-                <input type="text" name='search_bar' value={search} onChange={handleChange}/>
-                <button onClick={getBooks}>Pesquisar</button>
+                <input type="text" className={searchCss.searchBar} value={search} onChange={handleChange} onKeyUp={searchKeyPress}/>
+                <button onClick={getBooks} className={searchCss.button}> 
+                    <img src={lupaImg} alt="Ícone lupa."/>
+                </button>
             </div>
             <div>
-                <h1>Livros</h1>
                 <ul>
                     {books.items?.map( (b) => (
                         <li key={b.id}>
                             <p>{b.volumeInfo.title}</p>
-                            <img src={b.volumeInfo.imageLinks?.thumbnail} alt="" />
+                            <img src={b.volumeInfo.imageLinks?.thumbnail} alt="Capa do livro." />
                         </li>
                     ))}
                 </ul>

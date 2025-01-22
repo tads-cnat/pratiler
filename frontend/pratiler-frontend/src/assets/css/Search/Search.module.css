@@ -1,0 +1,20 @@
+.searchBar{
+    border: 1px solid rgb(158, 158, 158);
+    border-radius: 20px;
+    padding: 0.8rem;
+    width: 20rem;
+    margin: 10px;
+}
+
+.button{
+    border: none;
+    position: absolute;
+    margin-top: 14px;
+    left: 18rem;
+    background-color: none;
+}
+
+.button img{
+    width: 2rem;
+    align-self: flex-end;
+}
