@@ -12,10 +12,7 @@ export function Search(){
 
         try{
             const response = await externalAxios.get(url);
-
             setBooks(response.data);
-
-            console.log(response.data)
         }
 
         catch(error){
@@ -27,11 +24,26 @@ export function Search(){
         if(evt.key === "Enter"){
             getBooks();
         }
-    }
+    };
 
     const handleChange = (e) => {
         const input_content = e.target.value;
         setSearch(input_content);
+    };
+
+    const sendBook = async (e) => {
+        try{
+            const request = await axios.post("http://localhost:8000/api/adicionar_livro/", {
+                titulo: e.volumeInfo.title,
+                sinopse: e.volumeInfo.description,
+                capa: e.volumeInfo.imageLinks?.thumbnail,
+                n_paginas: e.volumeInfo.pageCount,
+                isbn: e.volumeInfo.insdustryIdentifiers[0].identifier,
+                autor: e.volumeInfo.authors[0]
+            });
+        } catch {
+            console.log("Erro ao adicionar o livro: ", error);
+        }
     };
 
     return( 
@@ -46,9 +58,11 @@ export function Search(){
                 <ul>
                     {books.items?.map( (b) => (
                         <li key={b.id}>
-                            <img src={b.volumeInfo.imageLinks?.smallThumbnail} alt="Capa do livro." />
-                            <h3>{b.volumeInfo.title}</h3>
-                            <p>Autor(a): {b.volumeInfo.authors}</p>
+                            <button onClick={sendBook}>
+                                <img src={b.volumeInfo.imageLinks?.smallThumbnail} alt="Capa do livro." />
+                                <h3>{b.volumeInfo.title}</h3>
+                                <p>Autor(a): {b.volumeInfo.authors}</p>
+                            </button>
                         </li>
                     ))}
                 </ul>

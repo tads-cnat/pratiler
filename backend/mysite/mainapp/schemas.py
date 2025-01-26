@@ -20,7 +20,7 @@ class LivroSchema(ModelSchema):
     autor: AutorSchema
     class Config:
         model = Livro
-        model_fields = [ 'id','titulo', 'sinopse', 'capa', 'n_paginas', 'autor']
+        model_fields = [ 'id','titulo', 'sinopse', 'capa', 'isbn', 'n_paginas', 'autor']
 
 class UserSchema(ModelSchema):
     class Config:

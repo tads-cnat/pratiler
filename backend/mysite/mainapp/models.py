@@ -76,9 +76,6 @@ class Interação(models.Model):
 # Rever nossas entidades
 # 👇👇👇👇👇👇👇👇👇👇👇
     
-
-
-
 class Resenha(models.Model):
      # Um livro pode ter muitas avaliações, mas um leitor pode fazer apenas 
      # uma avaliação por livro
