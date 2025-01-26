@@ -434,8 +434,7 @@ def livros_disponiveis(request):
 def adicionar_livro(request, livro: LivroSchema):
     # o livro já existe? retorna algo, mas adiciona na estante pessoal do usuário
     # variavel de livro existente
-    livro_existencia = Livro.objects.filter().first()
-
+    livro_existencia = Livro.objects.filter(isbn=livro.isbn)
 
     # livro nao existe? entao adiciona ao banco de dados local
     if not livro_existencia:
@@ -448,6 +447,8 @@ def adicionar_livro(request, livro: LivroSchema):
             autor=livro.autor,
         )
     # adiciona a estante pessoal
+
+
     
 
 
