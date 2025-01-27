@@ -5,21 +5,21 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 import { internalAxios } from "../Global/axiosInstances";
 import { useAuthStore } from "../Global/authStore";
+import { setCsrf, getCsrf } from "../Global/authStore";
 
 import { useNavigate } from 'react-router-dom';
 export function Minibook({img, autor, title, id, handleMarkAsReading}){
 
     const [weight, setWeight] = useState("regular");
     const navigate = useNavigate();
-    const { setCsrfToken, getCsrfToken } = useAuthStore();
 
     const handleInteraction = async () => {   
         try {
-            await setCsrfToken();
+            await setCsrf();
             await internalAxios.post(
             `interacoes/leitor/lendo?livro_id=${id}`, {}, {
                 headers: {
-                    'X-Csrftoken': await getCsrfToken()
+                    'X-Csrftoken': await getCsrf()
                 },
                 withCredentials: true
             });
