@@ -1,72 +1,92 @@
-import { externalAxios } from "../Global/axiosInstances";
+import { externalAxios, internalAxios } from "../Global/axiosInstances";
 import { useState } from "react";
-import searchCss from "../../assets/css/Search/Search.module.css"
-import lupaImg from "../../assets/img/lupa.png"
+import searchCss from "../../assets/css/Search/Search.module.css";
+import lupaImg from "../../assets/img/lupa.png";
+import { getCsrf } from "../Global/authStore";
 
-export function Search(){
-    const [books, setBooks] = useState([]);
-    const [search, setSearch] = useState("");
+export function Search() {
+  const [books, setBooks] = useState([]);
+  const [search, setSearch] = useState("");
 
-    const getBooks = async () => {
-        const url = 'https://www.googleapis.com/books/v1/volumes?q=' + search + '&key=AIzaSyAk5yGHrwwr_CH_3f3UeuA__GBUpT0MOr8';
+  const getBooks = async () => {
+    const url =
+      "https://www.googleapis.com/books/v1/volumes?q=" +
+      search +
+      "&key=AIzaSyAk5yGHrwwr_CH_3f3UeuA__GBUpT0MOr8";
 
-        try{
-            const response = await externalAxios.get(url);
-            setBooks(response.data);
+    try {
+      const response = await externalAxios.get(url);
+      setBooks(response.data);
+    } catch (error) {
+      console.error("Erro na busca dos livros: ", error);
+    }
+  };
+
+  const searchKeyPress = (evt) => {
+    if (evt.key === "Enter") {
+      getBooks();
+    }
+  };
+
+  const handleChange = (e) => {
+    const input_content = e.target.value;
+    setSearch(input_content);
+  };
+
+  const sendBook = async (e) => {
+    console.log(e);
+    try {
+      const request = await internalAxios.post(
+        "http://localhost:8000/api/adicionar_livro/",
+        {
+          titulo: e.volumeInfo.title,
+          sinopse: e.volumeInfo.description,
+          capa: e.volumeInfo.imageLinks?.thumbnail,
+          n_paginas: e.volumeInfo.pageCount,
+          isbn: e.volumeInfo.industryIdentifiers[0].identifier,
+          autor: e.volumeInfo.authors[0],
+        },
+        {
+          headers: {
+           'X-Csrftoken': await getCsrf()
+          },
         }
+      );
+    } catch (error) {
+      console.log("Erro ao adicionar o livro: ", error);
+    }
+  };
 
-        catch(error){
-            console.error("Erro na busca dos livros: ", error);
-        }
-    };
-
-    const searchKeyPress = (evt) => {
-        if(evt.key === "Enter"){
-            getBooks();
-        }
-    };
-
-    const handleChange = (e) => {
-        const input_content = e.target.value;
-        setSearch(input_content);
-    };
-
-    const sendBook = async (e) => {
-        try{
-            const request = await axios.post("http://localhost:8000/api/adicionar_livro/", {
-                titulo: e.volumeInfo.title,
-                sinopse: e.volumeInfo.description,
-                capa: e.volumeInfo.imageLinks?.thumbnail,
-                n_paginas: e.volumeInfo.pageCount,
-                isbn: e.volumeInfo.insdustryIdentifiers[0].identifier,
-                autor: e.volumeInfo.authors[0]
-            });
-        } catch {
-            console.log("Erro ao adicionar o livro: ", error);
-        }
-    };
-
-    return( 
-        <>
-            <div>
-                <input type="text" className={searchCss.searchBar} value={search} onChange={handleChange} onKeyUp={searchKeyPress}/>
-                <button onClick={getBooks} className={searchCss.button}> 
-                    <img src={lupaImg} alt="Ícone lupa."/>
-                </button>
-            </div>
-            <div className={searchCss.booksResult}>
-                <ul>
-                    {books.items?.map( (b) => (
-                        <li key={b.id}>
-                            <button onClick={sendBook}>
-                                <img src={b.volumeInfo.imageLinks?.smallThumbnail} alt="Capa do livro." />
-                                <h3>{b.volumeInfo.title}</h3>
-                                <p>Autor(a): {b.volumeInfo.authors}</p>
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div>
+        <input
+          type="text"
+          className={searchCss.searchBar}
+          value={search}
+          onChange={handleChange}
+          onKeyUp={searchKeyPress}
+        />
+        <button onClick={getBooks} className={searchCss.button}>
+          <img src={lupaImg} alt="Ícone lupa." />
+        </button>
+      </div>
+      <div className={searchCss.booksResult}>
+        <ul>
+          {books.items?.map((b) => (
+            <li key={b.id}>
+              <button onClick={() => sendBook(b)}>
+                <img
+                  src={b.volumeInfo.imageLinks?.smallThumbnail}
+                  alt="Capa do livro."
+                />
+                <h3>{b.volumeInfo.title}</h3>
+                <p>Autor(a): {b.volumeInfo.authors}</p>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
 }
