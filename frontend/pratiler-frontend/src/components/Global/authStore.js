@@ -24,7 +24,7 @@ export const useAuthStore = create(
         },
         
         login: async (email, password) => {
-          if(!(await getCsrf())) await setCsrf();
+          await setCsrf();
           const credentials = {email: email, password: password}
           const response = await internalAxios.post('login', credentials, {
             headers: {
