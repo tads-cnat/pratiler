@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useAuthStore } from "./components/Global/authStore";
 
 /* CSS */
-import "./assets/css/Global/global.css";
+import "./assets/css/base.css";
 
 /* Componentes */
 import { Feed } from "./components/Feed/Feed";
