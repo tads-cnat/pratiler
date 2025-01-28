@@ -474,3 +474,21 @@ def criar_comentario(request, comentario: ComentarioSchemaIn):
     return 201, comentario_data
 
 # ...existing code...
+
+from .schemas import ComentarioSchemaOut
+
+@api.get("/comentarios", response=list[ComentarioSchemaOut], tags=["Comentarios"])
+def listar_comentarios(request):
+    comentarios = Comentario.objects.all()
+    comentarios_resposta = [
+        {
+            "id": comentario.id,
+            "interacao": comentario.interacao.id,
+            "texto": comentario.texto,
+            "pagina_inicial": comentario.pagina_inicial,
+            "pagina_final": comentario.pagina_final,
+            "data_hora": comentario.data_hora.isoformat()  # Convert datetime to string
+        }
+        for comentario in comentarios
+    ]
+    return comentarios_resposta
