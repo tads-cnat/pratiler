@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Heart } from "phosphor-react";
 import postagemCss from "../../assets/css/Postagem/Postagem.module.css";
 
@@ -14,14 +14,12 @@ export default function Postagem(props) {
     }
 
     useEffect(() => {
-        // async function getUltimaPagina(){
-        //     const response = await internalAxios.get(`ultima-pagina?leitor=${leitor.id}&livro=${livro.id}`).then();
-        //     setUltimaPagina(response.items);
-        // }
-        // getUltimaPagina();
-    }, [])
+        // const response = await internalAxios.get("verificar-curtida", {comentario_id: props.id});
+        // if(response.status === 200){
+        //     setCurtido(true);
+    }, []);
 
-    const { id, leitor, livro, texto, pagina_final, data_hora } = props;
+    const { id, leitor, livro, texto, pagina_inicial, pagina_final, data_hora } = props;
 
     return (
         <div className={postagemCss.comentario}>
@@ -45,7 +43,7 @@ export default function Postagem(props) {
         titulo do livro - autor do livro {/* {livro.titulo} - {livro.autor.nome} */}
     </p>
     <p className={postagemCss.paginas}>
-        Da página 0 até a página {pagina_final}. {/* {pagina_inicial} */}
+        Da página 0 até a página 10.{/* {pagina_inicial} {pagina_final}*/}
     </p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, odit! Architecto pariatur ad, minima quisquam natus iste,
         autem nisi ex ipsam dolor veritatis impedit commodi excepturi nobis repellendus quo. Natus?

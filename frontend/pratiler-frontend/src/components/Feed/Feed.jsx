@@ -11,12 +11,12 @@ import Postagem from "../Postagem/Postagem";
 
 export function Feed() {
 
-    // const [postagens, setPostagens] = useState([]);
+    const [postagens, setPostagens] = useState([]);
 
     useEffect(() => {
         async function getPostagens() {
-            // const response = await internalAxios.get("postagens").then(());
-            // setPostagens(response.items);
+            const response = await internalAxios.get("comentarios")
+            .then((response) => setPostagens(response));
         }
         getPostagens();
     }, []);
@@ -26,19 +26,18 @@ export function Feed() {
             <Header />
             <div className={feedCss.content}>
                 <FormPostagem />
-                <Postagem />
             </div>
-            {/* {postagens.map((index, postagem) => (
+            {postagens.map((index, postagem) => (
                     <Postagem key={index}
                         id={postagem.id}
-                        leitor={postagem.leitor} 
+                        leitor={postagem.leitor}
                         livro={postagem.livro} 
                         texto={postagem.texto}
                         data_hora={postagem.data_hora}
                         pagina_final={postagem.pagina_final}
                     />
                 )
-            )} */}
+            )}
         </>
     );
 }
