@@ -74,6 +74,7 @@ class Comentario(models.Model):
     
     class Meta:
         verbose_name = "Comentário"
+        ordering = ['-data_hora']
 
 
 # Rever nossas entidades
