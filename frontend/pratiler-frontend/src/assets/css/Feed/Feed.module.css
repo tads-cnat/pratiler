@@ -3,5 +3,7 @@
 .content{
     display: flex;
     margin-top: 2rem;
-    justify-content: space-around;
+    margin: 3rem auto;
+    justify-content: space-between;
+    width: 65%;
 }

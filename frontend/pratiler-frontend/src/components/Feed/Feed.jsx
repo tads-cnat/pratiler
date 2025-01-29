@@ -65,7 +65,9 @@ export function Feed() {
             }).then(() => {
                 setNovaPostagem(!novaPostagem);
                 setFormData({
-                    ...formData,
+                    livro_id: 0,
+                    pagina_inicial: 0,
+                    pagina_final: 0,
                     texto: '',
                 });
             });
