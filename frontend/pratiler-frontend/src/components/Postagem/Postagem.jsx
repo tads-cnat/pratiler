@@ -25,7 +25,7 @@ export default function Postagem(props) {
         // const response = await internalAxios.get("verificar-curtida", {comentario_id: id});
         // if(response.status === 200){
         //     setCurtido(true);
-    }, []);
+    }, [curtido]);
 
 
     return (
