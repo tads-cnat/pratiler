@@ -47,7 +47,7 @@ export function Header() {
                         <span>Livros Populares</span>
                     </a>
 
-                    <a href='#' className={headerCss.categories}>
+                    <a href='/inicio' className={headerCss.categories}>
                         <ChatText size={24} color='#221D57' weight='fill'/>
                         <span>Publicações Populares</span>
                     </a>

@@ -54,9 +54,6 @@ export const useAuthStore = create(
       fetchUser: async () => {
         try {
           const response = await internalAxios.get('user', {
-            headers: {
-              'X-Csrftoken': await getCsrf()
-            },
             withCredentials: true
           });
           set({ user: response.data, isAuthenticated: true });
