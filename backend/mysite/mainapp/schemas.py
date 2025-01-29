@@ -16,11 +16,13 @@ class AutorSchema(Schema):
     id: int
     nome: str
 
-class LivroSchema(ModelSchema):
+class LivroSchema(Schema):
+    id: int
+    titulo: str
+    sinopse: str
+    capa: str
+    n_paginas: int
     autor: AutorSchema
-    class Config:
-        model = Livro
-        model_fields = [ 'id','titulo', 'sinopse', 'capa', 'n_paginas', 'autor']
 
 class UserSchema(ModelSchema):
     class Config:
@@ -55,3 +57,5 @@ class ComentarioSchemaOut(Schema):
     data_hora: str
     pagina_inicial: int
     pagina_final: int
+    leitor: LeitorSchema
+    livro: LivroSchema

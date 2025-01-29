@@ -147,7 +147,7 @@ def listar_interacoes(request):
 @api.get("/interacoes/leitor", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
 def listar_interacoes_lendo_por_leitor(request):
     leitor = request.user
-    interacoes = Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LN")
+    interacoes = Interação.objects.filter(leitor=leitor.id, status="LN")
 
     # Serializando
     return [
@@ -312,8 +312,7 @@ def criar_interacao_lendo(request, livro_id: int):
 def listar_interacao_id(request, id:int):
     try:
         leitor = request.user
-        print(leitor)
-        interacao = Interação.objects.select_related('leitor', 'livro__autor').get(id=id, leitor=leitor)
+        interacao = Interação.objects.select_related('leitor', 'livro__autor').get(livro_id=id, leitor=leitor)
 
         return{
             "id": interacao.id,
@@ -449,8 +448,7 @@ def criar_comentario(request, comentario: ComentarioSchemaIn):
     # Criar o comentário
     livro_id = comentario.livro_id
     leitor = request.user
-
-    interacao = Interação.objects.get(livro_id=livro_id, leitor=leitor)
+    interacao = Interação.objects.get(livro_id=livro_id, leitor_id=leitor.id)
 
     novo_comentario = Comentario.objects.create(
         interacao=interacao,
@@ -468,10 +466,26 @@ def criar_comentario(request, comentario: ComentarioSchemaIn):
         "texto": novo_comentario.texto,
         "pagina_inicial": novo_comentario.pagina_inicial,
         "pagina_final": novo_comentario.pagina_final,
-        "data_hora": novo_comentario.data_hora.isoformat()  # Convert datetime to string
+        "data_hora": novo_comentario.data_hora.isoformat(),  # Convert datetime to string
+        "leitor": {
+            "id": novo_comentario.interacao.leitor.id,
+            "username": novo_comentario.interacao.leitor.username
+        },
+        "livro": {
+            "id": novo_comentario.interacao.livro.id,
+            "titulo": novo_comentario.interacao.livro.titulo,
+            "sinopse": novo_comentario.interacao.livro.sinopse,
+            "isbn": novo_comentario.interacao.livro.isbn,              
+            "n_paginas": novo_comentario.interacao.livro.n_paginas,    
+            "autor":{
+                    "id": novo_comentario.interacao.livro.autor.id,
+                    "nome": novo_comentario.interacao.livro.autor.nome
+            },
+            "capa": f"http://127.0.0.1:8000{novo_comentario.interacao.livro.capa.url.replace('/media', '')}" if novo_comentario.interacao.livro.capa else None,
+        }
     }
 
-    return 201, comentario_data
+    return comentario_data
 
 # ...existing code...
 
@@ -483,12 +497,28 @@ def listar_comentarios(request):
     comentarios_resposta = [
         {
             "id": comentario.id,
-            "interacao": comentario.interacao.id,
             "texto": comentario.texto,
             "pagina_inicial": comentario.pagina_inicial,
             "pagina_final": comentario.pagina_final,
-            "data_hora": comentario.data_hora.isoformat()  # Convert datetime to string
+            "data_hora": comentario.data_hora.isoformat(),  # Convert datetime to string
+            "leitor": {
+                "id": comentario.interacao.leitor.id,
+                "username": comentario.interacao.leitor.username
+            },
+            "livro": {
+                "id": comentario.interacao.livro.id,
+                "titulo": comentario.interacao.livro.titulo,
+                "sinopse": comentario.interacao.livro.sinopse,
+                "isbn": comentario.interacao.livro.isbn,              
+                "n_paginas": comentario.interacao.livro.n_paginas,    
+                "autor":{
+                        "id": comentario.interacao.livro.autor.id,
+                        "nome": comentario.interacao.livro.autor.nome
+                },
+                "capa": f"http://127.0.0.1:8000{comentario.interacao.livro.capa.url.replace('/media', '')}" if comentario.interacao.livro.capa else None,
+            }
         }
         for comentario in comentarios
     ]
+    print()
     return comentarios_resposta
