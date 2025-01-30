@@ -23,13 +23,23 @@ export function Feed() {
         texto: '',
     });
 
-    const changeBook = async (e) => {
-        const livroId = e.target.value;
+    const changeBook = async (e, id) => {
+        let livroId;
+        const postouComentario = e === undefined;
+        if(!postouComentario) livroId = e.target.value;
+        else livroId = id;
         if (livroId !== '0') {
             await internalAxios.get(`interacoes/leitor/${livroId}`, {
                 withCredentials: true,
             }).then((response) => {
-                setFormData({
+                if(postouComentario) setFormData({
+                    ...formData,
+                    livro_id: Number(livroId),
+                    pagina_inicial: response.data.pg_atual,
+                    pagina_final: 0,
+                    texto: '',
+                });
+                else setFormData({
                     ...formData,
                     livro_id: Number(livroId),
                     pagina_inicial: response.data.pg_atual,
@@ -65,11 +75,11 @@ export function Feed() {
             }).then(() => {
                 setNovaPostagem(!novaPostagem);
                 setFormData({
-                    livro_id: 0,
-                    pagina_inicial: 0,
-                    pagina_final: 0,
+                    ...formData,
                     texto: '',
+                    pagina_final: 0,
                 });
+                changeBook(undefined, formData.livro_id);
             });
         } catch (err) {
             console.error(err);
@@ -117,7 +127,7 @@ export function Feed() {
                             Até a página: <input type="number" name="pagina_final" value={formData.pagina_final} onChange={handleChange} min={formData.pagina_inicial + 1}/>
                         </label>
                     </div>
-                    <textarea name="texto" value={formData.texto} onChange={handleChange} placeholder="Escreva seu comentário..." maxLength={350}></textarea>
+                    <textarea name="texto" value={formData.texto} onChange={handleChange} placeholder="Escreva seu comentário..." maxLength={350} required></textarea>
                     <input type='submit' value='Postar' className={formCss.botao} />
                 </form>
                 <div>
