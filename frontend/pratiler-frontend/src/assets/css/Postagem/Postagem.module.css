@@ -1,0 +1,88 @@
+@import url("../base.css");
+
+.linkPerfil{
+    border: none;
+    color: #221D57;
+}
+
+.comentario{
+    width: 40rem;
+    border: 2px solid #D0C5FF;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    font-family: var(--roboto);
+    margin-bottom: 2rem;
+}
+.nomeBotaoSeguirData{
+    display: flex;
+    justify-content: space-between;
+}
+.nomeBotaoSeguirData p{
+    margin: 0;
+}
+.nomeBotaoSeguirData img{
+    width: 65px;
+}
+.nomeBotaoSeguirData .perfil{
+    display: flex;
+    font-size: 1.1rem;
+}
+.nomeBotaoSeguirData .perfil .nome p{
+    color: #221D57;
+}
+.nomeBotaoSeguirData .perfil .nome button{
+    color: #6761A8;
+    font-weight: 400;
+}
+.nomeBotaoSeguirData .nome{
+    margin: 0.5rem 1rem;
+    font-weight: bold;
+    margin: 0.5rem 1rem;
+}
+.nomeBotaoSeguirData .data{
+    margin: 0.5rem 1rem;
+    color: #6761A8;
+}
+
+.iconCurtido path{
+    fill: #7d73f0;
+    color: #7d73f0;
+}
+
+.iconCurtido {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.iconCurtir {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.curtir{
+    border: none;
+    margin: 1rem 0rem;
+}
+
+.botaoSeguir{
+    margin: 0.5rem 0rem;
+    color: white;
+    background-color: #221D57;
+    border-radius: 10px;
+    padding: 0.2rem 1rem;
+    max-height: 2rem;
+}
+.nomeUsuario{
+    margin-top: 0.3rem;
+}
+.tituloAutor{
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+.paginas{
+    margin-top: 0.3rem;
+    color: #6761A8;
+}

@@ -4,9 +4,9 @@ import { useState } from "react";
 
 /* CSS */
 import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css';
+import inputCss from '../../assets/css/Input/Input.module.css';
 
 /* Componentes */
-import { Button } from '../Utilities/Button';
 import { AuthSuccessful } from "../Global/AuthSuccessful";
 import { AuthFail } from "../Global/AuthFail";
 import { useAuthStore } from '../Global/authStore';
@@ -56,11 +56,11 @@ export function LoginFormulario(){
             <div className={loginCss.formularioLogin}>
                 <h1>Entrar</h1>
                 <form className={loginCss.formulario} onSubmit={fetchLogin}>
-                    <input type="text" placeholder='Email' className={loginCss.inputText} name="email"  value={formData.email} onChange={handleChange}/>
-                    <input type="password" placeholder='Senha' className={loginCss.inputText} name="password" value={formData.password} onChange={handleChange}/>
+                    <input type="text" placeholder='Email' className={inputCss.inputText} name="email"  value={formData.email} onChange={handleChange}/>
+                    <input type="password" placeholder='Senha' className={inputCss.inputText} name="password" value={formData.password} onChange={handleChange}/>
                     <p>Recuperar senha?</p>
                     
-                    <Button type="submit" name="Entrar"/>
+                    <input type="submit" value="Entrar" className={inputCss.inputSubmit} />
                 </form>
                 <p className={loginCss.mensagem}>
                     Não possui uma conta? <Link to="/cadastro">Cadastre-se na nossa rede</Link>

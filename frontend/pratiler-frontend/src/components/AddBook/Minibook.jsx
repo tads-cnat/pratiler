@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
 import css from "../../assets/css/AddBook/Minibook.module.css"
 import { BookmarkSimple } from "phosphor-react"
 import PropTypes from 'prop-types';
 import { useState } from "react";
 import { internalAxios } from "../Global/axiosInstances";
-import { useAuthStore } from "../Global/authStore";
 import { setCsrf, getCsrf } from "../Global/authStore";
 
 import { useNavigate } from 'react-router-dom';

@@ -7,9 +7,9 @@ import { useAuthStore } from '../Global/authStore';
 
 /* CSS */
 import cadastroCss from '../../assets/css/LoginCadastro/Formulario.module.css';
+import inputCss from '../../assets/css/Input/Input.module.css';
 
 /* Componentes */
-import { Button } from '../Utilities/Button';
 import { AuthSuccessful } from '../Global/AuthSuccessful';
 import { AuthFail } from '../Global/AuthFail';
 
@@ -67,11 +67,11 @@ export function CadastroFormulario(){
                     <h1>Cadastrar-se</h1>
                     <form className={cadastroCss.formulario} onSubmit={handleSubmit}>
                         {/* <input type="text" placeholder='Nome' className={cadastroCss.inputText}/> */}
-                        <input type="text" name='username' placeholder='Nome de usuário' className={cadastroCss.inputText} value={formData.username} onChange={handleChange}/>
-                        <input type="text" name='email' placeholder='Email' className={cadastroCss.inputText} value={formData.email} onChange={handleChange}/>
-                        <input type="password" name='password' placeholder='Senha' className={cadastroCss.inputText} value={formData.password} onChange={handleChange}/>
+                        <input type="text" name='username' placeholder='Nome de usuário' className={inputCss.inputText} value={formData.username} onChange={handleChange}/>
+                        <input type="text" name='email' placeholder='Email' className={inputCss.inputText} value={formData.email} onChange={handleChange}/>
+                        <input type="password" name='password' placeholder='Senha' className={inputCss.inputText} value={formData.password} onChange={handleChange}/>
                 
-                        <Button type="submit" name="Criar conta" />
+                        <input type="submit" value="Criar conta" className={inputCss.inputSubmit} />
                     </form>
                     {success && <AuthSuccessful message={success}/>}
                     {error && <AuthFail message={error}/>}

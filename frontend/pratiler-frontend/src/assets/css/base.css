@@ -1,12 +1,15 @@
-:root{
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 
+
+:root{
     /* Fontes  */
+    --roboto: "Roboto Flex", sans-serif;
     --font-family: "Montserrat", sans-serif;
     --h1-title: 800 1.5rem/135% var(--font-family) ;
     --h2-title: 800 1.25rem/140% var(--font-family);
     --h3-title: 600 1rem/140% var(--font-family);
     --text-md: 600 1rem/140% var(--font-family);
-
+    
     /* Cores */
     --night: #131313;
     --penn-blue: #221D57;
@@ -16,6 +19,7 @@
     --chartreuse: #D5F000;
     --plum: #F399DD;
     --white: #f6f6f6;
+    
 }
 
 * {

@@ -138,6 +138,7 @@ def listar_interacoes(request):
                 }
             },
             "status": interacao.status,
+            "pg_atual": interacao.pg_atual
         }
         for interacao in interacoes
     ]
@@ -146,7 +147,7 @@ def listar_interacoes(request):
 @api.get("/interacoes/leitor", response=list[InteracaoSchema], tags=['Interações Livro/Leitor'])
 def listar_interacoes_lendo_por_leitor(request):
     leitor = request.user
-    interacoes = Interação.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LN")
+    interacoes = Interação.objects.filter(leitor=leitor.id, status="LN")
 
     # Serializando
     return [
@@ -168,6 +169,7 @@ def listar_interacoes_lendo_por_leitor(request):
                 }
             },
             "status": interacao.status,
+            "pg_atual": interacao.pg_atual
         }
         for interacao in interacoes
     ]
@@ -198,6 +200,7 @@ def listar_interacoes_quero_ler_por_leitor(request):
                 }
             },
             "status": interacao.status,
+            "pg_atual": interacao.pg_atual
         }
         for interacao in interacoes
     ]
@@ -228,6 +231,7 @@ def listar_interacoes_lidas_por_leitor(request):
                 }
             },
             "status": interacao.status,
+            "pg_atual": interacao.pg_atual
         }
         for interacao in interacoes
     ]
@@ -265,6 +269,7 @@ def criar_interacao(request, livro_id: int, status: str):
             }
         },
         "status": interacao.status,
+        "pg_atual": interacao.pg_atual
     }
 
 @api.post("/interacoes/leitor/lendo", auth=django_auth, response=InteracaoSchema, tags=['Interações Livro/Leitor'])
@@ -300,13 +305,14 @@ def criar_interacao_lendo(request, livro_id: int):
             }
         },
         "status": interacao.status,
+        "pg_atual": interacao.pg_atual
     }
 
 @api.get("interacoes/leitor/{int:id}", response=InteracaoSchema, tags=['Interações Livro/Leitor'])
 def listar_interacao_id(request, id:int):
     try:
         leitor = request.user
-        interacao = Interação.objects.select_related('leitor', 'livro__autor').get(id=id, leitor=leitor)
+        interacao = Interação.objects.select_related('leitor', 'livro__autor').get(livro_id=id, leitor=leitor)
 
         return{
             "id": interacao.id,
@@ -326,6 +332,7 @@ def listar_interacao_id(request, id:int):
                 }
             },
             "status": interacao.status,
+            "pg_atual": interacao.pg_atual
         }
     except Interação.DoesNotExist:
         return api.create_response(request, {"detail": "Interação não encontrada ou não pertence ao usuário"}, status=404)
@@ -430,3 +437,88 @@ def livros_disponiveis(request):
         return livros_resposta
     except Livro.DoesNotExist:
         return api.create_response(request, {"detail": "Livros não encontrados"}, status=404)
+
+# ...existing code...
+
+from .models import Comentario, Interação
+from .schemas import ComentarioSchemaIn, InteracaoSchema, ComentarioSchemaOut
+
+@api.post("/comentarios", response={201: ComentarioSchemaOut}, tags=["Comentarios"])
+def criar_comentario(request, comentario: ComentarioSchemaIn):
+    # Criar o comentário
+    livro_id = comentario.livro_id
+    leitor = request.user
+    interacao = Interação.objects.get(livro_id=livro_id, leitor_id=leitor.id)
+
+    novo_comentario = Comentario.objects.create(
+        interacao=interacao,
+        texto=comentario.texto,
+        pagina_inicial=comentario.pagina_inicial,
+        pagina_final=comentario.pagina_final
+    )
+
+    interacao.pg_atual = comentario.pagina_final
+    interacao.save()
+
+    comentario_data = {
+        "id": novo_comentario.id,
+        "interacao": novo_comentario.interacao.id,
+        "texto": novo_comentario.texto,
+        "pagina_inicial": novo_comentario.pagina_inicial,
+        "pagina_final": novo_comentario.pagina_final,
+        "data_hora": novo_comentario.data_hora.isoformat(),  # Convert datetime to string
+        "leitor": {
+            "id": novo_comentario.interacao.leitor.id,
+            "username": novo_comentario.interacao.leitor.username
+        },
+        "livro": {
+            "id": novo_comentario.interacao.livro.id,
+            "titulo": novo_comentario.interacao.livro.titulo,
+            "sinopse": novo_comentario.interacao.livro.sinopse,
+            "isbn": novo_comentario.interacao.livro.isbn,              
+            "n_paginas": novo_comentario.interacao.livro.n_paginas,    
+            "autor":{
+                    "id": novo_comentario.interacao.livro.autor.id,
+                    "nome": novo_comentario.interacao.livro.autor.nome
+            },
+            "capa": f"http://127.0.0.1:8000{novo_comentario.interacao.livro.capa.url.replace('/media', '')}" if novo_comentario.interacao.livro.capa else None,
+        }
+    }
+
+    return comentario_data
+
+# ...existing code...
+
+from .schemas import ComentarioSchemaOut
+
+@api.get("/comentarios", response=list[ComentarioSchemaOut], tags=["Comentarios"])
+def listar_comentarios(request):
+    comentarios = Comentario.objects.all()
+    comentarios_resposta = [
+        {
+            "id": comentario.id,
+            "texto": comentario.texto,
+            "pagina_inicial": comentario.pagina_inicial,
+            "pagina_final": comentario.pagina_final,
+            "data_hora": comentario.data_hora.isoformat(),  # Convert datetime to string
+            "leitor": {
+                "id": comentario.interacao.leitor.id,
+                "username": comentario.interacao.leitor.username
+            },
+            "livro": {
+                "id": comentario.interacao.livro.id,
+                "titulo": comentario.interacao.livro.titulo,
+                "sinopse": comentario.interacao.livro.sinopse,
+                "isbn": comentario.interacao.livro.isbn,              
+                "n_paginas": comentario.interacao.livro.n_paginas,    
+                "autor":{
+                        "id": comentario.interacao.livro.autor.id,
+                        "nome": comentario.interacao.livro.autor.nome
+                },
+                "capa": f"http://127.0.0.1:8000{comentario.interacao.livro.capa.url.replace('/media', '')}" if comentario.interacao.livro.capa else None,
+            }
+        }
+        for comentario in comentarios
+    ]
+    print()
+    return comentarios_resposta
