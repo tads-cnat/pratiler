@@ -21,8 +21,7 @@ export function CardBook({ img, autor, status, title, pages, id, onDetailsClick,
             const response = await internalAxios.put(`interacoes/${id}/marcar-como-lido`, {}, {
                 headers: {
                     'X-Csrftoken': csrfToken
-                },
-                withCredentials: true
+                }
             });
             setSuccessMessage(response.data.message || "Livro marcado como lido!");
 

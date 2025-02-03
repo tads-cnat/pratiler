@@ -26,9 +26,7 @@ export function ListBooks(){
     const fetchBooks = async () => {
         setLoading(true);
         try{
-            const response = await internalAxios.get('livros-disponiveis', {
-                withCredentials: true
-            });
+            const response = await internalAxios.get('livros-disponiveis');
             setBooks(response.data);
         } catch(error){
             setError("Erro ao mostrar os Livros");

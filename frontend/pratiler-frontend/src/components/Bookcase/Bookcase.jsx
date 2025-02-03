@@ -46,9 +46,7 @@ export function Bookcase() {
                 "Lidos": "interacoes/leitor/lidos",
             }[filter];
 
-            const response = await internalAxios.get(endpoint, {
-                withCredentials: true
-            });
+            const response = await internalAxios.get(endpoint);
 
             setBooks(response.data);
         } catch (error) {
