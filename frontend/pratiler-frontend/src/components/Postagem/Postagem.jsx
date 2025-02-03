@@ -1,32 +1,38 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Heart } from "phosphor-react";
-import postagemCss from "../../assets/css/Postagem/Postagem.module.css";
-import { internalAxios } from "../Global/axiosInstances";
 import PropTypes from 'prop-types';
+
+/** CSS */
+import postagemCss from "../../assets/css/Postagem/Postagem.module.css";
+
+/** Store */
+import { internalAxios } from "../Global/axiosInstances";
+import { getCsrf, setCsrf } from "../Global/authStore";
 
 import foto from "../../assets/img/duende.png";
 
 export default function Postagem(props) {
 
-    const [curtido, setCurtido] = useState(false);
-    const { id, leitor, livro, texto, pagina_inicial, pagina_final, data_hora } = props;
+    const { id, leitor, livro, texto, pagina_inicial, pagina_final, data_hora, curtidas, curtido } = props;
+    const [taCurtido, setTaCurtido] = useState(curtido);
+    const [numeroCurtidas, setNumeroCurtidas] = useState(curtidas);
+    const [plural, setPlural] = useState(numeroCurtidas !== 1);
     const data = data_hora.split("T")[0];
     const valores = data.split("-");
     const dataFormatada = `${valores[2]}/${valores[1]}/${valores[0]}`;
 
-    function curtirComentario(){
-        // const response = await internalAxios.post("curtir-comentario", {comentario_id: id});
-        // if(response.status === 200){
-        //     alert("Comentário curtido com sucesso!");
-        // }
+    async function curtirComentario(){
+        await setCsrf();
+        await internalAxios.post(`comentarios/curtir/`, {comentario_id: id} , {
+            headers: {
+                "X-Csrftoken": await getCsrf(),
+            }
+        }).then((response) => {
+            setTaCurtido(!taCurtido)
+            setNumeroCurtidas(response.data);
+            setPlural(response.data !== 1);
+        });
     }
-
-    useEffect(() => {
-        // const response = await internalAxios.get("verificar-curtida", {comentario_id: id});
-        // if(response.status === 200){
-        //     setCurtido(true);
-    }, [curtido]);
-
 
     return (
         <div className={postagemCss.comentario}>
@@ -55,8 +61,10 @@ export default function Postagem(props) {
     <p>{texto}
     </p> {/* {texto} */}
     <button onClick={curtirComentario} className={postagemCss.curtir} type="button">
-        <Heart className={curtido ? postagemCss.iconCurtido : postagemCss.iconCurtir} />
+        <Heart className={taCurtido ? postagemCss.iconCurtido : postagemCss.iconCurtir} />
     </button>
+    <p>{numeroCurtidas ?? 0} pessoa{plural && "s"} curti{plural ? "ram" : "u"} esse comentário</p>
+    
 </div>
     );
 }
@@ -69,4 +77,6 @@ Postagem.propTypes = {
     pagina_inicial: PropTypes.number.isRequired,
     pagina_final: PropTypes.number.isRequired,
     data_hora: PropTypes.string.isRequired,
+    curtidas: PropTypes.number,
+    curtido: PropTypes.bool.isRequired,
 };
