@@ -491,7 +491,7 @@ def criar_comentario(request, comentario: ComentarioSchemaIn):
 
 from .schemas import ComentarioSchemaOut
 
-@api.get("/comentarios", response=list[ComentarioSchemaOut], tags=["Comentarios"])
+@api.get("/comentarios", response=list[ComentarioListSchemaOut], tags=["Comentarios"])
 def listar_comentarios(request):
     comentarios = Comentario.objects.all()
     comentarios_resposta = [
@@ -501,6 +501,8 @@ def listar_comentarios(request):
             "pagina_inicial": comentario.pagina_inicial,
             "pagina_final": comentario.pagina_final,
             "data_hora": comentario.data_hora.isoformat(),  # Convert datetime to string
+            "curtidas": Curtida.objects.filter(comentario_id=comentario.id).count(),
+            "curtido": bool(Curtida.objects.filter(comentario_id=comentario.id, leitor_id=request.user.id)),
             "leitor": {
                 "id": comentario.interacao.leitor.id,
                 "username": comentario.interacao.leitor.username
@@ -520,5 +522,15 @@ def listar_comentarios(request):
         }
         for comentario in comentarios
     ]
-    print()
     return comentarios_resposta
+
+@api.post("/comentarios/curtir/", response={200: int}, tags=["Comentarios"])
+def curtir_comentario(request, curtida: CurtidaSchema):
+    leitor = request.user
+    comentario = Comentario.objects.get(id=curtida.comentario_id)
+    curtida = Curtida.objects.filter(comentario=comentario, leitor_id=leitor.id)
+    if curtida:
+        curtida.delete()
+    else:
+        Curtida.objects.create(comentario=comentario, leitor_id=leitor.id)
+    return Curtida.objects.filter(comentario=comentario).count()
