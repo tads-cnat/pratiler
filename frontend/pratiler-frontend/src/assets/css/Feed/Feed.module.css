@@ -1,0 +1,9 @@
+@import url("../base.css");
+
+.content{
+    display: flex;
+    margin-top: 2rem;
+    margin: 3rem auto;
+    justify-content: space-between;
+    width: 65%;
+}

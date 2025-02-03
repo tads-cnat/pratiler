@@ -1,29 +1,30 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 /* Store */
-import { useAuthStore } from './components/Global/authStore';
+import { useAuthStore } from "./components/Global/authStore";
 
 /* CSS */
-import './assets/css/Global/global.css';
+import "./assets/css/base.css";
 
 /* Componentes */
-import { Login } from './components/Login/Login';
-import { Header } from './components/Index/Header';
-import { Main } from './components/Index/Main';
-import { Separator } from './components/Index/Separator';
-import { Section } from './components/Index/Section';
-import { SectionInverted } from './components/Index/SectionInverted';
-import { Bookcase } from './components/Bookcase/Bookcase';
-import { Cadastro } from './components/Cadastro/Cadastro';
-import { Interaction } from './components/Interaction/Interaction';
-import { AddBook } from './components/AddBook/AddBook';
+import { Feed } from "./components/Feed/Feed";
+import { Login } from "./components/Login/Login";
+import { Header } from "./components/Index/Header";
+import { Main } from "./components/Index/Main";
+import { Separator } from "./components/Index/Separator";
+import { Section } from "./components/Index/Section";
+import { SectionInverted } from "./components/Index/SectionInverted";
+import { Bookcase } from "./components/Bookcase/Bookcase";
+import { Cadastro } from "./components/Cadastro/Cadastro";
+import { Interaction } from "./components/Interaction/Interaction";
+import { AddBook } from "./components/AddBook/AddBook";
 import { Search } from './components/Search/Search';
 
 /* Images */
-import girlReading from './assets/img/menina-lendo.png';
-import sereia from './assets/img/sereia.png';
-import gnomo from './assets/img/duende.png';
+import girlReading from "./assets/img/menina-lendo.png";
+import sereia from "./assets/img/sereia.png";
+import gnomo from "./assets/img/duende.png";
 
 
 export default function App() {
@@ -33,11 +34,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path='/livros' element={<Bookcase />} />
-          <Route path='/cadastro' element={<Cadastro />} />
-          <Route path='/interacoes/:id' element={<Interaction />}/>
-          <Route path='/adicionar-livro' element={<AddBook />} />
-          <Route path='/livro' element={ <Search/> } />
+          <Route path="/inicio" element={<Feed />} />
+          <Route path="/livros" element={<Bookcase />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/interacoes/:id" element={<Interaction />}/>
+          <Route path="/adicionar-livro" element={<AddBook />} />
         </Routes>
       </Router>
       

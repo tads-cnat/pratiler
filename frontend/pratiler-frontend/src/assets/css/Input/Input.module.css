@@ -1,0 +1,31 @@
+@import url("../base.css");
+
+.inputText{
+    border: 1px solid var(--periwinkle);
+    padding: 5px;
+    border-radius: 15px;
+    width: 20rem;
+    font: var(--text-md);
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.inputSubmit{
+    margin: auto;
+    margin-top: 1rem;
+    background-color: var(--penn-blue);
+    border-radius: 15px;
+    padding: 10px;
+    color: var(--white);
+    font-weight: bolder;
+    width: 10rem;
+    border: none;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.inputSubmit:hover {
+    outline: 3px solid var(--penn-blue);
+    background-color: var(--white);
+    color: var(--penn-blue);
+}
