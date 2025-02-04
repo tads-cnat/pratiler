@@ -106,9 +106,9 @@ class Resenha(models.Model):
 #         verbose_name = "Avaliação"
 #         verbose_name_plural = "Avaliações"
 
-# class Curtida(models.Model):
-#     comentario = models.ForeignKey(Comentario, on_delete=models.CASCADE)
-#     usuario = models.ForeignKey(Leitor, on_delete=models.CASCADE)
+class Curtida(models.Model):
+    comentario = models.ForeignKey(Comentario, on_delete=models.CASCADE)
+    leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
 
 #     def __str__(self):
 #         return "id: "+ str(self.id) + " " + self.usuario.user.username + " curtiu comentário de " + self.comentario.leitor.user.username

@@ -18,8 +18,7 @@ export function Minibook({img, autor, title, id, handleMarkAsReading}){
             `interacoes/leitor/lendo?livro_id=${id}`, {}, {
                 headers: {
                     'X-Csrftoken': await getCsrf()
-                },
-                withCredentials: true
+                }
             });
             navigate('/livros');
         } catch (error) {

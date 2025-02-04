@@ -29,20 +29,16 @@ export function Feed() {
         if(!postouComentario) livroId = e.target.value;
         else livroId = id;
         if (livroId !== '0') {
-            await internalAxios.get(`interacoes/leitor/${livroId}`, {
-                withCredentials: true,
-            }).then((response) => {
+            await internalAxios.get(`interacoes/leitor/${livroId}`).then((response) => {
+                setFormData({
+                    ...formData,
+                    livro_id: Number(livroId),
+                    pagina_inicial: response.data.pg_atual,
+                });
                 if(postouComentario) setFormData({
                     ...formData,
-                    livro_id: Number(livroId),
-                    pagina_inicial: response.data.pg_atual,
                     pagina_final: 0,
                     texto: '',
-                });
-                else setFormData({
-                    ...formData,
-                    livro_id: Number(livroId),
-                    pagina_inicial: response.data.pg_atual,
                 });
             });
         }
@@ -70,8 +66,7 @@ export function Feed() {
             await internalAxios.post("comentarios", formData, {
                 headers: {
                     "X-Csrftoken": await getCsrf(),
-                },
-                withCredentials: true,
+                }
             }).then(() => {
                 setNovaPostagem(!novaPostagem);
                 setFormData({
@@ -87,10 +82,8 @@ export function Feed() {
     }
     
     async function pegarLivrosEstante(){
-        await internalAxios.get("interacoes/leitor", {
-                withCredentials: true
-        }).
-        then((response) => setLivrosEstante(response.data));
+        await internalAxios.get("interacoes/leitor")
+        .then((response) => setLivrosEstante(response.data));
     }
     async function getPostagens() {
         await internalAxios.get("comentarios")
@@ -140,6 +133,8 @@ export function Feed() {
                         data_hora={postagem.data_hora}
                         pagina_inicial={postagem.pagina_inicial}
                         pagina_final={postagem.pagina_final}
+                        curtidas={postagem.curtidas}
+                        curtido={postagem.curtido}
                     />
                     )
                 )}

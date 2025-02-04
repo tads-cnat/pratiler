@@ -20,9 +20,7 @@ export function Interaction(){
     useEffect(() => {
         const fetchInteraction = async () => {
             try {
-                const response = await internalAxios.get(`interacoes/leitor/${id}`, {
-                    withCredentials: true,
-                });
+                const response = await internalAxios.get(`interacoes/leitor/${id}`);
                 setInteraction(response.data);
             } catch (error) {
                 console.error("Erro ao buscar interação:", error);
