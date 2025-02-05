@@ -4,14 +4,7 @@ import { useState } from 'react';
 import { internalAxios } from '../Global/axiosInstances';
 import PropTypes from 'prop-types';
 
-/* Store */
-import { useAuthStore } from '../Global/authStore';
-
-/* CSS */
-import cardBookCss from '../../assets/css/Bookcase/CardBook.module.css';
-
-
-export function CardBook({ img, autor, status, title, pages, id, onDetailsClick, onUpdate }){
+export function CardBook({ img, autor, status, title, pages, id, onDetailsClick, onUpdate, sinopse }){
 
     const [successMessage, setSuccessMessage] = useState(null);
     const { csrfToken } = useAuthStore();
@@ -74,7 +67,7 @@ CardBook.propTypes = {
     autor: PropTypes.string,
     title: PropTypes.string,
     pages: PropTypes.number,
-    descricao: PropTypes.string,
+    sinopse: PropTypes.string,
     id: PropTypes.number.isRequired,
     status:PropTypes.string,
     onDetailsClick: PropTypes.func.isRequired,

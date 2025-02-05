@@ -53,7 +53,7 @@ export function ListBooks(){
                         img={book.capa}
                         title={book.titulo}
                         autor={book.autor.nome}
-                        id={book.id}
+                        id={book.id}                   
                     /> 
                 ))}
             </div>

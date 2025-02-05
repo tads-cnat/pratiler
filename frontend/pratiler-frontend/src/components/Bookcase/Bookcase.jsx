@@ -72,7 +72,9 @@ export function Bookcase() {
 
     return(
         <>
-            <Header />
+            <Header 
+                user={user}
+            />
             <div className={bookcaseCss.sectionBox}>
                 <div className={bookcaseCss.listButtons}>
                     <form action="#">
@@ -113,3 +115,5 @@ export function Bookcase() {
         </>
     );
 }
+
+
