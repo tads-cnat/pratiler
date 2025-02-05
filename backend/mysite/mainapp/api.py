@@ -521,6 +521,7 @@ def listar_comentarios(request):
     ]
     print()
     return comentarios_resposta
+
 @api.post("/salvar-livro")
 def adicionar_livro(request, livro: LivroSchema):
     # o livro já existe? retorna algo, mas adiciona na estante pessoal do usuário
@@ -529,15 +530,18 @@ def adicionar_livro(request, livro: LivroSchema):
 
     # livro nao existe? entao adiciona ao banco de dados local
     if not livro_existencia:
+        autor_livro = Autor.objects.filter(nome=livro.autor)
+        if not autor_livro:
+            autor_livro = Autor.objects.create(nome=livro.autor)
+
         livro_existente = Livro.objects.create(
             titulo=livro.titulo,
             sinopse=livro.sinopse,
             capa=livro.capa,
-            n_paginas=livro.paginas,  # Quantidade de páginas
+            n_paginas=livro.n_paginas,  # Quantidade de páginas
             isbn =livro.isbn,
-            autor=livro.autor,
+            autor=autor_livro,
         )
-    # adiciona a estante pessoal
 
 
     

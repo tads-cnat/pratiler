@@ -21,8 +21,9 @@ class LivroSchema(Schema):
     titulo: str
     sinopse: str
     capa: str
+    isbn: str
     n_paginas: int
-    autor: AutorSchema
+    autor: str
     class Config:
         model = Livro
         model_fields = [ 'id','titulo', 'sinopse', 'capa', 'isbn', 'n_paginas', 'autor']
