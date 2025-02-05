@@ -523,7 +523,7 @@ def listar_comentarios(request):
     return comentarios_resposta
 
 @api.post("/salvar-livro")
-def adicionar_livro(request, livro: LivroSchema):
+def adicionar_livro(request, livro: LivroSchemaIn):
     # o livro já existe? retorna algo, mas adiciona na estante pessoal do usuário
     # variavel de livro existente
     livro_existencia = Livro.objects.filter(isbn=livro.isbn)
