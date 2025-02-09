@@ -3,6 +3,7 @@
 import headerCss from '../../assets/css/Global/HeaderGlobal.module.css';
 import { MagnifyingGlass, User, UserPlus, Books, Star, ChatText } from 'phosphor-react';
 import { useNavigate } from 'react-router-dom';
+import { Search } from '../Search/Search';
 
 /* Store */
 import { useAuthStore } from '../Global/authStore';
@@ -19,10 +20,11 @@ export function Header() {
             <header className={headerCss.header}>
                 <img className={headerCss.logo} src={pratilerLogo} alt="" />
                 <div className={headerCss.info}>
-                    <form action="#">
+                    <Search></Search>
+                    {/* <form action="#">
                         <MagnifyingGlass size={22} color='#221D57' weight='bold'/>
                         <input type="text" name="" placeholder='Pesquisar...' />
-                    </form>
+                    </form> */}
                     <div className={headerCss.perfilBox}>
                         <div className={headerCss.icon}>
                             <User weight='fill' color='#f6f6f6' size={18} />

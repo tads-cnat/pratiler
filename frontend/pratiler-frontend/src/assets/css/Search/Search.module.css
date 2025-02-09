@@ -1,0 +1,36 @@
+@import url("../base.css");
+.searchBar{
+    width: 20rem;
+}
+
+.button{
+    border: none;
+    background-color: none;
+}
+
+.booksResult{
+    position: absolute;
+    top: 90px;
+    left: 83.5rem;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.205);
+}
+
+.booksResult ul{
+    list-style: none;
+    width: 22rem;
+    border-radius: 20px;
+    background-color: var(--white);
+}
+
+.booksResult ul li{
+    text-align: center;
+    
+}
+
+.booksResult ul li button{
+    border: none;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 20px;
+}

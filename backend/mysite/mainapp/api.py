@@ -356,8 +356,7 @@ def listar_resenhas(request):
     """Lista todoas as resenhas."""
     return Resenha.objects.all()
 
-# fazer os POSTS
-## Não vai ter post livro no momento porque vamos consumir uma API depois ao invés de criar os livros manualmente
+# fazer os POSTs
 @api.post("/resenhas/", response=ResenhaSchema, tags=["Resenhas"])
 def criar_resenha(request, data: ResenhaSchema):
         """Cria uma nova resenha."""
@@ -534,3 +533,24 @@ def curtir_comentario(request, curtida: CurtidaSchema):
     else:
         Curtida.objects.create(comentario=comentario, leitor_id=leitor.id)
     return Curtida.objects.filter(comentario=comentario).count()
+
+@api.post("/salvar-livro")
+def adicionar_livro(request, livro: LivroSchemaIn):
+    # o livro já existe? retorna algo, mas adiciona na estante pessoal do usuário
+    # variavel de livro existente
+    livro_existencia = Livro.objects.filter(isbn=livro.isbn)
+
+    # livro nao existe? entao adiciona ao banco de dados local
+    if not livro_existencia:
+        autor_livro = Autor.objects.filter(nome=livro.autor)
+        if not autor_livro:
+            autor_livro = Autor.objects.create(nome=livro.autor)
+
+        livro_existente = Livro.objects.create(
+            titulo=livro.titulo,
+            sinopse=livro.sinopse,
+            capa=livro.capa,
+            n_paginas=livro.n_paginas,  # Quantidade de páginas
+            isbn =livro.isbn,
+            autor=autor_livro,
+        )

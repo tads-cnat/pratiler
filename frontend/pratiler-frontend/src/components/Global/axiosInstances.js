@@ -8,6 +8,6 @@ export const internalAxios = axios.create({
     withCredentials: true,
 });
 
-// const externalAxios = axios.create({
-//     baseURL: ""
-// })
+export const externalAxios = axios.create({
+    baseURL: ""
+});

@@ -19,6 +19,7 @@ import { Bookcase } from "./components/Bookcase/Bookcase";
 import { Cadastro } from "./components/Cadastro/Cadastro";
 import { Interaction } from "./components/Interaction/Interaction";
 import { AddBook } from "./components/AddBook/AddBook";
+import { Search } from './components/Search/Search';
 
 /* Images */
 import girlReading from "./assets/img/menina-lendo.png";
