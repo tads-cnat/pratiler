@@ -3,6 +3,7 @@ import { useState } from "react";
 import searchCss from "../../assets/css/Search/Search.module.css";
 import lupaImg from "../../assets/img/lupa.png";
 import { getCsrf } from "../Global/authStore";
+import { MagnifyingGlass } from 'phosphor-react';
 
 export function Search() {
   const [books, setBooks] = useState([]);
@@ -59,7 +60,10 @@ export function Search() {
 
   return (
     <>
-      <div>
+      <form action="#">
+        <button onClick={getBooks} className={searchCss.button}>
+          <MagnifyingGlass size={22} color='#221D57' weight='bold'/>
+        </button>
         <input
           type="text"
           className={searchCss.searchBar}
@@ -67,10 +71,7 @@ export function Search() {
           onChange={handleChange}
           onKeyUp={searchKeyPress}
         />
-        <button onClick={getBooks} className={searchCss.button}>
-          <img src={lupaImg} alt="Ícone lupa." />
-        </button>
-      </div>
+      </form>
       <div className={searchCss.booksResult}>
         <ul>
           {books.items?.map((b) => (

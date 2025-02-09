@@ -1,35 +1,36 @@
+@import url("../base.css");
 .searchBar{
-    border: 1px solid rgb(158, 158, 158);
-    border-radius: 20px;
-    padding: 0.8rem;
     width: 20rem;
-    margin: 10px;
 }
 
 .button{
     border: none;
-    position: absolute;
-    margin-top: 14px;
-    left: 18rem;
     background-color: none;
 }
 
-.button img{
-    width: 2rem;
-    align-self: flex-end;
-}
-
 .booksResult{
-    background-color: white;
-    padding: 2rem;
-    width: 18rem;
-    margin-left: 10px;
+    position: absolute;
+    top: 90px;
+    left: 83.5rem;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.205);
 }
 
 .booksResult ul{
     list-style: none;
+    width: 22rem;
+    border-radius: 20px;
+    background-color: var(--white);
 }
 
 .booksResult ul li{
-    margin-bottom: 10px;
+    text-align: center;
+    
+}
+
+.booksResult ul li button{
+    border: none;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 20px;
 }
