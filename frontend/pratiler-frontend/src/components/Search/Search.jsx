@@ -1,7 +1,6 @@
 import { externalAxios, internalAxios } from "../Global/axiosInstances";
 import { useState } from "react";
 import searchCss from "../../assets/css/Search/Search.module.css";
-import lupaImg from "../../assets/img/lupa.png";
 import { setCsrf, getCsrf } from "../Global/authStore";
 import { MagnifyingGlass } from 'phosphor-react';
 
