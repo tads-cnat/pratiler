@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { internalAxios } from '../Global/axiosInstances';
 import axios from 'axios';
-import { getCookie } from '../Global/authStore';
+import { getCsrf } from '../Global/authStore';
 
 /* CSS */
 import css from '../../assets/css/Interaction/Interaction.module.css';
@@ -24,7 +24,7 @@ export function Interaction(){
     const fetchUser = async () => {
         const user = await axios.get('http://localhost:8000/api/user', {
             headers: {
-                'X-CSRFToken': getCookie('csrftoken'),
+                'X-CSRFToken': getCsrf('csrftoken'),
                 'Content-Type': 'application/json',
             },
             withCredentials: true,
