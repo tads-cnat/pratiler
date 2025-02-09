@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import bookcaseCss from '../../assets/css/Bookcase/Bookcase.module.css';
 
 /* Store */
-import { useAuthStore } from "../Global/authStore";
+import { useAuthStore, getCsrf } from "../Global/authStore";
 
 /* Componentes */
 import { Header } from "../Global/HeaderGlobal";
@@ -19,6 +19,22 @@ import noBooks from '../../assets/img/no-books.png'
 
 
 export function Bookcase() {
+    const [user, setUser] = useState({});
+
+    const fetchUser = async () => {
+        const user = await axios.get('http://localhost:8000/api/user', {
+            headers: {
+                'X-CSRFToken': getCsrf('csrftoken'),
+                'Content-Type': 'application/json',
+            },
+            withCredentials: true,
+        });
+        setUser(user.data);
+    }
+
+    useEffect(() =>{
+        fetchUser();
+    }, []);
 
     const navigate = useNavigate();
     
