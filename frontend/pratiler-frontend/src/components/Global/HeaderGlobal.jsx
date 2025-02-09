@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import headerCss from '../../assets/css/Global/HeaderGlobal.module.css';
 import { MagnifyingGlass, User, UserPlus, Books, Star, ChatText } from 'phosphor-react';

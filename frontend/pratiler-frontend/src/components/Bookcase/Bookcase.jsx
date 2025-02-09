@@ -46,9 +46,7 @@ export function Bookcase() {
                 "Lidos": "interacoes/leitor/lidos",
             }[filter];
 
-            const response = await internalAxios.get(endpoint, {
-                withCredentials: true
-            });
+            const response = await internalAxios.get(endpoint);
 
             setBooks(response.data);
         } catch (error) {
@@ -74,7 +72,9 @@ export function Bookcase() {
 
     return(
         <>
-            <Header />
+            <Header 
+                user={user}
+            />
             <div className={bookcaseCss.sectionBox}>
                 <div className={bookcaseCss.listButtons}>
                     <form action="#">
@@ -115,3 +115,5 @@ export function Bookcase() {
         </>
     );
 }
+
+

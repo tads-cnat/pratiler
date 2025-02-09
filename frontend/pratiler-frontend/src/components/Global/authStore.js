@@ -17,8 +17,7 @@ export const useAuthStore = create(
           'register', credentials, {
             headers: {
               'X-Csrftoken': await getCsrf()
-            },
-            withCredentials: true,
+            }
           });
           return response.data.success ? await get().login(email, password): response.data;
         },
@@ -29,8 +28,7 @@ export const useAuthStore = create(
           const response = await internalAxios.post('login', credentials, {
             headers: {
               'X-Csrftoken': await getCsrf()
-            },
-            withCredentials: true
+            }
           }).then((response) => response.data)
           if (response.success) await get().fetchUser();
           return response;
@@ -41,8 +39,7 @@ export const useAuthStore = create(
           await internalAxios.get('logout', {
             headers: {
               'X-Csrftoken': await getCsrf()
-            },
-            withCredentials: true
+            }
           });
           set({ user: null, isAuthenticated: false, csrfToken: null });
           document.cookies = '';
@@ -53,9 +50,7 @@ export const useAuthStore = create(
 
       fetchUser: async () => {
         try {
-          const response = await internalAxios.get('user', {
-            withCredentials: true
-          });
+          const response = await internalAxios.get('user');
           set({ user: response.data, isAuthenticated: true });
         } catch (error) {
           console.error('Failed to fetch user', error);
@@ -76,6 +71,6 @@ export async function getCsrf(){
 
 export async function setCsrf(){
   const token = await internalAxios.get("set-csrf-token").then((response) => response.data)
-  document.cookie = `csrftoken=${token.csrftoken}`
+  document.cookie = `csrftoken=${token.csrftoken}`;
   useAuthStore.setState({csrfToken: token.csrftoken});
 }

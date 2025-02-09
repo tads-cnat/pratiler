@@ -74,3 +74,17 @@ class ComentarioSchemaOut(Schema):
     pagina_final: int
     leitor: LeitorSchema
     livro: LivroSchema
+
+class ComentarioListSchemaOut(Schema):
+    id: int
+    texto: str
+    data_hora: str
+    pagina_inicial: int
+    pagina_final: int
+    curtidas: int
+    curtido: bool
+    leitor: LeitorSchema
+    livro: LivroSchema
+
+class CurtidaSchema(Schema):
+    comentario_id: int
