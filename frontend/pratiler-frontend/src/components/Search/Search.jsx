@@ -2,7 +2,7 @@ import { externalAxios, internalAxios } from "../Global/axiosInstances";
 import { useState } from "react";
 import searchCss from "../../assets/css/Search/Search.module.css";
 import lupaImg from "../../assets/img/lupa.png";
-import { getCsrf } from "../Global/authStore";
+import { setCsrf, getCsrf } from "../Global/authStore";
 import { MagnifyingGlass } from 'phosphor-react';
 
 export function Search() {
@@ -37,8 +37,9 @@ export function Search() {
   const sendBook = async (e) => {
     console.log(e);
     try {
+      await setCsrf();
       const request = await internalAxios.post(
-        "http://localhost:8000/api/adicionar_livro/",
+        "salvar-livro",
         {
           titulo: e.volumeInfo.title,
           sinopse: e.volumeInfo.description,
@@ -51,6 +52,7 @@ export function Search() {
           headers: {
            'X-Csrftoken': await getCsrf()
           },
+          withCredentials: true,
         }
       );
     } catch (error) {
