@@ -17,7 +17,7 @@
 &emsp; O leitor seleciona o dropdown para a opção "concluídos" e o sistema mostrará uma listagem de livros concluidos pelo usuário.
 
 ## Fluxo Alternativo III - Leitor deseja adicionar livro na estante
-&emsp; O leitor clica no botão adicionar livro na listagem que ele quiser, e então o sistema mostra um pop-up para pesquisar (ponto de extensão) um livro, retornando uma listagem com todos os resultados, e apenas os livros que não estão relacionados ao usuário disponíveis para adição. E então, o usuário adiciona o livro selecionado a listagem que ele escolheu.
+&emsp; O leitor clica no botão adicionar livro na listagem de preferência, e então o sistema mostra um pop-up para pesquisar (ponto de extensão) um livro, retornando uma listagem com todos os resultados, e apenas os livros que não estão relacionados ao usuário disponíveis para adição. E então, o usuário adiciona o livro selecionado a listagem que ele escolheu.
 
 ## Fluxo de Exceção
 
