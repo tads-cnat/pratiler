@@ -8,8 +8,7 @@
 
 ## Fluxo Principal
 &emsp;&emsp;O usuário, após acessar o endereço para acesso do site, será levado à página de login, e seleciona a opção "Cadastrar".<br>
-&emsp;&emsp;Após preencher os campos definidos com seus dados para o cadastro, como nome, *username*, email, e senha, os dados enviados para cadastro serão conferidos, e com sucesso, o usuário estará cadastrado e autenticado com acesso a plataforma. Caso seja de sua escolha posteriormente, poderá selecionar sua foto de perfil e biografia do perfil nas configurações do perfil, porém não são necessárias para o cadastro.
-
+&emsp;&emsp;Após preencher os campos definidos com seus dados para o cadastro, como nome, email, e senha. Os dados enviados para cadastro serão conferidos, e com sucesso, o usuário estará cadastrado e autenticado com acesso a plataforma, sendo redirecionado para a página inicial.
 ## Fluxo de Exceção I - Falha no cadastro
 &emsp;&emsp;Caso o usuário falhe na conferência dos dados realizada pelo sistema, em situações de e-mail ou *username* já cadastrados, ele será notificado sobre qual falha ocorreu e retornará para a página de cadastro, podendo assim tentar novo cadastro com outros dados.<br>
 
