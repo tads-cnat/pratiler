@@ -11,7 +11,6 @@
 &emsp; 02. O sistema irá mostrar uma tela de comentário com dados de página final e uma caixa de texto para escrever sobre a leitura<br>
 &emsp; 03. O leitor preenche as informações e clica em enviar/salvar<br>
 &emsp; 04. O sistema salva os dados e salva as alterações no sistema<br>
-&emsp; 05. O sistema exibe uma mensagem de que ocorreu tudo bem e as alterações foram salvas.<br>
 
 ## Fluxo Alternativo I - Leitor tenta sair sem salvar as alterações
 &emsp; 03.a. O leitor tenta sair da tela sem salvar, então o sistema exibe uma mensagem perguntando se ele quer sair da tela mesmo ou salvar as alterações. Se ele quiser salvar, segue para o fluxo principal 04.
