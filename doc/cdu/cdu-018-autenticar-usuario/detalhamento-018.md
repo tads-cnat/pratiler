@@ -4,11 +4,11 @@
 - **Atores secundários**:	
 - **Resumo**: Visitante poderá se autenticar na plataforma, a fim de utilizá-la.
 - **Pré-condição**: O visitante não estar logado/autenticado ainda. 
-- **Pós-Condição**: O visitante deverá estar autenticado como leitor, e com livre acesso das suas respectivas atividades.
+- **Pós-Condição**: O visitante deverá estar autenticado como leitor.
 
 ## Fluxo Principal
 &emsp;&emsp;O usuário, após acessar o endereço para acesso do site, será levado à página de login, para se autenticar.<br>
-&emsp;&emsp;Após preencher os campos definidos com suas credenciais de e-mail e senha, as credenciais serão conferidas, e com sucesso o usuário estará autenticado e com acesso a plataforma.
+&emsp;&emsp;Após preencher os campos definidos com suas credenciais de e-mail e senha, as credenciais serão conferidas, e com sucesso o usuário estará autenticado e com acesso a plataforma. <br>
 &emsp;&emsp;Se a autenticação for bem sucedida, o usuário é redirecionado para a página principal.
 
 ## Fluxo Alternativo I - Usuário não tem conta
