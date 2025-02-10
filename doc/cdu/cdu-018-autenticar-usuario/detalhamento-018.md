@@ -8,10 +8,11 @@
 
 ## Fluxo Principal
 &emsp;&emsp;O usuário, após acessar o endereço para acesso do site, será levado à página de login, para se autenticar.<br>
-&emsp;&emsp;Após preencher os campos definidos com suas credenciais de e-mail, ou *username*, e senha, as credenciais serão conferidas, e com sucesso, o usuário estará autenticado e com acesso a plataforma.
+&emsp;&emsp;Após preencher os campos definidos com suas credenciais de e-mail e senha, as credenciais serão conferidas, e com sucesso o usuário estará autenticado e com acesso a plataforma.
+&emsp;&emsp;Se a autenticação for bem sucedida, o usuário é redirecionado para a página principal.
 
-## Fluxo Alternativo I - usuário não tem conta
-&emsp;&emsp;Caso o usuário não tenha nenhuma conta cadastrada, ele pode optar por se cadastrar, assim sendo levado ao [CDU005. Cadastrar usuário](../cdu-005-cadastrar-usuario/detalhamento-005.md)<br>
+## Fluxo Alternativo I - Usuário não tem conta
+&emsp;&emsp;Caso o usuário não tenha nenhuma conta cadastrada, ele pode optar por se cadastrar, assim sendo levado ao [CDU019. Cadastrar usuário](../cdu-019-cadastrar-usuario/detalhamento-019.md)<br>
 
 ## Fluxo Alternativo II - Falha no login
 &emsp;&emsp;Caso o usuário não complete a autenticação de sua conta, por conta de uma credencial mal inserida ele terá a opção de tentar preencher com suas credenciais novamente.<br>
@@ -19,7 +20,6 @@
 ## Fluxo Alternativo III - Recuperação de senha
 1. Na tela do seu perfil em configurações, ou na tela de login o usuário seleciona a opção de alterar senha
 4. Sistema envia e-mail de confirmação para o e-mail cadastrado nos dados do usuário
-
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
