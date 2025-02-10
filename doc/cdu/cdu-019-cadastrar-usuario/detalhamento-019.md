@@ -4,13 +4,13 @@
 - **Atores secundários**:	
 - **Resumo**: Usuário poderá se cadastrar na plataforma, a fim de utilizá-la.
 - **Pré-condição**:
-- **Pós-Condição**: O usuário deverá estar cadastrado e autenticado como leitor, com livre acesso das suas respectivas atividades.
+- **Pós-Condição**: O usuário deverá estar cadastrado e autenticado como leitor.
 
 ## Fluxo Principal
 &emsp;&emsp;O usuário, após acessar o endereço para acesso do site, será levado à página de login, e seleciona a opção "Cadastrar".<br>
 &emsp;&emsp;Após preencher os campos definidos com seus dados para o cadastro, como nome, email, e senha. Os dados enviados para cadastro serão conferidos, e com sucesso, o usuário estará cadastrado e autenticado com acesso a plataforma, sendo redirecionado para a página inicial.
 ## Fluxo de Exceção I - Falha no cadastro
-&emsp;&emsp;Caso o usuário falhe na conferência dos dados realizada pelo sistema, em situações de e-mail ou *username* já cadastrados, ele será notificado sobre qual falha ocorreu e retornará para a página de cadastro, podendo assim tentar novo cadastro com outros dados.<br>
+&emsp;&emsp;Caso o usuário falhe na conferência dos dados realizada pelo sistema, em situações de e-mail já cadastrados, ele será notificado sobre qual falha ocorreu e retornará para a página de cadastro, podendo assim tentar novo cadastro com outros dados.<br>
 
 > Obs. as seções a seguir apenas serão utilizadas na segunda unidade do PDSWeb (segundo orientações do gerente do projeto).
 
