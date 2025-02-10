@@ -11,14 +11,5 @@
 &emsp; 02. O sistema irá registrar a curtida no comentário<br>
 
 
-## Fluxo Alternativo I 
-
-## Fluxo de Exceção I
-
-## Diagrama de Interação (Sequência ou Comunicação)
-
-> Substituir pela imagem correspondente...
-
-## Diagrama de Classes de Projeto
-
-> Substituir pela imagem contendo as classes (modelo, visão e templates) que implementam o respectivo CDU...
+## Fluxo Alternativo I - Retirar curtida do comentário
+&emsp; 02.a. O leitor retira a curtida do comentário.
