@@ -66,8 +66,8 @@ export function Bookcase() {
 
             setBooks(response.data);
         } catch (error) {
-            console.error("Erro ao buscar Livros: ", error);
-            setError("Erro ao mostrar os Livros: ", error);
+            console.error("Erro ao buscar Livros: ", error.response.data);
+            setError("Erro ao mostrar os Livros: ", error.response.data);
         } finally {
             setLoading(false);
         }

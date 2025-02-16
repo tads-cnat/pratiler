@@ -2,7 +2,9 @@
 import { CheckCircle, MagnifyingGlass } from 'phosphor-react';
 import { useState } from 'react';
 import { internalAxios } from '../Global/axiosInstances';
+import { useAuthStore } from '../Global/authStore';
 import PropTypes from 'prop-types';
+import cardBookCss from '../../assets/css/Bookcase/CardBook.module.css'
 
 export function CardBook({ img, autor, status, title, pages, id, onDetailsClick, onUpdate, sinopse }){
 
@@ -40,7 +42,7 @@ export function CardBook({ img, autor, status, title, pages, id, onDetailsClick,
                         <p>{autor}</p>
                         <p>{pages} Páginas</p>
                     </div>
-                    {/* <p>{props.description}</p> */}
+        
                     <div className={cardBookCss.buttons}>
                         <button onClick={() => onDetailsClick(id)} className={cardBookCss.viewDetails}>Ver Leitura<MagnifyingGlass size={16} weight="bold" /></button>
                         {status !== "LD" &&(

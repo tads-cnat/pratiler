@@ -4,11 +4,12 @@ import { externalAxios, internalAxios } from "../Global/axiosInstances";
 import { Header } from "../Global/HeaderGlobal";
 import bookCss from "../../assets/css/Book/Book.module.css"
 import { setCsrf, getCsrf } from "../Global/authStore";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function Book(){
     const {id} = useParams();
     const [book, setBook] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchBookDetails = async () => {
@@ -22,64 +23,67 @@ export function Book(){
           }
         };
     
-          fetchBookDetails();
-        }, [id]);
-    
-      const sendBook = async (e) => {
-        console.log(e);
-        try {
-          await setCsrf();
-          await internalAxios.post(
-            "salvar-livro",
-            {
-              titulo: e.volumeInfo.title,
-              sinopse: e.volumeInfo.description,
-              capa: e.volumeInfo.imageLinks?.thumbnail,
-              n_paginas: e.volumeInfo.pageCount,
-              isbn: e.volumeInfo.industryIdentifiers[0].identifier,
-              autor: e.volumeInfo.authors[0],
+        fetchBookDetails();
+    }, [id]);
+
+    const sendBook = async (e) => {
+      console.log(e);
+      try {
+        await setCsrf();
+        await internalAxios.post(
+          "salvar-livro",
+          {
+                titulo: e.volumeInfo.title,
+                sinopse: e.volumeInfo.description,
+                capa: e.volumeInfo.imageLinks?.thumbnail,
+                n_paginas: e.volumeInfo.pageCount,
+                isbn: e.volumeInfo.industryIdentifiers[0].identifier,
+                autor: e.volumeInfo.authors[0],
+          },
+          {
+            headers: {
+              'X-Csrftoken': await getCsrf()
             },
-            {
+            withCredentials: true,
+          }
+        );
+  
+        const response = await internalAxios.get(`buscar-livro/${e.volumeInfo.industryIdentifiers[0].identifier}`);
+        const book_response = response.data
+  
+        await internalAxios.post(
+          `interacoes/leitor/lendo?livro_id=${book_response.id}`, {}, {
               headers: {
-               'X-Csrftoken': await getCsrf()
-              },
-              withCredentials: true,
-            }
-          );
+                  'X-Csrftoken': await getCsrf()
+              }
+        });
 
-        //   const response = await internalAxios.get('livros-disponiveis');
-        //   setBook(response.data);
+        navigate('/livros');
+  
+      } catch (error) {
+        console.log("Erro ao adicionar o livro: ", error.response.data);
+      }
+    };
 
-        //   await internalAxios.post(
-        //     `interacoes/leitor/lendo?livro_id=${book.id}`, {}, {
-        //         headers: {
-        //             'X-Csrftoken': await getCsrf()
-        //         }
-        //   });
+    return (
+      <>
+          <Header></Header>
 
-        //   navigate('/livros');
+          {book ? (
+          <div className={bookCss.detalhesLivro}>
+              <div>
+                  <img src={book.volumeInfo.imageLinks?.thumbnail} alt="Capa do livro" className={bookCss.capa}/>
+              </div>
 
-        } catch (error) {
-          console.log("Erro ao adicionar o livro: ", error);
-        }
-      };
-
-      return (
-        <>
-            <Header></Header>
-
-            <div className={bookCss.detalhesLivro}>
-                <div>
-                    <img src={book.volumeInfo.imageLinks?.thumbnail} alt="Capa do livro" className={bookCss.capa}/>
-                </div>
-                <div className={bookCss.infosLivro}>
-                    <h1>{book.volumeInfo.title}</h1>
-                    <p><strong>Autor(a):</strong> {book.volumeInfo.authors}</p>
-                    <p><strong>Sinopse:</strong> {book.volumeInfo.description}</p>
-                    <button onClick={() => sendBook(book)}>Começar leitura</button>
-                </div>
-            </div>
-        </>
+              <div className={bookCss.infosLivro}>
+                  <h1>{book.volumeInfo.title}</h1>
+                  <p><strong>Autor(a):</strong> {book.volumeInfo.authors}</p>
+                  <p><strong>Sinopse:</strong> {book.volumeInfo.description}</p>
+                  <button onClick={() => sendBook(book)}>Começar leitura</button>
+              </div>
+          </div>
+          ) : ( <p>Carregando...</p> )}
+      </>
         
-      );
+    );
 }

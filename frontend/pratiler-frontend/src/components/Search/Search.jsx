@@ -28,32 +28,6 @@ export function Search() {
     navigate(`/livro-busca/${bookId}`);
   };
 
-  const sendBook = async (e) => {
-    console.log(e);
-    try {
-      await setCsrf();
-      await internalAxios.post(
-        "salvar-livro",
-        {
-          titulo: e.volumeInfo.title,
-          sinopse: e.volumeInfo.description,
-          capa: e.volumeInfo.imageLinks?.thumbnail,
-          n_paginas: e.volumeInfo.pageCount,
-          isbn: e.volumeInfo.industryIdentifiers[0].identifier,
-          autor: e.volumeInfo.authors[0],
-        },
-        {
-          headers: {
-           'X-Csrftoken': await getCsrf()
-          },
-          withCredentials: true,
-        }
-      );
-    } catch (error) {
-      console.log("Erro ao adicionar o livro: ", error);
-    }
-  };
-
   return (
     <>
       <form action="#">

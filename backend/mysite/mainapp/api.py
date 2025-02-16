@@ -161,6 +161,7 @@ def listar_interacoes_lendo_por_leitor(request):
                 "id": interacao.livro.id,
                 "titulo": interacao.livro.titulo,
                 "sinopse": interacao.livro.sinopse,
+                "isbn": interacao.livro.isbn,
                 "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor":{
@@ -192,6 +193,7 @@ def listar_interacoes_quero_ler_por_leitor(request):
                 "id": interacao.livro.id,
                 "titulo": interacao.livro.titulo,
                 "sinopse": interacao.livro.sinopse,
+                "isbn": interacao.livro.isbn,
                 "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor":{
@@ -222,6 +224,7 @@ def listar_interacoes_lidas_por_leitor(request):
             "livro": {
                 "id": interacao.livro.id,
                 "titulo": interacao.livro.titulo,
+                "isbn": interacao.livro.isbn,
                 "sinopse": interacao.livro.sinopse,
                 "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
                 "n_paginas": interacao.livro.n_paginas,
@@ -260,6 +263,7 @@ def criar_interacao(request, livro_id: int, status: str):
         "livro": {
             "id": interacao.livro.id,
             "titulo": interacao.livro.titulo,
+            "isbn": interacao.livro.isbn,
             "sinopse": interacao.livro.sinopse,
             "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
             "n_paginas": interacao.livro.n_paginas,
@@ -297,6 +301,7 @@ def criar_interacao_lendo(request, livro_id: int):
             "id": interacao.livro.id,
             "titulo": interacao.livro.titulo,
             "sinopse": interacao.livro.sinopse,
+            "isbn": interacao.livro.isbn,
             "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
             "n_paginas": interacao.livro.n_paginas,
             "autor": {
@@ -323,6 +328,7 @@ def listar_interacao_id(request, id:int):
             "livro": {
                 "id": interacao.livro.id,
                 "titulo": interacao.livro.titulo,
+                "isbn": interacao.livro.isbn,
                 "sinopse": interacao.livro.sinopse,
                 "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
                 "n_paginas": interacao.livro.n_paginas,
@@ -542,7 +548,7 @@ def adicionar_livro(request, livro: LivroSchemaIn):
 
     # livro nao existe? entao adiciona ao banco de dados local
     if not livro_existencia:
-        autor_livro = Autor.objects.filter(nome=livro.autor)
+        autor_livro = Autor.objects.filter(nome=livro.autor).first()
         if not autor_livro:
             autor_livro = Autor.objects.create(nome=livro.autor)
 
@@ -554,3 +560,8 @@ def adicionar_livro(request, livro: LivroSchemaIn):
             isbn =livro.isbn,
             autor=autor_livro,
         )
+
+@api.get("/buscar-livro/{livro_isbn}", response=LivroSchema)
+def buscar_livro(request, livro_isbn: str):
+    livro_get = get_object_or_404(Livro, isbn=livro_isbn)
+    return livro_get
