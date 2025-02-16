@@ -4,10 +4,12 @@ import searchCss from "../../assets/css/Search/Search.module.css";
 import { setCsrf, getCsrf } from "../Global/authStore";
 import { MagnifyingGlass } from 'phosphor-react';
 import { Facade } from "./Facade";
+import { useNavigate } from "react-router-dom"; 
 
 export function Search() {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const getBooks = Facade(search, setBooks);
 
@@ -22,30 +24,8 @@ export function Search() {
     setSearch(input_content);
   };
 
-  const sendBook = async (e) => {
-    console.log(e);
-    try {
-      await setCsrf();
-      const request = await internalAxios.post(
-        "salvar-livro",
-        {
-          titulo: e.volumeInfo.title,
-          sinopse: e.volumeInfo.description,
-          capa: e.volumeInfo.imageLinks?.thumbnail,
-          n_paginas: e.volumeInfo.pageCount,
-          isbn: e.volumeInfo.industryIdentifiers[0].identifier,
-          autor: e.volumeInfo.authors[0],
-        },
-        {
-          headers: {
-           'X-Csrftoken': await getCsrf()
-          },
-          withCredentials: true,
-        }
-      );
-    } catch (error) {
-      console.log("Erro ao adicionar o livro: ", error);
-    }
+  const handleBookClick = (bookId) => {
+    navigate(`/livro-busca/${bookId}`);
   };
 
   return (
@@ -66,7 +46,7 @@ export function Search() {
         <ul>
           {books.items?.map((b) => (
             <li key={b.id}>
-              <button onClick={() => sendBook(b)}>
+              <button onClick={() => handleBookClick(b.id)}>
                 <img
                   src={b.volumeInfo.imageLinks?.smallThumbnail}
                   alt="Capa do livro."

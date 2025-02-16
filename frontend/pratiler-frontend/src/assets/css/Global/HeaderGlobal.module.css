@@ -126,3 +126,12 @@
     font-weight: bold;
     box-shadow: none;
 }
+
+.logoutButton{
+    background-color: var(--penn-blue);
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 0.3rem;
+    border-radius: 10px;
+}
