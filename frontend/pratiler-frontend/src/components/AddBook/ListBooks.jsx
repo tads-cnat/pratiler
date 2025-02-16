@@ -29,7 +29,7 @@ export function ListBooks(){
             const response = await internalAxios.get('livros-disponiveis');
             setBooks(response.data);
         } catch(error){
-            setError("Erro ao mostrar os Livros");
+            setError("Erro ao mostrar os livros");
         } finally{
             setLoading(false);
         }

@@ -19,7 +19,7 @@ import { Bookcase } from "./components/Bookcase/Bookcase";
 import { Cadastro } from "./components/Cadastro/Cadastro";
 import { Interaction } from "./components/Interaction/Interaction";
 import { AddBook } from "./components/AddBook/AddBook";
-import { Search } from './components/Search/Search';
+import { Book } from "./components/Book/Book";
 
 /* Images */
 import girlReading from "./assets/img/menina-lendo.png";
@@ -39,9 +39,9 @@ export default function App() {
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/interacoes/:id" element={<Interaction />}/>
           <Route path="/adicionar-livro" element={<AddBook />} />
+          <Route path="/livro-busca/:id" element={<Book />} />
         </Routes>
       </Router>
-      
     </>
   );
 }
