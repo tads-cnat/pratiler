@@ -26,7 +26,7 @@ export function Header() {
                             <User weight='fill' color='#f6f6f6' size={18} />
                         </div>
                         <span className={headerCss.titlePerfil}>{user && user.username}</span>
-                        <button class={headerCss.logoutButton} onClick={async () => {
+                        <button className={headerCss.logoutButton} onClick={async () => {
                                 await logout();
                                 setTimeout(navigate('/'), 1000);
                             }
