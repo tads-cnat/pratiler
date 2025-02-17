@@ -11,8 +11,10 @@ import { setCsrf, getCsrf } from "../Global/authStore";
 /* Components */
 import { Header } from "../Global/HeaderGlobal";
 import Postagem from "../Postagem/Postagem";
+import { AuthFail } from "../Global/AuthFail";
 
 export function Feed() {
+    const [error, setError] = useState(null);
     const [postagens, setPostagens] = useState([]);
     const [livrosEstante, setLivrosEstante] = useState([]);
     const [novaPostagem, setNovaPostagem] = useState(false);
@@ -77,7 +79,7 @@ export function Feed() {
                 changeBook(undefined, formData.livro_id);
             });
         } catch (err) {
-            console.error(err);
+            setError(err.response.data.detail);
         }
     }
     
@@ -102,29 +104,32 @@ export function Feed() {
         <>
             <Header />
             <div className={feedCss.content}>
-                <form onSubmit={postarComentario} className={formCss.postarComentario}>
-                    <h1>Escreva um comentário</h1>
-                    <label className={formCss.select}>Livro: 
-                        <select name="livro_id" onChange={changeBook}>
-                            <option value="0">Selecione</option>
-                            {livrosEstante.map((l) => (
-                                <option key={l.livro.id} value={l.livro.id}>{l.livro.titulo}</option>
-                            ))}
-                        </select>
-                    </label>
-                    <div className={formCss.inputsPaginas}>
-                        <label>
-                            Da página: <input type="number" name="pagina_inicial" value={formData.pagina_inicial} readOnly />
-                        </label>
-                        <label>
-                            Até a página: <input type="number" name="pagina_final" value={formData.pagina_final} onChange={handleChange} min={formData.pagina_inicial + 1}/>
-                        </label>
-                    </div>
-                    <textarea name="texto" value={formData.texto} onChange={handleChange} placeholder="Escreva seu comentário..." maxLength={350} required></textarea>
-                    <input type='submit' value='Postar' className={formCss.botao} />
-                </form>
                 <div>
-                {postagens.map((postagem, index) => (
+                    <form onSubmit={postarComentario} className={formCss.postarComentario}>
+                        <h1>Escreva um comentário</h1>
+                        <label className={formCss.select}>Livro:
+                            <select name="livro_id" onChange={changeBook}>
+                                <option value="0">Selecione</option>
+                                {livrosEstante.map((l) => (
+                                    <option key={l.livro.id} value={l.livro.id}>{l.livro.titulo}</option>
+                                ))}
+                            </select>
+                        </label>
+                        <div className={formCss.inputsPaginas}>
+                            <label>
+                                Da página: <input type="number" name="pagina_inicial" value={formData.pagina_inicial} readOnly />
+                            </label>
+                            <label>
+                                Até a página: <input type="number" name="pagina_final" value={formData.pagina_final} onChange={handleChange} min={formData.pagina_inicial + 1}/>
+                            </label>
+                        </div>
+                        <textarea name="texto" value={formData.texto} onChange={handleChange} placeholder="Escreva seu comentário..." maxLength={350} required></textarea>
+                        <input type='submit' value='Postar' className={formCss.botao} />
+                    </form>
+                    {error && <AuthFail message={error} />}
+                </div>
+                <div>
+                {postagens.length > 0 ? postagens.map((postagem, index) => (
                     <Postagem key={index}
                         id={postagem.id}
                         leitor={postagem.leitor}
@@ -137,7 +142,7 @@ export function Feed() {
                         curtido={postagem.curtido}
                     />
                     )
-                )}
+                ) : <p>Não há postagens no momento, seja a primeira pessoa a comentar sobre sua leitura!</p>}
                 </div>
             </div>
         </>
