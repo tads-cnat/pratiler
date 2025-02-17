@@ -448,10 +448,14 @@ def livros_disponiveis(request):
 from .models import Comentario, Interação
 from .schemas import ComentarioSchemaIn, InteracaoSchema, ComentarioSchemaOut
 
-@api.post("/comentarios", response={201: ComentarioSchemaOut}, tags=["Comentarios"])
+@api.post("/comentarios", response={201: ComentarioSchemaOut, 400: str}, tags=["Comentarios"])
 def criar_comentario(request, comentario: ComentarioSchemaIn):
     # Criar o comentário
+
     livro_id = comentario.livro_id
+    livro = Livro.objects.get(id=livro_id)
+    if livro.n_paginas < comentario.pagina_final:
+        return api.create_response(request, {"detail": "Página final maior que o total de páginas do livro"}, status=400)
     leitor = request.user
     interacao = Interação.objects.get(livro_id=livro_id, leitor_id=leitor.id)
 
