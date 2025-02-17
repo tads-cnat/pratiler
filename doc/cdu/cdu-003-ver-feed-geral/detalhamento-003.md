@@ -1,21 +1,23 @@
 # CDU003. Ver feed geral
 
 - **Ator principal**: Leitor
-- **Atores secundários**:	 
-- **Resumo**: Leitor poderá visualizar um feed com todos os comentários do sistema.
+- **Atores secundários**:
+- **Resumo**: Leitor poderá visualizar um feed com todas as postagens do sistema.
 - **Pré-condição**: O leitor deve estar autenticado no sistema.
-- **Pós-Condição**: O leitor visualiza a lista de comentários no feed.
+- **Pós-Condição**: O leitor visualiza a lista de postagens no feed.
 
 ## Fluxo Principal
-&emsp;1. O leitor acessa a página do feed. <br>
-&emsp;2. O sistema recupera e organiza os comentários feitos no sistema, incluindo aqueles feitos por pessoas que o leitor segue e por outros usuários. <br>
-&emsp;3. O sistema exibe os comentários no feed, mostrando informações relevantes como o nome do usuario, data do comentário, texto do comentário e informações do livro lido. <br>
-&emsp;4. O leitor pode rolar a página para ver mais comentários conforme eles são carregados. <br>
-&emsp;5. O leitor pode interagir com os comentários, por exemplo, curtindo ou respondendo a eles. <br>
+
+1. &emsp; O leitor acessa a página do feed. <br>
+2. &emsp; O sistema recupera e organiza as postagens feitas no sistema. <br>
+3. &emsp; O sistema exibe as postagens no feed, mostrando informações relevantes como o nome do usuario, data da postagem, texto da postagem e informações do livro lido. <br>
+4. &emsp; O leitor pode rolar a página para ver mais postagens conforme elas são carregadas. <br>
+5. &emsp; O leitor pode interagir com as postagens, por exemplo, curtindo ou respondendo a eles. <br>
 
 ## Fluxo de Exceção I - Feed vazio
-1. &emsp;Se não houver comentários disponíveis para exibir no feed:
-   - &emsp;O sistema exibe uma mensagem informando que não há comentários disponíveis no momento.
+
+1. &emsp;Se não houver postagens disponíveis para exibir no feed:
+   - &emsp;O sistema exibe uma mensagem informando que não há postagens disponíveis no momento.
 
 ## Diagrama de Interação (Sequência ou Comunicação)
 

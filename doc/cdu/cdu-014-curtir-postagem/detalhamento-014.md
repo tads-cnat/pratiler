@@ -3,7 +3,7 @@
 - **Ator principal**: Leitor
 - **Atores secundários**:	 
 - **Resumo**: O leitor irá curtir um comentário
-- **Pré-condição**: Ser usuário do tipo leitor, estar logado no sistema e existir comentários
+- **Pré-condição**: Estar logado no sistema e existir comentários
 - **Pós-Condição**: O comentário ganhará uma nova curtida
 
 ## Fluxo Principal
