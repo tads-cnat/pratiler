@@ -33,7 +33,9 @@ body, input, button, textarea{
     font-family: var(--font-family);
     background-color: var(--white);
 }
-
+/* body{
+    background-color: #F9F8FF;
+} */
 body::-webkit-scrollbar{
     width: 10px;
 }
