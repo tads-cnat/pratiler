@@ -2,10 +2,11 @@
 
 .inputText{
     border: 1px solid var(--periwinkle);
-    padding: 5px;
+    padding: 10px;
     border-radius: 15px;
     width: 20rem;
     font: var(--text-md);
+    font-weight: 400;
     margin: auto;
     margin-top: 2rem;
 }
