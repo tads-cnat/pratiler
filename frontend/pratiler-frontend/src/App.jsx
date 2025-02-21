@@ -12,7 +12,6 @@ import { Feed } from "./components/Feed/Feed";
 import { Login } from "./components/Login/Login";
 import { Header } from "./components/Index/Header";
 import { Main } from "./components/Index/Main";
-import { Separator } from "./components/Index/Separator";
 import { Section } from "./components/Index/Section";
 import { SectionInverted } from "./components/Index/SectionInverted";
 import { Bookcase } from "./components/Bookcase/Bookcase";
@@ -63,7 +62,6 @@ function Home(){
     <>
       <Header />
       <Main />
-      <Separator />
       <Section 
         strong="Organize" 
         title= "suas leituras" 
