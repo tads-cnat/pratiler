@@ -4,6 +4,7 @@ import headerCss from '../../assets/css/Global/HeaderGlobal.module.css';
 import { User, UserPlus, Books, Star, ChatText } from 'phosphor-react';
 import { useNavigate } from 'react-router-dom';
 import { Search } from '../Search/Search';
+import { SignOut } from 'phosphor-react';
 
 /* Store */
 import { useAuthStore } from '../Global/authStore';
@@ -26,37 +27,43 @@ export function Header() {
                             <User weight='fill' color='#f6f6f6' size={18} />
                         </div>
                         <span className={headerCss.titlePerfil}>{user && user.username}</span>
-                        <button className={headerCss.logoutButton} onClick={async () => {
-                                await logout();
-                                setTimeout(navigate('/'), 1000);
-                            }
-                        }>Sair</button>
+                        
                     </div>
                 </div>
             </header>
+            <hr className={headerCss.divisor}/>
             <div className={headerCss.secondHeader}>
                 <div className={headerCss.secHeaderContent}>
                     <a href='/livros' className={headerCss.categories}>
-                        <Books size={24} color='#221D57' weight='fill'/>
+                        <Books size={24} color='#3D3569' weight='fill'/>
                         <span>Minhas Estante</span>
                     </a>
 
                     <a href='#' className={headerCss.categories}>
-                        <Star size={24} color='#221D57' weight='fill'/>
+                        <Star size={24} color='#3D3569' weight='fill'/>
                         <span>Livros Populares</span>
                     </a>
 
                     <a href='/inicio' className={headerCss.categories}>
-                        <ChatText size={24} color='#221D57' weight='fill'/>
+                        <ChatText size={24} color='#3D3569' weight='fill'/>
                         <span>Publicações Populares</span>
                     </a>
 
                     <a href='#' className={headerCss.categories}>
-                        <UserPlus size={24} color='#221D57' weight='fill'/>
+                        <UserPlus size={24} color='#3D3569' weight='fill'/>
                         <span>Seguindo</span>
                     </a>
                 </div>
+                <button className={headerCss.logoutButton} onClick={async () => {
+                                await logout();
+                                setTimeout(navigate('/'), 1000);
+                            }
+                }>
+                    <SignOut size={22} color='#FEFEFE' weight='fill'/>
+                    <p>Sair</p>
+                </button>
             </div>
+            <hr className={headerCss.divisor}/>
         </>
     );
 }
