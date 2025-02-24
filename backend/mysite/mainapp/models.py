@@ -29,7 +29,7 @@ class Autor(models.Model):
 class Livro(models.Model):
     titulo = models.CharField(max_length=120)
     sinopse = models.TextField()
-    capa = models.ImageField(blank=True, null=True, upload_to="capa/", default="capa/default.jpg") 
+    capa = models.TextField()
     isbn = models.CharField(max_length=13)
     n_paginas = models.IntegerField()
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
