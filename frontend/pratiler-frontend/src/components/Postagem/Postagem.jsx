@@ -8,8 +8,7 @@ import postagemCss from "../../assets/css/Postagem/Postagem.module.css";
 /** Store */
 import { internalAxios } from "../Global/axiosInstances";
 import { getCsrf, setCsrf } from "../Global/authStore";
-
-import foto from "../../assets/img/duende.png";
+import { User } from 'phosphor-react';
 
 export default function Postagem(props) {
 
@@ -38,7 +37,9 @@ export default function Postagem(props) {
         <div className={postagemCss.comentario}>
             <div className={postagemCss.nomeBotaoSeguirData}>
                 <div className={postagemCss.perfil}>
-                    <img src={foto} /> {/*{leitor.foto_perfil} */}
+                    <div className={postagemCss.icon}>
+                        <User weight='fill' color='#f6f6f6' size={22} />
+                    </div>
                     <div className={postagemCss.nome}>
                         <p>{leitor.username}</p> {/* {leitor.username} */}
                         <button className={postagemCss.linkPerfil}>@lipealves</button> {/** {leitor.username} */}

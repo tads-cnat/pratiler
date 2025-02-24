@@ -86,3 +86,12 @@
     margin-top: 0.3rem;
     color: #6761A8;
 }
+.icon {
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--ultra-violet);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
