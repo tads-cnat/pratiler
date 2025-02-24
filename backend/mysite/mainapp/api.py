@@ -130,7 +130,7 @@ def listar_interacoes(request):
                 "id": interacao.livro.id,
                 "titulo": interacao.livro.titulo,
                 "sinopse": interacao.livro.sinopse,
-                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "capa": interacao.livro.capa,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor":{
                     "id": interacao.livro.autor.id,
@@ -162,7 +162,7 @@ def listar_interacoes_lendo_por_leitor(request):
                 "titulo": interacao.livro.titulo,
                 "sinopse": interacao.livro.sinopse,
                 "isbn": interacao.livro.isbn,
-                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "capa": interacao.livro.capa,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor":{
                     "id": interacao.livro.autor.id,
@@ -194,7 +194,7 @@ def listar_interacoes_quero_ler_por_leitor(request):
                 "titulo": interacao.livro.titulo,
                 "sinopse": interacao.livro.sinopse,
                 "isbn": interacao.livro.isbn,
-                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "capa": interacao.livro.capa,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor":{
                     "id": interacao.livro.autor.id,
@@ -226,7 +226,7 @@ def listar_interacoes_lidas_por_leitor(request):
                 "titulo": interacao.livro.titulo,
                 "isbn": interacao.livro.isbn,
                 "sinopse": interacao.livro.sinopse,
-                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "capa": interacao.livro.capa,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor":{
                     "id": interacao.livro.autor.id,
@@ -265,7 +265,7 @@ def criar_interacao(request, livro_id: int, status: str):
             "titulo": interacao.livro.titulo,
             "isbn": interacao.livro.isbn,
             "sinopse": interacao.livro.sinopse,
-            "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+            "capa": interacao.livro.capa,
             "n_paginas": interacao.livro.n_paginas,
             "autor": {
                 "id": interacao.livro.autor.id,
@@ -302,7 +302,7 @@ def criar_interacao_lendo(request, livro_id: int):
             "titulo": interacao.livro.titulo,
             "sinopse": interacao.livro.sinopse,
             "isbn": interacao.livro.isbn,
-            "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+            "capa": interacao.livro.capa,
             "n_paginas": interacao.livro.n_paginas,
             "autor": {
                 "id": interacao.livro.autor.id,
@@ -330,7 +330,7 @@ def listar_interacao_id(request, id:int):
                 "titulo": interacao.livro.titulo,
                 "isbn": interacao.livro.isbn,
                 "sinopse": interacao.livro.sinopse,
-                "capa": request.build_absolute_uri(interacao.livro.capa.url) if interacao.livro.capa else None,
+                "capa": interacao.livro.capa,
                 "n_paginas": interacao.livro.n_paginas,
                 "autor": {
                     "id": interacao.livro.autor.id,
@@ -429,7 +429,8 @@ def livros_disponiveis(request):
                 "titulo": livro.titulo,
                 "sinopse": livro.sinopse,
                 "paginas": livro.n_paginas,
-                "isbn": livro.isbn,              
+                "isbn": livro.isbn,  
+                "capa": livro.capa,           
                 "n_paginas": livro.n_paginas,    
                 "autor":{
                         "id": livro.autor.id,
@@ -526,7 +527,7 @@ def listar_comentarios(request):
                         "id": comentario.interacao.livro.autor.id,
                         "nome": comentario.interacao.livro.autor.nome
                 },
-                "capa": f"http://127.0.0.1:8000{comentario.interacao.livro.capa.url.replace('/media', '')}" if comentario.interacao.livro.capa else None,
+                "capa": comentario.livro.capa,
             }
         }
         for comentario in comentarios

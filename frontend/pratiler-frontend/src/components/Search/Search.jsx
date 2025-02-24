@@ -1,7 +1,5 @@
-import { internalAxios } from "../Global/axiosInstances";
 import { useState } from "react";
 import searchCss from "../../assets/css/Search/Search.module.css";
-import { setCsrf, getCsrf } from "../Global/authStore";
 import { MagnifyingGlass } from 'phosphor-react';
 import { Facade } from "./Facade";
 import { useNavigate } from "react-router-dom"; 
@@ -32,7 +30,7 @@ export function Search() {
     <>
       <form action="#">
         <button onClick={getBooks} className={searchCss.button}>
-          <MagnifyingGlass size={22} color='#221D57' weight='bold'/>
+          <MagnifyingGlass size={22} color='#3D3569' weight='bold'/>
         </button>
         <input
           type="text"

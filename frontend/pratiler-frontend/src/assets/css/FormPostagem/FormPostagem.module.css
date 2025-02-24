@@ -1,11 +1,12 @@
 @import url("../base.css");
 
 .postarComentario{
-    border: 2px solid #D0C5FF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);  
     border-radius: 1.5rem;
     width: 24.8rem;
     padding: 2rem;
     margin-bottom: 0;
+    background-color: var(--white);
     display: flex;
     flex-direction: column;
     max-height: 21rem;
@@ -16,18 +17,18 @@
     margin: 0;
     margin-bottom: 0.5rem;
     font-family: var(--montserrat);
-    color: #221D57;
+    color: var(--penn-blue);
 }
 
 .postarComentario label{
     font-family: var(--roboto);
-    color: #221D57;
+    color: var(--penn-blue);
 }
 
 .postarComentario .select select{
     width: 21.5rem;
-    background-color: #F6F6F6;
-    border: 1px solid #D0C5FF;
+    background-color: var(--white);
+    border: 1px solid #D7D7D7;
     border-radius: 5px;
     margin-bottom: 0.5rem;
 }
@@ -37,8 +38,8 @@
 }
 
 .postarComentario .inputsPaginas input{
-    background-color: #F6F6F6;
-    border: 1px solid #D0C5FF;
+    background-color: var(--white);
+    border: 1px solid #D7D7D7;
     border-radius: 5px;
     margin-bottom: 0.5rem;
     width: 6rem;
@@ -46,8 +47,8 @@
 }
 
 .postarComentario textarea{
-    background-color: #F6F6F6;
-    border: 1px solid #D0C5FF;
+    background-color: var(--white);
+    border: 1px solid #D7D7D7;
     border-radius: 10px;
     height: 8rem;
     width: 21.4rem;
@@ -59,13 +60,13 @@
 .postarComentario .botao{
     width: 5.6rem;
     align-self: flex-end;
-    font-size: 1rem;
-    background-color: #221D57;
+    background-color: var(--penn-blue);
     color: #F6F6F6;
     border: none;
     border-radius: 10px;
     padding: 0.3rem;
-    font-family: var(--roboto);
+    font-family: var(--montserrat);
+    font-weight: 500;
 }
 
 .error{

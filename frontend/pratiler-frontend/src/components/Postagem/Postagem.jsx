@@ -8,8 +8,7 @@ import postagemCss from "../../assets/css/Postagem/Postagem.module.css";
 /** Store */
 import { internalAxios } from "../Global/axiosInstances";
 import { getCsrf, setCsrf } from "../Global/authStore";
-
-import foto from "../../assets/img/duende.png";
+import { User } from 'phosphor-react';
 
 export default function Postagem(props) {
 
@@ -38,32 +37,32 @@ export default function Postagem(props) {
         <div className={postagemCss.comentario}>
             <div className={postagemCss.nomeBotaoSeguirData}>
                 <div className={postagemCss.perfil}>
-                    <img src={foto} /> {/*{leitor.foto_perfil} */}
+                    <div className={postagemCss.icon}>
+                        <User weight='fill' color='#f6f6f6' size={22} />
+                    </div>
                     <div className={postagemCss.nome}>
-                        <p>{leitor.username}</p> {/* {leitor.username} */}
-                        <button className={postagemCss.linkPerfil}>@lipealves</button> {/** {leitor.username} */}
+                        <p>{leitor.username}</p>
                     </div>
 
-            {/* {% if comentario.leitor in user.usuario.seguindo.all %}
-                <a href="{% url 'seguir_leitor' comentario.leitor.id_username %}" className="botao-seguir">Seguindo</a>
-            {% else %} --- ALTERNAR TEXTO APÓS SE SEGUINDO LEITOR OU NÃO*/}
-
                     <button className={postagemCss.botaoSeguir}>Seguir</button>
-                </div>
-                <p className={postagemCss.data}>{dataFormatada}</p> {/* {data_hora} */}
+            </div>
+            <p className={postagemCss.data}>{dataFormatada}</p> 
         </div>
-    <p className={postagemCss.tituloAutor}>
-        {livro.titulo} - {livro.autor.nome}
-    </p>
-    <p className={postagemCss.paginas}>
-        Da página {pagina_inicial} até a página {pagina_final}.{/* {pagina_inicial} {pagina_final}*/}
-    </p>
-    <p>{texto}
-    </p> {/* {texto} */}
-    <button onClick={curtirComentario} className={postagemCss.curtir} type="button">
-        <Heart className={taCurtido ? postagemCss.iconCurtido : postagemCss.iconCurtir} />
-    </button>
-    <p>{numeroCurtidas ?? 0} pessoa{plural && "s"} curti{plural ? "ram" : "u"} esse comentário</p>
+        <p className={postagemCss.paginas}>
+            Da página {pagina_inicial} até a página {pagina_final}
+        </p>
+        <p className={postagemCss.tituloAutor}>
+            {livro.titulo} - {livro.autor.nome}
+        </p>
+        <p>{texto}</p> 
+        <div className={postagemCss.curtidaInfo}>
+            <p>{numeroCurtidas ?? 0}</p>
+            <button onClick={curtirComentario} className={postagemCss.curtir} type="button">
+                <Heart className={taCurtido ? postagemCss.iconCurtido : postagemCss.iconCurtir} />
+            </button>
+        </div>
+        
+        
     
 </div>
     );

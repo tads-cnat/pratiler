@@ -21,9 +21,9 @@ import { AddBook } from "./components/AddBook/AddBook";
 import { Book } from "./components/Book/Book";
 
 /* Images */
-import girlReading from "./assets/img/menina-lendo.png";
+import girlReading from "./assets/img/mulher-lendo-um-livro.png";
 import sereia from "./assets/img/sereia.png";
-import gnomo from "./assets/img/duende.png";
+import knight from "./assets/img/guerreiro-medieval.png";
 
 
 export default function App() {
@@ -79,7 +79,7 @@ function Home(){
         strong="Novas recomendações" 
         title= "sempre" 
         text="O sistema lista os livros mais populares, além de você poder visualizar os livros mais comentados pelos leitores que você segue."
-        img={gnomo}
+        img={knight}
       />
     </>
   );

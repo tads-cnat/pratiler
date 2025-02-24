@@ -1,11 +1,12 @@
 @import url("../base.css");
 .searchBar{
     width: 20rem;
+    
 }
 
 .button{
     border: none;
-    background-color: none;
+    background-color: var(--white);
 }
 
 .booksResult{

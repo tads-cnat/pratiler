@@ -7,7 +7,7 @@
     padding-block: 3rem;
 }
 .logo {
-    height: 36px;
+    height: 45px;
     width: auto;
 }
 
@@ -24,6 +24,7 @@
     align-items: center;
     gap: 4px;
     text-decoration: none;
+    background-color: #F9F8FF;
     transition: 250ms;
 }
 
