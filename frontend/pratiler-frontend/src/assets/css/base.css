@@ -31,7 +31,6 @@
 
 body, input, button, textarea{
     font-family: var(--font-family);
-    background-color: var(--white);
 }
 
 body::-webkit-scrollbar{
