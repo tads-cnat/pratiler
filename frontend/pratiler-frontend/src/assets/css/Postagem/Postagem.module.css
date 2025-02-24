@@ -7,9 +7,9 @@
 
 .comentario{
     width: 40rem;
-    border: 2px solid #D0C5FF;
     border-radius: 1.5rem;
     padding: 2rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);    
     font-family: var(--roboto);
     margin-bottom: 2rem;
 }
@@ -28,7 +28,7 @@
     font-size: 1.1rem;
 }
 .nomeBotaoSeguirData .perfil .nome p{
-    color: #221D57;
+    color: var(--penn-blue);
 }
 .nomeBotaoSeguirData .perfil .nome button{
     color: #6761A8;
@@ -45,8 +45,8 @@
 }
 
 .iconCurtido path{
-    fill: #7d73f0;
-    color: #7d73f0;
+    fill: var(--ultra-violet);
+    color: var(--ultra-violet);
 }
 
 .iconCurtido {
@@ -69,10 +69,12 @@
 .botaoSeguir{
     margin: 0.5rem 0rem;
     color: white;
-    background-color: #221D57;
+    background-color: var(--penn-blue);
     border-radius: 10px;
     padding: 0.2rem 1rem;
     max-height: 2rem;
+    font-weight: 500;
+    border: none;
 }
 .nomeUsuario{
     margin-top: 0.3rem;
@@ -87,11 +89,20 @@
     color: #6761A8;
 }
 .icon {
-    height: 3rem;
-    width: 3rem;
+    height: 2.5rem;
+    width: 2.5rem;
     background-color: var(--ultra-violet);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.curtidaInfo{
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+.curtidaInfo p{
+    color: var(--ultra-violet);
+    font-weight: bold;
 }
