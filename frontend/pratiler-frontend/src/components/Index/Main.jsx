@@ -5,7 +5,7 @@ import mainCss from '../../assets/css/Index/Main.module.css';
 
 
 /* Images */
-import bookImage from '../../assets/img/home-livros-coracoes.png';
+import bookImage from '../../assets/img/pilha-de-livros.png';
 
 
 export function Main(){
