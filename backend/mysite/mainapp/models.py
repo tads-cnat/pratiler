@@ -37,7 +37,7 @@ class Livro(models.Model):
     def __str__(self):
         return self.titulo
     
-class Interação(models.Model):
+class Interacao(models.Model):
     leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
     
@@ -53,27 +53,26 @@ class Interação(models.Model):
     def __str__(self):
         return f'{self.leitor.username} - {self.livro.titulo} ({self.get_status_display()})'
 
-    def comentariosLeitorLivro(self):
-        comentarios = Comentario.objects.filter(leitor=self.leitor, livro=self.livro)
-        return comentarios
+    def postagensLeitorLivro(self):
+        postagens = Postagem.objects.filter(leitor=self.leitor, livro=self.livro)
+        return postagens
     
     class Meta:
         unique_together = ('livro', 'leitor')
         verbose_name_plural = "Interações"
 
-class Comentario(models.Model):
-    interacao = models.ForeignKey(Interação, on_delete=models.CASCADE)
+class Postagem(models.Model):
+    interacao = models.ForeignKey(Interacao, on_delete=models.CASCADE)
     texto = models.TextField()
     data_hora = models.DateTimeField(auto_now_add=True)
 
-    pagina_inicial = models.IntegerField(default=0) # Página inicial do livro que o leitor estava quando fez o comentário
+    pagina_inicial = models.IntegerField(default=0) # Página inicial do livro que o leitor estava quando fez a postagem
     pagina_final = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'Comentário de {self.leitor.user.username} em {self.livro.titulo}'
+        return f'Postagem de {self.leitor.user.username} em {self.livro.titulo}'
     
     class Meta:
-        verbose_name = "Comentário"
         ordering = ['-data_hora']
 
 
@@ -107,8 +106,8 @@ class Resenha(models.Model):
 #         verbose_name_plural = "Avaliações"
 
 class Curtida(models.Model):
-    comentario = models.ForeignKey(Comentario, on_delete=models.CASCADE)
+    postagem = models.ForeignKey(Postagem, on_delete=models.CASCADE)
     leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
 
-#     def __str__(self):
-#         return "id: "+ str(self.id) + " " + self.usuario.user.username + " curtiu comentário de " + self.comentario.leitor.user.username
+    def __str__(self):
+        return "id: "+ str(self.id) + " " + self.usuario.user.username + " curtiu postagem de " + self.postagem.leitor.user.username

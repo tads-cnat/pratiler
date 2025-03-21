@@ -24,9 +24,6 @@ class LivroSchema(Schema):
     isbn: str
     n_paginas: int
     autor: AutorSchema
-    class Config:
-        model = Livro
-        model_fields = [ 'id','titulo', 'sinopse', 'capa', 'isbn', 'n_paginas', 'autor']
 
 class LivroSchemaIn(Schema):
     titulo: str
@@ -40,9 +37,11 @@ class LivroSchemaIn(Schema):
         model_fields = ['titulo', 'sinopse', 'capa', 'isbn', 'n_paginas', 'autor']
 
 class UserSchema(ModelSchema):
+    foto_perfil: str
+    biografia: str
     class Config:
         model = User
-        model_fields = ['id', 'username', 'email', 'first_name', 'last_name']
+        model_fields = ['id', 'username', 'email']
 
 class LeitorSchema(Schema):
     id: int
@@ -60,13 +59,13 @@ class ResenhaSchema(ModelSchema):
          model = Resenha 
          model_fields = '__all__' 
 
-class ComentarioSchemaIn(Schema):
+class PostagemSchemaIn(Schema):
     livro_id: int
     texto: str
     pagina_inicial: int
     pagina_final: int
 
-class ComentarioSchemaOut(Schema):
+class PostagemSchemaOut(Schema):
     id: int
     texto: str
     data_hora: str
@@ -75,7 +74,7 @@ class ComentarioSchemaOut(Schema):
     leitor: LeitorSchema
     livro: LivroSchema
 
-class ComentarioListSchemaOut(Schema):
+class PostagemListSchemaOut(Schema):
     id: int
     texto: str
     data_hora: str
@@ -87,4 +86,4 @@ class ComentarioListSchemaOut(Schema):
     livro: LivroSchema
 
 class CurtidaSchema(Schema):
-    comentario_id: int
+    postagem_id: int
