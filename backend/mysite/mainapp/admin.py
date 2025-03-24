@@ -5,6 +5,6 @@ admin.site.register(Leitor)
 admin.site.register(Resenha)
 admin.site.register(Autor)
 admin.site.register(Livro)
-admin.site.register(Interação)
-admin.site.register(Comentario)
+admin.site.register(Interacao)
+admin.site.register(Postagem)
 

@@ -1,6 +1,6 @@
 @import url("../base.css");
 
-.postarComentario{
+.realizarPostagem{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);  
     border-radius: 1.5rem;
     width: 24.8rem;
@@ -12,7 +12,7 @@
     max-height: 21rem;
 }
 
-.postarComentario h1{
+.realizarPostagem h1{
     font-size: 1.5rem;
     margin: 0;
     margin-bottom: 0.5rem;
@@ -20,12 +20,12 @@
     color: var(--penn-blue);
 }
 
-.postarComentario label{
+.realizarPostagem label{
     font-family: var(--roboto);
     color: var(--penn-blue);
 }
 
-.postarComentario .select select{
+.realizarPostagem .select select{
     width: 21.5rem;
     background-color: var(--white);
     border: 1px solid #D7D7D7;
@@ -33,11 +33,11 @@
     margin-bottom: 0.5rem;
 }
 
-.postarComentario .inputsPaginas{
+.realizarPostagem .inputsPaginas{
     display: flex;
 }
 
-.postarComentario .inputsPaginas input{
+.realizarPostagem .inputsPaginas input{
     background-color: var(--white);
     border: 1px solid #D7D7D7;
     border-radius: 5px;
@@ -46,7 +46,7 @@
     margin-right: 0.5rem;
 }
 
-.postarComentario textarea{
+.realizarPostagem textarea{
     background-color: var(--white);
     border: 1px solid #D7D7D7;
     border-radius: 10px;
@@ -57,7 +57,7 @@
     resize: none;
 }
 
-.postarComentario .botao{
+.realizarPostagem .botao{
     width: 5.6rem;
     align-self: flex-end;
     background-color: var(--penn-blue);
