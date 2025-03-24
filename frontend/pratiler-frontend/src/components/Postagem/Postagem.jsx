@@ -7,7 +7,6 @@ import postagemCss from "../../assets/css/Postagem/Postagem.module.css";
 
 /** Store */
 import { internalAxios } from "../Global/axiosInstances";
-import { getCsrf, setCsrf } from "../Global/authStore";
 import { User } from "phosphor-react";
 
 export default function Postagem(props) {
@@ -29,17 +28,8 @@ export default function Postagem(props) {
   const dataFormatada = `${valores[2]}/${valores[1]}/${valores[0]}`;
 
   async function curtirPostagem() {
-    await setCsrf();
     await internalAxios
-      .post(
-        `postagens/curtir`,
-        { postagem_id: id },
-        {
-          headers: {
-            "X-Csrftoken": await getCsrf(),
-          },
-        }
-      )
+      .post(`postagens/curtir`, { postagem_id: id })
       .then((response) => {
         setTaCurtido(!taCurtido);
         setNumeroCurtidas(response.data);

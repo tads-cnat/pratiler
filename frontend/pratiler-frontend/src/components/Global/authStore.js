@@ -2,70 +2,72 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { internalAxios } from "./axiosInstances";
+import axios from "axios";
 
 export const useAuthStore = create(
   persist(
     (set, get) => ({
       user: null,
       isAuthenticated: false,
-      csrfToken: null,
+      token: null,
+      refresh: null,
 
       register: async (username, email, password) => {
-        await setCsrf();
         const credentials = {
           username: username,
           email: email,
           password: password,
         };
-        const response = await internalAxios.post(
-          "auth/register",
-          credentials,
-          {
-            headers: {
-              "X-Csrftoken": await getCsrf(),
-            },
-          }
-        );
+        const response = await internalAxios.post("auth/register", credentials);
         return response.data.success
           ? await get().login(email, password)
           : response.data;
       },
 
       login: async (email, password) => {
-        await setCsrf();
         const credentials = { email: email, password: password };
         const response = await internalAxios
-          .post("auth/login", credentials, {
-            headers: {
-              "X-Csrftoken": await getCsrf(),
-            },
-          })
+          .post("auth/login", credentials)
           .then((response) => response.data);
-        if (response.success) await get().fetchUser();
+        if (response.success) {
+          await internalAxios
+            .post("auth/pair", credentials)
+            .then((response) => {
+              set({
+                token: response.data.access,
+                refresh: response.data.refresh,
+              });
+            });
+          await get().fetchUser();
+        }
         return response;
       },
 
       logout: async () => {
-        try {
-          await internalAxios.get("auth/logout", {
-            headers: {
-              "X-Csrftoken": await getCsrf(),
-            },
+        await internalAxios
+          .get("auth/logout")
+          .then(() => {
+            set({
+              user: null,
+              isAuthenticated: false,
+              token: null,
+              refresh: null,
+            });
+          })
+          .catch((error) => {
+            console.error("Falha ao fazer logout", error);
           });
-          set({ user: null, isAuthenticated: false, csrfToken: null });
-          document.cookies = "";
-        } catch (error) {
-          console.error(error);
-        }
       },
 
       fetchUser: async () => {
-        try {
-          const response = await internalAxios.get("auth/user");
-          set({ user: response.data, isAuthenticated: true });
-        } catch (error) {
-          console.error("Failed to fetch user", error);
-        }
+        await internalAxios
+          .get("auth/user")
+          .then((response) => {
+            set({ user: response.data, isAuthenticated: true });
+          })
+          .catch((error) => {
+            console.error("Falha ao buscar usuário", error);
+          });
       },
     }),
     {
@@ -74,16 +76,3 @@ export const useAuthStore = create(
     }
   )
 );
-
-export async function getCsrf() {
-  const { csrfToken } = useAuthStore.getState();
-  return csrfToken;
-}
-
-export async function setCsrf() {
-  const token = await internalAxios
-    .get("auth/set-csrf-token")
-    .then((response) => response.data);
-  document.cookie = `csrftoken=${token.csrftoken}`;
-  useAuthStore.setState({ csrfToken: token.csrftoken });
-}

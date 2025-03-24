@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import bookcaseCss from "../../assets/css/Bookcase/Bookcase.module.css";
 
 /* Store */
-import { useAuthStore, getCsrf } from "../Global/authStore";
+import { useAuthStore } from "../Global/authStore";
 
 /* Componentes */
 import { Header } from "../Global/HeaderGlobal";
@@ -18,7 +18,6 @@ import { CardBook } from "./CardBook";
 import noBooks from "../../assets/img/no-books.png";
 
 export function Bookcase() {
-
   const navigate = useNavigate();
 
   const { user, isAuthenticated } = useAuthStore();
@@ -38,22 +37,24 @@ export function Bookcase() {
 
   const fetchBooks = async () => {
     setLoading(true);
-    try {
-      const endpoint = {
-        Lendo: "interacoes/leitor",
-        "Quero Ler": "interacoes/leitor/quero_ler",
-        Lidos: "interacoes/leitor/lidos",
-      }[filter];
+    const endpoint = {
+      Lendo: "interacoes/leitor",
+      "Quero Ler": "interacoes/leitor/quero_ler",
+      Lidos: "interacoes/leitor/lidos",
+    }[filter];
 
-      const response = await internalAxios.get(endpoint);
-
-      setBooks(response.data);
-    } catch (error) {
-      console.error("Erro ao buscar Livros: ", error.response.data);
-      setError("Erro ao mostrar os Livros: ", error.response.data);
-    } finally {
-      setLoading(false);
-    }
+    await internalAxios
+      .get(endpoint)
+      .then((response) => {
+        setBooks(response.data);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar Livros: ", error.response.data);
+        setError("Erro ao mostrar os Livros: ", error.response.data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   useEffect(() => {

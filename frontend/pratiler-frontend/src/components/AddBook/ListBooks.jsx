@@ -24,14 +24,17 @@ export function ListBooks() {
 
   const fetchBooks = async () => {
     setLoading(true);
-    try {
-      const response = await internalAxios.get("livros/livros-disponiveis");
-      setBooks(response.data);
-    } catch (error) {
-      setError("Erro ao mostrar os livros");
-    } finally {
-      setLoading(false);
-    }
+    await internalAxios
+      .get("livros/livros-disponiveis")
+      .then((response) => {
+        setBooks(response.data);
+      })
+      .catch((error) => {
+        setError("Erro ao mostrar os Livros: ", error.response.data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   useEffect(() => {

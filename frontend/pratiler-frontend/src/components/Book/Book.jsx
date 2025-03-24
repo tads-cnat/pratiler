@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { externalAxios, internalAxios } from "../Global/axiosInstances";
 import { Header } from "../Global/HeaderGlobal";
 import bookCss from "../../assets/css/Book/Book.module.css";
-import { setCsrf, getCsrf } from "../Global/authStore";
 import { useNavigate } from "react-router-dom";
 
 export function Book() {
@@ -13,60 +12,44 @@ export function Book() {
 
   useEffect(() => {
     const fetchBookDetails = async () => {
-      try {
-        const response = await externalAxios.get(
-          `https://www.googleapis.com/books/v1/volumes/${id}`
-        );
-        setBook(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar detalhes do livro: ", error);
-      }
+      await externalAxios
+        .get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+        .then((response) => {
+          setBook(response.data);
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar detalhes do livro: ", error);
+        });
     };
 
     fetchBookDetails();
   }, [id]);
 
   const sendBook = async (e) => {
-    console.log(e);
-    try {
-      await setCsrf();
-      await internalAxios.post(
-        "livros/salvar-livro",
-        {
-          titulo: e.volumeInfo.title,
-          sinopse: e.volumeInfo.description,
-          capa: e.volumeInfo.imageLinks?.thumbnail,
-          n_paginas: e.volumeInfo.pageCount,
-          isbn: e.volumeInfo.industryIdentifiers[0].identifier,
-          autor: e.volumeInfo.authors[0],
-        },
-        {
-          headers: {
-            "X-Csrftoken": await getCsrf(),
-          },
-          withCredentials: true,
-        }
-      );
-
-      const response = await internalAxios.get(
-        `buscar-livro/${e.volumeInfo.industryIdentifiers[0].identifier}`
-      );
-      const book_response = response.data;
-
-      await internalAxios.post(
-        `interacoes/leitor/lendo?livro_id=${book_response.id}`,
-        {},
-        {
-          headers: {
-            "X-Csrftoken": await getCsrf(),
-          },
-        }
-      );
-
-      navigate("/livros");
-    } catch (error) {
-      console.log("Erro ao adicionar o livro: ", error.response.data);
-    }
+    const isbn = e.volumeInfo.industryIdentifiers[0].identifier;
+    await internalAxios
+      .post("livros/salvar-livro", {
+        titulo: e.volumeInfo.title,
+        sinopse: e.volumeInfo.description,
+        capa: e.volumeInfo.imageLinks?.thumbnail,
+        n_paginas: e.volumeInfo.pageCount,
+        isbn,
+        autor: e.volumeInfo.authors[0],
+      })
+      .then(async () => {
+        await internalAxios
+          .get(`buscar-livro/${isbn}`)
+          .then(async (response) => {
+            await internalAxios
+              .post(`interacoes/leitor/lendo?livro_id=${response.data.id}`, {})
+              .then(() => {
+                navigate("/livros");
+              });
+          });
+      })
+      .catch((error) => {
+        console.error("Erro ao adicionar o livro: ", error);
+      });
   };
 
   return (
