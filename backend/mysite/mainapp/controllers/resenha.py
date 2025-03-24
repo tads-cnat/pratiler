@@ -1,12 +1,12 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from ninja_extra import api_controller, route
-
+from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Leitor, Livro, Resenha
 from mainapp.schemas import ResenhaSchema
 
 
-@api_controller("/resenhas", tags=["Resenhas"])
+@api_controller("/resenhas", auth=JWTAuth(), tags=["Resenhas"])
 class ResenhaController:
     @route.get("/resenhas", response=list[ResenhaSchema])
     def listar_resenhas(self, request):

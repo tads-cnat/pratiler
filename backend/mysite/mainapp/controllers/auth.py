@@ -1,17 +1,13 @@
 
 from django.contrib.auth import authenticate, login, logout
-from django.middleware.csrf import get_token
 from ninja_extra import route, api_controller
-from ninja.security import django_auth
+from ninja_jwt.authentication import JWTAuth
+from ninja_jwt.controller import NinjaJWTDefaultController
 from mainapp.models import Leitor
 from mainapp.schemas import SignInSchema, RegisterSchema, UserSchema
 
 @api_controller("/auth", tags=["Autenticação"])
-class AuthController:
-    @route.get("/set-csrf-token")
-    def set_csrf_token(self, request):
-        return {"csrftoken": get_token(request)}
-
+class AuthController(NinjaJWTDefaultController):
     @route.post("/login")
     def login_view(self, request, payload: SignInSchema):
         try:
@@ -23,12 +19,12 @@ class AuthController:
         except Exception:
             return {"success": False, "message": "Credenciais inválidas, por favor tente novamente"}
 
-    @route.get("/logout", auth=django_auth)
+    @route.get("/logout", auth=JWTAuth())
     def logout_view(self, request):
         logout(request)
         return {"message": "Logged out"}
 
-    @route.get("/user", auth=django_auth, response=UserSchema)
+    @route.get("/user", response=UserSchema)
     def user(self, request):
         return {
             "id": request.user.id,

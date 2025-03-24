@@ -1,11 +1,11 @@
 from django.http import Http404
 from ninja_extra import api_controller, route
-from ninja.security import django_auth
+from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Interacao, Livro
 from mainapp.schemas import InteracaoSchema
 
 
-@api_controller("/interacoes", tags=["Interações Livro/Leitor"])
+@api_controller("/interacoes", auth=JWTAuth(), tags=["Interações Livro/Leitor"])
 class InteracaoController:
     @route.get("/", response=list[InteracaoSchema])
     def listar_interacoes(self, request):
@@ -128,7 +128,7 @@ class InteracaoController:
             for interacao in interacoes
         ]
 
-    @route.post("/leitor", auth=django_auth, response=InteracaoSchema)
+    @route.post("/leitor", response=InteracaoSchema)
     def criar_interacao(self, request, livro_id: int, status: str):
         leitor = request.user
 
@@ -165,7 +165,7 @@ class InteracaoController:
             "pg_atual": interacao.pg_atual
         }
 
-    @route.post("/leitor/lendo", auth=django_auth, response=InteracaoSchema)
+    @route.post("/leitor/lendo", response=InteracaoSchema)
     def criar_interacao_lendo(self, request, livro_id: int):
         leitor = request.user
 
@@ -233,7 +233,7 @@ class InteracaoController:
             return {"detail": "Interacao não encontrada ou não pertence ao usuário"}, 404
 
 
-    @route.put("/{id}/marcar-como-lido")
+    @route.put("/{id}/marcar-como-lido", )
     def marcar_como_lido(self, request, id: int):
         try:
             interacao = Interacao.objects.get(id=id, leitor=request.user)

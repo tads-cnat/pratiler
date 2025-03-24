@@ -1,12 +1,12 @@
 from django.shortcuts import get_object_or_404
 from ninja_extra import api_controller, route
-from ninja.security import django_auth
+from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Autor, Interacao, Livro
 from mainapp.schemas import LivroSchema, LivroSchemaIn
 
-@api_controller("/livros", tags=["Livros"])
+@api_controller("/livros", auth=JWTAuth(), tags=["Livros"])
 class LivroController:
-    @route.get("/", response=list[LivroSchema], auth=django_auth)
+    @route.get("/", response=list[LivroSchema])
     def listar_livros(self, request):
         livros = Livro.objects.select_related('autor').all()
         return [{
@@ -22,7 +22,7 @@ class LivroController:
                 "capa": livro.capa,
             } for livro in livros]
     
-    @route.get("/livros-disponiveis", auth=django_auth)
+    @route.get("/livros-disponiveis")
     def livros_disponiveis(self, request):
         try:
             leitor = request.user
