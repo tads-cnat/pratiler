@@ -7,7 +7,7 @@ from mainapp.schemas import InteracaoSchema
 
 @api_controller("/interacoes", auth=JWTAuth(), tags=["Interações Livro/Leitor"])
 class InteracaoController:
-    @route.get("/", response=list[InteracaoSchema])
+    @route.get("", response=list[InteracaoSchema])
     def listar_interacoes(self, request):
         interacoes = Interacao.objects.select_related('leitor', 'livro__autor').all()
 

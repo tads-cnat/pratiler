@@ -7,7 +7,7 @@ from mainapp.schemas import LeitorSchema, UserSchema
 
 @api_controller("/leitores", auth=JWTAuth(), tags=["Leitores"])
 class LeitorController:
-    @route.get("/", response=list[LeitorSchema])
+    @route.get("", response=list[LeitorSchema])
     def listar_leitores(self, request):
         """Lista todos os leitores."""
         return Leitor.objects.all()

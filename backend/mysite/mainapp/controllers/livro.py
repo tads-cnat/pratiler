@@ -6,7 +6,7 @@ from mainapp.schemas import LivroSchema, LivroSchemaIn
 
 @api_controller("/livros", auth=JWTAuth(), tags=["Livros"])
 class LivroController:
-    @route.get("/", response=list[LivroSchema])
+    @route.get("", response=list[LivroSchema])
     def listar_livros(self, request):
         livros = Livro.objects.select_related('autor').all()
         return [{

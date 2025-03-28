@@ -6,7 +6,7 @@ from mainapp.schemas import AutorSchema
 
 @api_controller("/autores", auth=JWTAuth(), tags=["Autores"])
 class AutorController:
-    @route.get("/", response=list[AutorSchema])
+    @route.get("", response=list[AutorSchema])
     def listar_autores(self, request):
         """Lista todos os autores."""
         return Autor.objects.all()

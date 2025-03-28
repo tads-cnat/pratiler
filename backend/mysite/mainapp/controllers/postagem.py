@@ -6,7 +6,7 @@ from mainapp.schemas import CurtidaSchema, PostagemListSchemaOut, PostagemSchema
 
 @api_controller("/postagens", auth=JWTAuth(), tags=["Postagens"])
 class PostagemController:
-    @route.post("/", response=PostagemSchemaOut)
+    @route.post("", response=PostagemSchemaOut)
     def criar_postagem(self, request, postagem: PostagemSchemaOut):
 
         livro_id = postagem.livro_id
@@ -51,7 +51,7 @@ class PostagemController:
             }
         }
 
-    @route.get("/", response=list[PostagemListSchemaOut])
+    @route.get("", response=list[PostagemListSchemaOut])
     def listar_postagens(self, request):
         postagens = Postagem.objects.all()
         return [
