@@ -18,7 +18,7 @@ internalAxios.interceptors.request.use(
   (config) => {
     const { token } = useAuthStore.getState();
     if (token) {
-      config.headers["Authorization"] = token.trim();
+      config.headers["Authorization"] = "Bearer " + token.trim();
     }
     return config;
   },
@@ -31,7 +31,7 @@ externalAxios.interceptors.request.use(
   (config) => {
     const { token } = useAuthStore.getState();
     if (token) {
-      config.headers["Authorization"] = token.trim();
+      config.headers["Authorization"] = "Bearer " + token.trim();
     }
     return config;
   },

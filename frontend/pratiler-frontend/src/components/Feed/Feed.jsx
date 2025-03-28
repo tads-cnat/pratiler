@@ -65,7 +65,7 @@ export function Feed() {
   async function realizarPostagem(e) {
     e.preventDefault();
     await internalAxios
-      .post("postagens/", formData)
+      .post("postagens", formData)
       .then(() => {
         setNovaPostagem(!novaPostagem);
         setFormData({
@@ -82,12 +82,12 @@ export function Feed() {
 
   async function pegarLivrosEstante() {
     await internalAxios
-      .get("interacoes/leitor/")
+      .get("interacoes/leitor")
       .then((response) => setLivrosEstante(response.data));
   }
   async function getPostagens() {
     await internalAxios
-      .get("postagens/")
+      .get("postagens")
       .then((response) => setPostagens(response.data));
   }
 

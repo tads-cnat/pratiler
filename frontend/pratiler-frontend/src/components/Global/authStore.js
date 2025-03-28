@@ -26,21 +26,15 @@ export const useAuthStore = create(
 
       login: async (email, password) => {
         const credentials = { email: email, password: password };
-        const response = await internalAxios
-          .post("auth/login", credentials)
-          .then((response) => response.data);
-        if (response.success) {
-          await internalAxios
-            .post("auth/pair", credentials)
-            .then((response) => {
-              set({
-                token: response.data.access,
-                refresh: response.data.refresh,
-              });
-            });
-          await get().fetchUser();
-        }
-        return response;
+        await internalAxios.post("auth/login", credentials).then((response) => {
+          set({ user: response.data, isAuthenticated: true });
+        });
+        await internalAxios.post("auth/pair", credentials).then((response) => {
+          set({
+            token: response.data.access,
+            refresh: response.data.refresh,
+          });
+        });
       },
 
       logout: async () => {
@@ -56,17 +50,6 @@ export const useAuthStore = create(
           })
           .catch((error) => {
             console.error("Falha ao fazer logout", error);
-          });
-      },
-
-      fetchUser: async () => {
-        await internalAxios
-          .get("auth/user")
-          .then((response) => {
-            set({ user: response.data, isAuthenticated: true });
-          })
-          .catch((error) => {
-            console.error("Falha ao buscar usuário", error);
           });
       },
     }),

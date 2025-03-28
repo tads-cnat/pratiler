@@ -29,16 +29,11 @@ export function LoginFormulario() {
     e.preventDefault();
     setError(null);
     const { email, password } = formData;
-    await login(email, password)
-      .then((response) => {
-        if (response.success) {
-          setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
-          setTimeout(() => navigate("/livros"), 2000);
-        } else setError(response.message);
-      })
-      .catch((error) => {
-        setError("Erro ao fazer login: " + error);
-      });
+    await login(email, password);
+    if (useAuthStore.getState().isAuthenticated) {
+      setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
+      setTimeout(() => navigate("/livros"), 2000);
+    } else setError("Email ou senha inválidos.");
   };
 
   const handleChange = (e) => {

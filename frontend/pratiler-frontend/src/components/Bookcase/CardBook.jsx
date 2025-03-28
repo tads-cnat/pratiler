@@ -18,7 +18,7 @@ export function CardBook({
   const [successMessage, setSuccessMessage] = useState(null);
 
   const handleMarkAsRead = async (id) => {
-    const response = await internalAxios
+    await internalAxios
       .put(`interacoes/${id}/marcar-como-lido`, {})
       .then((response) => {
         setSuccessMessage(response.data.message || "Livro marcado como lido!");
