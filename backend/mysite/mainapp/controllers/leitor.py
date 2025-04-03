@@ -1,13 +1,13 @@
 from django.http import JsonResponse
 from ninja_extra import api_controller, route
-
+from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Leitor
 from mainapp.schemas import LeitorSchema, UserSchema
 
 
-@api_controller("/leitores", tags=["Leitores"])
+@api_controller("/leitores", auth=JWTAuth(), tags=["Leitores"])
 class LeitorController:
-    @route.get("/", response=list[LeitorSchema])
+    @route.get("", response=list[LeitorSchema])
     def listar_leitores(self, request):
         """Lista todos os leitores."""
         return Leitor.objects.all()

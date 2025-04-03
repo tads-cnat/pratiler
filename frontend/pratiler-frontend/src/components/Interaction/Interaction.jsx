@@ -23,15 +23,18 @@ export function Interaction() {
 
   useEffect(() => {
     const fetchInteraction = async () => {
-      try {
-        const response = await internalAxios.get(`interacoes/leitor/${id}`);
-        setInteraction(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar interação:", error);
-        setError("Interação não encontrada");
-      } finally {
-        setLoading(false);
-      }
+      await internalAxios
+        .get(`interacoes/leitor/${id}`)
+        .then((response) => {
+          setInteraction(response.data);
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar interação: ", error);
+          setError("Interação não encontrada");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     };
     fetchInteraction();
   }, [id]);

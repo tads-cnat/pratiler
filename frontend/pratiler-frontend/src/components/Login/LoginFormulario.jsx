@@ -1,74 +1,85 @@
 /* eslint-disable no-unused-vars */
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 /* CSS */
-import loginCss from  '../../assets/css/LoginCadastro/Formulario.module.css';
-import inputCss from '../../assets/css/Input/Input.module.css';
+import loginCss from "../../assets/css/LoginCadastro/Formulario.module.css";
+import inputCss from "../../assets/css/Input/Input.module.css";
 
 /* Componentes */
 import { AuthSuccessful } from "../Global/AuthSuccessful";
 import { AuthFail } from "../Global/AuthFail";
-import { useAuthStore } from '../Global/authStore';
+import { useAuthStore } from "../Global/authStore";
 
 /* Images */
-import imageLogin from '../../assets/img/imagem-login.png';
+import imageLogin from "../../assets/img/imagem-login.png";
 
+export function LoginFormulario() {
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-export function LoginFormulario(){
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
-    const [formData, setFormData] = useState({
-        email: "",
-        password: "",
-    });
+  const { login } = useAuthStore();
+  const navigate = useNavigate();
 
-    const { login } = useAuthStore();
-    const navigate = useNavigate();
+  const fetchLogin = async (e) => {
+    e.preventDefault();
+    setError(null);
+    const { email, password } = formData;
+    await login(email, password);
+    if (useAuthStore.getState().isAuthenticated) {
+      setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
+      setTimeout(() => navigate("/livros"), 2000);
+    } else setError("Email ou senha inválidos.");
+  };
 
-    const fetchLogin = async (e) => {
-        e.preventDefault();
-        setError(null);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-        try{
-            const { email, password } = formData;
-            const loginRequest = await login(email, password);
-            if(loginRequest.success){
-                setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
-                setTimeout(() => navigate('/livros'), 2000);
-            }
-            else setError(loginRequest.message);
-        } catch (error){
-            setError("Erro ao fazer login: " + error);
-        }
-    }
+  return (
+    <div className={loginCss.return}>
+      <div className={loginCss.container}>
+        <img src={imageLogin} />
+      </div>
+      <div className={loginCss.formularioLogin}>
+        <h1>Entrar</h1>
+        <form className={loginCss.formulario} onSubmit={fetchLogin}>
+          <input
+            type="text"
+            placeholder="Email"
+            className={inputCss.inputText}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            className={inputCss.inputText}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <p>Recuperar senha?</p>
 
-    const handleChange = (e) => { // função chamada ao mudar um campo do formulário
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    return(
-        <div className={loginCss.return}>
-            <div className={loginCss.container}>
-                <img src={ imageLogin }/>
-            </div>
-            <div className={loginCss.formularioLogin}>
-                <h1>Entrar</h1>
-                <form className={loginCss.formulario} onSubmit={fetchLogin}>
-                    <input type="text" placeholder='Email' className={inputCss.inputText} name="email"  value={formData.email} onChange={handleChange}/>
-                    <input type="password" placeholder='Senha' className={inputCss.inputText} name="password" value={formData.password} onChange={handleChange}/>
-                    <p>Recuperar senha?</p>
-                    
-                    <input type="submit" value="Entrar" className={inputCss.inputSubmit} />
-                </form>
-                <p className={loginCss.mensagem}>
-                    Não possui uma conta? <Link to="/cadastro">Cadastre-se na nossa rede</Link>
-                </p>
-                {success && <AuthSuccessful message={success}/>}
-                {error && <AuthFail message={error}/>}
-            </div>
-        </div>
-        
-    );
+          <input
+            type="submit"
+            value="Entrar"
+            className={inputCss.inputSubmit}
+          />
+        </form>
+        <p className={loginCss.mensagem}>
+          Não possui uma conta?{" "}
+          <Link to="/cadastro">Cadastre-se na nossa rede</Link>
+        </p>
+        {success && <AuthSuccessful message={success} />}
+        {error && <AuthFail message={error} />}
+      </div>
+    </div>
+  );
 }

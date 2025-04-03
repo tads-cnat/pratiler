@@ -6,7 +6,6 @@ import formCss from "../../assets/css/FormPostagem/FormPostagem.module.css";
 
 /* Store */
 import { internalAxios } from "../Global/axiosInstances";
-import { setCsrf, getCsrf } from "../Global/authStore";
 
 /* Components */
 import { Header } from "../Global/HeaderGlobal";
@@ -65,36 +64,30 @@ export function Feed() {
 
   async function realizarPostagem(e) {
     e.preventDefault();
-    try {
-      await setCsrf();
-      await internalAxios
-        .post("postagens/", formData, {
-          headers: {
-            "X-Csrftoken": await getCsrf(),
-          },
-        })
-        .then(() => {
-          setNovaPostagem(!novaPostagem);
-          setFormData({
-            ...formData,
-            texto: "",
-            pagina_final: 0,
-          });
-          changeBook(undefined, formData.livro_id);
+    await internalAxios
+      .post("postagens", formData)
+      .then(() => {
+        setNovaPostagem(!novaPostagem);
+        setFormData({
+          ...formData,
+          texto: "",
+          pagina_final: 0,
         });
-    } catch (err) {
-      setError(err.response.data.detail);
-    }
+        changeBook(undefined, formData.livro_id);
+      })
+      .catch((err) => {
+        setError(err.response.data.detail);
+      });
   }
 
   async function pegarLivrosEstante() {
     await internalAxios
-      .get("interacoes/leitor/")
+      .get("interacoes/leitor")
       .then((response) => setLivrosEstante(response.data));
   }
   async function getPostagens() {
     await internalAxios
-      .get("postagens/")
+      .get("postagens")
       .then((response) => setPostagens(response.data));
   }
 

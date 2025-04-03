@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import css from "../../assets/css/AddBook/ListBooks.module.css";
+import bookcaseCss from "../../assets/css/Bookcase/Bookcase.module.css";
+import noBooks from "../../assets/img/no-books.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuthStore } from "../Global/authStore";
@@ -24,14 +26,17 @@ export function ListBooks() {
 
   const fetchBooks = async () => {
     setLoading(true);
-    try {
-      const response = await internalAxios.get("livros/livros-disponiveis");
-      setBooks(response.data);
-    } catch (error) {
-      setError("Erro ao mostrar os livros");
-    } finally {
-      setLoading(false);
-    }
+    await internalAxios
+      .get("livros/livros-disponiveis")
+      .then((response) => {
+        setBooks(response.data);
+      })
+      .catch((error) => {
+        setError("Erro ao mostrar os Livros: ", error.response.data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -45,17 +50,34 @@ export function ListBooks() {
   return (
     <>
       <div className={css.listBooks}>
-        {error
-          ? error
-          : books.map((book) => (
-              <Minibook
-                key={book.id}
-                img={book.capa}
-                title={book.titulo}
-                autor={book.autor.nome}
-                id={book.id}
+        {error ? (
+          error
+        ) : books.length === 0 ? (
+          <div className={bookcaseCss.sectionCards}>
+            <div className={bookcaseCss.boxNoBooks}>
+              <h1 className={bookcaseCss.titleNoBooks}>
+                {" "}
+                Sem livros disponíveis. Pesquise mais livros para visualizá-los
+                aqui
+              </h1>
+              <img
+                className={bookcaseCss.noBooks}
+                src={noBooks}
+                alt="Nenhum livro encontrado"
               />
-            ))}
+            </div>
+          </div>
+        ) : (
+          books.map((book) => (
+            <Minibook
+              key={book.id}
+              img={book.capa}
+              title={book.titulo}
+              autor={book.autor.nome}
+              id={book.id}
+            />
+          ))
+        )}
       </div>
     </>
   );

@@ -1,12 +1,12 @@
 from ninja_extra import api_controller, route
-
+from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Curtida, Interacao, Livro, Postagem
 from mainapp.schemas import CurtidaSchema, PostagemListSchemaOut, PostagemSchemaOut
 
 
-@api_controller("/postagens", tags=["Postagens"])
+@api_controller("/postagens", auth=JWTAuth(), tags=["Postagens"])
 class PostagemController:
-    @route.post("/", response=PostagemSchemaOut)
+    @route.post("", response=PostagemSchemaOut)
     def criar_postagem(self, request, postagem: PostagemSchemaOut):
 
         livro_id = postagem.livro_id
@@ -51,7 +51,7 @@ class PostagemController:
             }
         }
 
-    @route.get("/", response=list[PostagemListSchemaOut])
+    @route.get("", response=list[PostagemListSchemaOut])
     def listar_postagens(self, request):
         postagens = Postagem.objects.all()
         return [

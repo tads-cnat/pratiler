@@ -3,7 +3,6 @@ import { BookmarkSimple } from "phosphor-react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { internalAxios } from "../Global/axiosInstances";
-import { setCsrf, getCsrf } from "../Global/authStore";
 
 import { useNavigate } from "react-router-dom";
 export function Minibook({ img, autor, title, id, handleMarkAsReading }) {
@@ -11,22 +10,14 @@ export function Minibook({ img, autor, title, id, handleMarkAsReading }) {
   const navigate = useNavigate();
 
   const handleInteraction = async () => {
-    try {
-      await setCsrf();
-      await internalAxios.post(
-        `interacoes/leitor/lendo?livro_id=${id}`,
-        {},
-        {
-          headers: {
-            "X-Csrftoken": await getCsrf(),
-          },
-        }
-      );
-      navigate("/livros");
-    } catch (error) {
-      console.error("Erro ao criar interação:", error);
-      alert("Erro ao iniciar a leitura. Tente novamente.");
-    }
+    await internalAxios
+      .post(`interacoes/leitor/lendo?livro_id=${id}`, {})
+      .then(() => {
+        navigate("/livros");
+      })
+      .catch((error) => {
+        console.error("Erro ao criar interação:", error);
+      });
   };
 
   const handleClick = () => {

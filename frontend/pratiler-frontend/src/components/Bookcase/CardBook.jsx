@@ -2,7 +2,6 @@
 import { CheckCircle, MagnifyingGlass } from "phosphor-react";
 import { useState } from "react";
 import { internalAxios } from "../Global/axiosInstances";
-import { useAuthStore } from "../Global/authStore";
 import PropTypes from "prop-types";
 import cardBookCss from "../../assets/css/Bookcase/CardBook.module.css";
 
@@ -17,31 +16,23 @@ export function CardBook({
   onUpdate,
 }) {
   const [successMessage, setSuccessMessage] = useState(null);
-  const { csrfToken } = useAuthStore();
 
   const handleMarkAsRead = async (id) => {
-    try {
-      const response = await internalAxios.put(
-        `interacoes/${id}/marcar-como-lido`,
-        {},
-        {
-          headers: {
-            "X-Csrftoken": csrfToken,
-          },
-        }
-      );
-      setSuccessMessage(response.data.message || "Livro marcado como lido!");
+    await internalAxios
+      .put(`interacoes/${id}/marcar-como-lido`, {})
+      .then((response) => {
+        setSuccessMessage(response.data.message || "Livro marcado como lido!");
 
-      setTimeout(() => {
-        setSuccessMessage(null);
-        if (onUpdate) {
-          onUpdate();
-        }
-      }, 3000);
-    } catch (error) {
-      console.error("Erro ao marcar como lido:", error);
-      alert("Não foi possível marcar o livro como lido.");
-    }
+        setTimeout(() => {
+          setSuccessMessage(null);
+          if (onUpdate) {
+            onUpdate();
+          }
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error("Erro ao marcar como lido:", error);
+      });
   };
 
   return (
