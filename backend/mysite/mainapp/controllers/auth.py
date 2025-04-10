@@ -16,6 +16,7 @@ class AuthController(NinjaJWTDefaultController):
                 login(request, user)
                 return {
                         "id": request.user.id,
+                        "nome": request.user.nome,
                         "biografia": request.user.biografia,
                         "username": request.user.username,
                         "email": request.user.email,
@@ -33,7 +34,7 @@ class AuthController(NinjaJWTDefaultController):
     @route.post("/register")
     def register(self, request, payload: RegisterSchema):
         try:
-            Leitor.objects.create_user(username=payload.username, email=payload.email, password=payload.password)
+            Leitor.objects.create_user(nome=payload.nome, username=payload.username, email=payload.email, password=payload.password)
             return {"success": "User registered successfully"}
         except Exception as e:
             if "UNIQUE constraint failed" in str(e):

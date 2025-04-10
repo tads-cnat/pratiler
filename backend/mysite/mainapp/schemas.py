@@ -11,6 +11,7 @@ class RegisterSchema(Schema):
     email: str
     password: str
     username: str
+    nome: str
 
 class AutorSchema(Schema):
     id: int
@@ -39,13 +40,21 @@ class LivroSchemaIn(Schema):
 class UserSchema(ModelSchema):
     foto_perfil: str
     biografia: str
+    nome: str
     class Config:
         model = User
         model_fields = ['id', 'username', 'email']
 
+
 class LeitorSchema(Schema):
     id: int
     username: str
+
+class PerfilSchema(Schema):
+    leitor: UserSchema
+    seguidor: bool
+    seguidores: int
+    seguindo: int
 
 class InteracaoSchema(Schema):
     id: int
