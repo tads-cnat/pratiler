@@ -12,8 +12,9 @@ export const useAuthStore = create(
       token: null,
       refresh: null,
 
-      register: async (username, email, password) => {
+      register: async (nome, username, email, password) => {
         const credentials = {
+          nome: nome,
           username: username,
           email: email,
           password: password,

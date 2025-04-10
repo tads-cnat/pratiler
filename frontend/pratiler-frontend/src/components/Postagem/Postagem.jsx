@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useNavigate } from "react";
 import { Heart } from "phosphor-react";
 import PropTypes from "prop-types";
 
@@ -26,6 +26,7 @@ export default function Postagem(props) {
   const data = data_hora.split("T")[0];
   const valores = data.split("-");
   const dataFormatada = `${valores[2]}/${valores[1]}/${valores[0]}`;
+  const navigate = useNavigate();
 
   async function curtirPostagem() {
     await internalAxios
@@ -43,7 +44,12 @@ export default function Postagem(props) {
           <div className={postagemCss.icon}>
             <User weight="fill" color="#f6f6f6" size={22} />
           </div>
-          <div className={postagemCss.nome}>
+          <div
+            className={postagemCss.nome}
+            onClick={() => {
+              navigate(`/${leitor.username}`);
+            }}
+          >
             <p>{leitor.username}</p>
           </div>
 

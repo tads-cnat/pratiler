@@ -18,6 +18,7 @@ import imageCadastro from "../../assets/img/imagem-cadastro.png";
 
 export function CadastroFormulario() {
   const [formData, setFormData] = useState({
+    nome: "",
     username: "",
     email: "",
     password: "",
@@ -40,8 +41,8 @@ export function CadastroFormulario() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    const { username, email, password } = formData;
-    await register(username, email, password)
+    const { nome, username, email, password } = formData;
+    await register(nome, username, email, password)
       .then((response) => {
         if (response.success) {
           setSuccess("Conta criada com sucesso! Estamos te autenticando...");
@@ -70,11 +71,18 @@ export function CadastroFormulario() {
       <div className={cadastroCss.formularioLogin}>
         <h1>Cadastrar-se</h1>
         <form className={cadastroCss.formulario} onSubmit={handleSubmit}>
-          {/* <input type="text" placeholder='Nome' className={cadastroCss.inputText}/> */}
+          <input
+            type="text"
+            name="nome"
+            placeholder="Nome do Usuário"
+            className={inputCss.inputText}
+            value={formData.nome}
+            onChange={handleChange}
+          />
           <input
             type="text"
             name="username"
-            placeholder="Nome de usuário"
+            placeholder="Username"
             className={inputCss.inputText}
             value={formData.username}
             onChange={handleChange}
