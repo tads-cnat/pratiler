@@ -15,6 +15,6 @@ call %ENV_NAME%\Scripts\activate
 echo Ambiente virtual "%ENV_NAME%" criado e ativado!
 
 :: Instala as dependências do requirements.txt
-call pip install -r .\requirements.txt
+call pip install -r ..\requirements.txt
 
 echo Instalando o requirements.txt com sucesso!
