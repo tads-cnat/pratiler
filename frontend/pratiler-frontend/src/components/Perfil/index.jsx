@@ -9,7 +9,7 @@ import { Header } from "../Global/HeaderGlobal";
 import perfilCss from "../../assets/css/Perfil/Perfil.module.css";
 
 /* Images */
-import img from "../../assets/img/pratiler-logo.png";
+import img from "../../assets/img/foto-perfil.png";
 
 /* Store */
 import { useAuthStore } from "../Global/authStore";
@@ -48,7 +48,7 @@ export function Perfil() {
           <Header />
           <div className={perfilCss.cardProfile}>
             <img
-              src={perfil.leitor.foto_perfil ?? img}
+              src={perfil.leitor.foto_perfil ? perfil.leitor.foto_perfil : img}
               alt="Imagem de perfil"
             />
             <div className={perfilCss.cardProfileContent}>
@@ -83,22 +83,20 @@ export function Perfil() {
           </div>
           <div className={perfilCss.estiloHrDiv}></div>
           <div className={perfilCss.perfilNav}>
-            <ul>
-              <li>
-                <span className={perfilCss.iconPerfilNav}>
-                  <Books size={40} color="#3D3569" weight="fill" />
-                </span>
-                Minha estante
-                <span className={perfilCss.iconPerfilNav}>
-                  <BookOpen size={40} color="#3D3569" weight="fill" />
-                </span>
-                Resenhas
-                <span className={perfilCss.iconPerfilNav}>
-                  <ChatCircleText size={40} color="#3D3569" weight="fill" />
-                </span>
-                Publicações recentes
-              </li>
-            </ul>
+            <div className={perfilCss.tabPerfilNav}>
+              <Books size={40} color="#3D3569" weight="fill" />
+              {usuarioLogado
+                ? "Minha Estante"
+                : `Estante de ${perfil.leitor.username}`}
+            </div>
+            <div className={perfilCss.tabPerfilNavAtivado}>
+              <BookOpen size={40} color="#3D3569" weight="fill" />
+              Resenhas
+            </div>
+            <div className={perfilCss.tabPerfilNav}>
+              <ChatCircleText size={40} color="#3D3569" weight="fill" />
+              Publicações recentes
+            </div>
           </div>
         </>
       )}

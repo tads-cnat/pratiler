@@ -1,10 +1,12 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import headerCss from "../../assets/css/Global/HeaderGlobal.module.css";
 import { User, UserPlus, Books, Star, ChatText } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
-import { Search } from "../Search/Search";
 import { SignOut } from "phosphor-react";
+
+/* Components */
+import { Search } from "../Search/Search";
+
+/* CSS */
+import headerCss from "../../assets/css/Global/HeaderGlobal.module.css";
 
 /* Store */
 import { useAuthStore } from "../Global/authStore";
@@ -40,7 +42,7 @@ export function Header() {
         <div className={headerCss.secHeaderContent}>
           <a href="/livros" className={headerCss.categories}>
             <Books size={24} color="#3D3569" weight="fill" />
-            <span>Minhas Estante</span>
+            <span>Minha Estante</span>
           </a>
 
           <a href="#" className={headerCss.categories}>

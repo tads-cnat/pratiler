@@ -9,7 +9,7 @@ import { internalAxios } from "../Global/axiosInstances";
 
 /* Components */
 import { Header } from "../Global/HeaderGlobal";
-import Postagem from "../Postagem/Postagem";
+import Postagem from "../Postagem/index";
 import { AuthFail } from "../Global/AuthFail";
 
 export function Feed() {
