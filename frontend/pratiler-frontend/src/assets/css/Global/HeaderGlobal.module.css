@@ -19,6 +19,7 @@
     gap: 2.25rem;
     align-items: center;
     padding: 1rem;
+    margin-right: .7rem;
 }
 
 .info form {
@@ -50,6 +51,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    cursor: pointer;
 }
 
 .icon {
@@ -67,7 +69,6 @@
     font-size: 14px;
     font-weight: 500;
     color: var(--penn-blue);
-    cursor: pointer;
 }
 
 .secondHeader{
