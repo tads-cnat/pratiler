@@ -4,6 +4,7 @@
 
 :root{
     /* Fontes  */
+    --montserrat: "Montserrat", sans-serif;
     --roboto: "Inter", serif;
     --font-family: "Montserrat", sans-serif;
     --h1-title: 800 1.5rem/135% var(--font-family) ;

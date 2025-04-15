@@ -1,0 +1,72 @@
+@import url('../base.css');
+
+.botaoEscreverResenha{
+    width: 5.6rem;
+    align-self: flex-end;
+    font-size: 1rem;
+    background-color: #221D57;
+    color: #F6F6F6;
+    border: none;
+    border-radius: 10px;
+    padding: 0.3rem;
+    font-family: var(--roboto);
+    text-decoration: none;
+}
+.botaoLerResenha{
+    text-decoration: none;
+    width: 5.6rem;
+    align-self: flex-end;
+    font-size: 1rem;
+    background-color: #221D57;
+    color: #F6F6F6;
+    border: none;
+    border-radius: 10px;
+    padding: 0.3rem;
+    font-family: var(--roboto);
+}
+.blockResenhas{
+    border: 2px solid #D0C5FF;
+    border-radius: 1.5rem;
+    padding: 0rem 2rem 2rem 2rem;
+}
+.blockResenhas p{
+    color: #221D57;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: var(--montserrat);
+}
+.resenhas{
+    height: 22rem;
+    overflow-y: scroll;
+}
+.resenhas .cardResenhas{
+    border: 2px solid #D0C5FF;
+    border-radius: 1.5rem;
+    padding: 1rem 2rem 2rem 2rem;
+    display: flex;
+    margin-bottom: 0.5rem;
+}
+.resenhas .cardResenhasContent p{
+    font-family: var(--roboto);
+    color: black;
+    font-weight: 400;
+}
+.resenhas .cardResenhasContent p strong{
+    font-weight: bold;
+}
+.resenhas .cardResenhasContent .botado{
+    border: none;
+    background-color: #221D57;
+    color: white;
+    border-radius: 1.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.mensagem{
+    font-family: var(--roboto);
+    color: #221D57;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 1.2rem;
+}
