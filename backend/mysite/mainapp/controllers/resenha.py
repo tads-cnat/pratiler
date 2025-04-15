@@ -13,6 +13,14 @@ class ResenhaController:
         """Lista todoas as resenhas."""
         return Resenha.objects.all()
 
+    @route.get("/{username}", response=list[ResenhaSchema])
+    def resenhas_por_leitor(self, request, username: str):
+        """Lista as resenhas de um usuário."""
+        leitor = get_object_or_404(Leitor, username=username)
+        if not leitor:
+            return JsonResponse({"detalhe": "Leitor não encontrado."}, status=404)
+        return Resenha.objects.filter(leitor=leitor)
+
     @route.post("", response=ResenhaSchema)
     def criar_resenha(self, request, data: ResenhaSchema):
             """Cria uma nova resenha."""
