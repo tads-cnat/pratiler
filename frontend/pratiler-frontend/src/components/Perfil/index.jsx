@@ -4,6 +4,7 @@ import { Books, BookOpen, ChatCircleText, Gear } from "phosphor-react";
 
 /* Components */
 import { Header } from "../Global/HeaderGlobal";
+import { Resenhas } from "../Perfil/Tabs/resenhas";
 
 /* CSS */
 import perfilCss from "../../assets/css/Perfil/Perfil.module.css";
@@ -20,6 +21,7 @@ export function Perfil() {
   const { user } = useAuthStore();
   const [perfil, setPerfil] = useState({});
   const [loading, setLoading] = useState(true);
+  const [tab, setTab] = useState("estante");
   const usuarioLogado = user.username === username;
 
   async function loadPerfil() {
@@ -70,8 +72,7 @@ export function Perfil() {
                 </button>
               )}
               <p>
-                {" "}
-                {0} seguidores {0} seguindo
+                {perfil.seguidores} seguidores {perfil.seguindo} seguindo
               </p>
               <p>
                 <span className={perfilCss.iconPerfilProfile}>
@@ -83,20 +84,46 @@ export function Perfil() {
           </div>
           <div className={perfilCss.estiloHrDiv}></div>
           <div className={perfilCss.perfilNav}>
-            <div className={perfilCss.tabPerfilNav}>
+            <div
+              className={
+                tab === "estante"
+                  ? perfilCss.tabPerfilNavAtivado
+                  : perfilCss.tabPerfilNav
+              }
+              onClick={() => setTab("estante")}
+            >
               <Books size={40} color="#3D3569" weight="fill" />
               {usuarioLogado
                 ? "Minha Estante"
                 : `Estante de ${perfil.leitor.username}`}
             </div>
-            <div className={perfilCss.tabPerfilNavAtivado}>
+            <div
+              className={
+                tab === "resenhas"
+                  ? perfilCss.tabPerfilNavAtivado
+                  : perfilCss.tabPerfilNav
+              }
+              onClick={() => setTab("resenhas")}
+            >
               <BookOpen size={40} color="#3D3569" weight="fill" />
               Resenhas
             </div>
-            <div className={perfilCss.tabPerfilNav}>
+            <div
+              className={
+                tab === "publicacoes"
+                  ? perfilCss.tabPerfilNavAtivado
+                  : perfilCss.tabPerfilNav
+              }
+              onClick={() => setTab("publicacoes")}
+            >
               <ChatCircleText size={40} color="#3D3569" weight="fill" />
               Publicações recentes
             </div>
+          </div>
+          <div className={perfilCss.content}>
+            {tab === "estante" && <p>Estante</p>}
+            {tab === "resenhas" && <Resenhas username={username} />}
+            {tab === "publicacoes" && <p>Publicações</p>}
           </div>
         </>
       )}
