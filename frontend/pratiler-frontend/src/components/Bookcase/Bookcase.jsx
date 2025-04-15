@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import { internalAxios } from "../Global/axiosInstances";
 import { Plus, CaretCircleDown } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,18 +7,17 @@ import bookcaseCss from "../../assets/css/Bookcase/Bookcase.module.css";
 
 /* Store */
 import { useAuthStore } from "../Global/authStore";
+import { internalAxios } from "../Global/axiosInstances";
 
 /* Componentes */
 import { Header } from "../Global/HeaderGlobal";
 import { CardBook } from "./CardBook";
-
-/* Images */
-import noBooks from "../../assets/img/no-books.png";
+import { SemResultados } from "../SemResultado";
 
 export function Bookcase() {
   const navigate = useNavigate();
 
-  const { user, isAuthenticated } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
   useEffect(() => {
     async function checkAuth() {
       if (!isAuthenticated) {
@@ -67,7 +64,7 @@ export function Bookcase() {
 
   return (
     <>
-      <Header user={user} />
+      <Header />
       <div className={bookcaseCss.sectionBox}>
         <div className={bookcaseCss.listButtons}>
           <form action="#">
@@ -92,17 +89,10 @@ export function Bookcase() {
             <Plus className={bookcaseCss.iconPlus} weight="bold" />
           </button>
         </div>
+        {books.length === 0 && (
+          <SemResultados titulo="Sem Livros por Aqui" tamanho="G" />
+        )}
         <div className={bookcaseCss.sectionCards}>
-          {books.length === 0 && (
-            <div className={bookcaseCss.boxNoBooks}>
-              <h1 className={bookcaseCss.titleNoBooks}> Sem Livros por aqui</h1>
-              <img
-                className={bookcaseCss.noBooks}
-                src={noBooks}
-                alt="Nenhum livro encontrado"
-              />
-            </div>
-          )}
           {error && <p>{error}</p>}
           {books.map((book) => (
             <CardBook

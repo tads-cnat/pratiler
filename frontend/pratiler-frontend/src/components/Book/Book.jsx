@@ -1,9 +1,14 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { externalAxios, internalAxios } from "../Global/axiosInstances";
+
+/* Components */
 import { Header } from "../Global/HeaderGlobal";
+
+/* CSS */
 import bookCss from "../../assets/css/Book/Book.module.css";
-import { useNavigate } from "react-router-dom";
+
+/* Store */
+import { externalAxios, internalAxios } from "../Global/axiosInstances";
 
 export function Book() {
   const { id } = useParams();
@@ -54,7 +59,7 @@ export function Book() {
 
   return (
     <>
-      <Header></Header>
+      <Header />
 
       {book ? (
         <div className={bookCss.detalhesLivro}>

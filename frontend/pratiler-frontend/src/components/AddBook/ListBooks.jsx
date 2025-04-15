@@ -1,12 +1,20 @@
-/* eslint-disable no-unused-vars */
-import css from "../../assets/css/AddBook/ListBooks.module.css";
-import bookcaseCss from "../../assets/css/Bookcase/Bookcase.module.css";
-import noBooks from "../../assets/img/no-books.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useAuthStore } from "../Global/authStore";
+
+/* Components */
 import { Minibook } from "./Minibook";
+
+/* CSS */
+import css from "../../assets/css/AddBook/ListBooks.module.css";
+import bookcaseCss from "../../assets/css/Bookcase/Bookcase.module.css";
+
+/* Images */
+import noBooks from "../../assets/img/no-books.png";
+
+/* Store */
+import { useAuthStore } from "../Global/authStore";
 import { internalAxios } from "../Global/axiosInstances";
+
 export function ListBooks() {
   const navigate = useNavigate();
 
