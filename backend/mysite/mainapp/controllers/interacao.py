@@ -1,7 +1,7 @@
 from django.http import Http404
 from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
-from mainapp.models import Interacao, Livro
+from mainapp.models import Interacao, Leitor, Livro
 from mainapp.schemas import InteracaoSchema
 
 
@@ -35,73 +35,10 @@ class InteracaoController:
             for interacao in interacoes
         ]
 
-
     @route.get("/leitor", response=list[InteracaoSchema])
-    def listar_interacoes_lendo_por_leitor(self, request):
-        leitor = request.user
-        interacoes = Interacao.objects.filter(leitor=leitor.id, status="LN")
-
-        return [
-            {
-                "id": interacao.id,
-                "leitor": {
-                    "id": interacao.leitor.id,
-                    "username": interacao.leitor.username
-                },
-                "livro": {
-                    "id": interacao.livro.id,
-                    "titulo": interacao.livro.titulo,
-                    "sinopse": interacao.livro.sinopse,
-                    "isbn": interacao.livro.isbn,
-                    "capa": interacao.livro.capa,
-                    "n_paginas": interacao.livro.n_paginas,
-                    "autor":{
-                        "id": interacao.livro.autor.id,
-                        "nome": interacao.livro.autor.nome
-                    }
-                },
-                "status": interacao.status,
-                "pg_atual": interacao.pg_atual
-            }
-            for interacao in interacoes
-        ]
-
-    @route.get("/leitor/quero_ler", response=list[InteracaoSchema])
-    def listar_interacoes_quero_ler_por_leitor(self, request):
-        leitor = request.user
-
-        interacoes = Interacao.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status='QL')
-
-        return [
-            {
-                "id": interacao.id,
-                "leitor": {
-                    "id": interacao.leitor.id,
-                    "username": interacao.leitor.username
-                },
-                "livro": {
-                    "id": interacao.livro.id,
-                    "titulo": interacao.livro.titulo,
-                    "sinopse": interacao.livro.sinopse,
-                    "isbn": interacao.livro.isbn,
-                    "capa": interacao.livro.capa,
-                    "n_paginas": interacao.livro.n_paginas,
-                    "autor":{
-                        "id": interacao.livro.autor.id,
-                        "nome": interacao.livro.autor.nome
-                    }
-                },
-                "status": interacao.status,
-                "pg_atual": interacao.pg_atual
-            }
-            for interacao in interacoes
-        ]
-
-    @route.get("/leitor/lidos", response=list[InteracaoSchema])
-    def listar_interacoes_lidas_por_leitor(self, request):
-        leitor = request.user
-
-        interacoes = Interacao.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status="LD")
+    def listar_interacoes_por_leitor(self, request, username: str, status: list[str] = ["QL", "LN", "LD"]):
+        leitor = Leitor.objects.get(username=username)
+        interacoes = Interacao.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status__in=status)
 
         return [
             {
