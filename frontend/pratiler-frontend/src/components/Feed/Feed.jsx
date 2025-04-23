@@ -5,6 +5,7 @@ import feedCss from "../../assets/css/Feed/Feed.module.css";
 import formCss from "../../assets/css/FormPostagem/FormPostagem.module.css";
 
 /* Store */
+import { useAuthStore } from "../Global/authStore";
 import { internalAxios } from "../Global/axiosInstances";
 
 /* Components */
@@ -13,6 +14,7 @@ import Postagem from "../Postagem/index";
 import { AuthFail } from "../Global/AuthFail";
 
 export function Feed() {
+  const { user } = useAuthStore();
   const [error, setError] = useState(null);
   const [postagens, setPostagens] = useState([]);
   const [livrosEstante, setLivrosEstante] = useState([]);
@@ -82,7 +84,7 @@ export function Feed() {
 
   async function pegarLivrosEstante() {
     await internalAxios
-      .get("interacoes/leitor")
+      .get(`interacoes/leitor?username=${user.username}&status=QL,LN`)
       .then((response) => setLivrosEstante(response.data));
   }
   async function getPostagens() {

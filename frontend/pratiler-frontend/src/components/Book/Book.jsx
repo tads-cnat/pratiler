@@ -43,7 +43,7 @@ export function Book() {
       })
       .then(async () => {
         await internalAxios
-          .get(`buscar-livro/${isbn}`)
+          .get(`livros/buscar-livro/${isbn}`)
           .then(async (response) => {
             await internalAxios
               .post(`interacoes/leitor/lendo?livro_id=${response.data.id}`, {})

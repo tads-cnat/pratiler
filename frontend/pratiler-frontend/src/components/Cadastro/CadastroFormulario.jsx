@@ -43,16 +43,9 @@ export function CadastroFormulario() {
     setError(null);
     const { nome, username, email, password } = formData;
     await register(nome, username, email, password)
-      .then((response) => {
-        if (response.success) {
-          setSuccess("Conta criada com sucesso! Estamos te autenticando...");
-          setTimeout(() => navigate("/livros"), 2000); // Redireciona para a página de livros após autenticação após 2 segundos
-        } else
-          setError(
-            response.message ||
-              response.error ||
-              "Ocorreu um erro ao se autenticar ou ao se registrar."
-          );
+      .then(() => {
+        setSuccess("Conta criada com sucesso! Estamos te autenticando...");
+        setTimeout(() => navigate("/livros"), 2000); // Redireciona para a página de livros após autenticação após 2 segundos
       })
       .catch((err) => {
         setError(

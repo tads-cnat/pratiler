@@ -27,19 +27,6 @@ internalAxios.interceptors.request.use(
   }
 );
 
-externalAxios.interceptors.request.use(
-  (config) => {
-    const { token } = useAuthStore.getState();
-    if (token) {
-      config.headers["Authorization"] = "Bearer " + token.trim();
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
 internalAxios.interceptors.response.use(
   (response) => response,
   async (error) => {
