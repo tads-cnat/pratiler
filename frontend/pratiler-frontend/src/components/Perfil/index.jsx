@@ -4,7 +4,7 @@ import { Books, BookOpen, ChatCircleText, Gear } from "phosphor-react";
 
 /* Components */
 import { Header } from "../Global/HeaderGlobal";
-import { Resenhas } from "../Perfil/Tabs/resenhas";
+import { Resenhas } from "../Perfil/Tabs/Resenhas";
 
 /* CSS */
 import perfilCss from "../../assets/css/Perfil/Perfil.module.css";
