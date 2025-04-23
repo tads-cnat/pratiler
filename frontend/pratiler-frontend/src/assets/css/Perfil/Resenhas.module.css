@@ -1,19 +1,16 @@
 @import url('../base.css');
 
 .botaoEscreverResenha{
-    width: 5.6rem;
     align-self: flex-end;
     font-size: 1rem;
     background-color: #221D57;
     color: #F6F6F6;
     border: none;
     border-radius: 10px;
-    padding: 0.3rem;
+    padding: 0.3rem 1rem;
     font-family: var(--roboto);
-    text-decoration: none;
 }
 .botaoLerResenha{
-    text-decoration: none;
     width: 5.6rem;
     align-self: flex-end;
     font-size: 1rem;
@@ -35,10 +32,7 @@
     font-weight: bold;
     font-family: var(--montserrat);
 }
-.resenhas{
-    height: 22rem;
-    overflow-y: scroll;
-}
+
 .resenhas .cardResenhas{
     border: 2px solid #D0C5FF;
     border-radius: 1.5rem;
