@@ -7,11 +7,12 @@
 | 15/03/2024 | 1.1 | Documento de visão do produto para o PDS Web, sendo mais simples do que a versão original | Ester, Débora, Felipe, João Roberto, João Victor |
 | 23/07/2024 | 1.2 | Revisão do documento de visão | Ester |
 | 17/10/2024 | 2.1 | Atualização para PDS - distribuído | Ester, Débora, Felipe, João Roberto |
+| 13/04/2025 | 3.1 | Atualização para PDS - corporativo | Ester e Débora |
 
 
 ## 1. Objetivo do projeto
 
-Temos como objetivo neste projeto o incentivo da leitura para o Brasil atual, leitura essa que sempre foi algo importantíssimo para o desenvolvimento intelectual do ser humano, e que está se perdendo com o passar dos anos e com o avanço da tecnologia.
+Este projeto tem como principal objetivo incentivar a leitura no Brasil atual. A leitura sempre desempenhou um papel fundamental no desenvolvimento intelectual do ser humano, sendo essencial para a formação crítica, cultural e social dos indivíduos. No entanto, com o avanço da tecnologia e as mudanças nos hábitos de consumo de informação, esse hábito tão importante vem sendo deixado de lado. Por isso, buscamos resgatar o interesse pela leitura e mostrar sua relevância no mundo contemporâneo.
 
 ## 2. Descrição do problema
 | | |
@@ -96,3 +97,5 @@ Temos como objetivo neste projeto o incentivo da leitura para o Brasil atual, le
 | NF05 | Site responsivo | Interfaces adaptáveis ao tamanho da resolução dos computadores dos usuários | <kbd>Usabilidade</kbd> | <kbd>Obrigatório</kbd> |
 | NF06 | Uso de uma API externa | O site utilizará uma API externa para caso um usuário queira ler um livro que não existe no sistema, adicionando-o ao banco de dados da aplicação | <kbd>Interoperabilidade</kbd> | <kbd>Obrigatório</kbd>|
 | NF07 | Sistema distribuído | A aplicação utilizará duas frameworks para separar a parte de Back-end e de Front-end | <kbd>Implementação</kbd> | <kbd>Obrigatório</kbd> |
+| NF08 | Sistema na nuvem | O sistema será implantando na nuvem | <kbd>Disponibilidade</kbd> | <kbd>Obrigatório</kbd> |
+| NF09 | Testabilidade | O sistema deve ser permitir a execução de pipelines | <kbd>Confiabilidade</kbd> | <kbd>Obrigatório</kbd> |
