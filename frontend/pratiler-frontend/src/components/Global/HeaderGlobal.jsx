@@ -71,7 +71,6 @@ export function Header() {
               onClick={async () => {
                 setLoading(true);
                 await logout();
-                setLoading(false);
                 setTimeout(navigate("/"), 1000);
               }}
             >

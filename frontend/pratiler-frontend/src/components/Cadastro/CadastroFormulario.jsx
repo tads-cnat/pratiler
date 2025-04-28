@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
 /* Store */
 import { useAuthStore } from "../Global/authStore";
@@ -16,32 +19,33 @@ import { AuthFail } from "../Global/AuthFail";
 /* Images */
 import imageCadastro from "../../assets/img/imagem-cadastro.png";
 
-export function CadastroFormulario() {
-  const [formData, setFormData] = useState({
-    nome: "",
-    username: "",
-    email: "",
-    password: "",
-  });
-  const { register } = useAuthStore();
+const schema = yup.object().shape({
+  nome: yup.string().required("Campo nome é obrigatório"),
+  username: yup.string().required("Campo username é obrigatório"),
+  email: yup
+    .string()
+    .email("Email inválido")
+    .required("Campo email é obrigatório"),
+  password: yup.string().required("Campo senha é obrigatório"),
+});
 
+export function CadastroFormulario() {
+  const { register } = useAuthStore();
+  const {
+    register: registerField,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  // Enviando os dados do formulário para a API
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  async function fetchRegister(data) {
     setError(null);
-    const { nome, username, email, password } = formData;
+    const { nome, username, email, password } = data;
     await register(nome, username, email, password)
       .then(() => {
         setSuccess("Conta criada com sucesso! Estamos te autenticando...");
@@ -53,7 +57,7 @@ export function CadastroFormulario() {
             "Erro no servidor. Tente novamente mais tarde."
         );
       });
-  };
+  }
 
   return (
     <div className={cadastroCss.return}>
@@ -63,40 +67,50 @@ export function CadastroFormulario() {
 
       <div className={cadastroCss.formularioLogin}>
         <h1>Cadastrar-se</h1>
-        <form className={cadastroCss.formulario} onSubmit={handleSubmit}>
+        <form
+          className={cadastroCss.formulario}
+          onSubmit={handleSubmit(fetchRegister)}
+        >
           <input
             type="text"
             name="nome"
             placeholder="Nome do Usuário"
             className={inputCss.inputText}
-            value={formData.nome}
-            onChange={handleChange}
+            {...registerField("nome")}
           />
+          {errors.nome && (
+            <p className={inputCss.error}>{errors.nome.message}</p>
+          )}
           <input
             type="text"
             name="username"
             placeholder="Username"
             className={inputCss.inputText}
-            value={formData.username}
-            onChange={handleChange}
+            {...registerField("username")}
           />
+          {errors.username && (
+            <p className={inputCss.error}>{errors.username.message}</p>
+          )}
           <input
-            type="text"
+            type="email"
             name="email"
             placeholder="Email"
             className={inputCss.inputText}
-            value={formData.email}
-            onChange={handleChange}
+            {...registerField("email")}
           />
+          {errors.email && (
+            <p className={inputCss.error}>{errors.email.message}</p>
+          )}
           <input
             type="password"
             name="password"
             placeholder="Senha"
             className={inputCss.inputText}
-            value={formData.password}
-            onChange={handleChange}
+            {...registerField("password")}
           />
-
+          {errors.password && (
+            <p className={inputCss.error}>{errors.password.message}</p>
+          )}
           <input
             type="submit"
             value="Criar conta"
