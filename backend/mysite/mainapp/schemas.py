@@ -63,10 +63,16 @@ class InteracaoSchema(Schema):
     status: str
     pg_atual: int
 
-class ResenhaSchema(ModelSchema):
-     class Config:
-         model = Resenha 
-         model_fields = '__all__' 
+class ResenhaSchemaIn(Schema):
+    livro_id: int
+    titulo: str
+    texto: str
+
+class ResenhaSchema(Schema):
+    livro: LivroSchema
+    leitor: LeitorSchema
+    titulo: str
+    texto: str
 
 class PostagemSchemaIn(Schema):
     livro_id: int

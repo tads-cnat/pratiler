@@ -22,6 +22,25 @@ class LivroController:
                 "capa": livro.capa,
             } for livro in livros]
     
+    @route.get("/resenha", response=list[LivroSchema])
+    def listar_livros_para_escrever_resenha(self, request):
+        resenhas_leitor = request.user.resenha_set.all().values_list('livro_id', flat=True)
+        interacao_leitor = request.user.interacao_set.select_related('livro').filter(status='LD')
+        livros_para_resenha = interacao_leitor.exclude(livro__id__in=resenhas_leitor)
+
+        return [{
+                "id": interacao.livro.id,
+                "titulo": interacao.livro.titulo,
+                "sinopse": interacao.livro.sinopse,
+                "isbn": interacao.livro.isbn,              
+                "n_paginas": interacao.livro.n_paginas,    
+                "autor":{
+                        "id": interacao.livro.autor.id,
+                        "nome": interacao.livro.autor.nome
+                },
+                "capa": interacao.livro.capa,
+        } for interacao in livros_para_resenha]
+
     @route.get("/livros-disponiveis")
     def livros_disponiveis(self, request):
         try:
