@@ -3,6 +3,7 @@ from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Interacao, Leitor, Livro
 from mainapp.schemas import InteracaoSchema
+from ninja import Query
 
 
 @api_controller("/interacoes", auth=JWTAuth(), tags=["Interações Livro/Leitor"])
@@ -36,7 +37,7 @@ class InteracaoController:
         ]
 
     @route.get("/leitor", response=list[InteracaoSchema])
-    def listar_interacoes_por_leitor(self, request, username: str, status: list[str] = ["QL", "LN", "LD"]):
+    def listar_interacoes_por_leitor(self, request, username: str, status: list[str] = Query(["QL", "LN", "LD"])):
         leitor = Leitor.objects.get(username=username)
         interacoes = Interacao.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status__in=status)
 
