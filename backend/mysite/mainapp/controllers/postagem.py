@@ -23,6 +23,8 @@ class PostagemController:
             pagina_final=postagem.pagina_final
         )
 
+        if postagem.pagina_final == livro.n_paginas:
+            interacao.status = 'LD'
         interacao.pg_atual = postagem.pagina_final
         interacao.save()
 
