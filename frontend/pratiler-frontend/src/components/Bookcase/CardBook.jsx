@@ -35,6 +35,10 @@ export function CardBook({
       });
   };
 
+  const handleAddRating = async (id) => {
+    await internalAxios.post("avaliacao/add-avaliacao")
+  };
+
   return (
     <>
       <div className={cardBookCss.card}>
@@ -60,6 +64,11 @@ export function CardBook({
                 onClick={() => handleMarkAsRead(id)}
               >
                 <CheckCircle weight="bold" size={27} />
+              </button>
+            )}
+            {status === "LD" && (
+              <button onClick={() => handleAddRating(id)}>
+
               </button>
             )}
           </div>
