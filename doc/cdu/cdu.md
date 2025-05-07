@@ -10,10 +10,10 @@
 02. [CDU-002 - Atualizar leitura](cdu-002-atualizar-leitura/detalhamento-002.md) ✅
 03. [CDU-003 - Ver feed geral](cdu-003-ver-feed-geral/detalhamento-003.md) ✅
 04. [CDU-004 - Pesquisar livros](cdu-004-pesquisar-livros/detalhamento-004.md) ✅
-05. [CDU-005 - Escrever resenha](cdu-005-escrever-resenha/detalhamento-005.md) 
+05. [CDU-005 - Escrever resenha](cdu-005-escrever-resenha/detalhamento-005.md) ✅
 06. [CDU-006 - Realizar avaliação](cdu-006-realizar-avalicao/detalhamento-006.md)
 07. [CDU-007 - Ver livros populares](cdu-007-ver-livros-populares/detalhamento-007.md)
-08. [CDU-008 - Acessar perfil](cdu-008-acessar-perfil/detalhamento-008.md) 
+08. [CDU-008 - Acessar perfil](cdu-008-acessar-perfil/detalhamento-008.md) ✅
 09. [CDU-009 - Ver postagens](cdu-009-ver-postagens/detalhamento-009.md)
 10. [CDU-010 - Ler resenha](cdu-010-ler-resenha/detalhamento-010.md) 
 11. [CDU-011 - Pesquisar leitores](cdu-011-pesquisar-leitores/detalhamento-011.md)
