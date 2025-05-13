@@ -8,4 +8,6 @@ Apenas execute o seguinte arquivo no seu powershell -> `.\rodar_frontend.bat`
 
 ## 🐧 Linux
 
-Apenas execute o seguinte arquivo na sua bash -> `./rodar_frontend.sh`
+Altere a permissão do arquivo para poder executá-lo com `sudo chmod u+x ./construir_backend.sh` e `sudo chmod u+x ./rodar_backend.sh`
+
+Após os passos anteriores, apenas execute o seguinte arquivo na sua bash -> `./rodar_frontend.sh`
