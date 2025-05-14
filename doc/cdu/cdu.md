@@ -21,7 +21,7 @@
 13. [CDU-013 - Ver feed dos seguindo](cdu-013-ver-feed-dos-seguindo/detalhamento-013.md)
 14. [CDU-014 - Curtir postagem](cdu-014-curtir-postagem/detalhamento-014.md) ✅
 15. [CDU-015 - Comentar postagem](cdu-015-comentar-postagem/detalhamento-015.md)
-16. [CDU-016 - Pesquisar autores](cdu-016-pesquisar-autores/detalhamento-016.md)
+16. [CDU-016 - Pesquisar autores](cdu-016-pesquisar-autores/detalhamento-016.md) ✅
 17. [CDU-017 - Gerenciar meu perfil](cdu-017-gerenciar-meu-perfil/detalhamento-017.md) 
 18. [CDU-018 - Autenticar usuário](cdu-018-autenticar-usuario/detalhamento-018.md) ✅
 19. [CDU-019 - Cadastrar usuário](cdu-019-cadastrar-usuario/detalhamento-019.md) ✅
