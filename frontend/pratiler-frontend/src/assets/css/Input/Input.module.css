@@ -31,3 +31,11 @@
     background-color: var(--white);
     color: var(--penn-blue);
 }
+
+.error{
+    font-family: var(--roboto);
+    color: #221D57;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 1.2rem;
+}

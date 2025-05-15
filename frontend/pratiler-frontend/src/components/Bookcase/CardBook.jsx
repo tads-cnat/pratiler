@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { CheckCircle, MagnifyingGlass } from "phosphor-react";
 import { useState } from "react";
 import { internalAxios } from "../Global/axiosInstances";

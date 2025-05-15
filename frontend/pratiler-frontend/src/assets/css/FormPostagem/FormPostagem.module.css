@@ -9,7 +9,6 @@
     background-color: var(--white);
     display: flex;
     flex-direction: column;
-    max-height: 21rem;
 }
 
 .realizarPostagem h1{

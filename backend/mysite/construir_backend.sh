@@ -10,6 +10,6 @@ source .venv/bin/activate
 
 echo "Ambiente virtual .venv criado e ativado!"
 
-pip install -r ./requirements.txt
+pip install -r ../requirements.txt
 
 echo "Instalando o requirements.txt com sucesso!"

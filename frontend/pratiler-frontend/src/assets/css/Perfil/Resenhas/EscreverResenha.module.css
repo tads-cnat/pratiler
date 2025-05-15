@@ -1,0 +1,66 @@
+
+.formEscreverResenha{
+    margin: 3rem auto;
+    border-radius: 1.5rem;
+    width: 60%;
+    color: #221D57;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);  
+    border-radius: 1.5rem;
+    padding: 1rem 4rem;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+}
+
+.formEscreverResenha form{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.formEscreverResenha textarea{
+    background-color: var(--white);
+    border-radius: 10px;
+    height: 8rem;
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    resize: none;
+}
+
+.labelEscreverResenha{
+    font-family: var(--montserrat);
+    font-size: 16px;
+    font-weight: bold;
+}
+.itensFormsEscreverResenha{
+    background-color: var(--white);
+    border: 1px solid #D7D7D7;
+    border-radius: 5px;
+    width: 100%;
+    margin: 0.5rem 0 0 0;
+    padding: 0;
+    margin-right: 0.5rem;
+}
+
+.botaoSecundario{
+    min-width: 5.6rem;
+    background-color: var(--periwinkle-light);
+    border: none;
+    border-radius: 10px;
+    padding: 0.3rem;
+    margin-left: 1rem;
+    font-family: var(--montserrat);
+    font-weight: 500;
+}
+
+.botao{
+    min-width: 5.6rem;
+    background-color: var(--penn-blue);
+    color: #F6F6F6;
+    border: none;
+    border-radius: 10px;
+    padding: 0.3rem;
+    font-family: var(--montserrat);
+    font-weight: 500;
+}

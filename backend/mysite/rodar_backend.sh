@@ -1,5 +1,5 @@
-sed -i 's/\r$//' ./construir_backend.sh
-sed -i 's/\r$//' ./rodar_backend.sh
+sudo sed -i 's/\r$//' ./construir_backend.sh
+sudo sed -i 's/\r$//' ./rodar_backend.sh
 
 ./construir_backend.sh
 

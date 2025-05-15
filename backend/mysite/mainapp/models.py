@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 class Leitor(AbstractUser):
     email = models.EmailField(unique=True) # e-mail unico
-    #nome = models.CharField(max_length=120)
+    nome = models.CharField(max_length=120)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']

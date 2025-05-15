@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 /* CSS */
 import loginCss from "../../assets/css/LoginCadastro/Formulario.module.css";
 import inputCss from "../../assets/css/Input/Input.module.css";
@@ -14,32 +16,34 @@ import { useAuthStore } from "../Global/authStore";
 /* Images */
 import imageLogin from "../../assets/img/imagem-login.png";
 
+const schema = yup.object().shape({
+  email: yup.string().email("Email inválido").required("Campo email é obrigatório"),
+  password: yup.string().required("Campo senha é obrigatório"),
+});
+
 export function LoginFormulario() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const { login } = useAuthStore();
   const navigate = useNavigate();
 
-  const fetchLogin = async (e) => {
-    e.preventDefault();
+  async function fetchLogin(data) {
     setError(null);
-    const { email, password } = formData;
+    const { email, password } = data;
     await login(email, password);
     if (useAuthStore.getState().isAuthenticated) {
       setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
       setTimeout(() => navigate("/livros"), 2000);
     } else setError("Email ou senha inválidos.");
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  }
 
   return (
     <div className={loginCss.return}>
@@ -48,24 +52,30 @@ export function LoginFormulario() {
       </div>
       <div className={loginCss.formularioLogin}>
         <h1>Entrar</h1>
-        <form className={loginCss.formulario} onSubmit={fetchLogin}>
+        <form
+          className={loginCss.formulario}
+          onSubmit={handleSubmit(fetchLogin)}
+        >
           <input
-            type="text"
+            type="email"
             placeholder="Email"
             className={inputCss.inputText}
             name="email"
-            value={formData.email}
-            onChange={handleChange}
+            {...register("email")}
           />
+          {errors.email && (
+            <p className={inputCss.error}>{errors.email.message}</p>
+          )}
           <input
             type="password"
             placeholder="Senha"
             className={inputCss.inputText}
             name="password"
-            value={formData.password}
-            onChange={handleChange}
+            {...register("password")}
           />
-          <p>Recuperar senha?</p>
+          {errors.password && (
+            <p className={inputCss.error}>{errors.password.message}</p>
+          )}
 
           <input
             type="submit"
