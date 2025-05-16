@@ -39,10 +39,10 @@ class AvaliacaoController:
                 Avaliacao.save()
                 return avaliacao
             
-            else if livro_lido.status != 'LD':
+            elif livro_lido.status != 'LD':
                 return JsonResponse({"detalhe": "status do livro não está definido como Lido"}, status=405) #verificar depois se esse é o status ideal
 
-            else if avaliacao_exists:
+            elif avaliacao_exists:
                 return JsonResponse({"detalhe": "já existe uma avaliação realizada por esse leitor e sobre esse livro"}, status=405)
 
         except Livro.DoesNotExist:

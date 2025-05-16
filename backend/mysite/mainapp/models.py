@@ -99,7 +99,7 @@ class Avaliacao(models.Model):
     texto = models.TextField()
 
     def __str__(self):
-        return f"Livro: {livro} \n Leitor: {leitor} \n Nota: {nota}"
+        return f"Livro: {self.livro} \n Leitor: {self.leitor} \n Nota: {self.nota}"
     
     class Meta:
         unique_together = ('livro', 'leitor')
