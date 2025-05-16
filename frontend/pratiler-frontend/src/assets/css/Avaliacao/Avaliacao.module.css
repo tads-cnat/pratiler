@@ -1,0 +1,29 @@
+@import url("../base.css");
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10rem 0;
+}
+
+.estrelas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.estrelas button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.estrelaPreenchida, .estrela{
+    color: var(--ultra-violet);
+}
+
+.estrelaPreenchida path{
+    fill: var(--ultra-violet);
+}
