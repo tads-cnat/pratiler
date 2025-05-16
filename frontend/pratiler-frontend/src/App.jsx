@@ -19,6 +19,7 @@ import { Cadastro } from "./components/Cadastro/Cadastro";
 import { Interaction } from "./components/Interaction/Interaction";
 import { AddBook } from "./components/AddBook/AddBook";
 import { Book } from "./components/Book/Book";
+import { Perfil } from "./components/Perfil";
 
 /* Images */
 import girlReading from "./assets/img/mulher-lendo-um-livro.png";
@@ -31,14 +32,15 @@ export default function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/inicio" element={<Feed />} />
-          <Route path="/livros" element={<Bookcase />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/interacoes/:id" element={<Interaction />}/>
           <Route path="/adicionar-livro" element={<AddBook />} />
           <Route path="/livro-busca/:id" element={<Book />} />
+          <Route path="/livros" element={<Bookcase />} />
+          <Route path="/cadastro" element={<Cadastro />} />
+          <Route path="/inicio" element={<Feed />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/interacoes/:id" element={<Interaction />}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/:username" element={<Perfil />} />
         </Routes>
       </Router>
     </>

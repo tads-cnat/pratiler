@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { internalAxios } from "./axiosInstances";
-import axios from "axios";
 
 export const useAuthStore = create(
   persist(
@@ -12,8 +10,9 @@ export const useAuthStore = create(
       token: null,
       refresh: null,
 
-      register: async (username, email, password) => {
+      register: async (nome, username, email, password) => {
         const credentials = {
+          nome: nome,
           username: username,
           email: email,
           password: password,

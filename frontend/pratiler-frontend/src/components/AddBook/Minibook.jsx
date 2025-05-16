@@ -1,10 +1,14 @@
-import css from "../../assets/css/AddBook/Minibook.module.css";
 import { BookmarkSimple } from "phosphor-react";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+/* CSS */
+import css from "../../assets/css/AddBook/Minibook.module.css";
+
+/* Store */
 import { internalAxios } from "../Global/axiosInstances";
 
-import { useNavigate } from "react-router-dom";
 export function Minibook({ img, autor, title, id, handleMarkAsReading }) {
   const [weight, setWeight] = useState("regular");
   const navigate = useNavigate();

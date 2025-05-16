@@ -1,0 +1,99 @@
+@import url("../base.css");
+
+.perfilNav{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 1rem;
+}
+.cardProfile{
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    margin-left: 3rem;
+    margin-right: 1rem;
+    display: flex;
+    gap: 2rem;
+    font-family: var(--roboto);
+}
+.cardProfile img {
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+}
+.cardProfile strong{
+    color: #221D57;
+    font-weight: bold;
+}
+.cardProfileName{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    align-items: first baseline;
+    color: #221D57;
+}
+.cardProfileNickname{
+    margin-top: 0;
+    color: #221D57;
+}
+.estiloHrDiv{
+    border: 0;
+    border-top: 2px solid #E1DAFF;
+    width: 100%;
+    height: 1px;
+}
+.tabPerfilNav, .tabPerfilNavAtivado{
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    margin-left: 1rem;
+    padding: 1.3rem;
+    height: 0.5rem;
+}
+
+.tabPerfilNavAtivado{
+    border-radius: 2rem;
+    background: var(--periwinkle-light)
+}
+
+.iconPerfilProfile img{
+    width: 1.4rem;
+    height: 1.4rem;
+    vertical-align: middle;
+}
+.iconPerfilProfile{
+    margin-right: 0.3rem;
+}
+.blockResenhas{
+    margin: 0 20%;
+}
+.cardResenhas{
+    padding: 1rem;
+}
+.cardResenhas2{
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+}
+.cardResenhasContent{
+    width: 70%;
+}
+.cardResenhasContent img{
+    width: 10rem;
+    height: 15rem;
+}
+
+.seguir{
+    background-color: #221D57;
+    color: white;
+}
+
+.seguir, .seguindo{
+    padding: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.seguindo{
+    border: 2px solid #E1DAFF;
+    color: #221D57;
+}

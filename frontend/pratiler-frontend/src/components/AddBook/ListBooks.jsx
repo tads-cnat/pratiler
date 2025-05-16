@@ -1,12 +1,17 @@
-/* eslint-disable no-unused-vars */
-import css from "../../assets/css/AddBook/ListBooks.module.css";
-import bookcaseCss from "../../assets/css/Bookcase/Bookcase.module.css";
-import noBooks from "../../assets/img/no-books.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useAuthStore } from "../Global/authStore";
+
+/* Components */
 import { Minibook } from "./Minibook";
+import { SemResultados } from "../SemResultado";
+
+/* CSS */
+import css from "../../assets/css/AddBook/ListBooks.module.css";
+
+/* Store */
+import { useAuthStore } from "../Global/authStore";
 import { internalAxios } from "../Global/axiosInstances";
+
 export function ListBooks() {
   const navigate = useNavigate();
 
@@ -53,20 +58,7 @@ export function ListBooks() {
         {error ? (
           error
         ) : books.length === 0 ? (
-          <div className={bookcaseCss.sectionCards}>
-            <div className={bookcaseCss.boxNoBooks}>
-              <h1 className={bookcaseCss.titleNoBooks}>
-                {" "}
-                Sem livros disponíveis. Pesquise mais livros para visualizá-los
-                aqui
-              </h1>
-              <img
-                className={bookcaseCss.noBooks}
-                src={noBooks}
-                alt="Nenhum livro encontrado"
-              />
-            </div>
-          </div>
+          <SemResultados titulo="Sem livros disponíveis. Pesquise mais livros para visualizá-los." />
         ) : (
           books.map((book) => (
             <Minibook
