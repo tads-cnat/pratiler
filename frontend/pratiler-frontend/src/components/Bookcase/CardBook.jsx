@@ -1,4 +1,4 @@
-import { CheckCircle, MagnifyingGlass } from "phosphor-react";
+import { CheckCircle, MagnifyingGlass, Star } from "phosphor-react";
 import { useState } from "react";
 import { internalAxios } from "../Global/axiosInstances";
 import PropTypes from "prop-types";
@@ -35,7 +35,7 @@ export function CardBook({
   };
 
   const handleAddRating = async (id) => {
-    await internalAxios.post("avaliacao/add-avaliacao")
+    await internalAxios.post("avaliacao/add-avaliacao");
   };
 
   return (
@@ -66,8 +66,12 @@ export function CardBook({
               </button>
             )}
             {status === "LD" && (
-              <button onClick={() => handleAddRating(id)}>
-
+              <button
+                className={cardBookCss.viewDetails}
+                onClick={() => handleAddRating(id)}
+              >
+                Realizar Avaliação
+                <Star weight="bold" size={16} />
               </button>
             )}
           </div>
