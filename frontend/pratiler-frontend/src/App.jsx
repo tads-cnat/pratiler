@@ -46,7 +46,7 @@ export default function App() {
           <Route path="/interacoes/:id" element={<Interaction />} />
           <Route path="/login" element={<Login />} />
           <Route path="/:username" element={<Perfil />} />
-          <Route path="/fazer-avaliacao" element={<RealizarAvaliacao />} />
+          <Route path="/fazer-avaliacao/:id" element={<RealizarAvaliacao />} />
         </Routes>
       </Router>
     </>
