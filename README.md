@@ -1,24 +1,28 @@
+# 📚 PratiLer
+
 <img src="frontend/static/images/pratiler-logo.png" height="150"/>
 
-Sistema de leitura que promove a organização e o registro das leituras e a comunicação entre leitores.
+Sistema de leitura que promove a organização, o registro das leituras e a comunicação entre leitores.
 
-# Equipe e Formas de Contato
+# 🧑‍💻 Equipe
+| Nome | GitHub |
+|-|-|
+| Débora Samara | [@deborasamara](https://github.com/deborasamara) |
+| Ester Oliveira | [@esteroliver](https://github.com/esteroliver) |
+| Felipe Alves | [@FelipeAlves14](https://github.com/FelipeAlves14) |
+| João Roberto | [@JoaoRobert0](https://github.com/JoaoRobert0) |
 
-<ol>
-  <li>DÉBORA SAMARA DOS SANTOS RODRIGUES         (<a href="https://github.com/deborasamara">@deborasamara</a>)</li>
-  <li>ESTER OLIVEIRA DO NASCIMENTO DUARTE MELO   (<a href="https://github.com/esteroliver">@esteroliver</a>)</li>
-  <li>FELIPE ALVES DE VASCONCELOS              (<a href="https://github.com/FelipeAlves14">@FelipeAlves14</a>)</li>
-  <li>JOÃO ROBERTO CHAVES CAMBOIM              (<a href="https://github.com/JoaoRobert0">@JoaoRobert0</a>)</li>
-</ol>
+# ⏰ Agendamento das reuniões
+| Dia da semana | Horário | Tipo |
+|-|-|-|
+| Segunda-feira | 20h | Reunião da equipe |
+| Quarta-feira | 20h | Reunião da equipe |
+| Quinta-feira | 9h | Reunião com orientador |
 
-# Horário de Reuniões
-- Quarta-feira - 9:00 -> 10:30h
-- Sábado e domingo - horário combinado no dia
+# 📑 Documentação
+- [Casos de Uso](https://github.com/tads-cnat/pratiler/blob/main/doc/cdu/cdu.md)
+- [Documento de Visão](https://github.com/tads-cnat/pratiler/blob/main/doc/visao/doc-visao.md)
+- [Protótipos de Interface](https://github.com/tads-cnat/pratiler/blob/main/doc/prototipos/prototipos.md)
 
-# Documentação
-
-[Link para os documentos do projeto](doc/documentacao.md)
-
-# Manual da Desenvolvedor
-
+# 💻 Manual da desenvolvedor
 [Orientações para os desenvolvedores do projeto](doc/guia-ds/guia.md)
