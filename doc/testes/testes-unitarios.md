@@ -3,7 +3,7 @@
 ## Histórico de Alterações
 
 | Data   |      Versão     |  Descrição | Autores|
-|----------|:-------------:|------:| ------:|
+|----------|-------------|------| ------|
 | 13/05/2025|  1.1 | Descrevendo os casos de testes dos CDUS 001, 002, 004 e 017 | Ester Oliveira (CDU 001), Débora Samara dos Santos (CDU 002), Felipe Alves (CDU 004), João Roberto Chaves (CDU 017)|
 |  |       |    |   |
 |  |  |     |     |
