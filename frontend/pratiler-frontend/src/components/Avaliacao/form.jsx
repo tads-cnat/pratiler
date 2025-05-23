@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { set, useForm } from "react-hook-form";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Star } from "phosphor-react";
 
@@ -11,19 +11,25 @@ import { Header } from "../Global/HeaderGlobal";
 /* CSS */
 import bookCss from "../../assets/css/Interaction/Book.module.css";
 import avaliacaoFormCss from "../../assets/css/Avaliacao/Avaliacao.module.css";
+import errorCss from "../../assets/css/FormPostagem/FormPostagem.module.css";
 
 import { internalAxios } from "../Global/axiosInstances";
 
 const schema = yup.object().shape({
-  comentario: yup.string(),
+  comentario: yup.string().required("Descrição é obrigatória"),
 });
 
 export function RealizarAvaliacao() {
   const { id } = useParams();
-
-  const { register, handleSubmit } = useForm({
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [livro, setLivro] = useState({});
   const [nota, setNota] = useState(0);
@@ -43,7 +49,39 @@ export function RealizarAvaliacao() {
       });
   }
 
-  async function submitAvaliacao(data) {}
+  async function submitAvaliacao(data) {
+    const { comentario } = data;
+    const avaliacao = {
+      livro_id: id,
+      texto: comentario,
+      nota: nota,
+    };
+    await internalAxios
+      .post("avaliacoes", avaliacao)
+      .then(() => {
+        setError(null);
+        navigate("/livros");
+      })
+      .catch((error) => {
+        switch (error.response.status) {
+          case 400:
+            setError(error.response.data.detalhe);
+            break;
+          case 401:
+            navigate("/login");
+            break;
+          case 403:
+            setError("Você não tem permissão para realizar essa ação");
+            break;
+          
+          case 500:
+            setError("Erro interno do servidor");
+            break;
+          default:
+            setError("Erro desconhecido");
+        }
+      });
+  }
 
   useEffect(() => {
     fetchLivro();
@@ -128,10 +166,16 @@ export function RealizarAvaliacao() {
                     </div>
                     <textarea
                       name="texto"
-                      placeholder="Descreva sua avaliação (opcional)"
+                      placeholder="Descreva sua avaliação"
                       maxLength={350}
                       {...register("comentario")}
                     ></textarea>
+                    {error && <span className={errorCss.error}>{error}</span>}
+                    {errors.comentario && (
+                      <span className={errorCss.error}>
+                        {errors.comentario.message}
+                      </span>
+                    )}
                     <input
                       type="submit"
                       value="Realizar Avaliação"
