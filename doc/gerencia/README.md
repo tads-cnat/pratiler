@@ -25,32 +25,34 @@ Aqui ficarão guardados os artefatos referentes ao gerenciamento do projeto.
 
 ```mermaid
 graph TD
-    A[📖PratiLer] --> B[Web]
-    A --> C[Distribuído]
-    A --> D[Corporativo]
-    B --> B1[Levantamento de requisitos]
-    B --> B2[Desenvolvimento Frontend (HTML/CSS)]
-    B --> B3[Protótipo de telas (Figma)]
-    B --> B4[Arquitetura monolítica]
-    C --> C1[Levantamento de requisitos]
-    C --> C2[Banco de dados Postgres]
-    C --> C3[Protótipos de telas (Figma)]
-    C --> C4[Arquitetura distribuída]
-    C --> C5[Frontend React]
-    C --> C6[API Django Ninja]
-    D --> D1[Levantamento de requisitos]
-    D --> D2[Implantação em nuvem]
-    D --> D3[Avaliação Heurística]
-    D --> D4[Testes Unitários]
-    D --> D5[Planejamento]
+    A[📖PratiLer Corporativo] --> B[1 Planejamento]
+    A --> C[2 Levantamento de Requisitos]
+    A --> D[3 Desenvolvimento]
+    A --> E[4 Testes]
+    A --> F[5 Implantação]
+    B --> B1[1.1 Documentação do projeto]
+    B --> B2[1.2 Planejamento das entregas]
+    C --> C1[2.1 Definição do Escopo]
+    C --> C2[2.2 Prototipação de telas]
+    C1 -->C3[2.1.1 Definição dos CDUs]
+    C1 -->C4[2.1.2 Definição das regras de negócio]
+    D --> D1[3.1 Desenvolvimento Frontend]
+    D --> D2[3.2 Desenvolvimento Backend]
+    D --> D3[3.3 Integração dos serviços]
+    E --> E1[4.1 Testes Unitários]
+    E --> E2[4.2 Testes de Aceitação]
+    F --> F1[5.1 Implantação na Azure]
+    F --> F2[5.2 Criação de Pipelines CI/CD]
+    F --> F3[5.3 Containerização Docker]
+    F --> F4[5.4 Monitoramento]
 ```
 
 ### Dicionário da EAP
 
 | Atividade | Descrição | Responsáveis | Critérios de Aceitação |
 | - | - | - | - |
-| Levantamento de Requisitos | Analisar continuamente as necessidades do projeto para criar novos requisitos | Débora, Ester, Felipe, João Roberto | Todos os requisitos e regras de negócio devem estar claras e estabelecidas |
-| Implantação na nuvem | Alocação do código do Pratiler em um servidor on-line para acesso público | João Roberto | O sistema deve estar acessível e operante através do endereço IP atribuído a máquina hospedada |
-| Avaliação heurística | Avaliação das páginas do sistema | Débora, Ester, Felipe, João Roberto | O sistema deve melhorar sua usabilidade após avaliação |
-| Testes unitários | Implementação e documentação dos testes unitários | Débora, Ester, Felipe, João Roberto | Testes criados de formas estratégicas |
 | Planejamento | Planejamento Semanal das atividades do projeto | Débora, Ester, Felipe, João Roberto | As sprints devem ser planejadas em documentação |
+| Levantamento de Requisitos | Analisar continuamente as necessidades do projeto para criar novos requisitos | Débora, Ester, Felipe, João Roberto | Todos os requisitos e regras de negócio devem estar claras e estabelecidas |
+| Desenvolvimento | Codificação e desenvolvimento das entregas das funcionalidades do sistema | Débora, Ester, Felipe, João Roberto | Todas as funcionalidades propostas do sistema devem estar implementadas e a aplicação pronta para produção |
+| Testes unitários | Implementação e documentação dos testes unitários | Débora, Ester, Felipe, João Roberto | Testes criados de formas estratégicas |
+| Implantação | Alocação do código do Pratiler em um servidor on-line para acesso público | João Roberto | O sistema deve estar acessível e operante através do endereço IP atribuído a máquina hospedada |
