@@ -23,5 +23,20 @@ Além desta seção introdutória, as seções seguintes estão organizadas como
 ### 2 TESTES FUNCIONAIS
 #### 2.1 CDU 001. GERENCIAR ESTANTE
 #### **2.1.1 Fluxo Principal**
+| Situação   |     Entrada 1     |  Entrada 2 | Entrada 3 | Resultado Esperado   |  Resultado Obtido     |  
+|----------|----------|----------|----------|----------|----------|
+|Leitor autenticado no sistema|Token JWT|  |   | Usuário autenticado |  |   
+|Leitor acessa a listagem de livros que está lendo |Select == “Lendo”|  |  | Listagem dos livros que o leitor está lendo|  |  
+|Leitor adiciona livro a listagem Lendo|Clica em botão adicionar livro |Input do título do livro desejado para pesquisa |Clica em botão do livro que deseja adicionar|Livro desejado é adicionado à lista Lendo |  |  
 
+#### **2.1.2 Fluxo alternativo I (Lista “Desejo Ler”)**
+| Situação   |     Entrada 1     |  Entrada 2 | Entrada 3 | Resultado Esperado   |  Resultado Obtido     |  
+|----------|----------|----------|----------|----------|----------|
+|Leitor acessa a listagem de livros que deseja ler|Select == “Desejo ler”|  |   |Listagem dos livros que o leitor deseja ler|  | 
+|Leitor adiciona livro a listagem Desejo Ler|Clica em botão adicionar livro|Input do título do livro desejado para pesquisa |Clica em botão do livro que deseja adicionar|Livro desejado é adicionado à lista Desejo Ler|  | 
 
+#### **2.1.3 Fluxo alternativo II (Lista “Lidos”)**
+| Situação   |     Entrada 1     |  Entrada 2 | Entrada 3 | Resultado Esperado   |  Resultado Obtido     |  
+|----------|----------|----------|----------|----------|----------|
+|Leitor acessa a listagem de livros que já leu|Select == “Lido”|  |   |Listagem dos livros que o leitor já leu|  | 
+|Leitor adiciona livro a listagem Lido|Clica em botão adicionar livro|Input do título do livro desejado para pesquisa |Clica em botão do livro que deseja adicionar|Livro desejado é adicionado à lista Lido|  | 
