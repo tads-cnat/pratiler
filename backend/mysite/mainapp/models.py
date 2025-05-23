@@ -95,7 +95,7 @@ class Avaliacao(models.Model):
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
     leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
     data_hora = models.DateTimeField(auto_now_add=True)
-    nota = models.IntegerField(default=1)
+    nota = models.IntegerField()
     texto = models.TextField()
 
     def __str__(self):

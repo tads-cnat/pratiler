@@ -2,50 +2,78 @@ from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Avaliacao, Livro, Leitor, Interacao
 from mainapp.schemas import AvaliacaoSchemaIn, AvaliacaoSchemaOut
+from django.http import JsonResponse
 
-@api_controller("/avaliacao", auth=JWTAuth(), tags=["Avaliacoes"])
+@api_controller("/avaliacoes", auth=JWTAuth(), tags=["Avaliacoes"])
 class AvaliacaoController:
     @route.get("", response=list[AvaliacaoSchemaOut])
     def listar_avaliacoes(self, request):
-        return Avaliacao.objects.all()
+        return [{
+            "id": avaliacao.id,
+            "livro": {
+                "id": avaliacao.livro.id,
+                "titulo": avaliacao.livro.titulo,
+                "autor": {
+                    "id": avaliacao.livro.autor.id,
+                    "nome": avaliacao.livro.autor.nome
+                }
+            },
+            "leitor": {
+                "id": avaliacao.leitor.id,
+                "username": avaliacao.leitor.username
+            },
+            "nota": avaliacao.nota,
+            "data": avaliacao.data_hora.isoformat(),
+            "texto": avaliacao.texto
+        }
+        for avaliacao in Avaliacao.objects.all()]
 
     @route.get("/{avaliacao_id}", response=AvaliacaoSchemaOut)
     def listar_avaliacao(self, request, avaliacao_id: int):
         try:
-            avaliacao_get = Avaliacao.objects.get(id=avaliacao_id)
-            return avaliacao_get
+            avaliacao = Avaliacao.objects.get(id=avaliacao_id)
+            return {
+                "id": avaliacao.id,
+                "livro": {
+                    "id": avaliacao.livro.id,
+                    "titulo": avaliacao.livro.titulo,
+                    "autor": {
+                        "id": avaliacao.livro.autor.id,
+                        "nome": avaliacao.livro.autor.nome
+                    }
+                },
+                "leitor": {
+                    "id": avaliacao.leitor.id,
+                    "username": avaliacao.leitor.username
+                },
+                "nota": avaliacao.nota,
+                "data": avaliacao.data_hora.isoformat(),
+                "texto": avaliacao.texto
+            }
         except Avaliacao.DoesNotExist:
             return JsonResponse({"detalhe": "avaliação não encontrada"}, status=404)
         
-    @route.post("/add-avaliacao", response=AvaliacaoSchemaOut)
+    @route.post("", response=AvaliacaoSchemaOut)
     def adicionar_avaliacao(self, request, avaliacao: AvaliacaoSchemaIn):
         try:
             livro = Livro.objects.get(id=avaliacao.livro_id)
-            leitor = Leitor.objects.get(id=avaliacao.leitor_id)
 
             #verificando se já existe uma avaliação desse livro feita pelo mesmo leitor
-            avaliacao_exists = Avaliacao.objects.filter(livro=livro, leitor=leitor).exists()
+            avaliacao_exists = Avaliacao.objects.filter(livro=livro, leitor=request.user).exists()
 
-            #verificando se o leitor leu todas as páginas do livro
-            livro_lido = Interacao.objects.filter(leitor=leitor, livro=livro).first()
-
-            if not avaliacao_exists and livro_lido.status == 'LD':
+            if not avaliacao_exists:
                 avaliacao = Avaliacao.objects.create(
                     livro=livro,
-                    leitor=leitor,
+                    leitor=request.user,
                     nota=avaliacao.nota,
                     texto=avaliacao.texto
                 )
-                Avaliacao.save()
                 return avaliacao
             
-            elif livro_lido.status != 'LD':
-                return JsonResponse({"detalhe": "status do livro não está definido como Lido"}, status=405) #verificar depois se esse é o status ideal
-
             elif avaliacao_exists:
-                return JsonResponse({"detalhe": "já existe uma avaliação realizada por esse leitor e sobre esse livro"}, status=405)
+                return JsonResponse({"detalhe": "Já existe uma avaliação sua sobre esse livro"}, status=400)
 
-        except Livro.DoesNotExist:
+        except livro.DoesNotExist:
             return JsonResponse({"detalhe": "livro não encontrado para criação dessa avaliação"}, status=404)
         
 

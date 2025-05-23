@@ -105,7 +105,6 @@ class CurtidaSchema(Schema):
 
 class AvaliacaoSchemaIn(Schema):
     livro_id: int
-    leitor_id: int
     nota: int
     texto: str
 
