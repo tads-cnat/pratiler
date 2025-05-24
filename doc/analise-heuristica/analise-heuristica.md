@@ -10,6 +10,7 @@ João Roberto Chaves Camboim
 
 ## 1 - Defeito na pesquisa dos livros na barra de pesquisa
 Problema ocorre na div de navegação do site. Quando acessamos o site pela primeira vez e tentamos pesquisar um livro, não aparecem sugestões de livros. As sugestões só aparecem quando a página é recarregada. 
+![image6](https://github.com/user-attachments/assets/45a755bf-1c3c-4115-bf7d-df98312eb441)
 
 **Diretriz ferida:** AF1 - Funcionalidade\
 **Sugestão de melhoria:** Realizar ajustes no código Front para a pesquisa funcionar assim que o leitor acessar a página do site\
@@ -18,6 +19,8 @@ Problema ocorre na div de navegação do site. Quando acessamos o site pela prim
 
 ## 2 - Não há como cancelar ação de Começar Leitura
 Problema ocorre quando um livro é adicionado à estante através do botão “Começar Leitura” na página do livro. Depois de adicionar o livro à estante, não há como retirá-lo da estante. 
+![image3](https://github.com/user-attachments/assets/70c265d8-a2e9-4692-a54a-4353044e89e6)
+![image2](https://github.com/user-attachments/assets/bcca0380-c80e-447a-8d7c-63fb367f20e2)
 
 
 **Diretriz ferida:** AF8 - Cancelamento de ações\
@@ -28,6 +31,7 @@ Problema ocorre quando um livro é adicionado à estante através do botão “C
 ## 3 - Sinopse do livro de difícil leitura
 Problema ocorre em página que exibe detalhes do livro na parte de Sinopse.
 
+
 **Diretriz ferida:** FM13 - Leiturabilidade\
 **Sugestão de melhoria:** Mudar a estrutura do texto para que seja mais adequado para ler em dispositivos desktop\
 **Gravidade:** Baixa\
@@ -36,6 +40,8 @@ Problema ocorre em página que exibe detalhes do livro na parte de Sinopse.
 ## 4 - A formatação dos textos de sinopse do livro são diferentes 
 Problema ocorre em diferentes páginas que exibem detalhes do livro. Uma das páginas é exibida quando acessamos o livro através de pesquisa da barra de pesquisa, e a outra página é exibida quando clicamos no botão “Ver Leitura” da página “Minha Estante”.
 Resultado do botão “Ver Leitura”
+![image10](https://github.com/user-attachments/assets/bee783c5-b1f1-403b-bfef-45e990f95de2)
+![image3](https://github.com/user-attachments/assets/4dd2e5c4-fa5c-4aed-8592-9c31b2c4afbf)
 
 
 Resultado da pesquisa através da barra de pesquisa
@@ -47,6 +53,7 @@ Resultado da pesquisa através da barra de pesquisa
 
 ## 5 - Texto da sinopse com leitura dificultada
 Problema ocorre quando buscamos por detalhes do livro através do botão “Ver Leitura” na página “Minha Estante”. O texto está com uma cor que não contrasta com o fundo, dificultando a leitura.
+![image10](https://github.com/user-attachments/assets/95affd63-e5f3-4d61-a525-496a6eccbeea)
 
 **Diretriz ferida:** FM6 - Leiturabilidade, FM11 - Contraste\
 **Sugestão de melhoria:** Mudar o estilo do texto, alterando sua cor, peso e estrutura, para que fique mais fácil de ler\
@@ -55,6 +62,7 @@ Problema ocorre quando buscamos por detalhes do livro através do botão “Ver 
 
 ## 6 - Imagens não possuem texto alternativo
 Problema ocorre nas imagens dos livros que estão na página “Minha Estante”, que não possuem textos alternativos para as capas dos livros.
+![image13](https://github.com/user-attachments/assets/f3b55e65-2394-434d-970f-74eee6484429)
 
 **Diretriz ferida:** AC1 - Texto alternativo\
 **Sugestão de melhoria:** Adicionar um texto alternativo para as imagens das páginas\
@@ -63,6 +71,7 @@ Problema ocorre nas imagens dos livros que estão na página “Minha Estante”
 
 ## 7 - Imagem da estante vazia não possui contraste
 Problema ocorre quando acessamos a página minha estante e ela está vazia. A imagem que indica que não há livros na estante tem um texto que não possui contraste com o fundo.
+![sem-livros](https://github.com/user-attachments/assets/8dea48af-c1ac-4e50-973e-72f5d95e2357)
 
 **Diretriz ferida:** FM11 - Contraste\
 **Sugestão de melhoria:** Alterar as cores da imagem para que ela tenha mais contraste com o fundo\
@@ -71,6 +80,7 @@ Problema ocorre quando acessamos a página minha estante e ela está vazia. A im
 
 ## 8 - Imagem de “Sem Livros Por Aqui” não possui contraste
 Problema ocorre quando clicamos no botão “Adicionar Livro” na página “Minha Estante”. É exibida uma imagem que não tem contraste com o fundo.
+![image14](https://github.com/user-attachments/assets/8844cb46-4399-4dcc-bfbf-c8a7e87bc04b)
 
 **Diretriz ferida:** FM11 - Contraste\
 **Sugestão de melhoria:** Alterar as cores da imagem para que ela tenha mais contraste com o fundo\
@@ -79,6 +89,7 @@ Problema ocorre quando clicamos no botão “Adicionar Livro” na página “Mi
 
 ## 9 - Os botões para acessar perfil e fazer logout não ficam visíveis quando a tela é ajustada
 Problema ocorre quando ajustamos o tamanho da tela para ficar do tamanho da tela de um dispositivo móvel.
+![image16](https://github.com/user-attachments/assets/ccb1789d-90f7-4fd1-9ff0-62b2bffac697)
 
 **Diretriz ferida:** PD3 - Responsividade\
 **Sugestão de melhoria:** Adicionar configurações para que a tela seja ajustada quando o tamanho for alterado\
@@ -131,6 +142,9 @@ O sistema não possui integração com uma API para traduzir os textos do site p
 
 ## 16 - Sistema não retorna mensagem de erro ao adicionar um livro que já está na estante
 O problema ocorre na página de detalhes de um livro. Quando tento adicionar um livro que já está na minha estante, não é exibida nenhuma mensagem de erro.
+![image3](https://github.com/user-attachments/assets/c3e3a7b8-b7e8-454c-8241-fa1b8df38668)
+![image2](https://github.com/user-attachments/assets/b63a8d41-1b82-4905-9298-7fb8b1891ce2)
+
 **Diretriz ferida:** CO2 - Feedback adequado\
 **Sugestão de melhoria:** Implementar uma funcionalidade no frontend para exibição de uma mensagem de erro\
 **Gravidade:** Média\
@@ -138,6 +152,7 @@ O problema ocorre na página de detalhes de um livro. Quando tento adicionar um 
 
 ## 17 - Background de um botão está na cor errada
 O problema ocorre quando o usuário clica no botão “Adicionar Livro” da página “Minha Estante” e é redirecionado para uma página com livros disponíveis no sistema, em que o botão para salvar um livro na estante Desejo Ler está com uma cor de fundo diferente da paleta de cores definida.
+![image12](https://github.com/user-attachments/assets/8e0d369b-36a5-4fb9-8f39-e9a6baf3bc1a)
 
 **Diretriz ferida:** FM12 - Paleta de cor, FM6 - Consistência interna\
 **Sugestão de melhoria:** Alterar a cor do background do botão\
@@ -146,6 +161,8 @@ O problema ocorre quando o usuário clica no botão “Adicionar Livro” da pá
 
 ## 18 - Botão para salvar livro na estante desejo ler não funciona
 O problema ocorre quando o usuário clica no botão “Adicionar Livro” da página “Minha Estante” e é redirecionado para uma página com livros disponíveis no sistema. Quando o botão para salvar um livro na estante Desejo Ler é clicado, ele não é adicionado a estante.
+![image12](https://github.com/user-attachments/assets/0a034aff-88de-422c-b9a1-8f5a2c6f7890)
+![image1](https://github.com/user-attachments/assets/6f452dca-16d1-4c05-9d4d-1f041de28050)
 
 
 
@@ -177,6 +194,7 @@ O sistema não permite que o usuário ordene as suas leituras em suas estantes.
 
 ## 22 - Botão de “Sair” não está consistente com os outros botões do sistema
 O botão para “Sair” do sistema tem um comportamento estático em relação aos outros botões do sistema.
+![image4](https://github.com/user-attachments/assets/14df8e21-183c-48de-bb12-5e419260947e)
 
 **Diretriz ferida:** FM6 - Consistência interna\
 **Sugestão de melhoria:** Criar um padrão de comportamento para todos os botões do sistema\
@@ -199,6 +217,8 @@ Não há recurso de mudança de idioma no sistema em local algum.
 
 ## 25 - O sistema não mapeia as rotas para o usuário
 Não há orientação sobre o caminho percorrido na navegação na parte superior, abaixo do header.
+![sem-breadcumb](https://github.com/user-attachments/assets/f3f690e1-029f-4327-9398-64771beaf436)
+
 **Diretriz ferida:**  NA4 - Migalhas de pão\
 **Sugestão de melhoria:** Implementar as migalhas de pão logo abaixo do header.\
 **Gravidade:** Média\
@@ -206,6 +226,8 @@ Não há orientação sobre o caminho percorrido na navegação na parte superio
 
 ## 26 - A tela de detalhamento de livros não se reajusta com o tamanho da tela
 A página não se adequa ao tamanho da tela de forma satisfatória ao reduzirmos o tamanho da janela, gerando um scroll horizontal. Além disso, não há uma adequação do texto e do header nessa situação. 
+![image11](https://github.com/user-attachments/assets/c2d56615-be7c-40df-b711-867f70d79335)
+
 
 **Diretriz ferida:**  PD3 – Responsividade\
 **Sugestão de melhoria:** Reajuste do código fonte para que o navegador do header se transforme em um menu lateral reduzido e que o texto da página acompanhe o tamanho da tela.\
@@ -214,6 +236,7 @@ A página não se adequa ao tamanho da tela de forma satisfatória ao reduzirmos
 
 ## 27 - A página da estante não se reajusta com o tamanho da tela
 A página de minha estante não se adequa ao tamanho da tela de forma satisfatória ao reduzirmos o tamanho da tela, gerando um scroll horizontal. Além disso, não há uma adequação dos itens da página nessa situação.
+![image15](https://github.com/user-attachments/assets/cc459cb9-5435-4c52-80a3-6dedb816d10e)
 
 **Diretriz ferida:**  PD3 – Responsividade\
 **Sugestão de melhoria:** Reajuste para que o navegador do header se transforme em um menu lateral reduzido e que os cards se ajustem de forma que exista um padding equidistante ao redor de todo o conteúdo em todas as situações.\
@@ -222,7 +245,9 @@ A página de minha estante não se adequa ao tamanho da tela de forma satisfató
 
 ## 28 - Ícones nos botões não possuem uma consistência
 Em alguns botões os ícones não estão no mesmo lado
- 
+ ![image5](https://github.com/user-attachments/assets/11146a17-d51a-4b51-9c74-0f5118b46c10)
+![image8](https://github.com/user-attachments/assets/0a6c522f-3ca5-4f1f-8d9a-54a3132e9fde)
+
 
 **Diretriz ferida:**  FM6 - Consistência interna\
 **Sugestão de melhoria:** Reajuste para manter um padrão em todas as partes do sistemas, através de componentização\
