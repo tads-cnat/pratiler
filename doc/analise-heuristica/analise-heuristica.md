@@ -30,8 +30,7 @@ Problema ocorre quando um livro é adicionado à estante através do botão “C
 
 ## 3 - Sinopse do livro de difícil leitura
 Problema ocorre em página que exibe detalhes do livro na parte de Sinopse.
-
-
+![sinopse-livro-dificil-leitura](https://github.com/user-attachments/assets/1bc11652-adde-45e6-b2c1-d919f62bd2e1)
 **Diretriz ferida:** FM13 - Leiturabilidade\
 **Sugestão de melhoria:** Mudar a estrutura do texto para que seja mais adequado para ler em dispositivos desktop\
 **Gravidade:** Baixa\
