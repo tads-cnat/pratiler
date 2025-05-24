@@ -151,7 +151,7 @@ O problema ocorre na página de detalhes de um livro. Quando tento adicionar um 
 **Esforço de alteração:** Moderado
 
 ## 17 - Background de um botão está na cor errada
-O problema ocorre quando o usuário clica no botão “Adicionar Livro” da página “Minha Estante” e é redirecionado para uma página com livros disponíveis no sistema, em que o botão para salvar um livro na estante Desejo Ler está com uma cor de fundo diferente da paleta de cores definida.
+O problema ocorre quando o usuário clica no botão “Adicionar Livro” da página “Minha Estante” e é redirecionado para uma página com livros disponíveis no sistema, em que o botão para salvar um livro na estante Desejo Ler está com uma cor de fundo diferente da paleta de cores definida.\
 ![image12](https://github.com/user-attachments/assets/8e0d369b-36a5-4fb9-8f39-e9a6baf3bc1a)
 
 **Diretriz ferida:** FM12 - Paleta de cor, FM6 - Consistência interna\
@@ -160,7 +160,7 @@ O problema ocorre quando o usuário clica no botão “Adicionar Livro” da pá
 **Esforço de alteração:** Leve
 
 ## 18 - Botão para salvar livro na estante desejo ler não funciona
-O problema ocorre quando o usuário clica no botão “Adicionar Livro” da página “Minha Estante” e é redirecionado para uma página com livros disponíveis no sistema. Quando o botão para salvar um livro na estante Desejo Ler é clicado, ele não é adicionado a estante.
+O problema ocorre quando o usuário clica no botão “Adicionar Livro” da página “Minha Estante” e é redirecionado para uma página com livros disponíveis no sistema. Quando o botão para salvar um livro na estante Desejo Ler é clicado, ele não é adicionado a estante.\
 ![image12](https://github.com/user-attachments/assets/0a034aff-88de-422c-b9a1-8f5a2c6f7890)
 ![image1](https://github.com/user-attachments/assets/6f452dca-16d1-4c05-9d4d-1f041de28050)
 
@@ -193,7 +193,7 @@ O sistema não permite que o usuário ordene as suas leituras em suas estantes.
 **Esforço de alteração:** Grande
 
 ## 22 - Botão de “Sair” não está consistente com os outros botões do sistema
-O botão para “Sair” do sistema tem um comportamento estático em relação aos outros botões do sistema.
+O botão para “Sair” do sistema tem um comportamento estático em relação aos outros botões do sistema.\
 ![image4](https://github.com/user-attachments/assets/14df8e21-183c-48de-bb12-5e419260947e)
 
 **Diretriz ferida:** FM6 - Consistência interna\
@@ -244,8 +244,8 @@ A página de minha estante não se adequa ao tamanho da tela de forma satisfató
 **Esforço de alteração:** Moderado
 
 ## 28 - Ícones nos botões não possuem uma consistência
-Em alguns botões os ícones não estão no mesmo lado
- ![image5](https://github.com/user-attachments/assets/11146a17-d51a-4b51-9c74-0f5118b46c10)
+Em alguns botões os ícones não estão no mesmo lado\
+ ![image5](https://github.com/user-attachments/assets/11146a17-d51a-4b51-9c74-0f5118b46c10)\
 ![image8](https://github.com/user-attachments/assets/0a6c522f-3ca5-4f1f-8d9a-54a3132e9fde)
 
 
