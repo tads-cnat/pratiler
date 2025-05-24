@@ -13,6 +13,10 @@ class AvaliacaoController:
             "livro": {
                 "id": avaliacao.livro.id,
                 "titulo": avaliacao.livro.titulo,
+                "sinopse": avaliacao.livro.sinopse,
+                "isbn": avaliacao.livro.isbn,
+                "n_paginas": avaliacao.livro.n_paginas,
+                "capa": avaliacao.livro.capa,
                 "autor": {
                     "id": avaliacao.livro.autor.id,
                     "nome": avaliacao.livro.autor.nome
@@ -23,7 +27,7 @@ class AvaliacaoController:
                 "username": avaliacao.leitor.username
             },
             "nota": avaliacao.nota,
-            "data": avaliacao.data_hora.isoformat(),
+            "data_hora": avaliacao.data_hora.isoformat(),
             "texto": avaliacao.texto
         }
         for avaliacao in Avaliacao.objects.all()]
@@ -37,6 +41,10 @@ class AvaliacaoController:
                 "livro": {
                     "id": avaliacao.livro.id,
                     "titulo": avaliacao.livro.titulo,
+                    "sinopse": avaliacao.livro.sinopse,
+                    "isbn": avaliacao.livro.isbn,              
+                    "n_paginas": avaliacao.livro.n_paginas,
+                    "capa": avaliacao.livro.capa,
                     "autor": {
                         "id": avaliacao.livro.autor.id,
                         "nome": avaliacao.livro.autor.nome
@@ -47,7 +55,7 @@ class AvaliacaoController:
                     "username": avaliacao.leitor.username
                 },
                 "nota": avaliacao.nota,
-                "data": avaliacao.data_hora.isoformat(),
+                "data_hora": avaliacao.data_hora.isoformat(),
                 "texto": avaliacao.texto
             }
         except Avaliacao.DoesNotExist:
@@ -62,18 +70,39 @@ class AvaliacaoController:
             avaliacao_exists = Avaliacao.objects.filter(livro=livro, leitor=request.user).exists()
 
             if not avaliacao_exists:
-                avaliacao = Avaliacao.objects.create(
+                avaliacao_nova = Avaliacao.objects.create(
                     livro=livro,
                     leitor=request.user,
                     nota=avaliacao.nota,
                     texto=avaliacao.texto
                 )
-                return avaliacao
+                return {
+                    "id": avaliacao_nova.id,
+                    "livro": {
+                        "id": avaliacao_nova.livro.id,
+                        "titulo": avaliacao_nova.livro.titulo,
+                        "sinopse": avaliacao_nova.livro.sinopse,
+                        "isbn": avaliacao_nova.livro.isbn,              
+                        "n_paginas": avaliacao_nova.livro.n_paginas,
+                        "capa": avaliacao_nova.livro.capa,
+                        "autor": {
+                            "id": avaliacao_nova.livro.autor.id,
+                            "nome": avaliacao_nova.livro.autor.nome
+                        }
+                    },
+                    "leitor": {
+                        "id": avaliacao_nova.leitor.id,
+                        "username": avaliacao_nova.leitor.username
+                    },
+                    "nota": avaliacao_nova.nota,
+                    "data_hora": avaliacao_nova.data_hora.isoformat(),
+                    "texto": avaliacao_nova.texto
+            }
             
             elif avaliacao_exists:
                 return JsonResponse({"detalhe": "Já existe uma avaliação sua sobre esse livro"}, status=400)
 
-        except livro.DoesNotExist:
+        except Livro.DoesNotExist:
             return JsonResponse({"detalhe": "livro não encontrado para criação dessa avaliação"}, status=404)
         
 
