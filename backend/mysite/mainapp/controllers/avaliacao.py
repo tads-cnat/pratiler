@@ -1,6 +1,6 @@
 from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
-from mainapp.models import Avaliacao, Livro, Leitor, Interacao
+from mainapp.models import Avaliacao, Livro
 from mainapp.schemas import AvaliacaoSchemaIn, AvaliacaoSchemaOut
 from django.http import JsonResponse
 
