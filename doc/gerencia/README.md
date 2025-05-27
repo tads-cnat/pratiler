@@ -4,7 +4,20 @@ Aqui ficarão guardados os artefatos referentes ao gerenciamento do projeto.
 
 ## 👨‍💼 Registro das partes interessadas
 
-![PartesInteressadas](partes_interessadas.png)
+| Cód. | Importância | Parte interessada | e-mail | Celular | Fone | Empresa | Função | Principais responsabilidades | Principais interesses / expectativas | Poder na empresa | Interesse no projeto | Estratégias para ganhar mais suporte ou reduzir resistências | Comentários |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|---:|---|
+| 1 | 25 | Débora Samara | rodrigues.debora@escolar.ifrn.edu.br |  |  | IFRN | Desenvolvedor(a) | Desenvolvimento FullStack, levantamento de requisitos, implantação do sistema e UI/UX design | Ser aprovado(a) na matéria PDS Corporativo | 5-Muito Alto | 5-Muito Alto | (Gerenciar com atenção) | - |
+| 2 | 25 | Ester Oliveira | ester.oliveira@escolar.ifrn.edu.br |  |  | IFRN | Desenvolvedor(a) | Desenvolvimento FullStack, levantamento de requisitos, implantação do sistema e UI/UX design | Ser aprovado(a) na matéria PDS Corporativo | 5-Muito Alto | 5-Muito Alto | (Gerenciar com atenção) | - |
+| 3 | 25 | Felipe Alves | f.vasconcelos@escolar.ifrn.edu.br |  |  | IFRN | Desenvolvedor(a) | Desenvolvimento FullStack, levantamento de requisitos e implantação do sistema | Ser aprovado(a) na matéria PDS Corporativo | 5-Muito Alto | 5-Muito Alto | (Gerenciar com atenção) | - |
+| 4 | 25 | João Roberto | camboim.chaves@escolar.ifrn.edu.br |  |  | IFRN | Desenvolvedor(a) | Desenvolvimento FullStack, levantamento de requisitos e implantação do sistema | Ser aprovado(a) na matéria PDS Corporativo | 5-Muito Alto | 5-Muito Alto | (Gerenciar com atenção) | - |
+| 5 | 16 | Gracon Lima | gracon.lima@ifrn.edu.br |  |  | IFRN | Orientador do projeto Pratiler | Acompanhar e avaliar o desenvolvimento do projeto e orientar nas tarefas | Garantir que o projeto seja finalizado com sucesso | 4-Alto | 4-Alto | (Gerenciar com atenção) | - |
+| 6 | 6 | Marília Aranha | marilia.freire@ifrn.edu.br |  |  | IFRN | Orientador do PDS | Acompanhar e avaliar o desenvolvimento do projeto, com foco em testes de software | Avaliar as entregas referentes à materia que leciona (Teste de Software) | 3-Médio | 2-Baixo | (Monitorar - mínimo esforço) | - |
+| 7 | 6 | Sales Filho | sales.filho@ifrn.edu.br |  |  | IFRN | Orientador do PDS | Acompanhar e avaliar o desenvolvimento do projeto, com foco em gerência de projetos | Avaliar as entregas referentes à materia que leciona (Gerencia de Projetos) | 3-Médio | 2-Baixo | (Monitorar - mínimo esforço) | - |
+| 8 | 2 | Lívia Vitória (Projeto Gambiarra) |  |  |  | IFRN | Representante do Gambiarra | Não possuem responsabilidades no desenvolvimento do projeto | Acompanhar o desenvolvimento das tarefas do PDS e do projeto | 1-Muito baixo | 2-Baixo | (Monitorar - mínimo esforço) | - |
+| 9 | 2 | Victor Passos (Projeto Tatuadouro) |  |  |  | IFRN | Representante do Tatuadouro | Não possuem responsabilidades no desenvolvimento do projeto | Acompanhar o desenvolvimento das tarefas do PDS e do projeto | 1-Muito baixo | 2-Baixo | (Monitorar - mínimo esforço) | - |
+| 10 | 2 | Giovanna Barros (Projeto DAMA) |  |  |  | IFRN | Representante do Dama | Não possuem responsabilidades no desenvolvimento do projeto | Acompanhar o desenvolvimento das tarefas do PDS e do projeto | 1-Muito baixo | 2-Baixo | (Monitorar - mínimo esforço) | - |
+| 11 | 2 | Yasmin Fernandes (Projeto Sisteminha) |  |  |  | IFRN | Representante do Sisteminha | Não possuem responsabilidades no desenvolvimento do projeto | Acompanhar o desenvolvimento das tarefas do PDS e do projeto | 1-Muito baixo | 2-Baixo | (Monitorar - mínimo esforço) | - |
+| 12 | 3 | André Gustavo | andre.almeida@ifrn.edu.br |  |  | IFRN | Gerente dos repositórios GitHub dos PDS | Gerenciar o repositório GitHub do projeto Pratiler | Organizar o repositório dos projetos | 3-Médio | 1-Muito baixo | (Monitorar - mínimo esforço) | - |
 
 ## 📊 Planejamento do Escopo
 
