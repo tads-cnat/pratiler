@@ -76,3 +76,8 @@ graph TD
 | Documentação dos casos de testes | Escrita dos casos de teste necessários através de técnicas de testes | João Roberto e Débora | Documentação dos casos de testes que estejam conformes os testes implementados |
 | Levantamento dos requisitos | Estudos para descobrir novas necessidades do sistema | João Roberto, Felipe, Ester e Débora | Todos os requisitos devem estar bem definidos e refinados |
 | Casos de uso | Documentação dos casos de uso do sistema | João Roberto, Felipe, Ester e Débora | Casos de uso que estejam de acordo com o que foi implementado no sistema |
+| Gerenciamento dos stakeholders | Gerenciamento das partes interessadas no projeto e os seus níveis de interesse e poder no projeto | Débora, Ester, Felipe e João Roberto | Tabela que represente as partes interessadas no projeto com suas descrições e níveis de interesse |
+| Cronograma de marcos | Cronograma de atividades do projeto focadas em tempo esforço e duração real até a entrega do projeto | Débora, Ester, Felipe e João Roberto | Atividades devem estar organizadas dando uma perspectiva de tempo das entregas |
+| Planejamento do projeto | Planejamento do projeto com o seu cronograma de entregas | Débora, Ester, Felipe e João Roberto | Documentação que represente o planejamento do projeto |
+| Protótipos das telas | Protótipos das telas desenvolvidos na plataforma Figma | Ester e Débora | Telas que representem todos os casos de uso do projeto |
+| Documento de riscos | Documento de riscos que o projeto possui | Ester e João Roberto | Documente que represente os riscos do projeto de forma realista |
