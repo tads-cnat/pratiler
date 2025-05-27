@@ -21,7 +21,7 @@ Aqui ficarão guardados os artefatos referentes ao gerenciamento do projeto.
 
 ## 📊 Planejamento do Escopo
 
-### Objetivo S.M.A.R.T - Aumentar a porcentagem de leitores no Brasil para 50% nos próximos 5 anos através de incentivo e interação social entre leitores
+### Objetivo S.M.A.R.T - Entregar um sistema de organização pessoal de leituras para gerar incentivo a leitura e interação social entre leitores até o final de agosto de 2025
 
 ### Declaração do Escopo
 
@@ -38,34 +38,41 @@ Aqui ficarão guardados os artefatos referentes ao gerenciamento do projeto.
 
 ```mermaid
 graph TD
-    A[📖PratiLer Corporativo] --> B[1 Planejamento]
-    A --> C[2 Levantamento de Requisitos]
-    A --> D[3 Desenvolvimento]
-    A --> E[4 Testes]
-    A --> F[5 Implantação]
-    B --> B1[1.1 Documentação do projeto]
-    B --> B2[1.2 Planejamento das entregas]
-    C --> C1[2.1 Definição do Escopo]
-    C --> C2[2.2 Prototipação de telas]
-    C1 -->C3[2.1.1 Definição dos CDUs]
-    C1 -->C4[2.1.2 Definição das regras de negócio]
-    D --> D1[3.1 Desenvolvimento Frontend]
-    D --> D2[3.2 Desenvolvimento Backend]
-    D --> D3[3.3 Integração dos serviços]
-    E --> E1[4.1 Testes Unitários]
-    E --> E2[4.2 Testes de Aceitação]
-    F --> F1[5.1 Implantação na Azure]
-    F --> F2[5.2 Criação de Pipelines CI/CD]
-    F --> F3[5.3 Containerização Docker]
-    F --> F4[5.4 Monitoramento]
+    A[📖PratiLer Corporativo] --> B[1 Documentação]
+    A --> C[2 Sistema distribuído]
+    A --> D[3 Testes]
+    A --> E[4 Implantação]
+    B --> B1[1.1 Levantamento de requisitos]
+    B --> B2[1.2 Prototipagem de telas]
+    B --> B3[1.3 Definição de casos de uso]
+    B --> B4[1.4 Planejamento do projeto]
+    B --> B5[1.5 Gerenciamento dos stakeholders]
+    B --> B6[1.6 Cronograma de marcos]
+    C --> C1[2.1 Back-end]
+    C --> C2[2.2 Front-end]
+    C --> C3[2.3 Banco de dados]
+    D --> D1[3.1 Documentação dos casos de teste]
+    D --> D2[3.2 Análise Heurística]
+    D --> D3[3.3 Testes unitários]
+    D --> D4[3.4 Testes automatizados]
+    E --> E1[4.1 VMs]
+    E --> E2[4.2 Pipelines CI/CD]
+    E --> E3[4.3 Conteinerização]
 ```
 
 ### Dicionário da EAP
 
 | Atividade | Descrição | Responsáveis | Critérios de Aceitação |
 | - | - | - | - |
-| Planejamento | Planejamento Semanal das atividades do projeto | Débora, Ester, Felipe, João Roberto | As sprints devem ser planejadas em documentação |
-| Levantamento de Requisitos | Analisar continuamente as necessidades do projeto para criar novos requisitos | Débora, Ester, Felipe, João Roberto | Todos os requisitos e regras de negócio devem estar claras e estabelecidas |
-| Desenvolvimento | Codificação e desenvolvimento das entregas das funcionalidades do sistema | Débora, Ester, Felipe, João Roberto | Todas as funcionalidades propostas do sistema devem estar implementadas e a aplicação pronta para produção |
-| Testes unitários | Implementação e documentação dos testes unitários | Débora, Ester, Felipe, João Roberto | Testes criados de formas estratégicas |
-| Implantação | Alocação do código do Pratiler em um servidor on-line para acesso público | João Roberto | O sistema deve estar acessível e operante através do endereço IP atribuído a máquina hospedada |
+| Front-end | Atividades relacionadas ao desenvolvimento front-end do sistema | Felipe e Débora | Telas fieis ao protótipo e com funcionalidades integradas com o Back-end |
+| Back-end | Atividades relacionadas ao desenvolvimento back-end do sistema | Felipe, Ester e João Roberto | Funcionalidades funcionando e enviando os dados para o banco de dados |
+| Banco de Dados | Atividades relacionadas ao monitoramento do banco de dados | João Roberto, Felipe e Débora | Armazenamento dos dados funcionando normalmente |
+| VMs  | Provisionar e configurar máquinas virtuais na plataforma Microsoft Azure | João Roberto | Sistemas Front-end e Back-end e banco de dados configurados nas máquinas |
+| Pipelines CI/CD | Implementar e configurar pipelines de Integração Contínua e Entrega Contínua (CI/CD) | Ester e João Roberto | Pipelines funcionando para a integração contínua do sistema |
+| Docker | “Containerizar” as aplicações utilizando Docker, criando imagens padronizadas e gerenciando containers | João Roberto e Felipe | Garantir que todos os ambientes sejam iguais para todos |
+| Testes unitários | Desenvolvimento e execução de testes unitários para validar o comportamento individual de componentes e funções do sistema. | Débora | Passar em todos os testes para garantir a qualidade do software |
+| Testes automatizados | Criação de scripts de teste, integração com pipelines CI/CD para garantir a qualidade do software  | Ester e João Roberto | Passar em todos os testes de maneira automática após qualquer alteração feita para garantir a qualidade do software |
+| Análise heurística | Análise das telas do sistema Pratiler para melhorias futuras | Ester | Ter a documentação da análise |
+| Documentação dos casos de testes | Escrita dos casos de teste necessários através de técnicas de testes | João Roberto e Débora | Documentação dos casos de testes que estejam conformes os testes implementados |
+| Levantamento dos requisitos | Estudos para descobrir novas necessidades do sistema | João Roberto, Felipe, Ester e Débora | Todos os requisitos devem estar bem definidos e refinados |
+| Casos de uso | Documentação dos casos de uso do sistema | João Roberto, Felipe, Ester e Débora | Casos de uso que estejam de acordo com o que foi implementado no sistema |
