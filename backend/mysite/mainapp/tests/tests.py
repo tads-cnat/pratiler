@@ -11,6 +11,7 @@ from mainapp.models import *
 # ◦ Devem testar condições de sucesso e falha.
 
 class GerenciarEstanteTestCase(TestCase):
+    # Cria os dados necessários para os testes
     def setUp(self):
         self.leitor = Leitor.objects.create_user(nome="Ramon Vieira", username="Romeu", email="romeu@email.com", password="coxinha123")
         
