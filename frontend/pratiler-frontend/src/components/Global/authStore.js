@@ -25,15 +25,22 @@ export const useAuthStore = create(
 
       login: async (email, password) => {
         const credentials = { email: email, password: password };
-        await internalAxios.post("auth/login", credentials).then((response) => {
-          set({ user: response.data, isAuthenticated: true });
-        });
-        await internalAxios.post("auth/pair", credentials).then((response) => {
-          set({
-            token: response.data.access,
-            refresh: response.data.refresh,
+        await internalAxios
+          .post("auth/login", credentials)
+          .then(async (res) => {
+            const response = res;
+            set({ user: res.data, isAuthenticated: true });
+            await internalAxios.post("auth/pair", credentials).then((res) => {
+              set({
+                token: res.data.access,
+                refresh: res.data.refresh,
+              });
+              return response;
+            });
+          })
+          .catch((error) => {
+            return error;
           });
-        });
       },
 
       logout: async () => {
