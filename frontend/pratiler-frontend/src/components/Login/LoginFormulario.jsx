@@ -15,7 +15,6 @@ import { useAuthStore } from "../Global/authStore";
 
 /* Images */
 import imageLogin from "../../assets/img/imagem-login.png";
-import { use } from "react";
 
 const schema = yup.object().shape({
   email: yup
