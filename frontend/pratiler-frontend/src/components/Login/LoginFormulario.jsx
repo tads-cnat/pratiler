@@ -17,7 +17,10 @@ import { useAuthStore } from "../Global/authStore";
 import imageLogin from "../../assets/img/imagem-login.png";
 
 const schema = yup.object().shape({
-  email: yup.string().email("Email inválido").required("Campo email é obrigatório"),
+  email: yup
+    .string()
+    .email("Email inválido")
+    .required("Campo email é obrigatório"),
   password: yup.string().required("Campo senha é obrigatório"),
 });
 
