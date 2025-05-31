@@ -1,104 +1,110 @@
 .box {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap: 3rem;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 3rem;
 
-    strong{
-        color: var(--penn-blue);
-        font-style: italic;
-    }
+  strong {
+    color: var(--penn-blue);
+    font-style: italic;
+  }
 }
 
-.ttileOne{
-    color: var(--night);
+.ttileOne {
+  color: var(--night);
 }
 
 .sectionBook {
-    display: flex;
-    gap: 5rem;
+  display: flex;
+  gap: 5rem;
 
-    img {
-        width: 274px;
-        height: auto;
-        box-shadow: 0px 0px 8px rgb(0, 0, 0.5);
-    }
+  img {
+    width: 274px;
+    height: auto;
+    box-shadow: 0px 0px 8px rgb(0, 0, 0.5);
+  }
 }
 
 .bookDescription {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .title {
-    color: var(--penn-blue);
-    font: var(--h1-title);
-    font-size: 1.75rem;
+  color: var(--penn-blue);
+  font: var(--h1-title);
+  font-size: 1.75rem;
 }
 
 .autor {
-    color: var(--ultra-violet);
-    font: var(--h2-title);
+  color: var(--ultra-violet);
+  font: var(--h2-title);
 }
 
 .sinopseButtons {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: max-content;
+}
+
+.avaliacaoForm {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
 }
 
 .sinopse {
-    font: var(--h2-title);
-    font-size: 1.1rem;
-    text-align: justify;
-    color: gray;
+  font: var(--h2-title);
+  font-size: 1.1rem;
+  text-align: justify;
+  color: gray;
 }
 
 .buttons {
-    display: flex;
-    gap: 2rem;
+  display: flex;
+  gap: 2rem;
 }
 
 .btnBegin {
-    background-color: var(--penn-blue);
-    padding-block: 0.75rem;
-    padding-inline: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.5rem;
-    border: none;
-    color: var(--white);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 200ms;
-    font-weight: 700;
+  background-color: var(--penn-blue);
+  padding-block: 0.75rem;
+  padding-inline: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 200ms;
+  font-weight: 700;
 }
 
-.btnBegin:hover{
-    transform: scale(1.1);
+.btnBegin:hover {
+  transform: scale(1.1);
 }
 
 .btnAdd {
-    background-color: var(--white);
-    outline: 2px solid var(--penn-blue);
-    padding-inline: 1.25rem;
-    padding-block: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.5rem;
-    border: none;
-    color: var(--penn-blue);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 200ms;
-    font-weight: 700;
+  background-color: var(--white);
+  outline: 2px solid var(--penn-blue);
+  padding-inline: 1.25rem;
+  padding-block: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  color: var(--penn-blue);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 200ms;
+  font-weight: 700;
 }
 
-.btnAdd:hover{
-    transform: scale(1.1);
+.btnAdd:hover {
+  transform: scale(1.1);
 }
-

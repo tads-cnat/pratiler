@@ -102,3 +102,16 @@ class PostagemListSchemaOut(Schema):
 
 class CurtidaSchema(Schema):
     postagem_id: int
+
+class AvaliacaoSchemaIn(Schema):
+    livro_id: int
+    nota: int
+    texto: str
+
+class AvaliacaoSchemaOut(Schema):
+    id: int
+    nota: int
+    texto: str
+    data_hora: str
+    livro: LivroSchema
+    leitor: LeitorSchema

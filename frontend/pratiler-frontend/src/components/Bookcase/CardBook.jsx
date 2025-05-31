@@ -1,8 +1,13 @@
-import { CheckCircle, MagnifyingGlass } from "phosphor-react";
+import { CheckCircle, MagnifyingGlass, Star } from "phosphor-react";
 import { useState } from "react";
-import { internalAxios } from "../Global/axiosInstances";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+
+/* CSS */
 import cardBookCss from "../../assets/css/Bookcase/CardBook.module.css";
+
+/* Store */
+import { internalAxios } from "../Global/axiosInstances";
 
 export function CardBook({
   img,
@@ -15,6 +20,7 @@ export function CardBook({
   onUpdate,
 }) {
   const [successMessage, setSuccessMessage] = useState(null);
+  const navigate = useNavigate();
 
   const handleMarkAsRead = async (id) => {
     await internalAxios
@@ -59,6 +65,15 @@ export function CardBook({
                 onClick={() => handleMarkAsRead(id)}
               >
                 <CheckCircle weight="bold" size={27} />
+              </button>
+            )}
+            {status === "LD" && (
+              <button
+                className={cardBookCss.viewDetails}
+                onClick={() => navigate(`/fazer-avaliacao/${id}`)}
+              >
+                Realizar Avaliação
+                <Star weight="bold" size={16} />
               </button>
             )}
           </div>
