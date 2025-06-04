@@ -1,5 +1,15 @@
 # 📋 Gerência de Projeto 
 
+1. [Registro das Partes Interessadas](#-registro-das-partes-interessadas)
+2. [Planejamento do Escopo](#-planejamento-do-escopo)
+    2.1 [Objetivo S.M.A.R.T](#objetivo-smart---entregar-um-sistema-de-organização-pessoal-de-leituras-para-gerar-incentivo-a-leitura-e-interação-social-entre-leitores-até-o-final-de-agosto-de-2025)
+    2.2 [Declaração do Escopo](#declaração-do-escopo)
+    2.3 [Estrutura Anaçítica do Projeto (EAP)](#estrutura-analítica-do-projeto-eap)
+        2.3.1 [Dicionário da EAP](#dicionário-da-eap)
+3. [Cronograma de Marcos](#-cronograma-de-marcos)
+    3.1 [Tabela em PDF](#tabela-em-pdf)
+    3.2 [Formato timeline](#formato-timeline)
+
 Aqui ficarão guardados os artefatos referentes ao gerenciamento do projeto.
 
 ## 👨‍💼 Registro das partes interessadas
@@ -81,3 +91,13 @@ graph TD
 | Planejamento do projeto | Planejamento do projeto com o seu cronograma de entregas | Débora, Ester, Felipe e João Roberto | Documentação que represente o planejamento do projeto |
 | Protótipos das telas | Protótipos das telas desenvolvidos na plataforma Figma | Ester e Débora | Telas que representem todos os casos de uso do projeto |
 | Documento de riscos | Documento de riscos que o projeto possui | Ester e João Roberto | Documente que represente os riscos do projeto de forma realista |
+
+## ⌚ Cronograma de Marcos
+
+### Tabela em PDF
+
+[PratiLer - Cronograma de Marcos (Formato Timeline) 1dc351471ea080ad9bdcd5f6966a0272.pdf](https://github.com/user-attachments/files/20582258/PratiLer.-.Cronograma.de.Marcos.Formato.Timeline.1dc351471ea080ad9bdcd5f6966a0272.pdf)
+
+### Formato timeline
+
+![cronograma de marcos](https://github.com/user-attachments/assets/1460a22f-031f-40fa-816e-6da8cde0dd7a)
