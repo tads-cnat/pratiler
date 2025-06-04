@@ -1,13 +1,13 @@
 # 📋 Gerência de Projeto 
 
-1. [Registro das Partes Interessadas](#-registro-das-partes-interessadas)
-2. [Planejamento do Escopo](#-planejamento-do-escopo)
-    2.1 [Objetivo S.M.A.R.T](#objetivo-smart---entregar-um-sistema-de-organização-pessoal-de-leituras-para-gerar-incentivo-a-leitura-e-interação-social-entre-leitores-até-o-final-de-agosto-de-2025)
-    2.2 [Declaração do Escopo](#declaração-do-escopo)
-    2.3 [Estrutura Anaçítica do Projeto (EAP)](#estrutura-analítica-do-projeto-eap)
-        2.3.1 [Dicionário da EAP](#dicionário-da-eap)
-3. [Cronograma de Marcos](#-cronograma-de-marcos)
-    3.1 [Tabela em PDF](#tabela-em-pdf)
+1. [Registro das Partes Interessadas](#-registro-das-partes-interessadas) <br>
+2. [Planejamento do Escopo](#-planejamento-do-escopo) <br>
+    2.1 [Objetivo S.M.A.R.T](#objetivo-smart---entregar-um-sistema-de-organização-pessoal-de-leituras-para-gerar-incentivo-a-leitura-e-interação-social-entre-leitores-até-o-final-de-agosto-de-2025) <br>
+    2.2 [Declaração do Escopo](#declaração-do-escopo) <br>
+    2.3 [Estrutura Anaçítica do Projeto (EAP)](#estrutura-analítica-do-projeto-eap) <br>
+        2.3.1 [Dicionário da EAP](#dicionário-da-eap) <br>
+3. [Cronograma de Marcos](#-cronograma-de-marcos) <br>
+    3.1 [Tabela em PDF](#tabela-em-pdf) <br>
     3.2 [Formato timeline](#formato-timeline)
 
 Aqui ficarão guardados os artefatos referentes ao gerenciamento do projeto.
