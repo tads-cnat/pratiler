@@ -2,8 +2,6 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ENV VITE_URL_API="http://4.203.106.2:8000/api/"
-
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
