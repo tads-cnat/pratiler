@@ -1,0 +1,33 @@
+volumes:
+  db_data:
+
+services:
+  backend:
+    image: pratiler/backend
+    container_name: pratiler_backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    volumes:
+        - ./povoar_banco.sql:/povoar_banco.sql
+
+    command:
+      sh -c "pip install --upgrade pip && pip install -r requirements.txt && python3 mysite/manage.py makemigrations && python3.12 mysite/manage.py migrate && PGPASSWORD=$POSTGRES_PASSWORD psql -h db -U $POSTGRES_USER -d $POSTGRES_DB -f /povoar_banco.sql &&
+      python3 mysite/manage.py runserver 0.0.0.0:8000"
+
+  db:
+    image: postgres:latest
+    container_name: pratiler_postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
