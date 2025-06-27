@@ -83,12 +83,6 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-print(os.getenv('POSTGRES_DB'),
-        os.getenv('POSTGRES_USER'),
-        os.getenv('POSTGRES_PASSWORD'),
-        os.getenv('POSTGRES_HOST'),
-        os.getenv('POSTGRES_PORT'),
-    sep='\n')
 
 DATABASES = {
     'default': {
