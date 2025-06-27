@@ -1,0 +1,12 @@
+services:
+  frontend:
+    image: pratiler/frontend
+    container_name: pratiler_frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:5173"
+    env_file:
+      - .env
+    command: sh -c "npm run dev"
