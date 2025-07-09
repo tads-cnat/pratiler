@@ -23,6 +23,7 @@ class InteracaoController:
                     "id": interacao.livro.id,
                     "titulo": interacao.livro.titulo,
                     "sinopse": interacao.livro.sinopse,
+                    "isbn": interacao.livro.isbn,
                     "capa": interacao.livro.capa,
                     "n_paginas": interacao.livro.n_paginas,
                     "autor":{
