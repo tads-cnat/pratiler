@@ -63,6 +63,18 @@ class InteracaoSchema(Schema):
     status: str
     pg_atual: int
 
+class InteracaoFilter(Schema):
+    username: str = None
+    status: str = None
+
+    def get_status(self):
+        return self.status.split(',') if self.status else ['QL', 'LN', 'LD']
+
+class InteracaoSchemaIn(Schema):
+    livro_id: int
+    status: str
+    pg_atual: int = 0
+
 class ResenhaSchemaIn(Schema):
     livro_id: int
     titulo: str

@@ -2,44 +2,16 @@ from django.http import Http404
 from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Interacao, Leitor, Livro
-from mainapp.schemas import InteracaoSchema
+from mainapp.schemas import InteracaoFilter, InteracaoSchema, InteracaoSchemaIn
 from ninja import Query
 
 
 @api_controller("/interacoes", auth=JWTAuth(), tags=["Interações Livro/Leitor"])
 class InteracaoController:
     @route.get("", response=list[InteracaoSchema])
-    def listar_interacoes(self, request):
-        interacoes = Interacao.objects.select_related('leitor', 'livro__autor').all()
-
-        return [
-            {
-                "id": interacao.id,
-                "leitor": {
-                    "id": interacao.leitor.id,
-                    "username": interacao.leitor.username
-                },
-                "livro": {
-                    "id": interacao.livro.id,
-                    "titulo": interacao.livro.titulo,
-                    "sinopse": interacao.livro.sinopse,
-                    "isbn": interacao.livro.isbn,
-                    "capa": interacao.livro.capa,
-                    "n_paginas": interacao.livro.n_paginas,
-                    "autor":{
-                        "id": interacao.livro.autor.id,
-                        "nome": interacao.livro.autor.nome
-                    }
-                },
-                "status": interacao.status,
-                "pg_atual": interacao.pg_atual
-            }
-            for interacao in interacoes
-        ]
-
-    @route.get("/leitor", response=list[InteracaoSchema])
-    def listar_interacoes_por_leitor(self, request, username: str, status: list[str] = Query(["QL", "LN", "LD"])):
-        leitor = Leitor.objects.get(username=username)
+    def listar_interacoes(self, request, filters: InteracaoFilter = Query(...)):
+        leitor = Leitor.objects.get(username=filters.username) if filters.username else request.user
+        status = filters.get_status()
         interacoes = Interacao.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status__in=status)
 
         return [
@@ -67,19 +39,20 @@ class InteracaoController:
             for interacao in interacoes
         ]
 
-    @route.post("/leitor", response=InteracaoSchema)
-    def criar_interacao(self, request, livro_id: int, status: str):
+    @route.post("", response=InteracaoSchema)
+    def criar_interacao(self, request, interacao_in: InteracaoSchemaIn):
         leitor = request.user
 
         try:
-            livro = Livro.objects.get(id=livro_id)
+            livro = Livro.objects.get(id=interacao_in.livro_id)
         except Livro.DoesNotExist:
             return {"error": "Livro não encontrado"}, 404
 
         interacao = Interacao.objects.create(
             leitor=leitor,
             livro=livro,
-            status=status
+            status=interacao_in.status,
+            pg_atual=livro.n_paginas if interacao_in.status == 'LD' else interacao_in.pg_atual
         )
 
         return {
@@ -104,48 +77,10 @@ class InteracaoController:
             "pg_atual": interacao.pg_atual
         }
 
-    @route.post("/leitor/lendo", response=InteracaoSchema)
-    def criar_interacao_lendo(self, request, livro_id: int):
-        leitor = request.user
-
-        try:
-            livro = Livro.objects.get(id=livro_id)
-        except Livro.DoesNotExist:
-            return {"error": "Livro não encontrado"}, 404
-
-        interacao = Interacao.objects.create(
-            leitor=leitor,
-            livro=livro,
-            status='LN'
-        )
-
-        return {
-            "id": interacao.id,
-            "leitor": {
-                "id": interacao.leitor.id,
-                "username": interacao.leitor.username
-            },
-            "livro": {
-                "id": interacao.livro.id,
-                "titulo": interacao.livro.titulo,
-                "sinopse": interacao.livro.sinopse,
-                "isbn": interacao.livro.isbn,
-                "capa": interacao.livro.capa,
-                "n_paginas": interacao.livro.n_paginas,
-                "autor": {
-                    "id": interacao.livro.autor.id,
-                    "nome": interacao.livro.autor.nome
-                }
-            },
-            "status": interacao.status,
-            "pg_atual": interacao.pg_atual
-        }
-
-    @route.get("/leitor/{int:id}", response=InteracaoSchema)
+    @route.get("/{int:id}")
     def listar_interacao_id(self, request, id: int):
         try:
-            leitor = request.user
-            interacao = Interacao.objects.select_related('leitor', 'livro__autor').get(livro_id=id, leitor=leitor)
+            interacao = Interacao.objects.select_related('leitor', 'livro__autor').get(id=id)
 
             return {
                 "id": interacao.id,
@@ -169,15 +104,15 @@ class InteracaoController:
                 "pg_atual": interacao.pg_atual
             }
         except Interacao.DoesNotExist:
-            return {"detail": "Interacao não encontrada ou não pertence ao usuário"}, 404
+            return {"detail": "Interacao não encontrada ou não pertence ao usuário"}
 
 
-    @route.put("/{id}/marcar-como-lido", )
-    def marcar_como_lido(self, request, id: int):
+    @route.put("/{int:id}")
+    def atualizar_interacao(self, request, id: int, interacao_in: InteracaoSchemaIn):
         try:
-            interacao = Interacao.objects.get(id=id, leitor=request.user)
-            interacao.status = "LD"
+            interacao = Interacao.objects.get(id=id)
+            interacao.status = interacao_in.status
             interacao.save()
-            return {"success": True, "message":"Livro marcado como lido com sucesso!"}
+            return {"success": True, "message":"Leitura atualizada!"}
         except Interacao.DoesNotExist:
             raise Http404("Interacao não encontrada")
