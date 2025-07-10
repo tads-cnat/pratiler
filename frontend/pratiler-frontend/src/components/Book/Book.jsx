@@ -46,7 +46,7 @@ export function Book() {
           .get(`livros/buscar-livro/${isbn}`)
           .then(async (response) => {
             await internalAxios
-              .post(`interacoes/leitor/lendo?livro_id=${response.data.id}`, {})
+              .post("interacoes", { livro_id: response.data.id, status: "LN" })
               .then(() => {
                 navigate("/livros");
               });

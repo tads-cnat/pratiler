@@ -10,7 +10,7 @@ import { Header } from "../Global/HeaderGlobal";
 import { Book } from "./Book";
 
 export function Interaction() {
-  const { id } = useParams(); // Pega o ID da URL
+  const { id } = useParams();
   const [interaction, setInteraction] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ export function Interaction() {
   useEffect(() => {
     const fetchInteraction = async () => {
       await internalAxios
-        .get(`interacoes/leitor/${id}`)
+        .get(`interacoes/${id}`)
         .then((response) => {
           setInteraction(response.data);
         })

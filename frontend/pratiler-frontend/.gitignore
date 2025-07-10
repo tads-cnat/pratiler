@@ -25,3 +25,4 @@ dist-ssr
 
 # node packages
 node_modules/
+package-lock.json
