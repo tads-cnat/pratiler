@@ -41,11 +41,11 @@ export function LoginFormulario() {
   async function fetchLogin(data) {
     setError(null);
     const { email, password } = data;
-    await login(email, password);
+    const response = await login(email, password);
     if (useAuthStore.getState().isAuthenticated) {
       setSuccess("Login efetuado com sucesso! Sinta-se a vontade.");
       setTimeout(() => navigate("/livros"), 2000);
-    } else setError("Email ou senha inválidos.");
+    } else setError(response.message);
   }
 
   return (

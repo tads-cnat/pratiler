@@ -46,17 +46,11 @@ export function CadastroFormulario() {
   async function fetchRegister(data) {
     setError(null);
     const { nome, username, email, password } = data;
-    await register(nome, username, email, password)
-      .then(() => {
-        setSuccess("Conta criada com sucesso! Estamos te autenticando...");
-        setTimeout(() => navigate("/livros"), 2000); // Redireciona para a página de livros após autenticação após 2 segundos
-      })
-      .catch((err) => {
-        setError(
-          err.response?.data?.error ||
-            "Erro no servidor. Tente novamente mais tarde."
-        );
-      });
+    const response = await register(nome, username, email, password);
+    if (useAuthStore.getState().isAuthenticated) {
+      setSuccess("Conta criada com sucesso! Estamos te autenticando...");
+      setTimeout(() => navigate("/livros"), 2000);
+    } else setError(response.message);
   }
 
   return (

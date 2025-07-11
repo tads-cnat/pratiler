@@ -33,7 +33,7 @@ export function Book() {
   const sendBook = async (e) => {
     const isbn = e.volumeInfo.industryIdentifiers[0].identifier;
     await internalAxios
-      .post("livros/salvar-livro", {
+      .post("livros", {
         titulo: e.volumeInfo.title,
         sinopse: e.volumeInfo.description,
         capa: e.volumeInfo.imageLinks?.thumbnail,
@@ -43,7 +43,7 @@ export function Book() {
       })
       .then(async () => {
         await internalAxios
-          .get(`livros/buscar-livro/${isbn}`)
+          .get(`livros/${isbn}`)
           .then(async (response) => {
             await internalAxios
               .post("interacoes", { livro_id: response.data.id, status: "LN" })
