@@ -75,6 +75,10 @@ class InteracaoSchemaIn(Schema):
     status: str
     pg_atual: int = 0
 
+class InteracaoSchemaUpdate(Schema):
+    status: str = None
+    pg_atual: int = 0
+
 class ResenhaSchemaIn(Schema):
     livro_id: int
     titulo: str
@@ -127,3 +131,6 @@ class AvaliacaoSchemaOut(Schema):
     data_hora: str
     livro: LivroSchema
     leitor: LeitorSchema
+
+class ErrorSchema(Schema):
+    message: str

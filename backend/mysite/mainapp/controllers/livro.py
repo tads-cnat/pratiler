@@ -1,8 +1,7 @@
-from django.shortcuts import get_object_or_404
 from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Autor, Interacao, Livro
-from mainapp.schemas import LivroSchema, LivroSchemaIn
+from mainapp.schemas import ErrorSchema, LivroSchema, LivroSchemaIn
 
 @api_controller("/livros", auth=JWTAuth(), tags=["Livros"])
 class LivroController:
@@ -41,48 +40,70 @@ class LivroController:
                 "capa": interacao.livro.capa,
         } for interacao in livros_para_resenha]
 
-    @route.get("/livros-disponiveis")
+    @route.get("/livros-disponiveis", response=list[LivroSchema])
     def livros_disponiveis(self, request):
-        try:
-            leitor = request.user
-            interacoes_leitor = Interacao.objects.filter(leitor=leitor).values_list('livro_id', flat=True)
-
-            livros_disponiveis = Livro.objects.exclude(id__in=interacoes_leitor)
-
-            return [{
-                    "id": livro.id,
-                    "titulo": livro.titulo,
-                    "sinopse": livro.sinopse,
-                    "isbn": livro.isbn,  
-                    "n_paginas": livro.n_paginas,    
-                    "autor":{
-                            "id": livro.autor.id,
-                            "nome": livro.autor.nome
-                    },
-                    "capa": livro.capa,
-                } for livro in livros_disponiveis]
-        except Livro.DoesNotExist:
-            return {"detail": "Livros não encontrados"}, 404
+        leitor = request.user
+        interacoes_leitor = Interacao.objects.filter(leitor=leitor).values_list('livro_id', flat=True)
+        livros_disponiveis = Livro.objects.exclude(id__in=interacoes_leitor)
+        return [{
+                "id": livro.id,
+                "titulo": livro.titulo,
+                "sinopse": livro.sinopse,
+                "isbn": livro.isbn,  
+                "n_paginas": livro.n_paginas,    
+                "autor":{
+                        "id": livro.autor.id,
+                        "nome": livro.autor.nome
+                },
+                "capa": livro.capa,
+            } for livro in livros_disponiveis]
         
-    @route.post("/salvar-livro")
-    def adicionar_livro(self, request, livro: LivroSchemaIn):
-        livro_existencia = Livro.objects.filter(isbn=livro.isbn)
+    @route.post("", response=LivroSchema)
+    def adicionar_livro(self, request, livro_in: LivroSchemaIn):
+        livro = Livro.objects.filter(isbn=livro.isbn)
 
-        if not livro_existencia:
-            autor_livro = Autor.objects.filter(nome=livro.autor).first()
+        if not livro:
+            autor_livro = Autor.objects.filter(nome=livro_in.autor)
             if not autor_livro:
-                autor_livro = Autor.objects.create(nome=livro.autor)
+                autor_livro = Autor.objects.create(nome=livro_in.autor)
 
-            Livro.objects.create(
-                titulo=livro.titulo,
-                sinopse=livro.sinopse,
-                capa=livro.capa,
-                n_paginas=livro.n_paginas,
-                isbn =livro.isbn,
+            livro = Livro.objects.create(
+                titulo=livro_in.titulo,
+                sinopse=livro_in.sinopse,
+                capa=livro_in.capa,
+                n_paginas=livro_in.n_paginas,
+                isbn =livro_in.isbn,
                 autor=autor_livro,
             )
 
-    @route.get("/buscar-livro/{livro_isbn}", response=LivroSchema)
-    def buscar_livro(self, request, livro_isbn: str):
-        livro_get = get_object_or_404(Livro, isbn=livro_isbn)
-        return livro_get
+            return {
+                "id": livro.id,
+                "titulo": livro.titulo,
+                "sinopse": livro.sinopse,
+                "isbn": livro.isbn,              
+                "n_paginas": livro.n_paginas,    
+                "autor":{
+                        "id": livro.autor.id,
+                        "nome": livro.autor.nome
+                },
+                "capa": livro.capa,
+            }
+
+    @route.get("/{isbn}", response={200: LivroSchema, 404: ErrorSchema})
+    def buscar_livro(self, request, isbn: str):
+        try:
+            livro = Livro.objects.get(isbn=isbn)
+            return {
+                "id": livro.id,
+                "titulo": livro.titulo,
+                "sinopse": livro.sinopse,
+                "isbn": livro.isbn,              
+                "n_paginas": livro.n_paginas,    
+                "autor":{
+                        "id": livro.autor.id,
+                        "nome": livro.autor.nome
+                },
+                "capa": livro.capa,
+            }
+        except Livro.DoesNotExist:
+            return 404, {"message": "Livro não encontrado"}
