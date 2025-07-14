@@ -1,106 +1,112 @@
 @import url("../base.css");
 
-.postagem{
-    width: 40rem;
-    border-radius: 1.5rem;
-    padding: 2rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);    
-    font-family: var(--roboto);
-    background-color: var(--white);
-    margin-bottom: 2rem;
+.postagem {
+  width: 40rem;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  font-family: var(--roboto);
+  background-color: var(--white);
+  margin-bottom: 2rem;
 }
-.nomeBotaoSeguirData{
-    display: flex;
-    justify-content: space-between;
+.nomeBotaoSeguirData {
+  display: flex;
+  justify-content: space-between;
 }
-.nomeBotaoSeguirData p{
-    margin: 0;
+.nomeBotaoSeguirData p {
+  margin: 0;
 }
-.nomeBotaoSeguirData img{
-    width: 65px;
+.nomeBotaoSeguirData img {
+  width: 65px;
 }
-.nomeBotaoSeguirData .perfil{
-    display: flex;
-    font-size: 1.1rem;
+.nomeBotaoSeguirData .perfil {
+  display: flex;
+  font-size: 1.1rem;
 }
-.nomeBotaoSeguirData .perfil .nome p{
-    color: var(--penn-blue);
-    cursor: pointer;
+.nomeBotaoSeguirData .perfil .nome p {
+  color: var(--penn-blue);
+  cursor: pointer;
 }
-.nomeBotaoSeguirData .perfil .nome button{
-    color: #6761A8;
-    font-weight: 400;
+.nomeBotaoSeguirData .perfil .nome button {
+  color: #6761a8;
+  font-weight: 400;
 }
-.nomeBotaoSeguirData .nome{
-    margin: 0.5rem 1rem;
-    font-weight: bold;
-    margin: 0.5rem 1rem;
+.nomeBotaoSeguirData .nome {
+  margin: 0.5rem 1rem;
+  font-weight: bold;
+  margin: 0.5rem 1rem;
 }
-.nomeBotaoSeguirData .data{
-    margin: 0.5rem 1rem;
-    color: #6761A8;
+.nomeBotaoSeguirData .data {
+  margin: 0.5rem 1rem;
+  color: #6761a8;
 }
 
-.iconCurtido path{
-    fill: var(--ultra-violet);
-    color: var(--ultra-violet);
+.iconCurtido path {
+  fill: var(--ultra-violet);
+  color: var(--ultra-violet);
 }
 
 .iconCurtido {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
 }
 
 .iconCurtir {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
 }
 
-.curtir{
-    border: none;
-    margin: 1rem 0rem;
-    background-color: var(--white);
+.curtir {
+  border: none;
+  margin: 1rem 0rem;
+  background-color: var(--white);
 }
 
-.botaoSeguir{
-    margin: 0.5rem 0rem;
-    color: white;
-    background-color: var(--penn-blue);
-    border-radius: 10px;
-    padding: 0.2rem 1rem;
-    max-height: 2rem;
-    font-weight: 500;
-    border: none;
+.botaoSeguir {
+  margin: 0.5rem 0rem;
+  color: white;
+  background-color: var(--penn-blue);
+  border-radius: 10px;
+  padding: 0.2rem 1rem;
+  max-height: 2rem;
+  font-weight: 500;
+  border: none;
 }
-.nomeUsuario{
-    margin-top: 0.3rem;
+.nomeUsuario {
+  margin-top: 0.3rem;
 }
-.tituloAutor{
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 0;
+.tituloAutor {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0;
 }
-.paginas{
-    margin-top: 0.3rem;
-    color: #6761A8;
+.paginas {
+  margin-top: 0.3rem;
+  color: #6761a8;
 }
 .icon {
-    height: 2.5rem;
-    width: 2.5rem;
-    background-color: var(--ultra-violet);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: var(--ultra-violet);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.curtidaInfo{
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
+.curtidaInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
 }
-.curtidaInfo p{
-    color: var(--ultra-violet);
-    font-weight: bold;
+.curtidaInfo p {
+  color: var(--ultra-violet);
+  font-weight: bold;
+}
+
+@media (max-width: 1090px) {
+  .postagem {
+    width: 100%;
+  }
 }
