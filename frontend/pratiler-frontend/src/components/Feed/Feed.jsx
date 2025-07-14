@@ -5,7 +5,6 @@ import feedCss from "../../assets/css/Feed/Feed.module.css";
 import formCss from "../../assets/css/FormPostagem/FormPostagem.module.css";
 
 /* Store */
-import { useAuthStore } from "../Global/authStore";
 import { internalAxios } from "../Global/axiosInstances";
 
 /* Components */
@@ -14,7 +13,6 @@ import Postagem from "../Postagem/index";
 import { AuthFail } from "../Global/AuthFail";
 
 export function Feed() {
-  const { user } = useAuthStore();
   const [error, setError] = useState(null);
   const [postagens, setPostagens] = useState([]);
   const [livrosEstante, setLivrosEstante] = useState([]);
@@ -27,26 +25,24 @@ export function Feed() {
   });
 
   const changeBook = async (e, id) => {
-    let livroId;
+    let interacaoId;
     const realizouPostagem = e === undefined;
-    if (!realizouPostagem) livroId = e.target.value;
-    else livroId = id;
-    if (livroId !== "0") {
-      await internalAxios
-        .get(`interacoes/leitor/${livroId}`)
-        .then((response) => {
+    if (!realizouPostagem) interacaoId = e.target.value;
+    else interacaoId = id;
+    if (interacaoId !== "0") {
+      await internalAxios.get(`interacoes/${interacaoId}`).then((response) => {
+        setFormData({
+          ...formData,
+          livro_id: Number(interacaoId),
+          pagina_inicial: response.data.pg_atual,
+        });
+        if (realizouPostagem)
           setFormData({
             ...formData,
-            livro_id: Number(livroId),
-            pagina_inicial: response.data.pg_atual,
+            pagina_final: 0,
+            texto: "",
           });
-          if (realizouPostagem)
-            setFormData({
-              ...formData,
-              pagina_final: 0,
-              texto: "",
-            });
-        });
+      });
     } else {
       setFormData({
         ...formData,
@@ -84,7 +80,7 @@ export function Feed() {
 
   async function pegarLivrosEstante() {
     await internalAxios
-      .get(`interacoes/leitor?username=${user.username}&status=QL,LN`)
+      .get("interacoes", { params: { status: "QL,LN" } })
       .then((response) => setLivrosEstante(response.data));
   }
   async function getPostagens() {
@@ -115,9 +111,9 @@ export function Feed() {
               Livro:
               <select name="livro_id" onChange={changeBook}>
                 <option value="0">Selecione</option>
-                {livrosEstante.map((l) => (
-                  <option key={l.livro.id} value={l.livro.id}>
-                    {l.livro.titulo}
+                {livrosEstante.map((interacao) => (
+                  <option key={interacao.id} value={interacao.id}>
+                    {interacao.livro.titulo}
                   </option>
                 ))}
               </select>
@@ -155,7 +151,7 @@ export function Feed() {
           </form>
           {error && <AuthFail message={error} />}
         </div>
-        <div>
+        <div className={feedCss.postagens}>
           {postagens.length > 0 ? (
             postagens.map((postagem, index) => (
               <Postagem

@@ -37,7 +37,7 @@ export function RealizarAvaliacao() {
   async function fetchLivro() {
     setLoading(true);
     await internalAxios
-      .get(`interacoes/leitor/${id}`)
+      .get(`interacoes/${id}`)
       .then((response) => {
         setLivro(response.data.livro);
       })

@@ -1,8 +1,7 @@
 from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Avaliacao, Livro
-from mainapp.schemas import AvaliacaoSchemaIn, AvaliacaoSchemaOut
-from django.http import JsonResponse
+from mainapp.schemas import AvaliacaoSchemaIn, AvaliacaoSchemaOut, ErrorSchema
 
 @api_controller("/avaliacoes", auth=JWTAuth(), tags=["Avaliacoes"])
 class AvaliacaoController:
@@ -32,7 +31,7 @@ class AvaliacaoController:
         }
         for avaliacao in Avaliacao.objects.all()]
 
-    @route.get("/{avaliacao_id}", response=AvaliacaoSchemaOut)
+    @route.get("/{avaliacao_id}", response={200: AvaliacaoSchemaOut, 404: ErrorSchema})
     def listar_avaliacao(self, request, avaliacao_id: int):
         try:
             avaliacao = Avaliacao.objects.get(id=avaliacao_id)
@@ -59,15 +58,14 @@ class AvaliacaoController:
                 "texto": avaliacao.texto
             }
         except Avaliacao.DoesNotExist:
-            return JsonResponse({"detalhe": "avaliação não encontrada"}, status=404)
+            return 404, {"message": "Avaliação não encontrada"}
         
-    @route.post("", response=AvaliacaoSchemaOut)
+    @route.post("", response={200: AvaliacaoSchemaOut, 400:ErrorSchema , 404: ErrorSchema})
     def adicionar_avaliacao(self, request, avaliacao: AvaliacaoSchemaIn):
         try:
             livro = Livro.objects.get(id=avaliacao.livro_id)
 
-            #verificando se já existe uma avaliação desse livro feita pelo mesmo leitor
-            avaliacao_exists = Avaliacao.objects.filter(livro=livro, leitor=request.user).exists()
+            avaliacao_exists = Avaliacao.objects.filter(livro=livro, leitor=request.user)
 
             if not avaliacao_exists:
                 avaliacao_nova = Avaliacao.objects.create(
@@ -99,10 +97,8 @@ class AvaliacaoController:
                     "texto": avaliacao_nova.texto
             }
             
-            elif avaliacao_exists:
-                return JsonResponse({"detalhe": "Já existe uma avaliação sua sobre esse livro"}, status=400)
+            else:
+                return 400, {"message": "Já existe uma avaliação sua sobre esse livro"}
 
         except Livro.DoesNotExist:
-            return JsonResponse({"detalhe": "livro não encontrado para criação dessa avaliação"}, status=404)
-        
-
+            return 404, {"message": "Livro não encontrado para criação dessa avaliação"}

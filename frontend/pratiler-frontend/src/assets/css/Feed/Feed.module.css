@@ -4,8 +4,11 @@
     display: flex;
     margin-top: 2rem;
     margin: 3rem auto;
-    justify-content: space-between;
-    width: 65%;
+    justify-content: space-around;
+}
+
+.postagens{
+    margin-right: 12rem;
 }
 
 body{

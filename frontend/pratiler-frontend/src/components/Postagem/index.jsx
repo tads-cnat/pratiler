@@ -31,7 +31,7 @@ export default function Postagem(props) {
 
   async function curtirPostagem() {
     await internalAxios
-      .post(`postagens/curtir`, { postagem_id: id })
+      .post(`curtidas`, { postagem_id: id })
       .then((response) => {
         setTaCurtido(!taCurtido);
         setNumeroCurtidas(response.data);

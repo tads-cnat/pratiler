@@ -15,7 +15,7 @@ export function Minibook({ img, autor, title, id, handleMarkAsReading }) {
 
   const handleInteraction = async () => {
     await internalAxios
-      .post(`interacoes/leitor/lendo?livro_id=${id}`, {})
+      .post("interacoes", { livro_id: id, status: "LN" })
       .then(() => {
         navigate("/livros");
       })

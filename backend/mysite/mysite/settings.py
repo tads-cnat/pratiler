@@ -93,15 +93,12 @@ DATABASES = {
         'HOST': os.getenv('POSTGRES_HOST', 'db'),
         'PORT': os.getenv('POSTGRES_PORT', '5432'), 
     }
+} if os.getenv('DEV') == 0 else {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
-
-# Utilizar esse trecho quando for usar sqlite
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# } 
 
 
 # Password validation
@@ -150,7 +147,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOW_ALL_ORIGINS = True
 
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:80"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:80", "http://localhost:5173"]
 AUTH_USER_MODEL = 'mainapp.Leitor'
 
 

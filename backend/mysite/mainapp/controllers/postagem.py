@@ -1,7 +1,7 @@
 from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Curtida, Interacao, Livro, Postagem
-from mainapp.schemas import CurtidaSchema, PostagemListSchemaOut, PostagemSchemaIn, PostagemSchemaOut
+from mainapp.schemas import PostagemListSchemaOut, PostagemSchemaIn, PostagemSchemaOut
 
 
 @api_controller("/postagens", auth=JWTAuth(), tags=["Postagens"])
@@ -84,13 +84,3 @@ class PostagemController:
             }
             for postagem in postagens
         ]
-    @route.post("/curtir", response=int)
-    def curtir_postagem(self, request, curtida: CurtidaSchema):
-        leitor = request.user
-        postagem = Postagem.objects.get(id=curtida.postagem_id)
-        curtida = Curtida.objects.filter(postagem=postagem, leitor_id=leitor.id)
-        if curtida:
-            curtida.delete()
-        else:
-            Curtida.objects.create(postagem=postagem, leitor_id=leitor.id)
-        return Curtida.objects.filter(postagem=postagem).count()

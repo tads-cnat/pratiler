@@ -17,15 +17,17 @@ export const useAuthStore = create(
           email: email,
           password: password,
         };
-        const response = await internalAxios.post("auth/register", credentials);
-        return response.data.success
-          ? await get().login(email, password)
-          : response.data;
+        return await internalAxios
+          .post("auth/register", credentials)
+          .then(async () => await get().login(email, password))
+          .catch((error) =>
+            error.response.status === 400 ? error.response.data : error
+          );
       },
 
       login: async (email, password) => {
         const credentials = { email: email, password: password };
-        await internalAxios
+        return await internalAxios
           .post("auth/login", credentials)
           .then(async (res) => {
             const response = res;
@@ -38,9 +40,9 @@ export const useAuthStore = create(
               return response;
             });
           })
-          .catch((error) => {
-            return error;
-          });
+          .catch((error) =>
+            error.response.status === 400 ? error.response.data : error
+          );
       },
 
       logout: async () => {

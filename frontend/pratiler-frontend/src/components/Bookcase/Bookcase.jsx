@@ -17,7 +17,7 @@ import { SemResultados } from "../SemResultado";
 export function Bookcase() {
   const navigate = useNavigate();
 
-  const { isAuthenticated, user } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
   useEffect(() => {
     async function checkAuth() {
       if (!isAuthenticated) {
@@ -35,13 +35,13 @@ export function Bookcase() {
   const fetchBooks = async () => {
     setLoading(true);
     const endpoint = {
-      Lendo: `interacoes/leitor?username=${user.username}&status=LN`,
-      "Quero Ler": `interacoes/leitor?username=${user.username}&status=QL`,
-      Lidos: `interacoes/leitor?username=${user.username}&status=LD`,
+      Lendo: `LN`,
+      "Quero Ler": `QL`,
+      Lidos: `LD`,
     }[filter];
 
     await internalAxios
-      .get(endpoint)
+      .get("interacoes", { params: { status: endpoint } })
       .then((response) => {
         setBooks(response.data);
       })
