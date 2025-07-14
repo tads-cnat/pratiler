@@ -18,7 +18,7 @@ export function Feed() {
   const [livrosEstante, setLivrosEstante] = useState([]);
   const [novaPostagem, setNovaPostagem] = useState(false);
   const [formData, setFormData] = useState({
-    livro_id: 0,
+    interacao_id: 0,
     pagina_inicial: 0,
     pagina_final: 0,
     texto: "",
@@ -33,7 +33,7 @@ export function Feed() {
       await internalAxios.get(`interacoes/${interacaoId}`).then((response) => {
         setFormData({
           ...formData,
-          livro_id: Number(interacaoId),
+          interacao_id: Number(interacaoId),
           pagina_inicial: response.data.pg_atual,
         });
         if (realizouPostagem)
@@ -46,7 +46,7 @@ export function Feed() {
     } else {
       setFormData({
         ...formData,
-        livro_id: 0,
+        interacao_id: 0,
         pagina_inicial: 0,
         pagina_final: 0,
         texto: "",
@@ -71,7 +71,7 @@ export function Feed() {
           texto: "",
           pagina_final: 0,
         });
-        changeBook(undefined, formData.livro_id);
+        changeBook(undefined, formData.interacao_id);
       })
       .catch((err) => {
         setError(err.response.data.detail);
@@ -109,7 +109,7 @@ export function Feed() {
             <h1>Escreva sua postagem</h1>
             <label className={formCss.select}>
               Livro:
-              <select name="livro_id" onChange={changeBook}>
+              <select name="interacao_id" onChange={changeBook}>
                 <option value="0">Selecione</option>
                 {livrosEstante.map((interacao) => (
                   <option key={interacao.id} value={interacao.id}>

@@ -60,7 +60,7 @@ class LivroController:
         
     @route.post("", response=LivroSchema)
     def adicionar_livro(self, request, livro_in: LivroSchemaIn):
-        livro = Livro.objects.filter(isbn=livro.isbn)
+        livro = Livro.objects.filter(isbn=livro_in.isbn)
 
         if not livro:
             autor_livro = Autor.objects.filter(nome=livro_in.autor)
