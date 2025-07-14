@@ -9,12 +9,10 @@ class PostagemController:
     @route.post("", response=PostagemSchemaOut)
     def criar_postagem(self, request, postagem: PostagemSchemaIn):
 
-        livro_id = postagem.livro_id
-        livro = Livro.objects.get(id=livro_id)
-        if livro.n_paginas < postagem.pagina_final:
+        interacao_id = postagem.interacao_id
+        interacao = Interacao.objects.get(id=interacao_id)
+        if interacao.livro.n_paginas < postagem.pagina_final:
             return {"detail": "Página final maior que o total de páginas do livro"}, 400
-        leitor = request.user
-        interacao = Interacao.objects.get(livro_id=livro_id, leitor_id=leitor.id)
 
         nova_postagem = Postagem.objects.create(
             interacao=interacao,
@@ -23,7 +21,7 @@ class PostagemController:
             pagina_final=postagem.pagina_final
         )
 
-        if postagem.pagina_final == livro.n_paginas:
+        if postagem.pagina_final == interacao.livro.n_paginas:
             interacao.status = 'LD'
         interacao.pg_atual = postagem.pagina_final
         interacao.save()
