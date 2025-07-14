@@ -1,16 +1,46 @@
 @import url("../base.css");
 
-.content{
-    display: flex;
-    margin-top: 2rem;
-    margin: 3rem auto;
-    justify-content: space-around;
+.content {
+  display: flex;
+  margin-top: 2rem;
+  margin: 3rem auto;
+  justify-content: space-around;
 }
 
-.postagens{
-    margin-right: 12rem;
+.postagens {
+  margin-right: 12rem;
 }
 
-body{
-    background-color: #F9F8FF;
+body {
+  background-color: #f9f8ff;
+}
+
+@media (max-width: 1260px) {
+  .content {
+    justify-content: space-end;
+  }
+
+  .postagens {
+    margin-right: 2rem;
+  }
+}
+
+@media (max-width: 1090px) {
+  .content {
+    align-items: right;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 810px) {
+  .content {
+    flex-direction: column;
+    align-items: right;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+  .postagens {
+    margin-right: 0;
+  }
 }
