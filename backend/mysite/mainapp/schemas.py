@@ -91,7 +91,7 @@ class ResenhaSchema(Schema):
     texto: str
 
 class PostagemSchemaIn(Schema):
-    livro_id: int
+    interacao_id: int
     texto: str
     pagina_inicial: int
     pagina_final: int
