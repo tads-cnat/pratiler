@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -23,3 +24,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+const API_URL = Cypress.env("API_BASE_URL");
+
+Cypress.Commands.add("login", (email, password) => {
+  cy.clearLocalStorage();
+
+  cy.intercept("POST", `${API_URL}/auth/login`).as("loginRequest");
+  cy.visit("/login");
+  cy.get("input[name=email]").type(email);
+  cy.get("input[name=password]").type(password);
+  cy.get("input[type=submit]").click();
+
+  cy.wait("@loginRequest");
+});
