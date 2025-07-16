@@ -12,7 +12,7 @@ import { internalAxios } from "../Global/axiosInstances";
 /* Componentes */
 import { Header } from "../Global/HeaderGlobal";
 import { CardBook } from "./CardBook";
-import { SemResultados } from "../SemResultado";
+import SemResultados from "../SemResultado";
 
 export function Bookcase() {
   const navigate = useNavigate();

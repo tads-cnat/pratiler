@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 /* Components */
 import { Minibook } from "./Minibook";
-import { SemResultados } from "../SemResultado";
+import SemResultados from "../SemResultado";
 
 /* CSS */
 import css from "../../assets/css/AddBook/ListBooks.module.css";

@@ -6,7 +6,7 @@ import semResultadoCss from "../../assets/css/SemResultado/SemResultado.module.c
 /* Images */
 import semResultado from "../../assets/img/no-books.png";
 
-export function SemResultados(props) {
+export default function SemResultados(props) {
   const { titulo, tamanho } = props;
   let width;
   switch (tamanho) {

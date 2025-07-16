@@ -11,6 +11,7 @@ import { internalAxios } from "../Global/axiosInstances";
 import { Header } from "../Global/HeaderGlobal";
 import Postagem from "../Postagem/index";
 import { AuthFail } from "../Global/AuthFail";
+import SemResultados from "../SemResultado";
 
 export function Feed() {
   const [error, setError] = useState(null);
@@ -168,10 +169,7 @@ export function Feed() {
               />
             ))
           ) : (
-            <p>
-              Não há postagens no momento, seja a primeira pessoa a comentar
-              sobre sua leitura!
-            </p>
+            <SemResultados titulo="Não há postagens no momento, seja a primeira pessoa a comentar sobre sua leitura!" />
           )}
         </div>
       </div>

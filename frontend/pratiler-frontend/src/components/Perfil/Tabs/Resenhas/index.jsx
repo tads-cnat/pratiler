@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { internalAxios } from "../../../Global/axiosInstances";
 
 /* Components */
-import { SemResultados } from "../../../SemResultado";
+import SemResultados from "../../../SemResultado";
 import EscreverResenha from "./escreverResenha";
 
 /* CSS */
