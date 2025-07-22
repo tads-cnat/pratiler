@@ -60,8 +60,7 @@ class LivroController:
         
     @route.post("", response=LivroSchema)
     def adicionar_livro(self, request, livro_in: LivroSchemaIn):
-        livro = Livro.objects.filter(isbn=livro_in.isbn)
-
+        livro = Livro.objects.filter(isbn=livro_in.isbn).first()
         if not livro:
             autor_livro = Autor.objects.filter(nome=livro_in.autor)
             if not autor_livro:
@@ -76,18 +75,18 @@ class LivroController:
                 autor=autor_livro,
             )
 
-            return {
-                "id": livro.id,
-                "titulo": livro.titulo,
-                "sinopse": livro.sinopse,
-                "isbn": livro.isbn,              
-                "n_paginas": livro.n_paginas,    
-                "autor":{
-                        "id": livro.autor.id,
-                        "nome": livro.autor.nome
-                },
-                "capa": livro.capa,
-            }
+        return {
+            "id": livro.id,
+            "titulo": livro.titulo,
+            "sinopse": livro.sinopse,
+            "isbn": livro.isbn,              
+            "n_paginas": livro.n_paginas,    
+            "autor":{
+                    "id": livro.autor.id,
+                    "nome": livro.autor.nome
+            },
+            "capa": livro.capa,
+        }
 
     @route.get("/{isbn}", response={200: LivroSchema, 404: ErrorSchema})
     def buscar_livro(self, request, isbn: str):

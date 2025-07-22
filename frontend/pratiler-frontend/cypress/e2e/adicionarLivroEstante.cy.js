@@ -1,3 +1,5 @@
+import { API_URL } from "../support/commands";
+
 describe("Adicionar livro à estante", () => {
   before(() => {
     cy.login("favasconcelos09@gmail.com", "12345");
@@ -5,6 +7,7 @@ describe("Adicionar livro à estante", () => {
   });
 
   it("deve adicionar um livro à estante", () => {
+    cy.intercept("POST", `${API_URL}/livros`).as("livroRequest");
     cy.get("input[name=search]").type("Cypress");
     cy.get("button[type=button]").click();
     cy.get("header").within(() => {
@@ -25,5 +28,10 @@ describe("Adicionar livro à estante", () => {
         });
     });
     cy.get("button").contains("Começar leitura").click();
+
+    cy.wait("@livroRequest").then((interception) => {
+      console.log("Intercepted request:", interception.response);
+      
+    });
   });
 });

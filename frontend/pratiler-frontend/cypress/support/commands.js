@@ -25,7 +25,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-const API_URL = Cypress.env("API_BASE_URL");
+export const API_URL = Cypress.env("API_BASE_URL");
 
 Cypress.Commands.add("login", (email, password) => {
   cy.clearLocalStorage();
@@ -36,5 +36,14 @@ Cypress.Commands.add("login", (email, password) => {
   cy.get("input[name=password]").type(password);
   cy.get("input[type=submit]").click();
 
-  cy.wait("@loginRequest");
+  cy.wait("@loginRequest").then(() => {
+    cy.request("POST", `${API_URL}/auth/pair`, {
+      email: email,
+      password: password,
+    }).then((response) => {
+      const { token, refresh } = response.body;
+      window.localStorage.setItem("token", token);
+      window.localStorage.setItem("refresh", refresh);
+    });
+  });
 });

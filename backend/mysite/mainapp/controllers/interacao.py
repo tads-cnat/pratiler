@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Interacao, Leitor, Livro
@@ -44,37 +45,38 @@ class InteracaoController:
 
         try:
             livro = Livro.objects.get(id=interacao_in.livro_id)
+            interacao = Interacao.objects.create(
+                leitor=leitor,
+                livro=livro,
+                status=interacao_in.status,
+                pg_atual=livro.n_paginas if interacao_in.status == 'LD' else interacao_in.pg_atual
+            )
+
+            return {
+                "id": interacao.id,
+                "leitor": {
+                    "id": interacao.leitor.id,
+                    "username": interacao.leitor.username
+                },
+                "livro": {
+                    "id": interacao.livro.id,
+                    "titulo": interacao.livro.titulo,
+                    "isbn": interacao.livro.isbn,
+                    "sinopse": interacao.livro.sinopse,
+                    "capa": interacao.livro.capa,
+                    "n_paginas": interacao.livro.n_paginas,
+                    "autor": {
+                        "id": interacao.livro.autor.id,
+                        "nome": interacao.livro.autor.nome
+                    }
+                },
+                "status": interacao.status,
+                "pg_atual": interacao.pg_atual
+            }
         except Livro.DoesNotExist:
             return 404, {"message": "Livro não encontrado"}
-
-        interacao = Interacao.objects.create(
-            leitor=leitor,
-            livro=livro,
-            status=interacao_in.status,
-            pg_atual=livro.n_paginas if interacao_in.status == 'LD' else interacao_in.pg_atual
-        )
-
-        return {
-            "id": interacao.id,
-            "leitor": {
-                "id": interacao.leitor.id,
-                "username": interacao.leitor.username
-            },
-            "livro": {
-                "id": interacao.livro.id,
-                "titulo": interacao.livro.titulo,
-                "isbn": interacao.livro.isbn,
-                "sinopse": interacao.livro.sinopse,
-                "capa": interacao.livro.capa,
-                "n_paginas": interacao.livro.n_paginas,
-                "autor": {
-                    "id": interacao.livro.autor.id,
-                    "nome": interacao.livro.autor.nome
-                }
-            },
-            "status": interacao.status,
-            "pg_atual": interacao.pg_atual
-        }
+        except IntegrityError:
+            return 400, {"message": "Este livro já está na sua estante"}
 
     @route.get("/{int:id}", response={200: InteracaoSchema, 404: ErrorSchema})
     def listar_interacao_id(self, request, id: int):
