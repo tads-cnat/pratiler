@@ -22,7 +22,7 @@ Sistema de leitura que promove a organização, o registro das leituras e a comu
 # 📑 Documentação
 - [Casos de Uso](https://github.com/tads-cnat/pratiler/blob/main/doc/cdu/cdu.md)
 - [Documento de Visão](https://github.com/tads-cnat/pratiler/blob/main/doc/visao/doc-visao.md)
-- [Protótipos de Interface](https://github.com/tads-cnat/pratiler/blob/main/doc/prototipos/prototipos.md)
+- [Protótipos de Interface](https://github.com/tads-cnat/pratiler/blob/main/doc/prototipos)
 
 # 💻 Manual da desenvolvedor
 [Orientações para os desenvolvedores do projeto](doc/guia-ds/guia.md)
