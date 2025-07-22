@@ -47,3 +47,15 @@ Cypress.Commands.add("login", (email, password) => {
     });
   });
 });
+
+Cypress.Commands.add("cadastro", (nome, username, email, password) => {
+  cy.clearLocalStorage();
+
+  cy.visit("/cadastro");
+  cy.get("input[name=nome]").type(nome);
+  cy.get("input[name=username]").type(username);
+  cy.get("input[name=email]").type(email);
+  cy.get("input[name=password]").type(password);
+  cy.get("input[type=submit]").click();
+
+});

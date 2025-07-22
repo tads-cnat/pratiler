@@ -63,6 +63,7 @@ export function CardBook({
               <button
                 className={cardBookCss.lido}
                 onClick={() => handleMarkAsRead(id)}
+                id="botao-lido"
               >
                 <CheckCircle weight="bold" size={27} />
               </button>

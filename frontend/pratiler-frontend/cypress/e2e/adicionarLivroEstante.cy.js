@@ -2,6 +2,7 @@ import { API_URL } from "../support/commands";
 
 describe("Adicionar livro à estante", () => {
   before(() => {
+    cy.cadastro("João", "joao123", "favasconcelos09@gmail.com", "12345");
     cy.login("favasconcelos09@gmail.com", "12345");
     cy.visit("/livros");
   });
@@ -30,7 +31,7 @@ describe("Adicionar livro à estante", () => {
     cy.get("button").contains("Começar leitura").click();
 
     cy.wait("@livroRequest").then((interception) => {
-      console.log("Intercepted request:", interception.response);
+      console.log("Intercepted request:", interception.request.headers);
       
     });
   });
