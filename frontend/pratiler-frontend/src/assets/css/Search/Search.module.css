@@ -1,7 +1,6 @@
 @import url("../base.css");
 .searchBar{
     width: 20rem;
-    
 }
 
 .button{
@@ -13,7 +12,7 @@
     position: absolute;
     top: 90px;
     left: 83.5rem;
-    border-radius: 20px;
+    border-radius: 1rem;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.205);
 }
 

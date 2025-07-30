@@ -13,7 +13,14 @@ import { externalAxios, internalAxios } from "../Global/axiosInstances";
 export function Book() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
+  const [description, setDescription] = useState("");
   const navigate = useNavigate();
+
+  const fetchDescritpion = (desc) => {
+    var parser = new DOMParser();
+    var htmlDoc = parser.parseFromString(desc, "text/html");
+    return htmlDoc.querySelector('body').innerText;
+  };
 
   useEffect(() => {
     const fetchBookDetails = async () => {
@@ -26,16 +33,18 @@ export function Book() {
           console.error("Erro ao buscar detalhes do livro: ", error);
         });
     };
-
     fetchBookDetails();
   }, [id]);
 
   const sendBook = async (e) => {
     const isbn = e.volumeInfo.industryIdentifiers[0].identifier;
+
+    var desc = fetchDescritpion(e.volumeInfo.description);
+
     await internalAxios
       .post("livros", {
         titulo: e.volumeInfo.title,
-        sinopse: e.volumeInfo.description,
+        sinopse: desc,
         capa: e.volumeInfo.imageLinks?.thumbnail,
         n_paginas: e.volumeInfo.pageCount,
         isbn,
@@ -77,7 +86,7 @@ export function Book() {
               <strong>Autor(a):</strong> {book.volumeInfo.authors}
             </p>
             <p>
-              <strong>Sinopse:</strong> {book.volumeInfo.description}
+              <strong>Sinopse:</strong> {fetchDescritpion(book.volumeInfo.description)}
             </p>
             <button onClick={() => sendBook(book)}>Começar leitura</button>
           </div>
