@@ -11,12 +11,6 @@ export function Search() {
 
   const getBooks = Facade(search, setBooks);
 
-  const searchKeyPress = (evt) => {
-    if (evt.key === "Enter") {
-      getBooks();
-    }
-  };
-
   const handleChange = (e) => {
     const input_content = e.target.value;
     setSearch(input_content);
@@ -26,10 +20,20 @@ export function Search() {
     navigate(`/livro-busca/${bookId}`);
   };
 
+  const searchKeyPress = (evt) => {
+    if (evt.key === "Enter") {
+      evt.preventDefault();
+      getBooks();
+    }
+  };
+
   return (
     <>
-      <form action="#">
-        <button onClick={getBooks} className={searchCss.button}>
+      <form onSubmit={(evt) => { 
+        evt.preventDefault();
+        getBooks();
+      }}>
+        <button type="submit" className={searchCss.button}>
           <MagnifyingGlass size={22} color='#3D3569' weight='bold'/>
         </button>
         <input
