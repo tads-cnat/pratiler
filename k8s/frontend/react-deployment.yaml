@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: react-frontend
+  template:
+    metadata:
+      labels:
+        app: react-frontend
+    spec:
+      containers:
+      - name: react
+        image: pratiler/frontend:latest  # Use a imagem que você acabou de testar
+        ports:
+        - containerPort: 5173  # Porta do Vite
+        env:
+        - name: HOST
+          value: "0.0.0.0"  # Importante para aceitar conexões externas
+        - name: PORT
+          value: "5173"
+        - name: VITE_API_URL
+          value: "http://api-service:3000"  # URL do serviço da API
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
