@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: react-frontend
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: react-frontend
@@ -23,7 +23,7 @@ spec:
         - name: PORT
           value: "5173"
         - name: VITE_API_URL
-          value: "http://api-service:3000"  # URL do serviço da API
+          value: "http://192.168.49.2:30600/api"  # URL do serviço da API
         resources:
           limits:
             memory: "512Mi"
