@@ -59,6 +59,15 @@ jobs:
             sleep 5
           done
 
+      - name: Verificar secret SONAR_TOKEN
+        run: |
+          if [ -z "${{ secrets.SONAR_TOKEN }}" ]; then
+            echo "❌ O secret SONAR_TOKEN não está definido!"
+            exit 1
+          else
+            echo "✅ Secret SONAR_TOKEN definido"
+          fi
+
       - name: Run SonarQube Analysis
         run: |
           sonar-scanner -X \
