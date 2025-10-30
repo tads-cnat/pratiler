@@ -2,13 +2,12 @@ name: Front Pipeline
 
 on:
   push:
-    branches: [ "*" ]
+    branches: ["*"]
   pull_request:
-    branches: [ "*" ]
+    branches: ["*"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,19 +15,43 @@ jobs:
         node-version: [22.x]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: change file permissions
-      run: | 
-        cd ./frontend/pratiler-frontend
-        chmod +x ./construir_frontend.sh
-    - name: install project dependencies
-      run: |
-       cd ./frontend/pratiler-frontend
-       sed -i 's/\r$//' ./construir_frontend.sh
-       ./construir_frontend.sh
+      - name: Change file permissions
+        run: |
+          cd ./frontend/pratiler-frontend
+          chmod +x ./construir_frontend.sh
+      - name: Install project dependencies
+        run: |
+          cd ./frontend/pratiler-frontend
+          sed -i 's/\r$//' ./construir_frontend.sh
+          ./construir_frontend.sh
+  sonar:
+    runs-on: ubuntu-latest
+    services:
+      sonarqube:
+        image: sonarqube:lts-community
+        ports:
+          - 9000:9000
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install sonar dependencies
+        run: sudo apt-get update && sudo apt-get install -y unzip curl openjdk-17-jre
+      - name: Download SonarScanner
+        run: |
+          curl -sSLo sonar.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+          unzip sonar.zip -d $HOME
+          echo "$HOME/sonar-scanner-5.0.1.3006-linux/bin" >> $GITHUB_PATH
+      - name: Run SonarQube Analysis
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=pratiler-frontend \
+            -Dsonar.projectName=Pratiler Frontend \
+            -Dsonar.sources=src \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
