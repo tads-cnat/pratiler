@@ -47,6 +47,18 @@ jobs:
           curl -sSLo sonar.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
           unzip sonar.zip -d $HOME
           echo "$HOME/sonar-scanner-5.0.1.3006-linux/bin" >> $GITHUB_PATH
+
+      - name: Wait for SonarQube startup
+        run: |
+          for i in {1..30}; do
+            if curl -s http://localhost:9000/api/system/status | grep -q '"status":"UP"'; then
+              echo "SonarQube is ready!"
+              break
+            fi
+            echo "Waiting for SonarQube..."
+            sleep 5
+          done
+
       - name: Run SonarQube Analysis
         run: |
           sonar-scanner -X \
