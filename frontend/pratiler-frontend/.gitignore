@@ -26,8 +26,3 @@ dist-ssr
 # node packages
 node_modules/
 package-lock.json
-
-# SonarQube
-.scannerwork/
-sonar/
-sonar-project.properties
