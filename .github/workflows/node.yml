@@ -64,5 +64,4 @@ jobs:
           sonar-scanner -X \
             -Dsonar.projectKey=pratiler-frontend \
             -Dsonar.sources=src \
-            -Dsonar.host.url=http://localhost:9000 \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
