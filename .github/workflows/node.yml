@@ -40,6 +40,11 @@ jobs:
           - 9000:9000
     steps:
       - uses: actions/checkout@v4
+      - name: Criar token do SonarQube
+        run: |
+          TOKEN=$(curl -s -u admin:admin -X POST "http://localhost:9000/api/user_tokens/generate" -d "name=sonar-token" | jq -r .token)
+          echo "SONAR_TOKEN=$TOKEN" >> $GITHUB_ENV
+
       - name: Install sonar dependencies
         run: sudo apt-get update && sudo apt-get install -y unzip curl openjdk-17-jre
       - name: Download SonarScanner
@@ -59,18 +64,9 @@ jobs:
             sleep 5
           done
 
-      - name: Verificar secret SONAR_TOKEN
-        run: |
-          if [ -z "${{ secrets.SONAR_TOKEN }}" ]; then
-            echo "❌ O secret SONAR_TOKEN não está definido!"
-            exit 1
-          else
-            echo "✅ Secret SONAR_TOKEN definido"
-          fi
-
       - name: Run SonarQube Analysis
         run: |
           sonar-scanner -X \
             -Dsonar.projectKey=pratiler-frontend \
             -Dsonar.sources=src \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.login=$SONAR_TOKEN
