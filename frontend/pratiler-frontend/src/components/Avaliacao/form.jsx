@@ -34,21 +34,6 @@ export function RealizarAvaliacao() {
   const [livro, setLivro] = useState({});
   const [nota, setNota] = useState(0);
 
-  async function fetchLivro() {
-    setLoading(true);
-    await internalAxios
-      .get(`interacoes/${id}`)
-      .then((response) => {
-        setLivro(response.data.livro);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar livro: ", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
   async function submitAvaliacao(data) {
     const { comentario } = data;
     const avaliacao = {
@@ -73,7 +58,7 @@ export function RealizarAvaliacao() {
           case 403:
             setError("Você não tem permissão para realizar essa ação");
             break;
-          
+
           case 500:
             setError("Erro interno do servidor");
             break;
@@ -84,8 +69,22 @@ export function RealizarAvaliacao() {
   }
 
   useEffect(() => {
+    async function fetchLivro() {
+      setLoading(true);
+      await internalAxios
+        .get(`interacoes/${id}`)
+        .then((response) => {
+          setLivro(response.data.livro);
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar livro: ", error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
     fetchLivro();
-  }, []);
+  }, [id]);
 
   return (
     <>

@@ -64,7 +64,7 @@ function Home() {
       }
     }
     checkAuth();
-  }, []);
+  }, [isAuthenticated, login, navigate, user]);
 
   return (
     <>

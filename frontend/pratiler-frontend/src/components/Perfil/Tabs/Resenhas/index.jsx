@@ -17,20 +17,19 @@ export function Resenhas(props) {
   const [loading, setLoading] = useState(true);
   const [isWriting, setWriting] = useState(false);
 
-  async function loadResenhas() {
-    await internalAxios
-      .get(`/resenhas/${username}`)
-      .then((res) => {
-        setResenhas(res.data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
   useEffect(() => {
+    async function loadResenhas() {
+      await internalAxios
+        .get(`/resenhas/${username}`)
+        .then((res) => {
+          setResenhas(res.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
     loadResenhas();
-  }, []);
+  }, [username]);
 
   return (
     <>

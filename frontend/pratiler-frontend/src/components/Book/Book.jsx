@@ -13,13 +13,12 @@ import { externalAxios, internalAxios } from "../Global/axiosInstances";
 export function Book() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
-  const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
   const fetchDescritpion = (desc) => {
     var parser = new DOMParser();
     var htmlDoc = parser.parseFromString(desc, "text/html");
-    return htmlDoc.querySelector('body').innerText;
+    return htmlDoc.querySelector("body").innerText;
   };
 
   useEffect(() => {
@@ -51,15 +50,13 @@ export function Book() {
         autor: e.volumeInfo.authors[0],
       })
       .then(async () => {
-        await internalAxios
-          .get(`livros/${isbn}`)
-          .then(async (response) => {
-            await internalAxios
-              .post("interacoes", { livro_id: response.data.id, status: "LN" })
-              .then(() => {
-                navigate("/livros");
-              });
-          });
+        await internalAxios.get(`livros/${isbn}`).then(async (response) => {
+          await internalAxios
+            .post("interacoes", { livro_id: response.data.id, status: "LN" })
+            .then(() => {
+              navigate("/livros");
+            });
+        });
       })
       .catch((error) => {
         console.error("Erro ao adicionar o livro: ", error);
@@ -86,7 +83,8 @@ export function Book() {
               <strong>Autor(a):</strong> {book.volumeInfo.authors}
             </p>
             <p>
-              <strong>Sinopse:</strong> {fetchDescritpion(book.volumeInfo.description)}
+              <strong>Sinopse:</strong>{" "}
+              {fetchDescritpion(book.volumeInfo.description)}
             </p>
             <button onClick={() => sendBook(book)}>Começar leitura</button>
           </div>

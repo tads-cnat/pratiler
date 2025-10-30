@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import * as yup from "yup";
