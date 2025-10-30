@@ -32,29 +32,28 @@ export function Bookcase() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("Lendo");
 
-  const fetchBooks = async () => {
-    setLoading(true);
-    const endpoint = {
-      Lendo: `LN`,
-      "Quero Ler": `QL`,
-      Lidos: `LD`,
-    }[filter];
-
-    await internalAxios
-      .get("interacoes", { params: { status: endpoint } })
-      .then((response) => {
-        setBooks(response.data);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar Livros: ", error.response.data);
-        setError("Erro ao mostrar os Livros: ", error.response.data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
   useEffect(() => {
+    const fetchBooks = async () => {
+      setLoading(true);
+      const endpoint = {
+        Lendo: `LN`,
+        "Quero Ler": `QL`,
+        Lidos: `LD`,
+      }[filter];
+
+      await internalAxios
+        .get("interacoes", { params: { status: endpoint } })
+        .then((response) => {
+          setBooks(response.data);
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar Livros: ", error.response.data);
+          setError("Erro ao mostrar os Livros: ", error.response.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    };
     fetchBooks();
   }, [filter]);
 
@@ -104,7 +103,7 @@ export function Bookcase() {
               pages={book.livro.n_paginas}
               status={book.status}
               onDetailsClick={(id) => navigate(`/interacoes/${id}`)}
-              onUpdate={() => fetchBooks()}
+              onUpdate={() => setFilter(filter)}
             />
           ))}
         </div>

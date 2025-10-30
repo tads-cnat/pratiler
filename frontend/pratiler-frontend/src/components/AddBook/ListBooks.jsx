@@ -18,12 +18,10 @@ export function ListBooks() {
   const { isAuthenticated } = useAuthStore();
   useEffect(() => {
     async function checkAuth() {
-      if (!isAuthenticated) {
-        navigate("/login"); // Redireciona para login se não autenticado
-      }
+      if (!isAuthenticated) navigate("/login");
     }
     checkAuth();
-  }, [navigate]);
+  }, [isAuthenticated, navigate]);
 
   const [books, setBooks] = useState([]);
   const [error, setError] = useState(null);

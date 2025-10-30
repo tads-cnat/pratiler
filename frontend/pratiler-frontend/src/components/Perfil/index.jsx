@@ -24,20 +24,19 @@ export function Perfil() {
   const [tab, setTab] = useState("estante");
   const usuarioLogado = user.username === username;
 
-  async function loadPerfil() {
-    await internalAxios
-      .get(`/leitores/${username}`)
-      .then((res) => {
-        setPerfil(res.data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }
-
   useEffect(() => {
+    async function loadPerfil() {
+      await internalAxios
+        .get(`/leitores/${username}`)
+        .then((res) => {
+          setPerfil(res.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
     loadPerfil();
-  }, []);
+  }, [username]);
 
   async function SeguirUsuario() {}
 
