@@ -66,6 +66,7 @@ jobs:
 
       - name: Run SonarQube Analysis
         run: |
+          echo "$SONAR_TOKEN"
           sonar-scanner -X \
             -Dsonar.projectKey=pratiler-frontend \
             -Dsonar.sources=src \
