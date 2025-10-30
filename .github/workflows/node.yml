@@ -31,43 +31,7 @@ jobs:
           cd ./frontend/pratiler-frontend
           sed -i 's/\r$//' ./construir_frontend.sh
           ./construir_frontend.sh
-  sonar:
-    runs-on: ubuntu-latest
-    services:
-      sonarqube:
-        image: sonarqube:lts-community
-        ports:
-          - 9000:9000
-    steps:
-      - uses: actions/checkout@v4
-      - name: Criar token do SonarQube
+      - name: Execute linting
         run: |
-          TOKEN=$(curl -s -u admin:admin -X POST "http://localhost:9000/api/user_tokens/generate" -d "name=sonar-token" | jq -r .token)
-          echo "SONAR_TOKEN=$TOKEN" >> $GITHUB_ENV
-
-      - name: Install sonar dependencies
-        run: sudo apt-get update && sudo apt-get install -y unzip curl openjdk-17-jre
-      - name: Download SonarScanner
-        run: |
-          curl -sSLo sonar.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-          unzip sonar.zip -d $HOME
-          echo "$HOME/sonar-scanner-5.0.1.3006-linux/bin" >> $GITHUB_PATH
-
-      - name: Wait for SonarQube startup
-        run: |
-          for i in {1..30}; do
-            if curl -s http://localhost:9000/api/system/status | grep -q '"status":"UP"'; then
-              echo "SonarQube is ready!"
-              break
-            fi
-            echo "Waiting for SonarQube..."
-            sleep 5
-          done
-
-      - name: Run SonarQube Analysis
-        run: |
-          echo "$SONAR_TOKEN"
-          sonar-scanner -X \
-            -Dsonar.projectKey=pratiler-frontend \
-            -Dsonar.sources=src \
-            -Dsonar.login=$SONAR_TOKEN
+          cd ./frontend/pratiler-frontend
+          npm run lint
