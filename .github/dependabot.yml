@@ -8,3 +8,11 @@ updates:
       interval: daily
     open-pull-requests-limit: 5
     target-branch: main
+  - package-ecosystem: github-actions
+    allow:
+      - dependency-type: direct
+    directory: /workflows
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 5
+    target-branch: main

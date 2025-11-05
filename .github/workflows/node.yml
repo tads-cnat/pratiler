@@ -41,3 +41,9 @@ jobs:
           project: pratiler-frontend
           path: ./frontend/pratiler-frontend
           format: ALL
+      - name: OWASP Dependency Check Report Upload
+        uses: actions/upload-artifact@v5.0.0
+        with:
+          name: owasp-reports
+          path: |
+            github/workspace/reports/
