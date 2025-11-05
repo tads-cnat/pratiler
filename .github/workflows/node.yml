@@ -46,4 +46,4 @@ jobs:
         with:
           name: owasp-reports
           path: |
-            /github/workspace/reports/
+            ./github/workspace/reports/
