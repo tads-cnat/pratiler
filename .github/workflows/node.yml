@@ -41,3 +41,7 @@ jobs:
           project: pratiler-frontend
           path: ./frontend/pratiler-frontend
           format: ALL
+      - name: Execute Prettier check
+        run: |
+          cd ./frontend/pratiler-frontend
+          npx prettier . --check
