@@ -1,88 +1,86 @@
 .sectionBox {
-    width: 80%;
-    max-width: 1028px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: auto;
-    padding-block: 5rem;
-    gap: 2rem;
+  width: 80%;
+  max-width: 1028px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+  padding-block: 5rem;
+  gap: 2rem;
 }
 
 .listButtons {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .listButtons select:hover {
-    outline: 2px solid var(--penn-blue);
-    border-radius: 8px;
+  outline: 2px solid var(--penn-blue);
+  border-radius: 8px;
 }
 
 .listButtons select {
-    font-size: 0.875rem;
-    padding: 0.5rem;
-    border-radius: 8px;
-    border: none;
-    font-family: var(--font-family);
-    color: var(--penn-blue);
-    outline: 1px solid var(--periwinkle);
-    background-color: var(--white);
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-    cursor: pointer;
-    transition: 100ms;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  font-family: var(--font-family);
+  color: var(--penn-blue);
+  outline: 1px solid var(--periwinkle);
+  background-color: var(--white);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: 100ms;
 }
 
 .btnPlusBook {
-    background-color: var(--penn-blue);
-    padding-block: 0.5rem;
-    padding-inline: 1rem;
-    display: flex;
-    align-items: center;
-    font-family: var(--font-family);
-    justify-content: center;
-    border-radius: 0.5rem;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-    border: none;
-    color: var(--white);
-    gap: 0.625rem;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: 200ms;
-    font-weight: 700;
+  background-color: var(--penn-blue);
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-family);
+  justify-content: center;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  border: none;
+  color: var(--white);
+  gap: 0.625rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: 200ms;
+  font-weight: 700;
 }
 
 .btnPlusBook:hover {
-    background-color: var(--white);
-    outline: 2px solid var(--penn-blue);
-    color: var(--penn-blue);
+  background-color: var(--white);
+  outline: 2px solid var(--penn-blue);
+  color: var(--penn-blue);
 
-    .iconPlus {
-        color: var(--penn-blue);
-    }
+  .iconPlus {
+    color: var(--penn-blue);
+  }
 }
 
 .iconPlus {
-    height: 20px;
-    width: 20px;
-    color: var(--white);
+  height: 20px;
+  width: 20px;
+  color: var(--white);
 }
 
-
-
 .sectionCards {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-    padding-block: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding-block: 2rem;
 }
 
 .sectionCards img {
-    height: 248px;
-    width: 188px;
+  height: 248px;
+  width: 188px;
 
-    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.5);
 }

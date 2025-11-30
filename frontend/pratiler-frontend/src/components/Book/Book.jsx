@@ -1,14 +1,14 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 /* Components */
-import { Header } from "../Global/HeaderGlobal";
+import { Header } from '../Global/HeaderGlobal';
 
 /* CSS */
-import bookCss from "../../assets/css/Book/Book.module.css";
+import bookCss from '../../assets/css/Book/Book.module.css';
 
 /* Store */
-import { externalAxios, internalAxios } from "../Global/axiosInstances";
+import { externalAxios, internalAxios } from '../Global/axiosInstances';
 
 export function Book() {
   const { id } = useParams();
@@ -17,8 +17,8 @@ export function Book() {
 
   const fetchDescritpion = (desc) => {
     var parser = new DOMParser();
-    var htmlDoc = parser.parseFromString(desc, "text/html");
-    return htmlDoc.querySelector("body").innerText;
+    var htmlDoc = parser.parseFromString(desc, 'text/html');
+    return htmlDoc.querySelector('body').innerText;
   };
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export function Book() {
           setBook(response.data);
         })
         .catch((error) => {
-          console.error("Erro ao buscar detalhes do livro: ", error);
+          console.error('Erro ao buscar detalhes do livro: ', error);
         });
     };
     fetchBookDetails();
@@ -41,7 +41,7 @@ export function Book() {
     var desc = fetchDescritpion(e.volumeInfo.description);
 
     await internalAxios
-      .post("livros", {
+      .post('livros', {
         titulo: e.volumeInfo.title,
         sinopse: desc,
         capa: e.volumeInfo.imageLinks?.thumbnail,
@@ -51,15 +51,13 @@ export function Book() {
       })
       .then(async () => {
         await internalAxios.get(`livros/${isbn}`).then(async (response) => {
-          await internalAxios
-            .post("interacoes", { livro_id: response.data.id, status: "LN" })
-            .then(() => {
-              navigate("/livros");
-            });
+          await internalAxios.post('interacoes', { livro_id: response.data.id, status: 'LN' }).then(() => {
+            navigate('/livros');
+          });
         });
       })
       .catch((error) => {
-        console.error("Erro ao adicionar o livro: ", error);
+        console.error('Erro ao adicionar o livro: ', error);
       });
   };
 
@@ -70,11 +68,7 @@ export function Book() {
       {book ? (
         <div className={bookCss.detalhesLivro}>
           <div>
-            <img
-              src={book.volumeInfo.imageLinks?.thumbnail}
-              alt="Capa do livro"
-              className={bookCss.capa}
-            />
+            <img src={book.volumeInfo.imageLinks?.thumbnail} alt="Capa do livro" className={bookCss.capa} />
           </div>
 
           <div className={bookCss.infosLivro}>
@@ -83,8 +77,7 @@ export function Book() {
               <strong>Autor(a):</strong> {book.volumeInfo.authors}
             </p>
             <p>
-              <strong>Sinopse:</strong>{" "}
-              {fetchDescritpion(book.volumeInfo.description)}
+              <strong>Sinopse:</strong> {fetchDescritpion(book.volumeInfo.description)}
             </p>
             <button onClick={() => sendBook(book)}>Começar leitura</button>
           </div>

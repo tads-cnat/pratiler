@@ -1,40 +1,40 @@
 .big_box {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 80%;
-    margin: auto;
-    padding-block: 96px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  padding-block: 96px;
 }
 
-.box{
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
+.box {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
 }
 
 .box strong {
-    color: var(--ultra-violete);
-    font-size: 800;
+  color: var(--ultra-violete);
+  font-size: 800;
 }
 .box h1 {
-    font-size: 2rem;
-    font-weight: 500;
-    color: var(--penn-blue);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--penn-blue);
 }
 
 .box p {
-    font-size: 1.25rem;
-    line-height: 155%;
+  font-size: 1.25rem;
+  line-height: 155%;
 }
 
 .box_img {
-    height: 468px;
-    width: auto;
-    transition: 300ms ease-in-out;
+  height: 468px;
+  width: auto;
+  transition: 300ms ease-in-out;
 }
 
 .box_img:hover {
-    transform: translateY(-1.5rem);
+  transform: translateY(-1.5rem);
 }

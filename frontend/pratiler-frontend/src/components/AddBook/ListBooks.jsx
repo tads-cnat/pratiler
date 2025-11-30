@@ -1,16 +1,16 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 /* Components */
-import { Minibook } from "./Minibook";
-import { SemResultados } from "../SemResultado";
+import { Minibook } from './Minibook';
+import { SemResultados } from '../SemResultado';
 
 /* CSS */
-import css from "../../assets/css/AddBook/ListBooks.module.css";
+import css from '../../assets/css/AddBook/ListBooks.module.css';
 
 /* Store */
-import { useAuthStore } from "../Global/authStore";
-import { internalAxios } from "../Global/axiosInstances";
+import { useAuthStore } from '../Global/authStore';
+import { internalAxios } from '../Global/axiosInstances';
 
 export function ListBooks() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export function ListBooks() {
   const { isAuthenticated } = useAuthStore();
   useEffect(() => {
     async function checkAuth() {
-      if (!isAuthenticated) navigate("/login");
+      if (!isAuthenticated) navigate('/login');
     }
     checkAuth();
   }, [isAuthenticated, navigate]);
@@ -30,12 +30,12 @@ export function ListBooks() {
   const fetchBooks = async () => {
     setLoading(true);
     await internalAxios
-      .get("livros/livros-disponiveis")
+      .get('livros/livros-disponiveis')
       .then((response) => {
         setBooks(response.data);
       })
       .catch((error) => {
-        setError("Erro ao mostrar os Livros: ", error.response.data);
+        setError('Erro ao mostrar os Livros: ', error.response.data);
       })
       .finally(() => {
         setLoading(false);
@@ -59,13 +59,7 @@ export function ListBooks() {
           <SemResultados titulo="Sem livros disponíveis. Pesquise mais livros para visualizá-los." />
         ) : (
           books.map((book) => (
-            <Minibook
-              key={book.id}
-              img={book.capa}
-              title={book.titulo}
-              autor={book.autor.nome}
-              id={book.id}
-            />
+            <Minibook key={book.id} img={book.capa} title={book.titulo} autor={book.autor.nome} id={book.id} />
           ))
         )}
       </div>

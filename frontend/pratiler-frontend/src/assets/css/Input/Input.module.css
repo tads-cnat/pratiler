@@ -1,41 +1,41 @@
-@import url("../base.css");
+@import url('../base.css');
 
-.inputText{
-    border: 1px solid var(--periwinkle);
-    padding: 10px;
-    border-radius: 15px;
-    width: 20rem;
-    font: var(--text-md);
-    font-weight: 400;
-    margin: auto;
-    margin-top: 2rem;
+.inputText {
+  border: 1px solid var(--periwinkle);
+  padding: 10px;
+  border-radius: 15px;
+  width: 20rem;
+  font: var(--text-md);
+  font-weight: 400;
+  margin: auto;
+  margin-top: 2rem;
 }
 
-.inputSubmit{
-    margin: auto;
-    margin-top: 1rem;
-    background-color: var(--penn-blue);
-    border-radius: 15px;
-    padding: 10px;
-    color: var(--white);
-    font-weight: bolder;
-    width: 10rem;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    transition: 300ms;
+.inputSubmit {
+  margin: auto;
+  margin-top: 1rem;
+  background-color: var(--penn-blue);
+  border-radius: 15px;
+  padding: 10px;
+  color: var(--white);
+  font-weight: bolder;
+  width: 10rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: 300ms;
 }
 
 .inputSubmit:hover {
-    outline: 3px solid var(--penn-blue);
-    background-color: var(--white);
-    color: var(--penn-blue);
+  outline: 3px solid var(--penn-blue);
+  background-color: var(--white);
+  color: var(--penn-blue);
 }
 
-.error{
-    font-family: var(--roboto);
-    color: #221D57;
-    font-weight: bolder;
-    text-align: center;
-    font-size: 1.2rem;
+.error {
+  font-family: var(--roboto);
+  color: #221d57;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 1.2rem;
 }

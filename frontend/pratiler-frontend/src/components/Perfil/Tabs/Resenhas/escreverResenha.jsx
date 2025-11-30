@@ -1,24 +1,21 @@
-import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 
 /* CSS */
-import formCss from "../../../../assets/css/FormPostagem/FormPostagem.module.css";
-import escreverResenhaCss from "../../../../assets/css/Perfil/Resenhas/EscreverResenha.module.css";
-import inputCss from "../../../../assets/css/Input/Input.module.css";
+import formCss from '../../../../assets/css/FormPostagem/FormPostagem.module.css';
+import escreverResenhaCss from '../../../../assets/css/Perfil/Resenhas/EscreverResenha.module.css';
+import inputCss from '../../../../assets/css/Input/Input.module.css';
 
 /* Store */
-import { internalAxios } from "../../../Global/axiosInstances";
+import { internalAxios } from '../../../Global/axiosInstances';
 
 const schema = yup.object().shape({
-  livro_id: yup.string().required("Selecione um livro"),
-  titulo: yup
-    .string()
-    .required("Campo título é obrigatório")
-    .max(50, "Título excedeu o limite de 50 caracteres"),
-  texto: yup.string().required("Campo texto é obrigatório"),
+  livro_id: yup.string().required('Selecione um livro'),
+  titulo: yup.string().required('Campo título é obrigatório').max(50, 'Título excedeu o limite de 50 caracteres'),
+  texto: yup.string().required('Campo texto é obrigatório'),
 });
 
 export default function EscreverResenha(props) {
@@ -37,12 +34,12 @@ export default function EscreverResenha(props) {
   async function postResenha(data) {
     setLoading(true);
     await internalAxios
-      .post("/resenhas", data)
+      .post('/resenhas', data)
       .then(() => {
         setWriting(false);
       })
       .catch((err) => {
-        console.error("Erro ao enviar resenha", err);
+        console.error('Erro ao enviar resenha', err);
       })
       .finally(() => {
         setLoading(false);
@@ -52,12 +49,12 @@ export default function EscreverResenha(props) {
   async function loadLivros() {
     setLoading(true);
     await internalAxios
-      .get("/livros/resenha")
+      .get('/livros/resenha')
       .then((res) => {
         setLivros(res.data);
       })
       .catch((err) => {
-        console.log("Erro ao carregar livros", err);
+        console.log('Erro ao carregar livros', err);
       })
       .finally(() => {
         setLoading(false);
@@ -74,9 +71,7 @@ export default function EscreverResenha(props) {
         <p>Carregando...</p>
       ) : (
         <div className={escreverResenhaCss.formEscreverResenha}>
-          <label className={escreverResenhaCss.labelEscreverResenha}>
-            Escreva sua resenha
-          </label>
+          <label className={escreverResenhaCss.labelEscreverResenha}>Escreva sua resenha</label>
           <form onSubmit={handleSubmit(postResenha)}>
             <label className={formCss.select}>
               Livro:
@@ -84,7 +79,7 @@ export default function EscreverResenha(props) {
                 name="livro_id"
                 id=""
                 className={escreverResenhaCss.itensFormsEscreverResenha}
-                {...register("livro_id")}
+                {...register('livro_id')}
               >
                 <option value="0">Selecione</option>
                 {livros.map((livro) => (
@@ -94,9 +89,7 @@ export default function EscreverResenha(props) {
                 ))}
               </select>
             </label>
-            {errors.livro && (
-              <span className={inputCss.error}>{errors.livro.message}</span>
-            )}
+            {errors.livro && <span className={inputCss.error}>{errors.livro.message}</span>}
             <label>
               Título:
               <input
@@ -104,30 +97,22 @@ export default function EscreverResenha(props) {
                 type="text"
                 placeholder="digite o titulo da resenha"
                 className={escreverResenhaCss.itensFormsEscreverResenha}
-                {...register("titulo")}
+                {...register('titulo')}
               />
             </label>
-            {errors.titulo && (
-              <span className={inputCss.error}>{errors.titulo.message}</span>
-            )}
+            {errors.titulo && <span className={inputCss.error}>{errors.titulo.message}</span>}
             <label>
               Texto:
               <textarea
                 name="texto"
                 className={escreverResenhaCss.itensFormsEscreverResenha}
                 placeholder="Escreva sua resenha"
-                {...register("texto")}
+                {...register('texto')}
               ></textarea>
             </label>
-            {errors.texto && (
-              <span className={inputCss.error}>{errors.texto.message}</span>
-            )}
+            {errors.texto && <span className={inputCss.error}>{errors.texto.message}</span>}
             <div className={escreverResenhaCss.botoesEscreverResenha}>
-              <input
-                type="submit"
-                className={escreverResenhaCss.botao}
-                value="Escrever Resenha"
-              />
+              <input type="submit" className={escreverResenhaCss.botao} value="Escrever Resenha" />
               <button
                 className={escreverResenhaCss.botaoSecundario}
                 onClick={() => {

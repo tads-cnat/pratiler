@@ -1,27 +1,27 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Books, BookOpen, ChatCircleText, Gear } from "phosphor-react";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Books, BookOpen, ChatCircleText, Gear } from 'phosphor-react';
 
 /* Components */
-import { Header } from "../Global/HeaderGlobal";
-import { Resenhas } from "../Perfil/Tabs/Resenhas";
+import { Header } from '../Global/HeaderGlobal';
+import { Resenhas } from '../Perfil/Tabs/Resenhas';
 
 /* CSS */
-import perfilCss from "../../assets/css/Perfil/Perfil.module.css";
+import perfilCss from '../../assets/css/Perfil/Perfil.module.css';
 
 /* Images */
-import img from "../../assets/img/foto-perfil.png";
+import img from '../../assets/img/foto-perfil.png';
 
 /* Store */
-import { useAuthStore } from "../Global/authStore";
-import { internalAxios } from "../Global/axiosInstances";
+import { useAuthStore } from '../Global/authStore';
+import { internalAxios } from '../Global/axiosInstances';
 
 export function Perfil() {
   const { username } = useParams();
   const { user } = useAuthStore();
   const [perfil, setPerfil] = useState({});
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState("estante");
+  const [tab, setTab] = useState('estante');
   const usuarioLogado = user.username === username;
 
   useEffect(() => {
@@ -48,26 +48,16 @@ export function Perfil() {
         <>
           <Header />
           <div className={perfilCss.cardProfile}>
-            <img
-              src={perfil.leitor.foto_perfil ? perfil.leitor.foto_perfil : img}
-              alt="Imagem de perfil"
-            />
+            <img src={perfil.leitor.foto_perfil ? perfil.leitor.foto_perfil : img} alt="Imagem de perfil" />
             <div className={perfilCss.cardProfileContent}>
               <p className={perfilCss.cardProfileName}>
                 <strong>{perfil.leitor.nome}</strong>
               </p>
-              <p className={perfilCss.cardProfileNickname}>
-                @{perfil.leitor.username}
-              </p>
+              <p className={perfilCss.cardProfileNickname}>@{perfil.leitor.username}</p>
               <p>{perfil.leitor.biografia}</p>
               {!usuarioLogado && (
-                <button
-                  className={
-                    perfil.seguidor ? perfilCss.seguindo : perfilCss.seguir
-                  }
-                  onClick={SeguirUsuario}
-                >
-                  {perfil.seguidor ? "Seguindo" : "Seguir"}
+                <button className={perfil.seguidor ? perfilCss.seguindo : perfilCss.seguir} onClick={SeguirUsuario}>
+                  {perfil.seguidor ? 'Seguindo' : 'Seguir'}
                 </button>
               )}
               <p>
@@ -84,45 +74,31 @@ export function Perfil() {
           <div className={perfilCss.estiloHrDiv}></div>
           <div className={perfilCss.perfilNav}>
             <div
-              className={
-                tab === "estante"
-                  ? perfilCss.tabPerfilNavAtivado
-                  : perfilCss.tabPerfilNav
-              }
-              onClick={() => setTab("estante")}
+              className={tab === 'estante' ? perfilCss.tabPerfilNavAtivado : perfilCss.tabPerfilNav}
+              onClick={() => setTab('estante')}
             >
               <Books size={40} color="#3D3569" weight="fill" />
-              {usuarioLogado
-                ? "Minha Estante"
-                : `Estante de ${perfil.leitor.username}`}
+              {usuarioLogado ? 'Minha Estante' : `Estante de ${perfil.leitor.username}`}
             </div>
             <div
-              className={
-                tab === "resenhas"
-                  ? perfilCss.tabPerfilNavAtivado
-                  : perfilCss.tabPerfilNav
-              }
-              onClick={() => setTab("resenhas")}
+              className={tab === 'resenhas' ? perfilCss.tabPerfilNavAtivado : perfilCss.tabPerfilNav}
+              onClick={() => setTab('resenhas')}
             >
               <BookOpen size={40} color="#3D3569" weight="fill" />
               Resenhas
             </div>
             <div
-              className={
-                tab === "publicacoes"
-                  ? perfilCss.tabPerfilNavAtivado
-                  : perfilCss.tabPerfilNav
-              }
-              onClick={() => setTab("publicacoes")}
+              className={tab === 'publicacoes' ? perfilCss.tabPerfilNavAtivado : perfilCss.tabPerfilNav}
+              onClick={() => setTab('publicacoes')}
             >
               <ChatCircleText size={40} color="#3D3569" weight="fill" />
               Publicações recentes
             </div>
           </div>
           <div className={perfilCss.content}>
-            {tab === "estante" && <p>Estante</p>}
-            {tab === "resenhas" && <Resenhas username={username} />}
-            {tab === "publicacoes" && <p>Publicações</p>}
+            {tab === 'estante' && <p>Estante</p>}
+            {tab === 'resenhas' && <Resenhas username={username} />}
+            {tab === 'publicacoes' && <p>Publicações</p>}
           </div>
         </>
       )}

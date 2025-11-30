@@ -1,13 +1,13 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { internalAxios } from "../Global/axiosInstances";
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { internalAxios } from '../Global/axiosInstances';
 
 /* CSS */
-import css from "../../assets/css/Interaction/Interaction.module.css";
+import css from '../../assets/css/Interaction/Interaction.module.css';
 
 /* Componentes */
-import { Header } from "../Global/HeaderGlobal";
-import { Book } from "./Book";
+import { Header } from '../Global/HeaderGlobal';
+import { Book } from './Book';
 
 export function Interaction() {
   const { id } = useParams();
@@ -23,8 +23,8 @@ export function Interaction() {
           setInteraction(response.data);
         })
         .catch((error) => {
-          console.error("Erro ao buscar interação: ", error);
-          setError("Interação não encontrada");
+          console.error('Erro ao buscar interação: ', error);
+          setError('Interação não encontrada');
         })
         .finally(() => {
           setLoading(false);

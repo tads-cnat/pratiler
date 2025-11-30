@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { internalAxios } from "../../../Global/axiosInstances";
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { internalAxios } from '../../../Global/axiosInstances';
 
 /* Components */
-import { SemResultados } from "../../../SemResultado";
-import EscreverResenha from "./escreverResenha";
+import { SemResultados } from '../../../SemResultado';
+import EscreverResenha from './escreverResenha';
 
 /* CSS */
-import resenhaCss from "../../../../assets/css/Perfil/Resenhas/Resenhas.module.css";
-import { useAuthStore } from "../../../Global/authStore";
+import resenhaCss from '../../../../assets/css/Perfil/Resenhas/Resenhas.module.css';
+import { useAuthStore } from '../../../Global/authStore';
 
 export function Resenhas(props) {
   const { username } = props;
@@ -51,19 +51,14 @@ export function Resenhas(props) {
                         </strong>
                       </p>
                       <p>{resenha.titulo}</p>
-                      <button className={resenhaCss.botaoLerResenha}>
-                        Ler resenha
-                      </button>
+                      <button className={resenhaCss.botaoLerResenha}>Ler resenha</button>
                     </div>
                     <img src={resenha.livro.capa} />
                   </div>
                 ))
               ) : (
                 <>
-                  <SemResultados
-                    titulo="Não há resenhas postadas ainda"
-                    tamanho="P"
-                  />
+                  <SemResultados titulo="Não há resenhas postadas ainda" tamanho="P" />
                 </>
               )}
               {username === user.username && (

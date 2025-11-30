@@ -1,31 +1,31 @@
-import { BookmarkSimple } from "phosphor-react";
-import PropTypes from "prop-types";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { BookmarkSimple } from 'phosphor-react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 /* CSS */
-import css from "../../assets/css/AddBook/Minibook.module.css";
+import css from '../../assets/css/AddBook/Minibook.module.css';
 
 /* Store */
-import { internalAxios } from "../Global/axiosInstances";
+import { internalAxios } from '../Global/axiosInstances';
 
 export function Minibook({ img, autor, title, id, handleMarkAsReading }) {
-  const [weight, setWeight] = useState("regular");
+  const [weight, setWeight] = useState('regular');
   const navigate = useNavigate();
 
   const handleInteraction = async () => {
     await internalAxios
-      .post("interacoes", { livro_id: id, status: "LN" })
+      .post('interacoes', { livro_id: id, status: 'LN' })
       .then(() => {
-        navigate("/livros");
+        navigate('/livros');
       })
       .catch((error) => {
-        console.error("Erro ao criar interação:", error);
+        console.error('Erro ao criar interação:', error);
       });
   };
 
   const handleClick = () => {
-    setWeight((prevWeight) => (prevWeight === "regular" ? "fill" : "regular"));
+    setWeight((prevWeight) => (prevWeight === 'regular' ? 'fill' : 'regular'));
   };
 
   return (
@@ -39,10 +39,7 @@ export function Minibook({ img, autor, title, id, handleMarkAsReading }) {
             Começar Leitura
           </button>
           <button className={css.addList} onClick={handleClick}>
-            <BookmarkSimple
-              weight={weight}
-              onClick={() => handleMarkAsReading(id)}
-            />
+            <BookmarkSimple weight={weight} onClick={() => handleMarkAsReading(id)} />
           </button>
         </div>
       </div>
