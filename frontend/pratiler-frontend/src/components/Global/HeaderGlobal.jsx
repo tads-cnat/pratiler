@@ -1,19 +1,19 @@
-import { User, UserPlus, Books, Star, ChatText } from "phosphor-react";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { SignOut } from "phosphor-react";
+import { User, UserPlus, Books, Star, ChatText } from 'phosphor-react';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { SignOut } from 'phosphor-react';
 
 /* Components */
-import { Search } from "../Search/Search";
+import { Search } from '../Search/Search';
 
 /* CSS */
-import headerCss from "../../assets/css/Global/HeaderGlobal.module.css";
+import headerCss from '../../assets/css/Global/HeaderGlobal.module.css';
 
 /* Store */
-import { useAuthStore } from "../Global/authStore";
+import { useAuthStore } from '../Global/authStore';
 
 /* Images */
-import pratilerLogo from "../../assets/img/pratiler-logo.png";
+import pratilerLogo from '../../assets/img/pratiler-logo.png';
 
 export function Header() {
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ export function Header() {
               onClick={async () => {
                 setLoading(true);
                 await logout();
-                setTimeout(navigate("/"), 1000);
+                setTimeout(navigate('/'), 1000);
               }}
             >
               <SignOut size={22} color="#FEFEFE" weight="fill" />

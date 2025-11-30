@@ -1,60 +1,59 @@
-.section{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-inline: 10%;
-    padding-block: 4rem;
-    justify-content: space-between;
+.section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-inline: 10%;
+  padding-block: 4rem;
+  justify-content: space-between;
 }
 
-.img{
-    height: 600px;
-    width: auto;
-    padding-block-start: 4rem;
-    transition: 300ms ease-in-out;
+.img {
+  height: 600px;
+  width: auto;
+  padding-block-start: 4rem;
+  transition: 300ms ease-in-out;
 }
 
-.img:hover{
-    transform: translateY(-1.5rem);
+.img:hover {
+  transform: translateY(-1.5rem);
 }
 
 .section_text_btn {
-    text-decoration: none;
-    display:flex;
-    flex-direction: column;
-    gap: 24px;
-    max-width: 700px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 700px;
 }
 
 .section_text_btn p {
-    font-size: 2rem;
-    font-weight: 500;
-    color: var(--penn-blue);
-    line-height: 135%;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--penn-blue);
+  line-height: 135%;
 }
 
 .section_text_btn strong {
-    font-weight: 800;
-    color: #4b3699;
+  font-weight: 800;
+  color: #4b3699;
 }
 
 .begin {
-    max-width: 220px;
-    border: none;
-    font:var(--h2-title) ;
-    background-color: var(--penn-blue);
-    color: var(--white);
-    border-radius: 16px;
-    padding-block: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 300ms;
+  max-width: 220px;
+  border: none;
+  font: var(--h2-title);
+  background-color: var(--penn-blue);
+  color: var(--white);
+  border-radius: 16px;
+  padding-block: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 300ms;
 }
 
-.begin:hover{
-    outline: 4px solid var(--penn-blue);
-    background-color: var(--white);
-    color: var(--penn-blue);
+.begin:hover {
+  outline: 4px solid var(--penn-blue);
+  background-color: var(--white);
+  color: var(--penn-blue);
 }
-

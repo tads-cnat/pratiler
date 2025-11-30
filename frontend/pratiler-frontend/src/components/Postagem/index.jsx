@@ -1,41 +1,29 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Heart } from "phosphor-react";
-import PropTypes from "prop-types";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Heart } from 'phosphor-react';
+import PropTypes from 'prop-types';
 
 /** CSS */
-import postagemCss from "../../assets/css/Postagem/Postagem.module.css";
+import postagemCss from '../../assets/css/Postagem/Postagem.module.css';
 
 /** Store */
-import { internalAxios } from "../Global/axiosInstances";
-import { User } from "phosphor-react";
+import { internalAxios } from '../Global/axiosInstances';
+import { User } from 'phosphor-react';
 
 export default function Postagem(props) {
-  const {
-    id,
-    leitor,
-    livro,
-    texto,
-    pagina_inicial,
-    pagina_final,
-    data_hora,
-    curtidas,
-    curtido,
-  } = props;
+  const { id, leitor, livro, texto, pagina_inicial, pagina_final, data_hora, curtidas, curtido } = props;
   const [taCurtido, setTaCurtido] = useState(curtido);
   const [numeroCurtidas, setNumeroCurtidas] = useState(curtidas);
-  const data = data_hora.split("T")[0];
-  const valores = data.split("-");
+  const data = data_hora.split('T')[0];
+  const valores = data.split('-');
   const dataFormatada = `${valores[2]}/${valores[1]}/${valores[0]}`;
   const navigate = useNavigate();
 
   async function curtirPostagem() {
-    await internalAxios
-      .post(`curtidas`, { postagem_id: id })
-      .then((response) => {
-        setTaCurtido(!taCurtido);
-        setNumeroCurtidas(response.data);
-      });
+    await internalAxios.post(`curtidas`, { postagem_id: id }).then((response) => {
+      setTaCurtido(!taCurtido);
+      setNumeroCurtidas(response.data);
+    });
   }
 
   return (
@@ -67,16 +55,8 @@ export default function Postagem(props) {
       <p>{texto}</p>
       <div className={postagemCss.curtidaInfo}>
         <p>{numeroCurtidas ?? 0}</p>
-        <button
-          onClick={curtirPostagem}
-          className={postagemCss.curtir}
-          type="button"
-        >
-          <Heart
-            className={
-              taCurtido ? postagemCss.iconCurtido : postagemCss.iconCurtir
-            }
-          />
+        <button onClick={curtirPostagem} className={postagemCss.curtir} type="button">
+          <Heart className={taCurtido ? postagemCss.iconCurtido : postagemCss.iconCurtir} />
         </button>
       </div>
     </div>

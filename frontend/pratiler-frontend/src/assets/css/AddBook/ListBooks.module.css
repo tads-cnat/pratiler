@@ -1,6 +1,6 @@
-.listBooks{
-    box-sizing: border-box;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+.listBooks {
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
 }

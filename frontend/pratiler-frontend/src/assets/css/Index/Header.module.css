@@ -1,62 +1,62 @@
 .header {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-inline: 4%;
-    padding-block: 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 4%;
+  padding-block: 3rem;
 }
 .logo {
-    height: 45px;
-    width: auto;
+  height: 45px;
+  width: auto;
 }
 
 .buttons {
-    display: flex;
-    gap: 24px;
+  display: flex;
+  gap: 24px;
 }
 .buttons button {
-    border: none;
-    cursor: pointer;
+  border: none;
+  cursor: pointer;
 }
 .box_in {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    text-decoration: none;
-    background-color: #F9F8FF;
-    transition: 250ms;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  background-color: #f9f8ff;
+  transition: 250ms;
 }
 
 .box_in:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .box_in img {
   height: 24px;
-  width: auto;  
+  width: auto;
 }
 
 .box_in span {
-    font: var(--h2-title);
-    color: var(--penn-blue);
-    font-weight: 600;
-    text-decoration: none;
+  font: var(--h2-title);
+  color: var(--penn-blue);
+  font-weight: 600;
+  text-decoration: none;
 }
 
-.btn_register{
-    background-color: var(--penn-blue);
-    color: var(--white);
-    font: var(--h2-title);
-    font-weight: 600;
-    padding-block: 12px;
-    padding-inline: 26px;
-    border-radius: 16px;
-    transition: 300ms;
+.btn_register {
+  background-color: var(--penn-blue);
+  color: var(--white);
+  font: var(--h2-title);
+  font-weight: 600;
+  padding-block: 12px;
+  padding-inline: 26px;
+  border-radius: 16px;
+  transition: 300ms;
 }
 
 .btn_register:hover {
-    outline: 4px solid var(--penn-blue);
-    background-color: var(--white);
-    color: var(--penn-blue);
+  outline: 4px solid var(--penn-blue);
+  background-color: var(--white);
+  color: var(--penn-blue);
 }

@@ -1,36 +1,31 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
-import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 /* Store */
-import { useAuthStore } from "./components/Global/authStore";
+import { useAuthStore } from './components/Global/authStore';
 
 /* CSS */
-import "./assets/css/base.css";
+import './assets/css/base.css';
 
 /* Componentes */
-import { Feed } from "./components/Feed/Feed";
-import { Login } from "./components/Login/Login";
-import { Header } from "./components/Index/Header";
-import { Main } from "./components/Index/Main";
-import { Section } from "./components/Index/Section";
-import { SectionInverted } from "./components/Index/SectionInverted";
-import { Bookcase } from "./components/Bookcase/Bookcase";
-import { Cadastro } from "./components/Cadastro/Cadastro";
-import { Interaction } from "./components/Interaction/Interaction";
-import { AddBook } from "./components/AddBook/AddBook";
-import { Book } from "./components/Book/Book";
-import { Perfil } from "./components/Perfil";
-import { RealizarAvaliacao } from "./components/Avaliacao/form";
+import { Feed } from './components/Feed/Feed';
+import { Login } from './components/Login/Login';
+import { Header } from './components/Index/Header';
+import { Main } from './components/Index/Main';
+import { Section } from './components/Index/Section';
+import { SectionInverted } from './components/Index/SectionInverted';
+import { Bookcase } from './components/Bookcase/Bookcase';
+import { Cadastro } from './components/Cadastro/Cadastro';
+import { Interaction } from './components/Interaction/Interaction';
+import { AddBook } from './components/AddBook/AddBook';
+import { Book } from './components/Book/Book';
+import { Perfil } from './components/Perfil';
+import { RealizarAvaliacao } from './components/Avaliacao/form';
 
 /* Images */
-import girlReading from "./assets/img/mulher-lendo-um-livro.png";
-import sereia from "./assets/img/sereia.png";
-import knight from "./assets/img/guerreiro-medieval.png";
+import girlReading from './assets/img/mulher-lendo-um-livro.png';
+import sereia from './assets/img/sereia.png';
+import knight from './assets/img/guerreiro-medieval.png';
 
 export default function App() {
   return (
@@ -60,7 +55,7 @@ function Home() {
     async function checkAuth() {
       if (isAuthenticated) {
         await login(user.email, user.senha);
-        navigate("/livros");
+        navigate('/livros');
       }
     }
     checkAuth();

@@ -1,37 +1,32 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 /* CSS */
-import semResultadoCss from "../../assets/css/SemResultado/SemResultado.module.css";
+import semResultadoCss from '../../assets/css/SemResultado/SemResultado.module.css';
 
 /* Images */
-import semResultado from "../../assets/img/no-books.png";
+import semResultado from '../../assets/img/no-books.png';
 
 export function SemResultados(props) {
   const { titulo, tamanho } = props;
   let width;
   switch (tamanho) {
-    case "P":
-      width = "15%";
+    case 'P':
+      width = '15%';
       break;
-    case "M":
-      width = "60%";
+    case 'M':
+      width = '60%';
       break;
-    case "G":
-      width = "80%";
+    case 'G':
+      width = '80%';
       break;
     default:
-      width = "60%";
+      width = '60%';
   }
 
   return (
     <div className={semResultadoCss.boxNoBooks}>
       <h1 className={semResultadoCss.titleNoBooks}>{titulo}</h1>
-      <img
-        width={width}
-        className={semResultadoCss.noBooks}
-        src={semResultado}
-        alt="Nenhum livro encontrado"
-      />
+      <img width={width} className={semResultadoCss.noBooks} src={semResultado} alt="Nenhum livro encontrado" />
     </div>
   );
 }

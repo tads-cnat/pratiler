@@ -1,32 +1,23 @@
-import { CheckCircle, MagnifyingGlass, Star } from "phosphor-react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
+import { CheckCircle, MagnifyingGlass, Star } from 'phosphor-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 /* CSS */
-import cardBookCss from "../../assets/css/Bookcase/CardBook.module.css";
+import cardBookCss from '../../assets/css/Bookcase/CardBook.module.css';
 
 /* Store */
-import { internalAxios } from "../Global/axiosInstances";
+import { internalAxios } from '../Global/axiosInstances';
 
-export function CardBook({
-  img,
-  autor,
-  status,
-  title,
-  pages,
-  id,
-  onDetailsClick,
-  onUpdate,
-}) {
+export function CardBook({ img, autor, status, title, pages, id, onDetailsClick, onUpdate }) {
   const [successMessage, setSuccessMessage] = useState(null);
   const navigate = useNavigate();
 
   const handleMarkAsRead = async (id) => {
     await internalAxios
-      .put(`interacoes/${id}`, { status: "LD" })
+      .put(`interacoes/${id}`, { status: 'LD' })
       .then((response) => {
-        setSuccessMessage(response.data.message || "Livro marcado como lido!");
+        setSuccessMessage(response.data.message || 'Livro marcado como lido!');
 
         setTimeout(() => {
           setSuccessMessage(null);
@@ -36,7 +27,7 @@ export function CardBook({
         }, 3000);
       })
       .catch((error) => {
-        console.error("Erro ao marcar como lido:", error);
+        console.error('Erro ao marcar como lido:', error);
       });
   };
 
@@ -52,26 +43,17 @@ export function CardBook({
           </div>
 
           <div className={cardBookCss.buttons}>
-            <button
-              onClick={() => onDetailsClick(id)}
-              className={cardBookCss.viewDetails}
-            >
+            <button onClick={() => onDetailsClick(id)} className={cardBookCss.viewDetails}>
               Ver Leitura
               <MagnifyingGlass size={16} weight="bold" />
             </button>
-            {status !== "LD" && (
-              <button
-                className={cardBookCss.lido}
-                onClick={() => handleMarkAsRead(id)}
-              >
+            {status !== 'LD' && (
+              <button className={cardBookCss.lido} onClick={() => handleMarkAsRead(id)}>
                 <CheckCircle weight="bold" size={27} />
               </button>
             )}
-            {status === "LD" && (
-              <button
-                className={cardBookCss.viewDetails}
-                onClick={() => navigate(`/fazer-avaliacao/${id}`)}
-              >
+            {status === 'LD' && (
+              <button className={cardBookCss.viewDetails} onClick={() => navigate(`/fazer-avaliacao/${id}`)}>
                 Realizar Avaliação
                 <Star weight="bold" size={16} />
               </button>
@@ -80,9 +62,7 @@ export function CardBook({
         </div>
         <div className={cardBookCss.categories}></div>
 
-        {successMessage && (
-          <div className={cardBookCss.successMessage}>{successMessage}</div>
-        )}
+        {successMessage && <div className={cardBookCss.successMessage}>{successMessage}</div>}
       </div>
     </>
   );

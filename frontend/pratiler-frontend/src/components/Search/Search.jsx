@@ -1,12 +1,12 @@
-import { useState } from "react";
-import searchCss from "../../assets/css/Search/Search.module.css";
+import { useState } from 'react';
+import searchCss from '../../assets/css/Search/Search.module.css';
 import { MagnifyingGlass } from 'phosphor-react';
-import { Facade } from "./Facade";
-import { useNavigate } from "react-router-dom"; 
+import { Facade } from './Facade';
+import { useNavigate } from 'react-router-dom';
 
 export function Search() {
   const [books, setBooks] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
   const getBooks = Facade(search, setBooks);
@@ -21,7 +21,7 @@ export function Search() {
   };
 
   const searchKeyPress = (evt) => {
-    if (evt.key === "Enter") {
+    if (evt.key === 'Enter') {
       evt.preventDefault();
       getBooks();
     }
@@ -29,12 +29,14 @@ export function Search() {
 
   return (
     <>
-      <form onSubmit={(evt) => { 
-        evt.preventDefault();
-        getBooks();
-      }}>
+      <form
+        onSubmit={(evt) => {
+          evt.preventDefault();
+          getBooks();
+        }}
+      >
         <button type="submit" className={searchCss.button}>
-          <MagnifyingGlass size={22} color='#3D3569' weight='bold'/>
+          <MagnifyingGlass size={22} color="#3D3569" weight="bold" />
         </button>
         <input
           type="text"
@@ -49,10 +51,7 @@ export function Search() {
           {books.items?.map((b) => (
             <li key={b.id}>
               <button onClick={() => handleBookClick(b.id)}>
-                <img
-                  src={b.volumeInfo.imageLinks?.smallThumbnail}
-                  alt="Capa do livro."
-                />
+                <img src={b.volumeInfo.imageLinks?.smallThumbnail} alt="Capa do livro." />
                 <h3>{b.volumeInfo.title}</h3>
                 <p>Autor(a): {b.volumeInfo.authors}</p>
               </button>

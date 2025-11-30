@@ -1,16 +1,14 @@
-import css from '../../assets/css/AddBook/AddBook.module.css'
-import { Header } from '../Global/HeaderGlobal'
-import { ListBooks } from './ListBooks'
+import css from '../../assets/css/AddBook/AddBook.module.css';
+import { Header } from '../Global/HeaderGlobal';
+import { ListBooks } from './ListBooks';
 
-
-export function AddBook(){
-
-    return(
-        <>
-            <Header />
-            <div className={css.section}>
-                <ListBooks />
-            </div>
-        </>
-    )
+export function AddBook() {
+  return (
+    <>
+      <Header />
+      <div className={css.section}>
+        <ListBooks />
+      </div>
+    </>
+  );
 }

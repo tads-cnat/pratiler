@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import { internalAxios } from "./axiosInstances";
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import { internalAxios } from './axiosInstances';
 
 export const useAuthStore = create(
   persist(
@@ -18,21 +18,19 @@ export const useAuthStore = create(
           password: password,
         };
         return await internalAxios
-          .post("auth/register", credentials)
+          .post('auth/register', credentials)
           .then(async () => await get().login(email, password))
-          .catch((error) =>
-            error.response.status === 400 ? error.response.data : error
-          );
+          .catch((error) => (error.response.status === 400 ? error.response.data : error));
       },
 
       login: async (email, password) => {
         const credentials = { email: email, password: password };
         return await internalAxios
-          .post("auth/login", credentials)
+          .post('auth/login', credentials)
           .then(async (res) => {
             const response = res;
             set({ user: res.data, isAuthenticated: true });
-            await internalAxios.post("auth/pair", credentials).then((res) => {
+            await internalAxios.post('auth/pair', credentials).then((res) => {
               set({
                 token: res.data.access,
                 refresh: res.data.refresh,
@@ -40,14 +38,12 @@ export const useAuthStore = create(
               return response;
             });
           })
-          .catch((error) =>
-            error.response.status === 400 ? error.response.data : error
-          );
+          .catch((error) => (error.response.status === 400 ? error.response.data : error));
       },
 
       logout: async () => {
         await internalAxios
-          .get("auth/logout")
+          .get('auth/logout')
           .then(() => {
             set({
               user: null,
@@ -57,13 +53,13 @@ export const useAuthStore = create(
             });
           })
           .catch((error) => {
-            console.error("Falha ao fazer logout", error);
+            console.error('Falha ao fazer logout', error);
           });
       },
     }),
     {
-      name: "auth-storage",
+      name: 'auth-storage',
       storage: createJSONStorage(() => localStorage),
-    }
-  )
+    },
+  ),
 );

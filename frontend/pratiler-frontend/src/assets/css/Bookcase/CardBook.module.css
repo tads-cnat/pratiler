@@ -1,162 +1,161 @@
 .card {
-    display: flex;
-    background-color: var(--white);
-    width: 100%;
-    gap: 2rem;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.164);
-    transition: 300ms;
-    
+  display: flex;
+  background-color: var(--white);
+  width: 100%;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.164);
+  transition: 300ms;
 }
 
-.card:hover{
-    transform: translateY(-0.8rem);
+.card:hover {
+  transform: translateY(-0.8rem);
 }
 
 .description {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .description h3 {
-    color: var(--penn-blue);
-    font-size: 1.25rem;
-    font-weight: 700;
+  color: var(--penn-blue);
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .description p {
-    font: var(--text-md);
-    font-size: 0.875rem;
-    color: var(--night);
-    font-weight: 500;
+  font: var(--text-md);
+  font-size: 0.875rem;
+  color: var(--night);
+  font-weight: 500;
 }
 
 .viewDetails {
-    align-self: flex-start;
-    border: none;
-    background-color: var(--penn-blue);
+  align-self: flex-start;
+  border: none;
+  background-color: var(--penn-blue);
+  color: var(--white);
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 800;
+
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 300ms;
+
+  svg {
     color: var(--white);
-    font-family: var(--font-family);
+  }
+}
+
+.viewDetails:hover {
+  outline: 2px solid var(--penn-blue);
+  background-color: var(--white);
+  color: var(--penn-blue);
+
+  svg {
+    color: var(--penn-blue);
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info p {
+  font: var(--text-md);
+  color: var(--ultra-violet);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+
+  .lido {
+    padding: 0.175rem;
+    background-color: rgb(47, 120, 32);
+    margin-block: auto;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    border: none;
     font-size: 0.875rem;
     font-weight: 800;
 
-    padding: 0.5rem;
     display: flex;
     align-items: center;
     gap: 0.375rem;
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: 300ms;
 
     svg {
-        color: var(--white);
+      color: white;
+      transition: transform 0.3s ease-in-out;
     }
-}
+  }
 
-.viewDetails:hover {
-    outline: 2px solid var(--penn-blue);
-    background-color: var(--white);
-    color: var(--penn-blue);
+  .lido::after {
+    content: 'Marcar como lido';
+    color: white;
+    font-size: 0.85rem;
+    position: absolute;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition:
+      all 0.3s ease-in-out,
+      opacity 0.5s ease-in-out;
+    white-space: nowrap;
+    right: 0.5rem;
+  }
 
-    svg {
-        color: var(--penn-blue);
-    }
-}
-
-.info{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.info p {
-    font: var(--text-md);
-    color: var(--ultra-violet);
-}
-
-.buttons{
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    align-items: center;
-
-    .lido {
-        padding: 0.175rem;
-        background-color: rgb(47, 120, 32);
-        margin-block: auto;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.3s ease-in-out;
-        border: none;
-        font-size: 0.875rem;
-        font-weight: 800;
-
-        display: flex;
-        align-items: center;
-        gap: 0.375rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
-
-        svg{
-            color: white;
-            transition: transform 0.3s ease-in-out;
-        }
-    }
-
-    .lido::after {
-        content: "Marcar como lido";
-        color: white;
-        font-size: 0.85rem;
-        position: absolute;
-        opacity: 0;
-        transform: translateX(-100%);
-        transition: all 0.3s ease-in-out, opacity 0.5s ease-in-out;;
-        white-space: nowrap;
-        right: 0.5rem;
-    }
-    
-    .lido:hover {
-        padding-right: 8.5rem;
-        background-color: darkgreen;
-    }
-    
-    
-    .lido:hover::after {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.successMessage{
+  .lido:hover {
+    padding-right: 8.5rem;
     background-color: darkgreen;
-    color: var(--white);
-    padding: 2rem;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 4px solid rgb(0, 47, 0);
-    margin: auto;
-    margin-top: 2rem;
-    width: 60%;
-    transition: 300ms;
-    animation: slideDown 0.5s ease-out;
-    position: fixed;
-    top: -100%;
-    left: 25%;
-    z-index: 1;
+  }
+
+  .lido:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.successMessage {
+  background-color: darkgreen;
+  color: var(--white);
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 4px solid rgb(0, 47, 0);
+  margin: auto;
+  margin-top: 2rem;
+  width: 60%;
+  transition: 300ms;
+  animation: slideDown 0.5s ease-out;
+  position: fixed;
+  top: -100%;
+  left: 25%;
+  z-index: 1;
 }
 
 @keyframes slideDown {
-    from {
-        transform: translateY(-50%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
-

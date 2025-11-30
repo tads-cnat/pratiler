@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 /* CSS */
-import authCss from "../../assets/css/Global/AuthFail.module.css";
+import authCss from '../../assets/css/Global/AuthFail.module.css';
 
 export function AuthFail(props) {
   return (

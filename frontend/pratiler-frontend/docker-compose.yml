@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - "80:5173"
+      - '80:5173'
     env_file:
       - .env
     command: sh -c "npm run dev"

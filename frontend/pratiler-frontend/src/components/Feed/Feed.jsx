@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 /* CSS */
-import feedCss from "../../assets/css/Feed/Feed.module.css";
-import formCss from "../../assets/css/FormPostagem/FormPostagem.module.css";
+import feedCss from '../../assets/css/Feed/Feed.module.css';
+import formCss from '../../assets/css/FormPostagem/FormPostagem.module.css';
 
 /* Store */
-import { internalAxios } from "../Global/axiosInstances";
+import { internalAxios } from '../Global/axiosInstances';
 
 /* Components */
-import { Header } from "../Global/HeaderGlobal";
-import Postagem from "../Postagem/index";
-import { AuthFail } from "../Global/AuthFail";
+import { Header } from '../Global/HeaderGlobal';
+import Postagem from '../Postagem/index';
+import { AuthFail } from '../Global/AuthFail';
 
 export function Feed() {
   const [error, setError] = useState(null);
@@ -21,7 +21,7 @@ export function Feed() {
     interacao_id: 0,
     pagina_inicial: 0,
     pagina_final: 0,
-    texto: "",
+    texto: '',
   });
 
   const changeBook = async (e, id) => {
@@ -29,7 +29,7 @@ export function Feed() {
     const realizouPostagem = e === undefined;
     if (!realizouPostagem) interacaoId = e.target.value;
     else interacaoId = id;
-    if (interacaoId !== "0") {
+    if (interacaoId !== '0') {
       await internalAxios.get(`interacoes/${interacaoId}`).then((response) => {
         setFormData({
           ...formData,
@@ -40,7 +40,7 @@ export function Feed() {
           setFormData({
             ...formData,
             pagina_final: 0,
-            texto: "",
+            texto: '',
           });
       });
     } else {
@@ -49,7 +49,7 @@ export function Feed() {
         interacao_id: 0,
         pagina_inicial: 0,
         pagina_final: 0,
-        texto: "",
+        texto: '',
       });
     }
   };
@@ -63,12 +63,12 @@ export function Feed() {
   async function realizarPostagem(e) {
     e.preventDefault();
     await internalAxios
-      .post("postagens", formData)
+      .post('postagens', formData)
       .then(() => {
         setNovaPostagem(!novaPostagem);
         setFormData({
           ...formData,
-          texto: "",
+          texto: '',
           pagina_final: 0,
         });
         changeBook(undefined, formData.interacao_id);
@@ -80,13 +80,11 @@ export function Feed() {
 
   async function pegarLivrosEstante() {
     await internalAxios
-      .get("interacoes", { params: { status: "QL,LN" } })
+      .get('interacoes', { params: { status: 'QL,LN' } })
       .then((response) => setLivrosEstante(response.data));
   }
   async function getPostagens() {
-    await internalAxios
-      .get("postagens")
-      .then((response) => setPostagens(response.data));
+    await internalAxios.get('postagens').then((response) => setPostagens(response.data));
   }
 
   useEffect(() => {
@@ -102,10 +100,7 @@ export function Feed() {
       <Header />
       <div className={feedCss.content}>
         <div>
-          <form
-            onSubmit={realizarPostagem}
-            className={formCss.realizarPostagem}
-          >
+          <form onSubmit={realizarPostagem} className={formCss.realizarPostagem}>
             <h1>Escreva sua postagem</h1>
             <label className={formCss.select}>
               Livro:
@@ -120,16 +115,10 @@ export function Feed() {
             </label>
             <div className={formCss.inputsPaginas}>
               <label>
-                Da página:{" "}
-                <input
-                  type="number"
-                  name="pagina_inicial"
-                  value={formData.pagina_inicial}
-                  readOnly
-                />
+                Da página: <input type="number" name="pagina_inicial" value={formData.pagina_inicial} readOnly />
               </label>
               <label>
-                Até a página:{" "}
+                Até a página:{' '}
                 <input
                   type="number"
                   name="pagina_final"
@@ -168,10 +157,7 @@ export function Feed() {
               />
             ))
           ) : (
-            <p>
-              Não há postagens no momento, seja a primeira pessoa a comentar
-              sobre sua leitura!
-            </p>
+            <p>Não há postagens no momento, seja a primeira pessoa a comentar sobre sua leitura!</p>
           )}
         </div>
       </div>
