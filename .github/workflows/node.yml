@@ -17,6 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -26,21 +34,25 @@ jobs:
         run: |
           cd ./frontend/pratiler-frontend
           chmod +x ./construir_frontend.sh
+
       - name: Install project dependencies
         run: |
           cd ./frontend/pratiler-frontend
           sed -i 's/\r$//' ./construir_frontend.sh
           ./construir_frontend.sh
+
       - name: Execute linting
         run: |
           cd ./frontend/pratiler-frontend
           npm run lint
+
       - name: Checking dependencies vulnerabilities
         uses: dependency-check/Dependency-Check_Action@main
         with:
           project: pratiler-frontend
           path: ./frontend/pratiler-frontend
           format: ALL
+
       - name: Execute Prettier check
         run: |
           cd ./frontend/pratiler-frontend
