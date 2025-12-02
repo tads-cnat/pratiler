@@ -57,3 +57,8 @@ jobs:
         run: |
           cd ./frontend/pratiler-frontend
           npx prettier . --check
+
+      - name: Execute CPD check
+        run: |
+          cd ./frontend/pratiler-frontend/src
+          npx jscpd . --threshold 0 --reporters html --output ./cpd-report
