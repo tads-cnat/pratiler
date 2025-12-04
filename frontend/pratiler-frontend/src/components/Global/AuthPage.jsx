@@ -102,4 +102,4 @@ AuthPage.propTypes = {
   schema: PropTypes.any,
   successMessage: PropTypes.string,
   title: PropTypes.string,
-}
+};
