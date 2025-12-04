@@ -14,6 +14,27 @@ export const externalAxios = axios.create({
   },
 });
 
+function responseCallbacks(axiosInstance) {
+  return [
+    (response) => response,
+    async (error) => {
+      const originalRequest = error.config;
+      if (error.response.status === 401 && !originalRequest._retry) {
+        originalRequest._retry = true;
+        const { refresh } = useAuthStore.getState();
+        return internalAxios.post('auth/refresh', { refresh: refresh }).then((response) => {
+          if (response.status === 200) {
+            useAuthStore.setState({ token: response.data.access });
+            localStorage.setItem('token', response.data.access);
+            return axiosInstance(originalRequest);
+          }
+        });
+      }
+      return Promise.reject(error);
+    },
+  ];
+}
+
 internalAxios.interceptors.request.use(
   (config) => {
     const { token } = useAuthStore.getState();
@@ -27,40 +48,6 @@ internalAxios.interceptors.request.use(
   },
 );
 
-internalAxios.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      const { refresh } = useAuthStore.getState();
-      return internalAxios.post('auth/refresh', { refresh: refresh }).then((response) => {
-        if (response.status === 200) {
-          useAuthStore.setState({ token: response.data.access });
-          localStorage.setItem('token', response.data.access);
-          return internalAxios(originalRequest);
-        }
-      });
-    }
-    return Promise.reject(error);
-  },
-);
+internalAxios.interceptors.response.use(...responseCallbacks(internalAxios));
 
-externalAxios.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      const { refresh } = useAuthStore.getState();
-      return internalAxios.post('auth/refresh', { refresh: refresh }).then((response) => {
-        if (response.status === 200) {
-          useAuthStore.setState({ token: response.data.access });
-          localStorage.setItem('token', response.data.access);
-          return externalAxios(originalRequest);
-        }
-      });
-    }
-    return Promise.reject(error);
-  },
-);
+externalAxios.interceptors.response.use(...responseCallbacks(externalAxios));

@@ -1,34 +1,24 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 
 /* Store */
 import { useAuthStore } from '../Global/authStore';
 
 /* CSS */
-import cadastroCss from '../../assets/css/LoginCadastro/Formulario.module.css';
+import authCss from '../../assets/css/LoginCadastro/Formulario.module.css';
 import inputCss from '../../assets/css/Input/Input.module.css';
 
 /* Componentes */
 import { AuthSuccessful } from '../Global/AuthSuccessful';
 import { AuthFail } from '../Global/AuthFail';
 
-/* Images */
-import imageCadastro from '../../assets/img/imagem-cadastro.png';
-
-const schema = yup.object().shape({
-  nome: yup.string().required('Campo nome é obrigatório'),
-  username: yup.string().required('Campo username é obrigatório'),
-  email: yup.string().email('Email inválido').required('Campo email é obrigatório'),
-  password: yup.string().required('Campo senha é obrigatório'),
-});
-
-export function CadastroFormulario() {
-  const { register } = useAuthStore();
+export function AuthPage(props) {
+  const { authenticate, fields, imagemFundo, labelButton, message, schema, successMessage, title } = props;
   const {
-    register: registerField,
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -39,31 +29,40 @@ export function CadastroFormulario() {
 
   const navigate = useNavigate();
 
-  async function fetchRegister(data) {
+  async function fetchAuth(data) {
     setError(null);
-    const { nome, username, email, password } = data;
-    const response = await register(nome, username, email, password);
+    const response = await authenticate(...data);
     if (useAuthStore.getState().isAuthenticated) {
-      setSuccess('Conta criada com sucesso! Estamos te autenticando...');
+      setSuccess(successMessage);
       setTimeout(() => navigate('/livros'), 2000);
     } else setError(response.message);
   }
 
   return (
-    <div className={cadastroCss.return}>
-      <div className={cadastroCss.container}>
-        <img src={imageCadastro} />
+    <div className={authCss.return}>
+      <div className={authCss.container}>
+        <img src={imagemFundo} />
       </div>
 
-      <div className={cadastroCss.formularioLogin}>
-        <h1>Cadastrar-se</h1>
-        <form className={cadastroCss.formulario} onSubmit={handleSubmit(fetchRegister)}>
+      <div className={authCss.formularioLogin}>
+        <h1>{title}</h1>
+        <form className={authCss.formulario} onSubmit={handleSubmit(fetchAuth)}>
+          {fields.map((field) => {
+            const { name } = field;
+            const errors = errors[name];
+            return (
+              <>
+                <input className={inputCss.inputText} {...field} {...register(name)} />
+                {errors && <p className={inputCss.error}>{errors.message}</p>}
+              </>
+            );
+          })}
           <input
             type="text"
             name="nome"
             placeholder="Nome do Usuário"
             className={inputCss.inputText}
-            {...registerField('nome')}
+            {...register('nome')}
           />
           {errors.nome && <p className={inputCss.error}>{errors.nome.message}</p>}
           <input
@@ -71,33 +70,36 @@ export function CadastroFormulario() {
             name="username"
             placeholder="Username"
             className={inputCss.inputText}
-            {...registerField('username')}
+            {...register('username')}
           />
           {errors.username && <p className={inputCss.error}>{errors.username.message}</p>}
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            className={inputCss.inputText}
-            {...registerField('email')}
-          />
+          <input type="email" name="email" placeholder="Email" className={inputCss.inputText} {...register('email')} />
           {errors.email && <p className={inputCss.error}>{errors.email.message}</p>}
           <input
             type="password"
             name="password"
             placeholder="Senha"
             className={inputCss.inputText}
-            {...registerField('password')}
+            {...register('password')}
           />
           {errors.password && <p className={inputCss.error}>{errors.password.message}</p>}
-          <input type="submit" value="Criar conta" className={inputCss.inputSubmit} />
+          <input type="submit" value={labelButton} className={inputCss.inputSubmit} />
         </form>
         {success && <AuthSuccessful message={success} />}
         {error && <AuthFail message={error} />}
-        <p className={cadastroCss.mensagem}>
-          Já possui uma conta? <Link to="/login">Entre na nossa rede</Link>
-        </p>
+        <p className={authCss.mensagem}>{message}</p>
       </div>
     </div>
   );
 }
+
+AuthPage.propTypes = {
+  authenticate: PropTypes.func,
+  fields: PropTypes.object,
+  imagemFundo: PropTypes.string,
+  labelButton: PropTypes.string,
+  message: PropTypes.element,
+  schema: PropTypes.any,
+  successMessage: PropTypes.string,
+  title: PropTypes.string,
+};
