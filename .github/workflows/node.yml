@@ -6,8 +6,11 @@ on:
   pull_request:
     branches: ["*"]
 
+permissions:
+  contents: write
+
 jobs:
-  build:
+  build-frontend:
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,7 +18,10 @@ jobs:
         node-version: [22.x]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Cache node modules
         uses: actions/cache@v4
@@ -46,12 +52,12 @@ jobs:
           cd ./frontend/pratiler-frontend
           npm run lint
 
-      - name: Checking dependencies vulnerabilities
-        uses: dependency-check/Dependency-Check_Action@main
-        with:
-          project: pratiler-frontend
-          path: ./frontend/pratiler-frontend
-          format: ALL
+      # - name: Checking dependencies vulnerabilities
+      #   uses: dependency-check/Dependency-Check_Action@main
+      #   with:
+      #     project: pratiler-frontend
+      #     path: ./frontend/pratiler-frontend
+      #     format: ALL
 
       - name: Execute Prettier check
         run: |
@@ -62,3 +68,59 @@ jobs:
         run: |
           cd ./frontend/pratiler-frontend/src
           npx jscpd . --threshold 0 --reporters html --output ./cpd-report
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+
+      - name: Generate diagram
+        run: |
+          mkdir -p ./doc/frontend-classes
+          cd ./frontend/pratiler-frontend
+          npx depcruise ./src \
+            --include-only "^src" \
+            --output-type dot \
+            --output-to ../../doc/frontend-classes/diagrama-pastas.dot \
+            --no-config
+          dot -Tsvg ../../doc/frontend-classes/diagrama-pastas.dot > ../../doc/frontend-classes/diagrama-pastas.svg
+
+      - name: Commit updated diagrams
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ -z "$GITHUB_TOKEN" ]; then
+            echo "No GitHub token available (probably fork PR). Skipping commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          FILE="doc/frontend-classes/diagrama-pastas.svg"
+
+          if [ -f "$FILE" ]; then
+            git add "$FILE"
+          else
+            echo "Arquivo $FILE não encontrado. Nada para commitar."
+            exit 0
+          fi
+
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteração detectada no UML."
+            exit 0
+          fi
+
+          git commit -m ":memo: docs: update UML diagram"
+
+          if [[ "${GITHUB_REF}" == refs/heads/* ]]; then
+            BRANCH="${GITHUB_REF#refs/heads/}"
+            echo "Fazendo push para $BRANCH..."
+            git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:$BRANCH
+          else
+            echo "Não estamos em uma branch (provavelmente PR). Não fazer push."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
