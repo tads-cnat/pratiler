@@ -8,6 +8,7 @@ import { useAuthStore } from '../Global/authStore';
 
 /* Componentes */
 import { AuthPage } from '../Global/AuthPage';
+import { Link } from 'react-router-dom';
 
 /* Images */
 import imageLogin from '../../assets/img/imagem-login.png';

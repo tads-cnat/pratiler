@@ -8,6 +8,7 @@ import { useAuthStore } from '../Global/authStore';
 
 /* Componentes */
 import { AuthPage } from '../Global/AuthPage';
+import { Link } from 'react-router-dom';
 
 /** Images */
 import imageCadastro from '../../assets/img/imagem-cadastro.png';

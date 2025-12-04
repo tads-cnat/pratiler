@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 
 /* Store */
 import { useAuthStore } from '../Global/authStore';
@@ -90,4 +91,15 @@ export function AuthPage(props) {
       </div>
     </div>
   );
+}
+
+AuthPage.PropTypes = {
+  authenticate: PropTypes.func,
+  fields: PropTypes.object,
+  imagemFundo: PropTypes.string,
+  labelButton: PropTypes.string,
+  message: PropTypes.element,
+  schema: PropTypes.any,
+  successMessage: PropTypes.string,
+  title: PropTypes.string,
 }
