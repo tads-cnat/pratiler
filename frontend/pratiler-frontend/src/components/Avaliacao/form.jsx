@@ -109,36 +109,19 @@ export function RealizarAvaliacao() {
                   <form onSubmit={handleSubmit(submitAvaliacao)} className={avaliacaoFormCss.realizarAvaliacao}>
                     <h1>Escreva sua Avaliação</h1>
                     <div className={avaliacaoFormCss.estrelas}>
-                      <button onClick={() => setNota(nota === 1 ? 0 : 1)}>
-                        <Star
-                          size={40}
-                          className={nota >= 1 ? avaliacaoFormCss.estrelaPreenchida : avaliacaoFormCss.estrela}
-                        />
-                      </button>
-                      <button onClick={() => setNota(nota === 2 ? 0 : 2)}>
-                        <Star
-                          size={40}
-                          className={nota >= 2 ? avaliacaoFormCss.estrelaPreenchida : avaliacaoFormCss.estrela}
-                        />
-                      </button>
-                      <button onClick={() => setNota(nota === 3 ? 0 : 3)}>
-                        <Star
-                          size={40}
-                          className={nota >= 3 ? avaliacaoFormCss.estrelaPreenchida : avaliacaoFormCss.estrela}
-                        />
-                      </button>
-                      <button onClick={() => setNota(nota === 4 ? 0 : 4)}>
-                        <Star
-                          size={40}
-                          className={nota >= 4 ? avaliacaoFormCss.estrelaPreenchida : avaliacaoFormCss.estrela}
-                        />
-                      </button>
-                      <button onClick={() => setNota(nota === 5 ? 0 : 5)}>
-                        <Star
-                          size={40}
-                          className={nota === 5 ? avaliacaoFormCss.estrelaPreenchida : avaliacaoFormCss.estrela}
-                        />
-                      </button>
+                      {Array(5).map((_, index) => {
+                        const notaEstrela = index + 1;
+                        return (
+                          <button onClick={() => setNota(nota === notaEstrela ? 0 : notaEstrela)}>
+                            <Star
+                              size={40}
+                              className={
+                                nota >= notaEstrela ? avaliacaoFormCss.estrelaPreenchida : avaliacaoFormCss.estrela
+                              }
+                            />
+                          </button>
+                        );
+                      })}
                     </div>
                     <textarea
                       name="texto"

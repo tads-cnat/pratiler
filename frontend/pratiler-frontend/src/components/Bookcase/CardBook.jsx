@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 /* CSS */
+import authSuccessfulCss from '../../assets/css/Global/authSuccessfulCss.module.css';
 import cardBookCss from '../../assets/css/Bookcase/CardBook.module.css';
 
 /* Store */
@@ -62,7 +63,7 @@ export function CardBook({ img, autor, status, title, pages, id, onDetailsClick,
         </div>
         <div className={cardBookCss.categories}></div>
 
-        {successMessage && <div className={cardBookCss.successMessage}>{successMessage}</div>}
+        {successMessage && <div className={authSuccessfulCss.successMessage}>{successMessage}</div>}
       </div>
     </>
   );
