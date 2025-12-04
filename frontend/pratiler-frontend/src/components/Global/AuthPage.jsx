@@ -93,7 +93,7 @@ export function AuthPage(props) {
   );
 }
 
-AuthPage.PropTypes = {
+AuthPage.propTypes = {
   authenticate: PropTypes.func,
   fields: PropTypes.object,
   imagemFundo: PropTypes.string,
