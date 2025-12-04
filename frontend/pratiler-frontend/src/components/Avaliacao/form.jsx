@@ -112,7 +112,7 @@ export function RealizarAvaliacao() {
                       {Array(5).map((_, index) => {
                         const notaEstrela = index + 1;
                         return (
-                          <button onClick={() => setNota(nota === notaEstrela ? 0 : notaEstrela)}>
+                          <button key={index} onClick={() => setNota(nota === notaEstrela ? 0 : notaEstrela)}>
                             <Star
                               size={40}
                               className={
