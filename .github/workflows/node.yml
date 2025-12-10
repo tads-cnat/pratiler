@@ -86,10 +86,10 @@ jobs:
           dot -Tsvg diagrama-pastas.dot > diagrama-pastas.svg
 
       - name: Upload artifacts
-            uses: actions/upload-artifact@v4
-            with:
-              name: my-build-artifact
-              path: |
-                ${{github.workspace}}/reports
-                diagrama-pastas.svg
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-build-artifact
+          path: |
+            ${{github.workspace}}/reports
+            diagrama-pastas.svg
 
