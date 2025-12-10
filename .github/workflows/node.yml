@@ -52,12 +52,12 @@ jobs:
           cd ./frontend/pratiler-frontend
           npm run lint
 
-      # - name: Checking dependencies vulnerabilities
-      #   uses: dependency-check/Dependency-Check_Action@main
-      #   with:
-      #     project: pratiler-frontend
-      #     path: ./frontend/pratiler-frontend
-      #     format: ALL
+      - name: Checking dependencies vulnerabilities
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: pratiler-frontend
+          path: ./frontend/pratiler-frontend
+          format: ALL
 
       - name: Execute Prettier check
         run: |
@@ -81,46 +81,15 @@ jobs:
           npx depcruise ./src \
             --include-only "^src" \
             --output-type dot \
-            --output-to ../../doc/frontend-classes/diagrama-pastas.dot \
+            --output-to diagrama-pastas.dot \
             --no-config
-          dot -Tsvg ../../doc/frontend-classes/diagrama-pastas.dot > ../../doc/frontend-classes/diagrama-pastas.svg
+          dot -Tsvg diagrama-pastas.dot > diagrama-pastas.svg
 
-      - name: Commit updated diagrams
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Upload artifacts
+            uses: actions/upload-artifact@v4
+            with:
+              name: my-build-artifact
+              path: |
+                ${{github.workspace}}/reports
+                diagrama-pastas.svg
 
-          if [ -z "$GITHUB_TOKEN" ]; then
-            echo "No GitHub token available (probably fork PR). Skipping commit."
-            exit 0
-          fi
-
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          FILE="doc/frontend-classes/diagrama-pastas.svg"
-
-          if [ -f "$FILE" ]; then
-            git add "$FILE"
-          else
-            echo "Arquivo $FILE não encontrado. Nada para commitar."
-            exit 0
-          fi
-
-          if git diff --cached --quiet; then
-            echo "Nenhuma alteração detectada no UML."
-            exit 0
-          fi
-
-          git commit -m ":memo: docs: update UML diagram"
-
-          if [[ "${GITHUB_REF}" == refs/heads/* ]]; then
-            BRANCH="${GITHUB_REF#refs/heads/}"
-            echo "Fazendo push para $BRANCH..."
-            git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:$BRANCH
-          else
-            echo "Não estamos em uma branch (provavelmente PR). Não fazer push."
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTOR: ${{ github.actor }}
