@@ -6,8 +6,11 @@ on:
   pull_request:
     branches: ["*"]
 
+permissions:
+  contents: write
+
 jobs:
-  build:
+  build-frontend:
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,7 +18,10 @@ jobs:
         node-version: [22.x]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Cache node modules
         uses: actions/cache@v4
@@ -52,6 +58,11 @@ jobs:
           project: pratiler-frontend
           path: ./frontend/pratiler-frontend
           format: ALL
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Dependency Check artifacts
+          path: ${{github.workspace}}/reports
 
       - name: Execute Prettier check
         run: |
@@ -62,3 +73,25 @@ jobs:
         run: |
           cd ./frontend/pratiler-frontend/src
           npx jscpd . --threshold 0 --reporters html --output ./cpd-report
+
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+
+      - name: Generate diagram
+        run: |
+          cd ./frontend/pratiler-frontend
+          npx depcruise ./src \
+            --include-only "^src" \
+            --output-type dot \
+            --output-to diagrama-pastas.dot \
+            --no-config
+          dot -Tsvg diagrama-pastas.dot > diagrama-pastas.svg
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: UML Diagram artifact
+          path: ./frontend/pratiler-frontend/diagrama-pastas.svg
+
