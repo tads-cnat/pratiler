@@ -81,7 +81,6 @@ jobs:
 
       - name: Generate diagram
         run: |
-          mkdir -p ./doc/frontend-classes
           cd ./frontend/pratiler-frontend
           npx depcruise ./src \
             --include-only "^src" \
@@ -94,5 +93,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: UML Diagram artifact
-          path: .frontend/pratiler-frontend/diagrama-pastas.svg
+          path: ./frontend/pratiler-frontend/diagrama-pastas.svg
 
