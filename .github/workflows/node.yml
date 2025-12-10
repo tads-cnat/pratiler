@@ -58,6 +58,11 @@ jobs:
           project: pratiler-frontend
           path: ./frontend/pratiler-frontend
           format: ALL
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Dependency Check artifacts
+          path: ${{github.workspace}}/reports
 
       - name: Execute Prettier check
         run: |
@@ -88,8 +93,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: my-build-artifact
-          path: |
-            ${{github.workspace}}/reports
-            diagrama-pastas.svg
+          name: UML Diagram artifact
+          path: .frontend/pratiler-frontend/diagrama-pastas.svg
 
