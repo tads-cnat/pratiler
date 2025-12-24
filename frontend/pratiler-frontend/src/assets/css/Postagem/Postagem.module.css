@@ -23,15 +23,9 @@
   display: flex;
   font-size: 1.1rem;
 }
-.nomeBotaoSeguirData .perfil .nome p {
-  color: var(--penn-blue);
-  cursor: pointer;
-}
-.nomeBotaoSeguirData .perfil .nome button {
-  color: #6761a8;
-  font-weight: 400;
-}
+
 .nomeBotaoSeguirData .nome {
+  text-decoration: none;
   margin: 0.5rem 1rem;
   font-weight: bold;
   margin: 0.5rem 1rem;
