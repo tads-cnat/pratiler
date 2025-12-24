@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.db import IntegrityError
-from mainapp.models import *
+from mainapp.models import Autor, Interacao, Leitor, Livro
 
 class GerenciarEstanteTestCase(TestCase):
     def test_adicionar_livro_na_estante_com_sucesso(self):
