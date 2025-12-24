@@ -65,6 +65,7 @@ export function Perfil() {
                 {perfil.seguidores} seguidores {perfil.seguindo} seguindo
               </p>
               <p>
+                {''}
                 <span className={perfilCss.iconPerfilProfile}>
                   <Gear size={24} color="#3D3569" weight="fill" />
                 </span>

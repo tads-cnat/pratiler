@@ -72,7 +72,7 @@ export function Feed() {
           <form onSubmit={realizarPostagem} className={formCss.realizarPostagem}>
             <h1>Escreva sua postagem</h1>
             <label className={formCss.select}>
-              Livro:
+              Livro:{''}
               <select name="interacao_id" onChange={(e) => changeBook(e, null, setFormData, formData)}>
                 <option value="0">Selecione</option>
                 {livrosEstante.map((interacao) => (
