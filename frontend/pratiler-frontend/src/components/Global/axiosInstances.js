@@ -28,6 +28,7 @@ function responseCallbacks(axiosInstance) {
             localStorage.setItem('token', response.data.access);
             return axiosInstance(originalRequest);
           }
+          return error;
         });
       }
       return Promise.reject(error);

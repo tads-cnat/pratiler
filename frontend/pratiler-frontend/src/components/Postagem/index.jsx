@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heart } from 'phosphor-react';
+import { Heart, User } from 'phosphor-react';
 import PropTypes from 'prop-types';
 
 /** CSS */
@@ -8,7 +8,6 @@ import postagemCss from '../../assets/css/Postagem/Postagem.module.css';
 
 /** Store */
 import { internalAxios } from '../Global/axiosInstances';
-import { User } from 'phosphor-react';
 
 export default function Postagem(props) {
   const { id, leitor, livro, texto, pagina_inicial, pagina_final, data_hora, curtidas, curtido } = props;

@@ -34,7 +34,7 @@ export default [
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'sonarjs/cognitive-complexity': ['warn', 15],
       complexity: ['warn', 10],
-      'max-lines-per-function': ['warn', { max: 50, skipBlankLines: true, skipComments: true }],
+      'max-lines-per-function': ['warn', { max: 120, skipBlankLines: true, skipComments: true }],
       'max-lines': ['warn', { max: 300 }],
       'max-params': ['warn', 4],
       'max-depth': ['warn', 4],

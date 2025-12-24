@@ -76,9 +76,6 @@ export function RealizarAvaliacao() {
         .then((response) => {
           setLivro(response.data.livro);
         })
-        .catch((error) => {
-          console.error('Erro ao buscar livro: ', error);
-        })
         .finally(() => {
           setLoading(false);
         });
