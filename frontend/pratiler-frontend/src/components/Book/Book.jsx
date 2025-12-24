@@ -16,8 +16,8 @@ export function Book() {
   const navigate = useNavigate();
 
   const fetchDescritpion = (desc) => {
-    var parser = new DOMParser();
-    var htmlDoc = parser.parseFromString(desc, 'text/html');
+    const parser = new DOMParser();
+    const htmlDoc = parser.parseFromString(desc, 'text/html');
     return htmlDoc.querySelector('body').innerText;
   };
 
@@ -38,7 +38,7 @@ export function Book() {
   const sendBook = async (e) => {
     const isbn = e.volumeInfo.industryIdentifiers[0].identifier;
 
-    var desc = fetchDescritpion(e.volumeInfo.description);
+    const desc = fetchDescritpion(e.volumeInfo.description);
 
     await internalAxios
       .post('livros', {
