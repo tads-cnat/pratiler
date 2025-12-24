@@ -43,7 +43,7 @@ export async function changeBook(event, id, setFormData, formData) {
         formData,
         interacaoId,
         realizouPostagem,
-        pg_atual: response.data.pagina_atual,
+        pg_atual: response.data.pg_atual,
       });
     });
   } else {

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 /* CSS */
-import authSuccessfulCss from '../../assets/css/Global/authSuccessfulCss.module.css';
+import authSuccessfulCss from '../../assets/css/Global/AuthSuccessful.module.css';
 import cardBookCss from '../../assets/css/Bookcase/CardBook.module.css';
 
 /* Store */
