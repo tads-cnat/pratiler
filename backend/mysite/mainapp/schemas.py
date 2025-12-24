@@ -1,3 +1,4 @@
+from typing import Optional
 from ninja import ModelSchema, Schema
 from django.contrib.auth.models import User
 from .models import Livro
@@ -74,8 +75,8 @@ class InteracaoSchema(Schema):
 
 
 class InteracaoFilter(Schema):
-    username: str = None
-    status: str = None
+    username: Optional[str]
+    status: Optional[str]
 
     def get_status(self):
         return self.status.split(",") if self.status else ["QL", "LN", "LD"]
@@ -88,7 +89,7 @@ class InteracaoSchemaIn(Schema):
 
 
 class InteracaoSchemaUpdate(Schema):
-    status: str = None
+    status: Optional[str]
     pg_atual: int = 0
 
 
