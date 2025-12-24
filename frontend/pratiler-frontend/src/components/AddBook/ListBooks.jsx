@@ -51,16 +51,14 @@ export function ListBooks() {
   }
 
   return (
-    <>
-      <div className={css.listBooks}>
-        {error || books.length === 0 ? (
-          <SemResultados titulo={error ?? 'Sem livros disponíveis. Pesquise mais livros para visualizá-los.'} />
-        ) : (
-          books.map((book) => (
-            <Minibook key={book.id} img={book.capa} title={book.titulo} autor={book.autor.nome} id={book.id} />
-          ))
-        )}
-      </div>
-    </>
+    <div className={css.listBooks}>
+      {error || books.length === 0 ? (
+        <SemResultados titulo={error ?? 'Sem livros disponíveis. Pesquise mais livros para visualizá-los.'} />
+      ) : (
+        books.map((book) => (
+          <Minibook key={book.id} img={book.capa} title={book.titulo} autor={book.autor.nome} id={book.id} />
+        ))
+      )}
+    </div>
   );
 }

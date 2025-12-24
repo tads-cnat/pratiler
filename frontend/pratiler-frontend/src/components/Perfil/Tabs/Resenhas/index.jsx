@@ -57,9 +57,7 @@ export function Resenhas(props) {
                   </div>
                 ))
               ) : (
-                <>
-                  <SemResultados titulo="Não há resenhas postadas ainda" tamanho="P" />
-                </>
+                <SemResultados titulo="Não há resenhas postadas ainda" tamanho="P" />
               )}
               {username === user.username && (
                 <button

@@ -26,7 +26,7 @@ export function Header() {
       ) : (
         <>
           <header className={headerCss.header}>
-            <img className={headerCss.logo} src={pratilerLogo} alt="" />
+            <img className={headerCss.logo} src={pratilerLogo} alt="Marca Gráfica Pratiler" />
             <div className={headerCss.info}>
               <Search />
               <div
