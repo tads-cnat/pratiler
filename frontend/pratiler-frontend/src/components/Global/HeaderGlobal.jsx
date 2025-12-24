@@ -19,6 +19,10 @@ export function Header() {
   const { user, logout } = useAuthStore();
   const [loading, setLoading] = useState(false);
 
+  function handleNavigate() {
+    navigate(`/${user.username}`);
+  }
+
   return (
     <>
       {loading ? (
@@ -29,12 +33,7 @@ export function Header() {
             <img className={headerCss.logo} src={pratilerLogo} alt="Marca Gráfica Pratiler" />
             <div className={headerCss.info}>
               <Search />
-              <div
-                className={headerCss.perfilBox}
-                onClick={() => {
-                  navigate(`/${user.username}`);
-                }}
-              >
+              <div className={headerCss.perfilBox} onClick={handleNavigate} onKeyDown={handleNavigate}>
                 <div className={headerCss.icon}>
                   <User weight="fill" color="#f6f6f6" size={18} />
                 </div>

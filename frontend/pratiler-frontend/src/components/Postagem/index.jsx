@@ -18,6 +18,10 @@ export default function Postagem(props) {
   const dataFormatada = `${valores[2]}/${valores[1]}/${valores[0]}`;
   const navigate = useNavigate();
 
+  function handleNavigate() {
+    navigate(`/${leitor.username}`);
+  }
+
   async function curtirPostagem() {
     await internalAxios.post(`curtidas`, { postagem_id: id }).then((response) => {
       setTaCurtido(!taCurtido);
@@ -32,12 +36,7 @@ export default function Postagem(props) {
           <div className={postagemCss.icon}>
             <User weight="fill" color="#f6f6f6" size={22} />
           </div>
-          <div
-            className={postagemCss.nome}
-            onClick={() => {
-              navigate(`/${leitor.username}`);
-            }}
-          >
+          <div className={postagemCss.nome} onClick={handleNavigate} onKeyDown={handleNavigate}>
             <p>{leitor.username}</p>
           </div>
 

@@ -11,6 +11,7 @@ export default function PerfilTabs(props) {
       <div
         className={tab === 'estante' ? perfilCss.tabPerfilNavAtivado : perfilCss.tabPerfilNav}
         onClick={() => setTab('estante')}
+        onKeyDown={() => setTab('estante')}
       >
         <Books size={40} color="#3D3569" weight="fill" />
         {usuarioLogado ? 'Minha Estante' : `Estante de ${perfil.leitor.username}`}
@@ -18,6 +19,7 @@ export default function PerfilTabs(props) {
       <div
         className={tab === 'resenhas' ? perfilCss.tabPerfilNavAtivado : perfilCss.tabPerfilNav}
         onClick={() => setTab('resenhas')}
+        onKeyDown={() => setTab('resenhas')}
       >
         <BookOpen size={40} color="#3D3569" weight="fill" />
         Resenhas
@@ -25,6 +27,7 @@ export default function PerfilTabs(props) {
       <div
         className={tab === 'publicacoes' ? perfilCss.tabPerfilNavAtivado : perfilCss.tabPerfilNav}
         onClick={() => setTab('publicacoes')}
+        onKeyDown={() => setTab('publicacoes')}
       >
         <ChatCircleText size={40} color="#3D3569" weight="fill" />
         Publicações recentes
