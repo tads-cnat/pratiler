@@ -50,7 +50,7 @@ jobs:
       - name: Execute linting
         run: |
           cd ./frontend/pratiler-frontend
-          npm run lint --max-warnings=0
+          npx eslint . --max-warnings=0
 
       - name: Checking dependencies vulnerabilities
         uses: dependency-check/Dependency-Check_Action@main
