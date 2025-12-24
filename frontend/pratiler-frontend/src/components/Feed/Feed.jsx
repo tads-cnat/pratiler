@@ -5,12 +5,13 @@ import feedCss from '../../assets/css/Feed/Feed.module.css';
 import formCss from '../../assets/css/FormPostagem/FormPostagem.module.css';
 
 /* Store */
-import { internalAxios } from '../Global/axiosInstances';
 
 /* Components */
+import { AuthFail } from '../Global/AuthFail';
 import { Header } from '../Global/HeaderGlobal';
 import Postagem from '../Postagem/index';
-import { AuthFail } from '../Global/AuthFail';
+import { SemResultados } from '../SemResultado/index';
+import { changeBook, fazerPostagem, getLivrosEstante, getPostagens } from './utils';
 
 export function Feed() {
   const [error, setError] = useState(null);
@@ -24,35 +25,6 @@ export function Feed() {
     texto: '',
   });
 
-  const changeBook = async (e, id) => {
-    let interacaoId;
-    const realizouPostagem = e === undefined;
-    if (!realizouPostagem) interacaoId = e.target.value;
-    else interacaoId = id;
-    if (interacaoId !== '0') {
-      await internalAxios.get(`interacoes/${interacaoId}`).then((response) => {
-        setFormData({
-          ...formData,
-          interacao_id: Number(interacaoId),
-          pagina_inicial: response.data.pg_atual,
-        });
-        if (realizouPostagem)
-          setFormData({
-            ...formData,
-            pagina_final: 0,
-            texto: '',
-          });
-      });
-    } else {
-      setFormData({
-        ...formData,
-        interacao_id: 0,
-        pagina_inicial: 0,
-        pagina_final: 0,
-        texto: '',
-      });
-    }
-  };
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -62,37 +34,34 @@ export function Feed() {
 
   async function realizarPostagem(e) {
     e.preventDefault();
-    await internalAxios
-      .post('postagens', formData)
-      .then(() => {
+    fazerPostagem(formData)
+      .then(async () => {
         setNovaPostagem(!novaPostagem);
         setFormData({
           ...formData,
           texto: '',
           pagina_final: 0,
         });
-        changeBook(undefined, formData.interacao_id);
+        await changeBook(undefined, formData.interacao_id, setFormData, formData);
       })
       .catch((err) => {
         setError(err.response.data.detail);
       });
   }
 
-  async function pegarLivrosEstante() {
-    await internalAxios
-      .get('interacoes', { params: { status: 'QL,LN' } })
-      .then((response) => setLivrosEstante(response.data));
+  async function fetchLivrosEstante() {
+    await getLivrosEstante().then((response) => setLivrosEstante(response.data));
   }
-  async function getPostagens() {
-    await internalAxios.get('postagens').then((response) => setPostagens(response.data));
+  async function fetchPostagens() {
+    await getPostagens().then((response) => setPostagens(response.data));
   }
 
   useEffect(() => {
-    pegarLivrosEstante();
+    fetchLivrosEstante();
   }, []);
 
   useEffect(() => {
-    getPostagens();
+    fetchPostagens();
   }, [novaPostagem]);
 
   return (
@@ -104,7 +73,7 @@ export function Feed() {
             <h1>Escreva sua postagem</h1>
             <label className={formCss.select}>
               Livro:
-              <select name="interacao_id" onChange={changeBook}>
+              <select name="interacao_id" onChange={(e) => changeBook(e, null, setFormData, formData)}>
                 <option value="0">Selecione</option>
                 {livrosEstante.map((interacao) => (
                   <option key={interacao.id} value={interacao.id}>
@@ -142,22 +111,9 @@ export function Feed() {
         </div>
         <div className={feedCss.postagens}>
           {postagens.length > 0 ? (
-            postagens.map((postagem, index) => (
-              <Postagem
-                key={index}
-                id={postagem.id}
-                leitor={postagem.leitor}
-                livro={postagem.livro}
-                texto={postagem.texto}
-                data_hora={postagem.data_hora}
-                pagina_inicial={postagem.pagina_inicial}
-                pagina_final={postagem.pagina_final}
-                curtidas={postagem.curtidas}
-                curtido={postagem.curtido}
-              />
-            ))
+            postagens.map((postagem, index) => <Postagem key={index} {...postagem} />)
           ) : (
-            <p>Não há postagens no momento, seja a primeira pessoa a comentar sobre sua leitura!</p>
+            <SemResultados titulo="Não há postagens no momento, seja a primeira pessoa a comentar sobre sua leitura!" />
           )}
         </div>
       </div>

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Books, BookOpen, ChatCircleText, Gear } from 'phosphor-react';
+import { Gear } from 'phosphor-react';
 
 /* Components */
 import { Header } from '../Global/HeaderGlobal';
+import PerfilTabs from './components/PerfilTabs';
 import { Resenhas } from '../Perfil/Tabs/Resenhas';
 
 /* CSS */
@@ -48,7 +49,7 @@ export function Perfil() {
         <>
           <Header />
           <div className={perfilCss.cardProfile}>
-            <img src={perfil.leitor.foto_perfil ? perfil.leitor.foto_perfil : img} alt="Imagem de perfil" />
+            <img src={perfil.leitor.foto_perfil ?? img} alt="Imagem de perfil" />
             <div className={perfilCss.cardProfileContent}>
               <p className={perfilCss.cardProfileName}>
                 <strong>{perfil.leitor.nome}</strong>
@@ -72,29 +73,7 @@ export function Perfil() {
             </div>
           </div>
           <div className={perfilCss.estiloHrDiv}></div>
-          <div className={perfilCss.perfilNav}>
-            <div
-              className={tab === 'estante' ? perfilCss.tabPerfilNavAtivado : perfilCss.tabPerfilNav}
-              onClick={() => setTab('estante')}
-            >
-              <Books size={40} color="#3D3569" weight="fill" />
-              {usuarioLogado ? 'Minha Estante' : `Estante de ${perfil.leitor.username}`}
-            </div>
-            <div
-              className={tab === 'resenhas' ? perfilCss.tabPerfilNavAtivado : perfilCss.tabPerfilNav}
-              onClick={() => setTab('resenhas')}
-            >
-              <BookOpen size={40} color="#3D3569" weight="fill" />
-              Resenhas
-            </div>
-            <div
-              className={tab === 'publicacoes' ? perfilCss.tabPerfilNavAtivado : perfilCss.tabPerfilNav}
-              onClick={() => setTab('publicacoes')}
-            >
-              <ChatCircleText size={40} color="#3D3569" weight="fill" />
-              Publicações recentes
-            </div>
-          </div>
+          <PerfilTabs perfil={perfil} setTab={setTab} tab={tab} usuarioLogado={usuarioLogado} />
           <div className={perfilCss.content}>
             {tab === 'estante' && <p>Estante</p>}
             {tab === 'resenhas' && <Resenhas username={username} />}
