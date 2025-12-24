@@ -42,8 +42,8 @@ export function Resenhas(props) {
           ) : (
             <div className={resenhaCss.resenhas}>
               {resenhas.length > 0 ? (
-                resenhas.map((resenha, index) => (
-                  <div className={resenhaCss.cardResenhas} key={index}>
+                resenhas.map((resenha) => (
+                  <div className={resenhaCss.cardResenhas} key={resenha.id}>
                     <div className={resenhaCss.cardResenhasContent}>
                       <p>
                         <strong>

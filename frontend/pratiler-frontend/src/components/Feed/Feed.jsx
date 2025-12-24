@@ -111,7 +111,7 @@ export function Feed() {
         </div>
         <div className={feedCss.postagens}>
           {postagens.length > 0 ? (
-            postagens.map((postagem, index) => <Postagem key={index} {...postagem} />)
+            postagens.map((postagem) => <Postagem key={postagem.id} {...postagem} />)
           ) : (
             <SemResultados titulo="Não há postagens no momento, seja a primeira pessoa a comentar sobre sua leitura!" />
           )}
