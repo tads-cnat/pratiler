@@ -15,7 +15,7 @@ export function Resenhas(props) {
   const { user } = useAuthStore();
   const [resenhas, setResenhas] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isWriting, setWriting] = useState(false);
+  const [isWriting, setIsWriting] = useState(false);
 
   useEffect(() => {
     async function loadResenhas() {
@@ -38,7 +38,7 @@ export function Resenhas(props) {
       ) : (
         <>
           {isWriting ? (
-            <EscreverResenha setWriting={setWriting} />
+            <EscreverResenha setWriting={setIsWriting} />
           ) : (
             <div className={resenhaCss.resenhas}>
               {resenhas.length > 0 ? (
@@ -62,7 +62,7 @@ export function Resenhas(props) {
               {username === user.username && (
                 <button
                   onClick={() => {
-                    setWriting(true);
+                    setIsWriting(true);
                   }}
                   className={resenhaCss.botaoEscreverResenha}
                 >
