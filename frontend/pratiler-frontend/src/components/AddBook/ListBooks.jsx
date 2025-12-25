@@ -28,17 +28,7 @@ export function ListBooks() {
   const [loading, setLoading] = useState(true);
 
   const fetchBooks = async () => {
-    setLoading(true);
-    await fetchAvailableBooks('livros/livros-disponiveis')
-      .then((response) => {
-        setBooks(response.data);
-      })
-      .catch((err) => {
-        setError('Erro ao mostrar os Livros: ', err.response.data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    await fetchAvailableBooks({ url: 'livros/livros-disponiveis', setBooks, setError, setLoading });
   };
 
   useEffect(() => {

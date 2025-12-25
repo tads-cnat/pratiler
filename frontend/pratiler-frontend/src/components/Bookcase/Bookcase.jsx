@@ -34,7 +34,6 @@ export function Bookcase() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      setLoading(true);
       const endpoints = new Map([
         ['Lendo', 'LN'],
         ['Quero Ler', 'QL'],
@@ -42,16 +41,7 @@ export function Bookcase() {
       ]);
       const endpoint = endpoints.get(filter);
 
-      await fetchAvailableBooks('interacoes', { status: endpoint })
-        .then((response) => {
-          setBooks(response.data);
-        })
-        .catch((err) => {
-          setError('Erro ao mostrar os Livros: ', err.response.data);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      await fetchAvailableBooks({ url: 'interacoes', params: { status: endpoint }, setBooks, setError, setLoading });
     };
     fetchBooks();
   }, [filter]);
