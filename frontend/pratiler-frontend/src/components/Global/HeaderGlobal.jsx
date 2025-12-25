@@ -45,7 +45,7 @@ export function Header() {
                 <span>Minha Estante</span>
               </a>
 
-              <a href="#" className={headerCss.categories}>
+              <a href="/livros-populares" className={headerCss.categories}>
                 <Star size={24} color="#3D3569" weight="fill" />
                 <span>Livros Populares</span>
               </a>
@@ -55,7 +55,7 @@ export function Header() {
                 <span>Publicações Populares</span>
               </a>
 
-              <a href="#" className={headerCss.categories}>
+              <a href="/seguindo" className={headerCss.categories}>
                 <UserPlus size={24} color="#3D3569" weight="fill" />
                 <span>Seguindo</span>
               </a>
