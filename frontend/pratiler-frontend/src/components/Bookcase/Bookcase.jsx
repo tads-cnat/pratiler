@@ -7,12 +7,12 @@ import bookcaseCss from '../../assets/css/Bookcase/Bookcase.module.css';
 
 /* Store */
 import { useAuthStore } from '../Global/authStore';
-import { internalAxios } from '../Global/axiosInstances';
 
 /* Componentes */
 import { Header } from '../Global/HeaderGlobal';
 import { CardBook } from './CardBook';
 import { SemResultados } from '../SemResultado';
+import { fetchAvailableBooks } from './utils';
 
 export function Bookcase() {
   const navigate = useNavigate();
@@ -42,8 +42,7 @@ export function Bookcase() {
       ]);
       const endpoint = endpoints.get(filter);
 
-      await internalAxios
-        .get('interacoes', { params: { status: endpoint } })
+      await fetchAvailableBooks('interacoes', { status: endpoint })
         .then((response) => {
           setBooks(response.data);
         })

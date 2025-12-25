@@ -11,6 +11,7 @@ import css from '../../assets/css/AddBook/ListBooks.module.css';
 /* Store */
 import { useAuthStore } from '../Global/authStore';
 import { internalAxios } from '../Global/axiosInstances';
+import { fetchAvailableBooks } from '../Bookcase/utils';
 
 export function ListBooks() {
   const navigate = useNavigate();
@@ -29,8 +30,7 @@ export function ListBooks() {
 
   const fetchBooks = async () => {
     setLoading(true);
-    await internalAxios
-      .get('livros/livros-disponiveis')
+    await fetchAvailableBooks('livros/livros-disponiveis')
       .then((response) => {
         setBooks(response.data);
       })
