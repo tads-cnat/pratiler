@@ -53,7 +53,7 @@ export function Resenhas(props) {
                       <p>{resenha.titulo}</p>
                       <button className={resenhaCss.botaoLerResenha}>Ler resenha</button>
                     </div>
-                    <img src={resenha.livro.capa} />
+                    <img src={resenha.livro.capa} alt={`Capa do livro ${resenha.livro.titulo}`} />
                   </div>
                 ))
               ) : (
