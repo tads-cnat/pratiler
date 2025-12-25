@@ -27,13 +27,13 @@ export const useAuthStore = create(
         const credentials = { email: email, password: password };
         return await internalAxios
           .post('auth/login', credentials)
-          .then(async (res) => {
+          .then(async ({res}) => {
             const response = res;
             set({ user: res.data, isAuthenticated: true });
-            await internalAxios.post('auth/pair', credentials).then((res) => {
+            await internalAxios.post('auth/pair', credentials).then(({ data }) => {
               set({
-                token: res.data.access,
-                refresh: res.data.refresh,
+                token: data.access,
+                refresh: data.refresh,
               });
               return response;
             });

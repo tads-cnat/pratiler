@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 /* Components */
 import { Minibook } from './Minibook';
@@ -34,8 +34,8 @@ export function ListBooks() {
       .then((response) => {
         setBooks(response.data);
       })
-      .catch((error) => {
-        setError('Erro ao mostrar os Livros: ', error.response.data);
+      .catch((err) => {
+        setError('Erro ao mostrar os Livros: ', err.response.data);
       })
       .finally(() => {
         setLoading(false);

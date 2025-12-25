@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Star } from 'phosphor-react';
 
 /* Components */
@@ -47,10 +47,10 @@ export function RealizarAvaliacao() {
         setError(null);
         navigate('/livros');
       })
-      .catch((error) => {
-        switch (error.response.status) {
+      .catch((err) => {
+        switch (err.response.status) {
           case 400:
-            setError(error.response.data.detalhe);
+            setError(err.response.data.detalhe);
             break;
           case 401:
             navigate('/login');

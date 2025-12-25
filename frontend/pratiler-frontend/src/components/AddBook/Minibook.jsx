@@ -1,6 +1,6 @@
 import { BookmarkSimple } from 'phosphor-react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 /* CSS */

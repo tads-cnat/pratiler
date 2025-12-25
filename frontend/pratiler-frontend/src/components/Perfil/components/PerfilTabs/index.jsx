@@ -1,3 +1,4 @@
+import React from 'react';
 import { Books, BookOpen, ChatCircleText } from 'phosphor-react';
 import PropTypes from 'prop-types';
 

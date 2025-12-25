@@ -1,3 +1,4 @@
+import React from 'react';
 import { object, string } from 'yup';
 
 /* CSS */
