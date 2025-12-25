@@ -15,6 +15,15 @@ spec:
       containers:
       - name: react
         image: pratiler/frontend:latest  # Use a imagem que você acabou de testar
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+            ephemeral-storage: "128Mi"
+          limits:
+            cpu: "300m"
+            memory: "256Mi"
+            ephemeral-storage: "512Mi"
         ports:
         - containerPort: 5173  # Porta do Vite
         env:
