@@ -12,22 +12,26 @@ spec:
       labels:
         app: django-backend
     spec:
+      automountServiceAccountToken: false
       containers:
-      - name: django
-        image: pratiler/backend
-        resources:
-          requests:
-            cpu: "250m"
-            memory: "384Mi"
-            ephemeral-storage: "256Mi"
-          limits:
-            cpu: "750m"
-            memory: "768Mi"
-            ephemeral-storage: "512Mi"
-        command: ["/bin/sh", "-c"]
-        args: ["python mysite/manage.py migrate && python mysite/manage.py runserver 0.0.0.0:8000"]
-        ports:
-        - containerPort: 8000
-        env:
-        - name: DEV
-          value: "0" # Set to "0" for production
+        - name: django
+          image: pratiler/backend
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "384Mi"
+              ephemeral-storage: "256Mi"
+            limits:
+              cpu: "750m"
+              memory: "768Mi"
+              ephemeral-storage: "512Mi"
+          command: ["/bin/sh", "-c"]
+          args:
+            [
+              "python mysite/manage.py migrate && python mysite/manage.py runserver 0.0.0.0:8000",
+            ]
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DEV
+              value: "0" # Set to "0" for production
