@@ -29,9 +29,7 @@ export function Book(props) {
 
 Book.propTypes = {
   img: PropTypes.string,
-  id: PropTypes.number,
   autor: PropTypes.string,
   title: PropTypes.string,
-  status: PropTypes.string,
   sinopse: PropTypes.string,
 };
