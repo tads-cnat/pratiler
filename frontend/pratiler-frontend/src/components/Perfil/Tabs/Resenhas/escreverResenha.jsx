@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -52,9 +52,6 @@ export default function EscreverResenha(props) {
       .get('/livros/resenha')
       .then((res) => {
         setLivros(res.data);
-      })
-      .catch((err) => {
-        console.log('Erro ao carregar livros', err);
       })
       .finally(() => {
         setLoading(false);

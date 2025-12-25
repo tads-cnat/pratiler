@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 /* Components */
 import { Minibook } from './Minibook';
@@ -10,7 +10,7 @@ import css from '../../assets/css/AddBook/ListBooks.module.css';
 
 /* Store */
 import { useAuthStore } from '../Global/authStore';
-import { internalAxios } from '../Global/axiosInstances';
+import { fetchAvailableBooks } from '../Bookcase/utils';
 
 export function ListBooks() {
   const navigate = useNavigate();
@@ -28,18 +28,7 @@ export function ListBooks() {
   const [loading, setLoading] = useState(true);
 
   const fetchBooks = async () => {
-    setLoading(true);
-    await internalAxios
-      .get('livros/livros-disponiveis')
-      .then((response) => {
-        setBooks(response.data);
-      })
-      .catch((error) => {
-        setError('Erro ao mostrar os Livros: ', error.response.data);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    await fetchAvailableBooks({ url: 'livros/livros-disponiveis', setBooks, setError, setLoading });
   };
 
   useEffect(() => {

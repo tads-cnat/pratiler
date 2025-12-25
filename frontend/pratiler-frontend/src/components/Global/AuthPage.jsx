@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
@@ -49,12 +49,12 @@ export function AuthPage(props) {
         <form className={authCss.formulario} onSubmit={handleSubmit(fetchAuth)}>
           {fields.map((field) => {
             const { name } = field;
-            const errorsField = errors[name];
+            const { [name]: errorsField } = errors;
             return (
-              <>
+              <div key={name}>
                 <input className={inputCss.inputText} {...field} {...register(name)} />
                 {errorsField && <p className={inputCss.error}>{errorsField.message}</p>}
-              </>
+              </div>
             );
           })}
           <input type="submit" value={labelButton} className={inputCss.inputSubmit} />

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { internalAxios } from '../Global/axiosInstances';
 
 /* CSS */
@@ -22,8 +22,7 @@ export function Interaction() {
         .then((response) => {
           setInteraction(response.data);
         })
-        .catch((error) => {
-          console.error('Erro ao buscar interação: ', error);
+        .catch(() => {
           setError('Interação não encontrada');
         })
         .finally(() => {

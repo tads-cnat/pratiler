@@ -1,6 +1,6 @@
 import { User, UserPlus, Books, Star, ChatText, SignOut } from 'phosphor-react';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 /* Components */
 import { Search } from '../Search/Search';

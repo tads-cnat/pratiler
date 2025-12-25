@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Gear } from 'phosphor-react';
 
@@ -18,7 +18,6 @@ import { useAuthStore } from '../Global/authStore';
 import { internalAxios } from '../Global/axiosInstances';
 
 async function SeguirUsuario() {
-  console.log('Funcionalidade não implementada :(');
   return await Promise.resolve();
 }
 

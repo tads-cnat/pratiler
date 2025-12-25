@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, CaretCircleDown } from 'phosphor-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,12 +7,12 @@ import bookcaseCss from '../../assets/css/Bookcase/Bookcase.module.css';
 
 /* Store */
 import { useAuthStore } from '../Global/authStore';
-import { internalAxios } from '../Global/axiosInstances';
 
 /* Componentes */
 import { Header } from '../Global/HeaderGlobal';
 import { CardBook } from './CardBook';
 import { SemResultados } from '../SemResultado';
+import { fetchAvailableBooks } from './utils';
 
 export function Bookcase() {
   const navigate = useNavigate();
@@ -34,25 +34,14 @@ export function Bookcase() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      setLoading(true);
-      const endpoint = {
-        Lendo: `LN`,
-        'Quero Ler': `QL`,
-        Lidos: `LD`,
-      }[filter];
+      const endpoints = new Map([
+        ['Lendo', 'LN'],
+        ['Quero Ler', 'QL'],
+        ['Lidos', 'LD'],
+      ]);
+      const endpoint = endpoints.get(filter);
 
-      await internalAxios
-        .get('interacoes', { params: { status: endpoint } })
-        .then((response) => {
-          setBooks(response.data);
-        })
-        .catch((error) => {
-          console.error('Erro ao buscar Livros: ', error.response.data);
-          setError('Erro ao mostrar os Livros: ', error.response.data);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      await fetchAvailableBooks({ url: 'interacoes', params: { status: endpoint }, setBooks, setError, setLoading });
     };
     fetchBooks();
   }, [filter]);

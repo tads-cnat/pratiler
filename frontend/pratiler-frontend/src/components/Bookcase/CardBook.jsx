@@ -1,5 +1,5 @@
 import { CheckCircle, MagnifyingGlass, Star } from 'phosphor-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -14,11 +14,11 @@ export function CardBook({ img, autor, status, title, pages, id, onDetailsClick,
   const [successMessage, setSuccessMessage] = useState(null);
   const navigate = useNavigate();
 
-  const handleMarkAsRead = async (id) => {
+  const handleMarkAsRead = async (interacaoId) => {
     await internalAxios
-      .put(`interacoes/${id}`, { status: 'LD' })
+      .put(`interacoes/${interacaoId}`, { status: 'LD' })
       .then((response) => {
-        setSuccessMessage(response.data.message || 'Livro marcado como lido!');
+        setSuccessMessage(response.data.message ?? 'Livro marcado como lido!');
 
         setTimeout(() => {
           setSuccessMessage(null);

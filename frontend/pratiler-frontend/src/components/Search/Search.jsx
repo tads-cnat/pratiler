@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import searchCss from '../../assets/css/Search/Search.module.css';
 import { MagnifyingGlass } from 'phosphor-react';
 import { Facade } from './Facade';
