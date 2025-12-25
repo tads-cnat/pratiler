@@ -18,7 +18,7 @@ import { useAuthStore } from '../Global/authStore';
 import { internalAxios } from '../Global/axiosInstances';
 
 async function SeguirUsuario() {
-  console.log("Funcionalidade não implementada :(");
+  console.log('Funcionalidade não implementada :(');
   return await Promise.resolve();
 }
 
@@ -44,7 +44,6 @@ export function Perfil() {
     loadPerfil();
   }, [username]);
 
-
   return (
     <>
       {loading ? (
@@ -69,10 +68,9 @@ export function Perfil() {
                 {perfil.seguidores} seguidores {perfil.seguindo} seguindo
               </p>
               <p>
-                {''}
                 <span className={perfilCss.iconPerfilProfile}>
                   <Gear size={24} color="#3D3569" weight="fill" />
-                </span>
+                </span>{' '}
                 Configurações
               </p>
             </div>
