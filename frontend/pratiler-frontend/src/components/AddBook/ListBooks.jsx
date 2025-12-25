@@ -10,7 +10,6 @@ import css from '../../assets/css/AddBook/ListBooks.module.css';
 
 /* Store */
 import { useAuthStore } from '../Global/authStore';
-import { internalAxios } from '../Global/axiosInstances';
 import { fetchAvailableBooks } from '../Bookcase/utils';
 
 export function ListBooks() {
