@@ -40,24 +40,19 @@ export function Book() {
 
     const desc = fetchDescritpion(e.volumeInfo.description);
 
-    await internalAxios
-      .post('livros', {
-        titulo: e.volumeInfo.title,
-        sinopse: desc,
-        capa: e.volumeInfo.imageLinks?.thumbnail,
-        n_paginas: e.volumeInfo.pageCount,
-        isbn,
-        autor: e.volumeInfo.authors[0],
-      })
-      .then(async () => {
-        await internalAxios.get(`livros/${isbn}`).then(async (response) => {
-          await internalAxios.post('interacoes', { livro_id: response.data.id, status: 'LN' }).then(() => {
-            navigate('/livros');
-          });
+    const postResponse = await internalAxios.post('livros', {
+      titulo: e.volumeInfo.title,
+      sinopse: desc,
+      capa: e.volumeInfo.imageLinks?.thumbnail,
+      n_paginas: e.volumeInfo.pageCount,
+      isbn,
+      autor: e.volumeInfo.authors[0],
+    });
+    if (postResponse.status === 201)
+      await internalAxios.get(`livros/${isbn}`).then(async (response) => {
+        await internalAxios.post('interacoes', { livro_id: response.data.id, status: 'LN' }).then(() => {
+          navigate('/livros');
         });
-      })
-      .catch((error) => {
-        console.error('Erro ao adicionar o livro: ', error);
       });
   };
 
