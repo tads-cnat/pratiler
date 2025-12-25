@@ -17,6 +17,5 @@
   color: rgb(185, 185, 185);
   font-weight: 900;
   font-size: 2.5rem;
-  /* text-transform: uppercase; */
   text-shadow: -4px 4px 2px var(--periwinkle-light);
 }
