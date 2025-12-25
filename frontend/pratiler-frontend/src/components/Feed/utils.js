@@ -17,13 +17,14 @@ export async function getInteracao(interacaoId) {
 }
 
 function changeFormData(params) {
-  const { setFormData, formData, interacaoId, realizouPostagem, pg_atual } = params;
-  setFormData({
-    ...formData,
-    interacao_id: Number(interacaoId),
-    pagina_inicial: pg_atual,
-  });
-  if (realizouPostagem)
+  const { setFormData, formData, interacaoId, trocouLivro, pg_atual } = params;
+  if (trocouLivro)
+    setFormData({
+      ...formData,
+      interacao_id: Number(interacaoId),
+      pagina_inicial: pg_atual,
+    });
+  else
     setFormData({
       ...formData,
       pagina_final: 0,
@@ -33,26 +34,26 @@ function changeFormData(params) {
 
 export async function changeBook(event, id, setFormData, formData) {
   let interacaoId;
-  const realizouPostagem = event === undefined;
-  if (!realizouPostagem) interacaoId = event.target.value;
+  const trocouLivro = event !== undefined;
+  if (trocouLivro) interacaoId = event.target.value;
   else interacaoId = id;
-  if (interacaoId !== '0') {
-    await getInteracao(interacaoId).then((response) => {
-      changeFormData({
-        setFormData,
-        formData,
-        interacaoId,
-        realizouPostagem,
-        pg_atual: response.data.pagina_atual,
-      });
-    });
-  } else {
+  if (interacaoId === '0') {
     setFormData({
       ...formData,
       interacao_id: 0,
       pagina_inicial: 0,
       pagina_final: 0,
       texto: '',
+    });
+  } else {
+    await getInteracao(interacaoId).then((response) => {
+      changeFormData({
+        setFormData,
+        formData,
+        interacaoId,
+        trocouLivro,
+        pg_atual: response.data.pg_atual,
+      });
     });
   }
 }

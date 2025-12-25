@@ -2,8 +2,7 @@
 
 .content {
   display: flex;
-  margin-top: 2rem;
-  margin: 3rem auto;
+  margin: 3rem auto 2rem auto;
   justify-content: space-around;
 }
 

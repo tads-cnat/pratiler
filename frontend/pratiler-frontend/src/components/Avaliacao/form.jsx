@@ -106,10 +106,10 @@ export function RealizarAvaliacao() {
                   <form onSubmit={handleSubmit(submitAvaliacao)} className={avaliacaoFormCss.realizarAvaliacao}>
                     <h1>Escreva sua Avaliação</h1>
                     <div className={avaliacaoFormCss.estrelas}>
-                      {Array(5).map((_, index) => {
+                      {new Array(5).map((estrela, index) => {
                         const notaEstrela = index + 1;
                         return (
-                          <button key={index} onClick={() => setNota(nota === notaEstrela ? 0 : notaEstrela)}>
+                          <button key={estrela} onClick={() => setNota(nota === notaEstrela ? 0 : notaEstrela)}>
                             <Star
                               size={40}
                               className={

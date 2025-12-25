@@ -71,10 +71,10 @@ export default function EscreverResenha(props) {
         <p>Carregando...</p>
       ) : (
         <div className={escreverResenhaCss.formEscreverResenha}>
-          <label className={escreverResenhaCss.labelEscreverResenha}>Escreva sua resenha</label>
+          <h1 className={escreverResenhaCss.labelEscreverResenha}>Escreva sua resenha</h1>
           <form onSubmit={handleSubmit(postResenha)}>
             <label className={formCss.select}>
-              Livro:
+              Livro:{''}
               <select
                 name="livro_id"
                 id=""
@@ -91,7 +91,7 @@ export default function EscreverResenha(props) {
             </label>
             {errors.livro && <span className={inputCss.error}>{errors.livro.message}</span>}
             <label>
-              Título:
+              Título:{''}
               <input
                 name="titulo"
                 type="text"
@@ -102,7 +102,7 @@ export default function EscreverResenha(props) {
             </label>
             {errors.titulo && <span className={inputCss.error}>{errors.titulo.message}</span>}
             <label>
-              Texto:
+              Texto:{''}
               <textarea
                 name="texto"
                 className={escreverResenhaCss.itensFormsEscreverResenha}

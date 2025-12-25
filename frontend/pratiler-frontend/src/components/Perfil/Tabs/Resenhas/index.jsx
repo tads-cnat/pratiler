@@ -15,7 +15,7 @@ export function Resenhas(props) {
   const { user } = useAuthStore();
   const [resenhas, setResenhas] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isWriting, setWriting] = useState(false);
+  const [isWriting, setIsWriting] = useState(false);
 
   useEffect(() => {
     async function loadResenhas() {
@@ -38,12 +38,12 @@ export function Resenhas(props) {
       ) : (
         <>
           {isWriting ? (
-            <EscreverResenha setWriting={setWriting} />
+            <EscreverResenha setWriting={setIsWriting} />
           ) : (
             <div className={resenhaCss.resenhas}>
               {resenhas.length > 0 ? (
-                resenhas.map((resenha, index) => (
-                  <div className={resenhaCss.cardResenhas} key={index}>
+                resenhas.map((resenha) => (
+                  <div className={resenhaCss.cardResenhas} key={resenha.id}>
                     <div className={resenhaCss.cardResenhasContent}>
                       <p>
                         <strong>
@@ -53,18 +53,16 @@ export function Resenhas(props) {
                       <p>{resenha.titulo}</p>
                       <button className={resenhaCss.botaoLerResenha}>Ler resenha</button>
                     </div>
-                    <img src={resenha.livro.capa} />
+                    <img src={resenha.livro.capa} alt={`Capa do livro ${resenha.livro.titulo}`} />
                   </div>
                 ))
               ) : (
-                <>
-                  <SemResultados titulo="Não há resenhas postadas ainda" tamanho="P" />
-                </>
+                <SemResultados titulo="Não há resenhas postadas ainda" tamanho="P" />
               )}
               {username === user.username && (
                 <button
                   onClick={() => {
-                    setWriting(true);
+                    setIsWriting(true);
                   }}
                   className={resenhaCss.botaoEscreverResenha}
                 >

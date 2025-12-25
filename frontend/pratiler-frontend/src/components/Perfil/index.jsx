@@ -17,6 +17,11 @@ import img from '../../assets/img/foto-perfil.png';
 import { useAuthStore } from '../Global/authStore';
 import { internalAxios } from '../Global/axiosInstances';
 
+async function SeguirUsuario() {
+  console.log('Funcionalidade não implementada :(');
+  return await Promise.resolve();
+}
+
 export function Perfil() {
   const { username } = useParams();
   const { user } = useAuthStore();
@@ -38,8 +43,6 @@ export function Perfil() {
     }
     loadPerfil();
   }, [username]);
-
-  async function SeguirUsuario() {}
 
   return (
     <>
@@ -67,7 +70,7 @@ export function Perfil() {
               <p>
                 <span className={perfilCss.iconPerfilProfile}>
                   <Gear size={24} color="#3D3569" weight="fill" />
-                </span>
+                </span>{' '}
                 Configurações
               </p>
             </div>

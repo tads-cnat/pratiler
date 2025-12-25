@@ -93,7 +93,7 @@ export function Bookcase() {
               pages={book.livro.n_paginas}
               status={book.status}
               onDetailsClick={(id) => navigate(`/interacoes/${id}`)}
-              onUpdate={() => setFilter(filter)}
+              onUpdate={() => setFilter('Lidos')}
             />
           ))}
         </div>

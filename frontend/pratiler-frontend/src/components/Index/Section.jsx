@@ -5,18 +5,16 @@ import sectionCss from '../../assets/css/Index/Section.module.css';
 
 export function Section(props) {
   return (
-    <>
-      <section className={sectionCss.big_box}>
-        <div className={sectionCss.box}>
-          <h1>
-            <strong>{props.strong}</strong> {props.title}
-          </h1>
-          <p>{props.text}</p>
-          <p>{props.text_two}</p>
-        </div>
-        <img src={props.img} alt="" className={sectionCss.box_img} />
-      </section>
-    </>
+    <section className={sectionCss.big_box}>
+      <div className={sectionCss.box}>
+        <h1>
+          <strong>{props.strong}</strong> {props.title}
+        </h1>
+        <p>{props.text}</p>
+        <p>{props.text_two}</p>
+      </div>
+      <img src={props.img} alt={`Imagem relacionada a ${props.title}`} className={sectionCss.box_img} />
+    </section>
   );
 }
 

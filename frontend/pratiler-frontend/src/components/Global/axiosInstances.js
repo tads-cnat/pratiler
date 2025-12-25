@@ -28,10 +28,10 @@ function responseCallbacks(axiosInstance) {
             localStorage.setItem('token', response.data.access);
             return axiosInstance(originalRequest);
           }
-          return error;
+          throw error;
         });
       }
-      return Promise.reject(error);
+      throw error;
     },
   ];
 }

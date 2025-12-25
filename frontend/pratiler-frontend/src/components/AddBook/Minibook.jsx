@@ -29,21 +29,19 @@ export function Minibook({ img, autor, title, id, handleMarkAsReading }) {
   };
 
   return (
-    <>
-      <div className={css.book}>
-        <img className={css.imgBook} src={img} alt="" />
-        <h2 className={css.titleBook}>{title}</h2>
-        <h3 className={css.titleAuthor}>{autor}</h3>
-        <div className={css.buttons}>
-          <button className={css.readBegin} onClick={handleInteraction}>
-            Começar Leitura
-          </button>
-          <button className={css.addList} onClick={handleClick}>
-            <BookmarkSimple weight={weight} onClick={() => handleMarkAsReading(id)} />
-          </button>
-        </div>
+    <div className={css.book}>
+      <img className={css.imgBook} src={img} alt={`Capa do livro ${title}`} />
+      <h2 className={css.titleBook}>{title}</h2>
+      <h3 className={css.titleAuthor}>{autor}</h3>
+      <div className={css.buttons}>
+        <button className={css.readBegin} onClick={handleInteraction}>
+          Começar Leitura
+        </button>
+        <button className={css.addList} onClick={handleClick}>
+          <BookmarkSimple weight={weight} onClick={() => handleMarkAsReading(id)} />
+        </button>
       </div>
-    </>
+    </div>
   );
 }
 

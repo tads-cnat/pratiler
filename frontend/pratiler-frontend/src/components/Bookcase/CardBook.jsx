@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 /* CSS */
-import authSuccessfulCss from '../../assets/css/Global/authSuccessfulCss.module.css';
+import authSuccessfulCss from '../../assets/css/Global/AuthSuccessful.module.css';
 import cardBookCss from '../../assets/css/Bookcase/CardBook.module.css';
 
 /* Store */
@@ -33,39 +33,35 @@ export function CardBook({ img, autor, status, title, pages, id, onDetailsClick,
   };
 
   return (
-    <>
-      <div className={cardBookCss.card}>
-        <img className={cardBookCss.imageBook} src={img} alt="" />
-        <div className={cardBookCss.description}>
-          <div className={cardBookCss.info}>
-            <h3>{title}</h3>
-            <p>{autor}</p>
-            <p>{pages} Páginas</p>
-          </div>
-
-          <div className={cardBookCss.buttons}>
-            <button onClick={() => onDetailsClick(id)} className={cardBookCss.viewDetails}>
-              Ver Leitura
-              <MagnifyingGlass size={16} weight="bold" />
-            </button>
-            {status !== 'LD' && (
-              <button className={cardBookCss.lido} onClick={() => handleMarkAsRead(id)}>
-                <CheckCircle weight="bold" size={27} />
-              </button>
-            )}
-            {status === 'LD' && (
-              <button className={cardBookCss.viewDetails} onClick={() => navigate(`/fazer-avaliacao/${id}`)}>
-                Realizar Avaliação
-                <Star weight="bold" size={16} />
-              </button>
-            )}
-          </div>
+    <div className={cardBookCss.card}>
+      <img className={cardBookCss.imageBook} src={img} alt={`Capa do livro ${title}`} />
+      <div className={cardBookCss.description}>
+        <div className={cardBookCss.info}>
+          <h3>{title}</h3>
+          <p>{autor}</p>
+          <p>{pages} Páginas</p>
         </div>
-        <div className={cardBookCss.categories}></div>
-
-        {successMessage && <div className={authSuccessfulCss.successMessage}>{successMessage}</div>}
+        <div className={cardBookCss.buttons}>
+          <button onClick={() => onDetailsClick(id)} className={cardBookCss.viewDetails}>
+            Ver Leitura
+            <MagnifyingGlass size={16} weight="bold" />
+          </button>
+          {status !== 'LD' && (
+            <button className={cardBookCss.lido} onClick={() => handleMarkAsRead(id)}>
+              <CheckCircle weight="bold" size={27} />
+            </button>
+          )}
+          {status === 'LD' && (
+            <button className={cardBookCss.viewDetails} onClick={() => navigate(`/fazer-avaliacao/${id}`)}>
+              Realizar Avaliação
+              <Star weight="bold" size={16} />
+            </button>
+          )}
+        </div>
       </div>
-    </>
+      <div className={cardBookCss.categories}></div>
+      {successMessage && <div className={authSuccessfulCss.successMessage}>{successMessage}</div>}
+    </div>
   );
 }
 

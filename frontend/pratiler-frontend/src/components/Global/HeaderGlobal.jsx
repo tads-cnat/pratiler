@@ -26,20 +26,15 @@ export function Header() {
       ) : (
         <>
           <header className={headerCss.header}>
-            <img className={headerCss.logo} src={pratilerLogo} alt="" />
+            <img className={headerCss.logo} src={pratilerLogo} alt="Marca Gráfica Pratiler" />
             <div className={headerCss.info}>
               <Search />
-              <div
-                className={headerCss.perfilBox}
-                onClick={() => {
-                  navigate(`/${user.username}`);
-                }}
-              >
+              <a className={headerCss.perfilBox} href={`/${user.username}`}>
                 <div className={headerCss.icon}>
                   <User weight="fill" color="#f6f6f6" size={18} />
                 </div>
                 <span className={headerCss.titlePerfil}>{user.username}</span>
-              </div>
+              </a>
             </div>
           </header>
           <hr className={headerCss.divisor} />
@@ -50,7 +45,7 @@ export function Header() {
                 <span>Minha Estante</span>
               </a>
 
-              <a href="#" className={headerCss.categories}>
+              <a href="/livros-populares" className={headerCss.categories}>
                 <Star size={24} color="#3D3569" weight="fill" />
                 <span>Livros Populares</span>
               </a>
@@ -60,7 +55,7 @@ export function Header() {
                 <span>Publicações Populares</span>
               </a>
 
-              <a href="#" className={headerCss.categories}>
+              <a href="/seguindo" className={headerCss.categories}>
                 <UserPlus size={24} color="#3D3569" weight="fill" />
                 <span>Seguindo</span>
               </a>

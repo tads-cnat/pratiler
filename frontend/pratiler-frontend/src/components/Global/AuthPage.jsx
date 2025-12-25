@@ -31,7 +31,7 @@ export function AuthPage(props) {
 
   async function fetchAuth(data) {
     setError(null);
-    const response = await authenticate(...data);
+    const response = await authenticate(...Object.values(data));
     if (useAuthStore.getState().isAuthenticated) {
       setSuccess(successMessage);
       setTimeout(() => navigate('/livros'), 2000);
@@ -41,7 +41,7 @@ export function AuthPage(props) {
   return (
     <div className={authCss.return}>
       <div className={authCss.container}>
-        <img src={imagemFundo} />
+        <img src={imagemFundo} alt="Imagem de fundo" />
       </div>
 
       <div className={authCss.formularioLogin}>
@@ -49,40 +49,14 @@ export function AuthPage(props) {
         <form className={authCss.formulario} onSubmit={handleSubmit(fetchAuth)}>
           {fields.map((field) => {
             const { name } = field;
-            const errors = errors[name];
+            const errorsField = errors[name];
             return (
               <>
                 <input className={inputCss.inputText} {...field} {...register(name)} />
-                {errors && <p className={inputCss.error}>{errors.message}</p>}
+                {errorsField && <p className={inputCss.error}>{errorsField.message}</p>}
               </>
             );
           })}
-          <input
-            type="text"
-            name="nome"
-            placeholder="Nome do Usuário"
-            className={inputCss.inputText}
-            {...register('nome')}
-          />
-          {errors.nome && <p className={inputCss.error}>{errors.nome.message}</p>}
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            className={inputCss.inputText}
-            {...register('username')}
-          />
-          {errors.username && <p className={inputCss.error}>{errors.username.message}</p>}
-          <input type="email" name="email" placeholder="Email" className={inputCss.inputText} {...register('email')} />
-          {errors.email && <p className={inputCss.error}>{errors.email.message}</p>}
-          <input
-            type="password"
-            name="password"
-            placeholder="Senha"
-            className={inputCss.inputText}
-            {...register('password')}
-          />
-          {errors.password && <p className={inputCss.error}>{errors.password.message}</p>}
           <input type="submit" value={labelButton} className={inputCss.inputSubmit} />
         </form>
         {success && <AuthSuccessful message={success} />}

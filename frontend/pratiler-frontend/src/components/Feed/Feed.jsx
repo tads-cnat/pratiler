@@ -72,7 +72,7 @@ export function Feed() {
           <form onSubmit={realizarPostagem} className={formCss.realizarPostagem}>
             <h1>Escreva sua postagem</h1>
             <label className={formCss.select}>
-              Livro:
+              Livro:{''}
               <select name="interacao_id" onChange={(e) => changeBook(e, null, setFormData, formData)}>
                 <option value="0">Selecione</option>
                 {livrosEstante.map((interacao) => (
@@ -111,7 +111,7 @@ export function Feed() {
         </div>
         <div className={feedCss.postagens}>
           {postagens.length > 0 ? (
-            postagens.map((postagem, index) => <Postagem key={index} {...postagem} />)
+            postagens.map((postagem) => <Postagem key={postagem.id} {...postagem} />)
           ) : (
             <SemResultados titulo="Não há postagens no momento, seja a primeira pessoa a comentar sobre sua leitura!" />
           )}

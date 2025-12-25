@@ -29,22 +29,20 @@ import knight from './assets/img/guerreiro-medieval.png';
 
 export default function App() {
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/adicionar-livro" element={<AddBook />} />
-          <Route path="/livro-busca/:id" element={<Book />} />
-          <Route path="/livros" element={<Bookcase />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/inicio" element={<Feed />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/interacoes/:id" element={<Interaction />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/:username" element={<Perfil />} />
-          <Route path="/fazer-avaliacao/:id" element={<RealizarAvaliacao />} />
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/adicionar-livro" element={<AddBook />} />
+        <Route path="/livro-busca/:id" element={<Book />} />
+        <Route path="/livros" element={<Bookcase />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/inicio" element={<Feed />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/interacoes/:id" element={<Interaction />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/:username" element={<Perfil />} />
+        <Route path="/fazer-avaliacao/:id" element={<RealizarAvaliacao />} />
+      </Routes>
+    </Router>
   );
 }
 
