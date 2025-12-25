@@ -71,7 +71,7 @@ export default function EscreverResenha(props) {
         <p>Carregando...</p>
       ) : (
         <div className={escreverResenhaCss.formEscreverResenha}>
-          <label className={escreverResenhaCss.labelEscreverResenha}>Escreva sua resenha</label>
+          <h1 className={escreverResenhaCss.labelEscreverResenha}>Escreva sua resenha</h1>
           <form onSubmit={handleSubmit(postResenha)}>
             <label className={formCss.select}>
               Livro:{''}
