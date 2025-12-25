@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from dotenv import load_dotenv
-import os
+from os import getenv
 
 load_dotenv()
 
@@ -24,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-^f9m!+t&@ewhel4i#)_hkt)xu3q1uh43fd)us4u5o-a7&-px$p"
+SECRET_KEY = getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -52,13 +52,13 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-LOGIN_URL = '/login'
+LOGIN_URL = "/login"
 
 ROOT_URLCONF = "mysite.urls"
 
@@ -84,25 +84,24 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DEV = os.getenv('DEV', '1')
+DEV = getenv("DEV", "1")
 DATABASES = {}
-print("DEV", DEV)
-if os.getenv('DEV') == "0":
+if getenv("DEV") == "0":
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('POSTGRES_DB', 'pratiler'),
-            'USER': os.getenv('POSTGRES_USER', 'postgres'),
-            'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
-            'HOST': os.getenv('POSTGRES_HOST', 'db'),
-            'PORT': os.getenv('POSTGRES_PORT', '5432'), 
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": getenv("POSTGRES_DB", "pratiler"),
+            "USER": getenv("POSTGRES_USER", "postgres"),
+            "PASSWORD": getenv("POSTGRES_PASSWORD", "postgres"),
+            "HOST": getenv("POSTGRES_HOST", "db"),
+            "PORT": getenv("POSTGRES_PORT", "5432"),
         }
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 print("DATABASES", DATABASES)
@@ -155,19 +154,19 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:80", "http://localhost:5173"]
-AUTH_USER_MODEL = 'mainapp.Leitor'
+AUTH_USER_MODEL = "mainapp.Leitor"
 
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = False  # Em desenvolvimento, False; em produção, True.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 
 CORS_ALLOW_HEADERS = [
-    'content-type',
-    'authorization',
-    'x-csrftoken',
+    "content-type",
+    "authorization",
+    "x-csrftoken",
 ]
 
 CORS_ALLOW_METHODS = [
@@ -178,4 +177,3 @@ CORS_ALLOW_METHODS = [
     "DELETE",
     "OPTIONS",
 ]
-
