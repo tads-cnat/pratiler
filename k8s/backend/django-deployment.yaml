@@ -15,7 +15,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: django
-          image: pratiler/backend
+          image: pratiler/backend:1.0.3
           resources:
             requests:
               cpu: "250m"

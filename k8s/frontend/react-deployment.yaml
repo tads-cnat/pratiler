@@ -15,7 +15,7 @@ spec:
       automountServiceAccountToken: false
       containers:
       - name: react
-        image: pratiler/frontend:latest  # Use a imagem que você acabou de testar
+        image: pratiler/frontend:1.1.0  # Use a imagem que você acabou de testar
         resources:
           requests:
             cpu: "100m"
