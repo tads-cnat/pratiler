@@ -17,7 +17,7 @@ import { fetchAvailableBooks } from './utils';
 export function Bookcase() {
   const navigate = useNavigate();
 
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, user: { username } } = useAuthStore();
   useEffect(() => {
     async function checkAuth() {
       if (!isAuthenticated) {
@@ -41,7 +41,7 @@ export function Bookcase() {
       ]);
       const endpoint = endpoints.get(filter);
 
-      await fetchAvailableBooks({ url: 'interacoes', params: { status: endpoint }, setBooks, setError, setLoading });
+      await fetchAvailableBooks({ url: 'interacoes', params: { status: endpoint, username }, setBooks, setError, setLoading });
     };
     fetchBooks();
   }, [filter]);
