@@ -27,10 +27,10 @@ export const useAuthStore = create(
         const credentials = { email: email, password: password };
         return await internalAxios
           .post('auth/login', credentials)
-          .then(async ({ res }) => {
-            const response = res;
-            set({ user: res.data, isAuthenticated: true });
-            await internalAxios.post('auth/pair', credentials).then(({ data }) => {
+          .then(async ({ data }) => {
+            const response = data;
+            set({ user: data, isAuthenticated: true });
+            await internalAxios.post('auth/pair', credentials).then(({data}) => {
               set({
                 token: data.access,
                 refresh: data.refresh,
@@ -38,7 +38,8 @@ export const useAuthStore = create(
               return response;
             });
           })
-          .catch((error) => (error.response.status === 400 ? error.response.data : error));
+          .catch((error) => {console.log(error);
+          (error.response.status === 400 ? error.response.data : error)}); 
       },
 
       logout: async () => {
