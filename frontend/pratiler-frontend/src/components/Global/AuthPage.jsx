@@ -47,6 +47,7 @@ export function AuthPage(props) {
       <div className={authCss.formularioLogin}>
         <h1>{title}</h1>
         <form className={authCss.formulario} onSubmit={handleSubmit(fetchAuth)}>
+        <div>
           {fields.map((field) => {
             const { name } = field;
             const { [name]: errorsField } = errors;
@@ -57,6 +58,7 @@ export function AuthPage(props) {
               </div>
             );
           })}
+        </div>
           <input type="submit" value={labelButton} className={inputCss.inputSubmit} />
         </form>
         {success && <AuthSuccessful message={success} />}
