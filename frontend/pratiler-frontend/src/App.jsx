@@ -61,7 +61,7 @@ function Home() {
 
   return (
     <>
-      <Header isAuthenticated={isAuthenticated}/>
+      <Header/>
       <Main />
       <Section
         strong="Organize"
