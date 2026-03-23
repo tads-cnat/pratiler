@@ -11,7 +11,9 @@ import iconIn from '../../assets/img/icon-going.png';
 export function Header() {
   return (
     <header className={headerCss.header}>
-      <img className={headerCss.logo} src={pratilerLogo} alt="Logo do Projeto Pratiler" />
+      <Link to="/">
+        <img className={headerCss.logo} src={pratilerLogo} alt="Logo do Projeto Pratiler" />
+      </Link>
       <div className={headerCss.buttons}>
         <Link to="/login" className={headerCss.box_in}>
           <button className={headerCss.box_in}>

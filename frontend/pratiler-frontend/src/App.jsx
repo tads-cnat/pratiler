@@ -61,7 +61,7 @@ function Home() {
 
   return (
     <>
-      <Header />
+      <Header/>
       <Main />
       <Section
         strong="Organize"
