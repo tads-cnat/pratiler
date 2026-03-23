@@ -8,10 +8,10 @@ import headerCss from '../../assets/css/Index/Header.module.css';
 import pratilerLogo from '../../assets/img/pratiler-logo.png';
 import iconIn from '../../assets/img/icon-going.png';
 
-export function Header({isAuthenticated}) {
+export function Header() {
   return (
     <header className={headerCss.header}>
-      <Link to={isAuthenticated ? "/livros" : "/"}>
+      <Link to="/">
         <img className={headerCss.logo} src={pratilerLogo} alt="Logo do Projeto Pratiler" />
       </Link>
       <div className={headerCss.buttons}>
