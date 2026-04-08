@@ -32,3 +32,9 @@ jobs:
         cd ./backend/mysite
         sed -i 's/\r$//' ./construir_backend.sh
         ./construir_backend.sh
+
+    - name: run backend tests
+      run: |
+        cd ./backend/mysite
+        source .venv/bin/activate
+        python manage.py test mainapp.tests
