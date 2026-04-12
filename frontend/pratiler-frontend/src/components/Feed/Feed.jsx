@@ -45,7 +45,7 @@ export function Feed() {
         await changeBook(undefined, formData.interacao_id, setFormData, formData);
       })
       .catch((err) => {
-        setError(err.response.data.detail);
+        setError(err?.response?.data?.detail ?? err?.response?.data?.message ?? 'Erro ao postar');
       });
   }
 
