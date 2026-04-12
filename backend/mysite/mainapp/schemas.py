@@ -75,8 +75,8 @@ class InteracaoSchema(Schema):
 
 
 class InteracaoFilter(Schema):
-    username: Optional[str]
-    status: Optional[str]
+    username: Optional[str] = None
+    status: Optional[str] = None
 
     def get_status(self):
         return self.status.split(",") if self.status else ["QL", "LN", "LD"]
