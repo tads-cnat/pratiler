@@ -5,7 +5,7 @@ export async function getPostagens() {
 }
 
 export async function getLivrosEstante() {
-  return await internalAxios.get('interacoes', { params: { status: 'QL,LN' } });
+  return await internalAxios.get('interacoes', { params: { status: 'QL,LN', username: localStorage.getItem('username') } });
 }
 
 export async function fazerPostagem(formData) {
