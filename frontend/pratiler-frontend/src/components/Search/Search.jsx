@@ -28,7 +28,7 @@ export function Search() {
   };
 
   return (
-    <>
+    <div className={searchCss.searchWrapper}>
       <form
         onSubmit={(evt) => {
           evt.preventDefault();
@@ -59,6 +59,6 @@ export function Search() {
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 }
