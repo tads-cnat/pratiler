@@ -1,4 +1,10 @@
 @import url('../base.css');
+
+.searchWrapper {
+  position: relative;
+  width: 22rem;
+}
+
 .searchBar {
   width: 20rem;
 }
@@ -10,17 +16,21 @@
 
 .booksResult {
   position: absolute;
-  top: 90px;
-  left: 83.5rem;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
   border-radius: 1rem;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.205);
+  z-index: 20;
 }
 
 .booksResult ul {
   list-style: none;
-  width: 22rem;
+  width: 100%;
   border-radius: 20px;
   background-color: var(--white);
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 .booksResult ul li {
@@ -32,4 +42,14 @@
   background-color: var(--white);
   padding: 20px;
   border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .searchWrapper {
+    width: min(90vw, 22rem);
+  }
+
+  .searchBar {
+    width: calc(100% - 2.5rem);
+  }
 }

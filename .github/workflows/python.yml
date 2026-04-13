@@ -2,39 +2,52 @@ name: Backend Pipeline
 
 on:
   push:
-    branches: [ "*" ]
+    branches: ["*"]
   pull_request:
-    branches: [ "*" ]
+    branches: ["*"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
     strategy:
       matrix:
         python-version: [3.11]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Use python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Use python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: change file permissions
-      run: |
-       cd ./backend/mysite
-       chmod +x ./construir_backend.sh
-    - name: create python venv with dependencies
-      run: | 
-        cd ./backend/mysite
-        sed -i 's/\r$//' ./construir_backend.sh
-        ./construir_backend.sh
+      - name: change file permissions
+        run: |
+          cd ./backend/mysite
+          chmod +x ./construir_backend.sh
+      - name: create python venv with dependencies
+        run: |
+          cd ./backend/mysite
+          sed -i 's/\r$//' ./construir_backend.sh
+          ./construir_backend.sh
 
-    - name: run backend tests
-      run: |
-        cd ./backend/mysite
-        source .venv/bin/activate
-        python manage.py test mainapp.tests
+      - name: run Django system check
+        run: |
+          cd ./backend/mysite
+          source .venv/bin/activate
+          python manage.py check
+
+      - name: run migrations
+        run: |
+          cd ./backend/mysite
+          source .venv/bin/activate
+          python manage.py migrate
+
+      - name: run backend tests
+        run: |
+          cd ./backend/mysite
+          source .venv/bin/activate
+          python manage.py test mainapp.tests
