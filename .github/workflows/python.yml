@@ -32,3 +32,10 @@ jobs:
         cd ./backend/mysite
         sed -i 's/\r$//' ./construir_backend.sh
         ./construir_backend.sh
+
+    - name: Detect deprecated code
+      run: | 
+        cd ./backend/mysite
+        python -m pip install django-upgrade
+        python -m django_upgrade --check --target-version 5.1 $(find . -name "*.py")
+
