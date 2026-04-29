@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import imp  # imp foi removido do Python 3.12+. PyUpgrade vai detectar.
 
 class Leitor(AbstractUser):
     email = models.EmailField(unique=True) # e-mail unico
