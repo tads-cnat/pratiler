@@ -37,5 +37,5 @@ jobs:
       run: | 
         cd ./backend/mysite
         python -m pip install django-upgrade
-        python -m django_upgrade --check --target-version 5.1 $(find . -name "*.py")
+        python -m django_upgrade --check --target-version 5.1 $(find . -name "*.py" -not -path "./.venv/*" -not -path "./.venv3/*")
 
