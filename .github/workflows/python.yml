@@ -51,3 +51,9 @@ jobs:
           cd ./backend/mysite
           source .venv/bin/activate
           python manage.py test mainapp.tests
+          
+      - name: Detect deprecated code
+        run: | 
+          cd ./backend/mysite
+          python -m pip install django-upgrade
+          python -m django_upgrade --check --target-version 5.1 $(find . -name "*.py" -not -path "./.venv/*" -not -path "./.venv3/*")
