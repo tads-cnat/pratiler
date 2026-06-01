@@ -70,4 +70,4 @@ jobs:
           cd ./backend/mysite
           source .venv/bin/activate
           pip install jscpd
-          npx jscpd "." --min-lines 100 --reporters json,html --output ./cpd-report --ignore "**/migrations/**,**/venv/**,**/cpd-report/**"
+          npx jscpd "." --min-lines 50 --reporters json,html --output ./cpd-report --ignore "**/migrations/**,**/venv/**,**/cpd-report/**"
