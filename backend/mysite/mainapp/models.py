@@ -114,16 +114,3 @@ class Curtida(models.Model):
     def __str__(self):
         return "id: "+ str(self.id) + " " + self.usuario.user.username + " curtiu postagem de " + self.postagem.leitor.user.username
 
-class Curtida(models.Model):
-    postagem = models.ForeignKey(Postagem, on_delete=models.CASCADE)
-    leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return "id: "+ str(self.id) + " " + self.usuario.user.username + " curtiu postagem de " + self.postagem.leitor.user.username
-    
-class Curtida(models.Model):
-    postagem = models.ForeignKey(Postagem, on_delete=models.CASCADE)
-    leitor = models.ForeignKey(Leitor, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return "id: "+ str(self.id) + " " + self.usuario.user.username + " curtiu postagem de " + self.postagem.leitor.user.username
