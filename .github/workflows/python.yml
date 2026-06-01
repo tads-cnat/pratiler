@@ -57,3 +57,10 @@ jobs:
           cd ./backend/mysite
           python -m pip install django-upgrade
           python -m django_upgrade --check --target-version 5.1 $(find . -name "*.py" -not -path "./.venv/*" -not -path "./.venv3/*")
+
+      - name: Execute pylint 
+        run: |
+          cd ./backend/mysite
+          source .venv/bin/activate
+          pip install pylint-django
+          pylint --load-plugins=pylint_django --disable=all --enable=similarities --ignore-paths=.*/migrations/ mainapp mysite
