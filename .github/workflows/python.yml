@@ -75,9 +75,5 @@ jobs:
         run: |
           cd ./backend/mysite
           source .venv/bin/activate
-          npx jscpd "." --min-lines 50 --reporters json,html --output ./cpd-report --ignore "**/migrations/**,**/venv/**,**/cpd-report/**"
+          npx jscpd "." --min-lines 50 --threshold 0 --reporters json,html --output ./cpd-report --ignore "**/migrations/**,**/venv/**,**/cpd-report/**"
 
-
-          
-
-          
