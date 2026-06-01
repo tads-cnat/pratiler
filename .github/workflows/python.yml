@@ -63,4 +63,4 @@ jobs:
           cd ./backend/mysite
           source .venv/bin/activate
           pip install pylint-django
-          pylint --load-plugins=pylint_django --disable=all --enable=similarities --ignore-paths=.*/migrations/ mainapp mysite
+          pylint --load-plugins=pylint_django --disable=all --enable=similarities --min-similarity-lines=2 --ignore-paths=.*/migrations/ --fail-under=10 mainapp mysite
