@@ -59,7 +59,7 @@ export function Resenhas(props) {
               ) : (
                 <SemResultados titulo="Não há resenhas postadas ainda" tamanho="P" />
               )}
-              {username === user.username && (
+              {username === user?.username && (
                 <button
                   onClick={() => {
                     setIsWriting(true);

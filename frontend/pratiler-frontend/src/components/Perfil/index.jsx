@@ -27,7 +27,7 @@ export function Perfil() {
   const [perfil, setPerfil] = useState({});
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState('estante');
-  const usuarioLogado = user.username === username;
+  const usuarioLogado = user?.username === username;
 
   useEffect(() => {
     async function loadPerfil() {

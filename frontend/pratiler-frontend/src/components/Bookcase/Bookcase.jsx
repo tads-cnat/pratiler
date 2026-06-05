@@ -17,15 +17,16 @@ import { fetchAvailableBooks } from './utils';
 export function Bookcase() {
   const navigate = useNavigate();
 
-  const { isAuthenticated, user: { username } } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
+  const username = user?.username;
   useEffect(() => {
     async function checkAuth() {
-      if (!isAuthenticated) {
+      if (!isAuthenticated || !username) {
         navigate('/login'); // Redireciona para login se não autenticado
       }
     }
     checkAuth();
-  }, [navigate, isAuthenticated]);
+  }, [navigate, isAuthenticated, username]);
 
   const [books, setBooks] = useState([]);
   const [error, setError] = useState(null);
@@ -33,6 +34,7 @@ export function Bookcase() {
   const [filter, setFilter] = useState('Lendo');
 
   useEffect(() => {
+    if (!username) return;
     const fetchBooks = async () => {
       const endpoints = new Map([
         ['Lendo', 'LN'],
@@ -44,7 +46,7 @@ export function Bookcase() {
       await fetchAvailableBooks({ url: 'interacoes', params: { status: endpoint, username }, setBooks, setError, setLoading });
     };
     fetchBooks();
-  }, [filter]);
+  }, [filter, username]);
 
   if (loading) {
     return <p>Carregando Dados....</p>;
