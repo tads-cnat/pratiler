@@ -9,6 +9,8 @@ import './assets/css/base.css';
 
 /* Componentes */
 import { Feed } from './components/Feed/Feed';
+import { Populares } from './components/Feed/Populares';
+import { Seguindo } from './components/Feed/Seguindo';
 import { Login } from './components/Login/Login';
 import { Header } from './components/Index/Header';
 import { Main } from './components/Index/Main';
@@ -36,6 +38,8 @@ export default function App() {
         <Route path="/livros" element={<Bookcase />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/inicio" element={<Feed />} />
+        <Route path="/livros-populares" element={<Populares />} />
+        <Route path="/seguindo" element={<Seguindo />} />
         <Route path="/" element={<Home />} />
         <Route path="/interacoes/:id" element={<Interaction />} />
         <Route path="/login" element={<Login />} />
