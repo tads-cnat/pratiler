@@ -24,7 +24,7 @@ export function Book() {
   useEffect(() => {
     const fetchBookDetails = async () => {
       await externalAxios
-              .get(`https://www.googleapis.com/books/v1/volumes/${id}?key=${import.meta.env.VITE_GOOGLE_BOOKS_API_KEY}`)
+        .get(`https://www.googleapis.com/books/v1/volumes/${id}?key=${import.meta.env.VITE_GOOGLE_BOOKS_API_KEY}`)
         .then((response) => {
           setBook(response.data);
         })
@@ -48,12 +48,12 @@ export function Book() {
       isbn,
       autor: e.volumeInfo.authors[0],
     });
-    if (postResponse.status === 201)
-      await internalAxios.get(`livros/${isbn}`).then(async (response) => {
-        await internalAxios.post('interacoes', { livro_id: response.data.id, status: 'LN' }).then(() => {
-          navigate('/livros');
-        });
+
+    if (postResponse.status >= 200 && postResponse.status < 300) {
+      await internalAxios.post('interacoes', { livro_id: postResponse.data.id, status: 'LN' }).then(() => {
+        navigate('/livros');
       });
+    }
   };
 
   return (

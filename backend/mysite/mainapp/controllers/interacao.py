@@ -47,12 +47,19 @@ class InteracaoController:
         except Livro.DoesNotExist:
             return 404, {"message": "Livro não encontrado"}
 
-        interacao = Interacao.objects.create(
+        interacao, _created = Interacao.objects.get_or_create(
             leitor=leitor,
             livro=livro,
-            status=interacao_in.status,
-            pg_atual=livro.n_paginas if interacao_in.status == 'LD' else interacao_in.pg_atual
+            defaults={
+                'status': interacao_in.status,
+                'pg_atual': livro.n_paginas if interacao_in.status == 'LD' else interacao_in.pg_atual,
+            },
         )
+
+        if not _created:
+            interacao.status = interacao_in.status
+            interacao.pg_atual = livro.n_paginas if interacao_in.status == 'LD' else interacao_in.pg_atual
+            interacao.save()
 
         return {
             "id": interacao.id,
