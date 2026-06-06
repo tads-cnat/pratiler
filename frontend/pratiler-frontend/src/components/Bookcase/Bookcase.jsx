@@ -43,7 +43,13 @@ export function Bookcase() {
       ]);
       const endpoint = endpoints.get(filter);
 
-      await fetchAvailableBooks({ url: 'interacoes', params: { status: endpoint, username }, setBooks, setError, setLoading });
+      await fetchAvailableBooks({
+        url: 'interacoes',
+        params: { status: endpoint, username },
+        setBooks,
+        setError,
+        setLoading,
+      });
     };
     fetchBooks();
   }, [filter, username]);
