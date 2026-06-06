@@ -67,7 +67,7 @@ export function Header() {
               onClick={async () => {
                 setLoading(true);
                 await logout();
-                navigate('/');
+                setTimeout(navigate('/'), 1000);
               }}
             >
               <SignOut size={22} color="#FEFEFE" weight="fill" />
