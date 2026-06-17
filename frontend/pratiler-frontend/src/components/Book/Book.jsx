@@ -24,7 +24,7 @@ export function Book() {
   useEffect(() => {
     const fetchBookDetails = async () => {
       await externalAxios
-        .get(`https://www.googleapis.com/books/v1/volumes/${id}?key=${import.meta.env.VITE_GOOGLE_BOOKS_API_KEY}`)
+        .get(`https://www.googleapis.com/books/v1/volumes/${id}?key=${import.meta.env.VITE_GOOGLE_BOOKS_KEY}`)
         .then((response) => {
           setBook(response.data);
         })

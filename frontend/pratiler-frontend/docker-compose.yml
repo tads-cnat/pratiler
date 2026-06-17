@@ -1,13 +1,15 @@
 services:
   frontend:
-    image: pratiler/frontend
-    container_name: pratiler_frontend
+    # image: pratiler/frontend:2.0.0
+    container_name: pratiler-frontend
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # Isso puxa as variáveis do seu arquivo .env local e injeta no build do Docker
+        - VITE_GOOGLE_BOOKS_KEY=${VITE_GOOGLE_BOOKS_KEY}
     restart: always
     ports:
-      - '80:5173'
+      - '80:80'
     env_file:
       - .env
-    command: sh -c "npm run dev"
