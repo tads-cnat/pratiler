@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 RUN apt update -y \ 
     && apt upgrade -y \
@@ -10,8 +10,5 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install --upgrade pip \ 
-    && pip install -r requirements.txt \
-    && python mysite/manage.py makemigrations \
-    && python mysite/manage.py migrate
-CMD [ "python", "mysite/manage.py", "runserver", "0.0.0:8000" ]
+RUN pip install --upgrade pip && pip install -r requirements.txt
+CMD [ "python", "mysite/manage.py", "runserver", "0.0.0.0:8000", "13.220.118.94" ]
