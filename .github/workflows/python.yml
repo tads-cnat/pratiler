@@ -57,3 +57,11 @@ jobs:
           cd ./backend/mysite
           python -m pip install django-upgrade
           python -m django_upgrade --check --target-version 5.1 $(find . -name "*.py" -not -path "./.venv/*" -not -path "./.venv3/*")
+
+      - name: Instalar ruff
+        run: pip install ruff
+
+      - name: Verificar formatacao e estilo
+        run: |
+          ruff format --check .
+          ruff check 
