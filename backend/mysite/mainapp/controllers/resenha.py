@@ -11,28 +11,31 @@ class ResenhaController:
     @route.get("", response=list[ResenhaSchema])
     def listar_resenhas(self, request):
         """Lista todas as resenhas."""
-        return [{
-            "id": resenha.id,
-            "livro": {
-                "id": resenha.livro.id,
-                "titulo": resenha.livro.titulo,
-                "sinopse": resenha.livro.sinopse,
-                "isbn": resenha.livro.isbn,
-                "n_paginas": resenha.livro.n_paginas,
-                "autor": {
-                    "id": resenha.livro.autor.id,
-                    "nome": resenha.livro.autor.nome
+        return [
+            {
+                "id": resenha.id,
+                "livro": {
+                    "id": resenha.livro.id,
+                    "titulo": resenha.livro.titulo,
+                    "sinopse": resenha.livro.sinopse,
+                    "isbn": resenha.livro.isbn,
+                    "n_paginas": resenha.livro.n_paginas,
+                    "autor": {
+                        "id": resenha.livro.autor.id,
+                        "nome": resenha.livro.autor.nome,
+                    },
+                    "capa": resenha.livro.capa,
                 },
-                "capa": resenha.livro.capa,
-            },
-            "titulo": resenha.titulo,
-            "leitor": {
-                "id": resenha.leitor.id,
-                "username": resenha.leitor.username
-            },
-            "texto": resenha.texto,
-            "data_hora": resenha.data_hora
-        } for resenha in Resenha.objects.select_related('livro', 'leitor').all()]
+                "titulo": resenha.titulo,
+                "leitor": {
+                    "id": resenha.leitor.id,
+                    "username": resenha.leitor.username,
+                },
+                "texto": resenha.texto,
+                "data_hora": resenha.data_hora,
+            }
+            for resenha in Resenha.objects.select_related("livro", "leitor").all()
+        ]
 
     @route.get("/{username}", response=list[ResenhaSchema])
     def resenhas_por_leitor(self, request, username: str):
@@ -44,23 +47,25 @@ class ResenhaController:
 
     @route.post("", response=ResenhaSchema)
     def criar_resenha(self, request, data: ResenhaSchemaIn):
-            """Cria uma nova resenha."""
+        """Cria uma nova resenha."""
 
-            livro = get_object_or_404(Livro, id=data.livro_id)
- 
-            if not Resenha.objects.filter(livro=livro, leitor=request.user).exists():
-                resenha = Resenha.objects.create(
-                    livro=livro,
-                    titulo=data.titulo,
-                    leitor=request.user,
-                    texto=data.texto,
-                )
-                return resenha
+        livro = get_object_or_404(Livro, id=data.livro_id)
 
-            else:
-                return JsonResponse({"detalhe": "Resenha já existe para este livro e leitor."}, status=400)
+        if not Resenha.objects.filter(livro=livro, leitor=request.user).exists():
+            resenha = Resenha.objects.create(
+                livro=livro,
+                titulo=data.titulo,
+                leitor=request.user,
+                texto=data.texto,
+            )
+            return resenha
 
-    @route.put("/{resenha_id}", response=ResenhaSchema) 
+        else:
+            return JsonResponse(
+                {"detalhe": "Resenha já existe para este livro e leitor."}, status=400
+            )
+
+    @route.put("/{resenha_id}", response=ResenhaSchema)
     def atualizar_resenha(self, request, resenha_id: int, data: ResenhaSchema):
         """Atualiza uma resenha existente."""
         resenha = get_object_or_404(Resenha, id=resenha_id)

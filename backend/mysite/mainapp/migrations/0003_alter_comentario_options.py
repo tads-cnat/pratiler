@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('mainapp', '0002_remove_leitor_nome'),
+        ("mainapp", "0002_remove_leitor_nome"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='comentario',
-            options={'ordering': ['-data_hora'], 'verbose_name': 'Comentário'},
+            name="comentario",
+            options={"ordering": ["-data_hora"], "verbose_name": "Comentário"},
         ),
     ]

@@ -6,26 +6,44 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('mainapp', '0007_rename_interação_interacao_and_more'),
+        ("mainapp", "0007_rename_interação_interacao_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Avaliacao',
+            name="Avaliacao",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('data_hora', models.DateTimeField(auto_now_add=True)),
-                ('nota', models.IntegerField(default=1)),
-                ('texto', models.TextField()),
-                ('leitor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('livro', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='mainapp.livro')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("data_hora", models.DateTimeField(auto_now_add=True)),
+                ("nota", models.IntegerField(default=1)),
+                ("texto", models.TextField()),
+                (
+                    "leitor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "livro",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="mainapp.livro"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Avaliação',
-                'verbose_name_plural': 'Avaliações',
-                'unique_together': {('livro', 'leitor')},
+                "verbose_name": "Avaliação",
+                "verbose_name_plural": "Avaliações",
+                "unique_together": {("livro", "leitor")},
             },
         ),
     ]

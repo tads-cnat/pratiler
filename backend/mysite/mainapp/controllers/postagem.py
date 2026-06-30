@@ -1,6 +1,6 @@
 from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
-from mainapp.models import Curtida, Interacao, Livro, Postagem
+from mainapp.models import Curtida, Interacao, Postagem
 from mainapp.schemas import PostagemListSchemaOut, PostagemSchemaIn, PostagemSchemaOut
 
 
@@ -18,11 +18,11 @@ class PostagemController:
             interacao=interacao,
             texto=postagem.texto,
             pagina_inicial=postagem.pagina_inicial,
-            pagina_final=postagem.pagina_final
+            pagina_final=postagem.pagina_final,
         )
 
         if postagem.pagina_final == interacao.livro.n_paginas:
-            interacao.status = 'LD'
+            interacao.status = "LD"
         interacao.pg_atual = postagem.pagina_final
         interacao.save()
 
@@ -35,20 +35,20 @@ class PostagemController:
             "data_hora": nova_postagem.data_hora.isoformat(),
             "leitor": {
                 "id": nova_postagem.interacao.leitor.id,
-                "username": nova_postagem.interacao.leitor.username
+                "username": nova_postagem.interacao.leitor.username,
             },
             "livro": {
                 "id": nova_postagem.interacao.livro.id,
                 "titulo": nova_postagem.interacao.livro.titulo,
                 "sinopse": nova_postagem.interacao.livro.sinopse,
-                "isbn": nova_postagem.interacao.livro.isbn,              
-                "n_paginas": nova_postagem.interacao.livro.n_paginas,    
-                "autor":{
-                        "id": nova_postagem.interacao.livro.autor.id,
-                        "nome": nova_postagem.interacao.livro.autor.nome
+                "isbn": nova_postagem.interacao.livro.isbn,
+                "n_paginas": nova_postagem.interacao.livro.n_paginas,
+                "autor": {
+                    "id": nova_postagem.interacao.livro.autor.id,
+                    "nome": nova_postagem.interacao.livro.autor.nome,
                 },
                 "capa": nova_postagem.interacao.livro.capa,
-            }
+            },
         }
 
     @route.get("", response=list[PostagemListSchemaOut])
@@ -62,23 +62,27 @@ class PostagemController:
                 "pagina_final": postagem.pagina_final,
                 "data_hora": postagem.data_hora.isoformat(),
                 "curtidas": Curtida.objects.filter(postagem_id=postagem.id).count(),
-                "curtido": bool(Curtida.objects.filter(postagem_id=postagem.id, leitor_id=request.user.id)),
+                "curtido": bool(
+                    Curtida.objects.filter(
+                        postagem_id=postagem.id, leitor_id=request.user.id
+                    )
+                ),
                 "leitor": {
                     "id": postagem.interacao.leitor.id,
-                    "username": postagem.interacao.leitor.username
+                    "username": postagem.interacao.leitor.username,
                 },
                 "livro": {
                     "id": postagem.interacao.livro.id,
                     "titulo": postagem.interacao.livro.titulo,
                     "sinopse": postagem.interacao.livro.sinopse,
-                    "isbn": postagem.interacao.livro.isbn,              
-                    "n_paginas": postagem.interacao.livro.n_paginas,    
-                    "autor":{
-                            "id": postagem.interacao.livro.autor.id,
-                            "nome": postagem.interacao.livro.autor.nome
+                    "isbn": postagem.interacao.livro.isbn,
+                    "n_paginas": postagem.interacao.livro.n_paginas,
+                    "autor": {
+                        "id": postagem.interacao.livro.autor.id,
+                        "nome": postagem.interacao.livro.autor.nome,
                     },
                     "capa": postagem.interacao.livro.capa,
-                }
+                },
             }
             for postagem in postagens
         ]

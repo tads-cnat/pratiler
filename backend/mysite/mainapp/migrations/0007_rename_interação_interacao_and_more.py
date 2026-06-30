@@ -4,27 +4,26 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('mainapp', '0006_alter_livro_capa'),
+        ("mainapp", "0006_alter_livro_capa"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='Interação',
-            new_name='Interacao',
+            old_name="Interação",
+            new_name="Interacao",
         ),
         migrations.RenameModel(
-            old_name='Comentario',
-            new_name='Postagem',
+            old_name="Comentario",
+            new_name="Postagem",
         ),
         migrations.AlterModelOptions(
-            name='postagem',
-            options={'ordering': ['-data_hora']},
+            name="postagem",
+            options={"ordering": ["-data_hora"]},
         ),
         migrations.RenameField(
-            model_name='curtida',
-            old_name='comentario',
-            new_name='postagem',
+            model_name="curtida",
+            old_name="comentario",
+            new_name="postagem",
         ),
     ]

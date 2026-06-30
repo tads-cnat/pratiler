@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('mainapp', '0005_rename_usuario_curtida_leitor'),
+        ("mainapp", "0005_rename_usuario_curtida_leitor"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='livro',
-            name='capa',
+            model_name="livro",
+            name="capa",
             field=models.TextField(),
         ),
     ]
