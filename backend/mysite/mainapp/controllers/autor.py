@@ -8,8 +8,4 @@ from mainapp.schemas import AutorSchema
 class AutorController:
     @route.get("", response=list[AutorSchema])
     def listar_autores(self, request):
-        return [{
-            "id": autor.id, 
-            "nome": autor.nome
-            } 
-            for autor in Autor.objects.all()]
+        return [{"id": autor.id, "nome": autor.nome} for autor in Autor.objects.all()]

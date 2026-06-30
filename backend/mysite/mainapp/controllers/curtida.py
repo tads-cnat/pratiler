@@ -4,6 +4,7 @@ from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Curtida, Postagem
 from mainapp.schemas import CurtidaSchema, ErrorSchema
 
+
 @api_controller("/curtidas", auth=JWTAuth(), tags=["Curtidas"])
 class CurtidaController:
     @route.post("", response={200: int, 404: ErrorSchema})

@@ -1,12 +1,11 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from mainapp.api import api
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/", api.urls)
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = [path("admin/", admin.site.urls), path("api/", api.urls)] + static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+)
 
-urlpatterns += static('/capa/', document_root=settings.MEDIA_ROOT + '/capa')
+urlpatterns += static("/capa/", document_root=settings.MEDIA_ROOT + "/capa")

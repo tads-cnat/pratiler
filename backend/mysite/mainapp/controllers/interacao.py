@@ -1,7 +1,13 @@
 from ninja_extra import api_controller, route
 from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Interacao, Leitor, Livro
-from mainapp.schemas import ErrorSchema, InteracaoFilter, InteracaoSchema, InteracaoSchemaIn, InteracaoSchemaUpdate
+from mainapp.schemas import (
+    ErrorSchema,
+    InteracaoFilter,
+    InteracaoSchema,
+    InteracaoSchemaIn,
+    InteracaoSchemaUpdate,
+)
 from ninja import Query
 
 
@@ -9,16 +15,22 @@ from ninja import Query
 class InteracaoController:
     @route.get("", response=list[InteracaoSchema])
     def listar_interacoes(self, request, filters: InteracaoFilter = Query(...)):
-        leitor = Leitor.objects.get(username=filters.username) if filters.username else request.user
+        leitor = (
+            Leitor.objects.get(username=filters.username)
+            if filters.username
+            else request.user
+        )
         status = filters.get_status()
-        interacoes = Interacao.objects.select_related('leitor', 'livro__autor').filter(leitor=leitor, status__in=status)
+        interacoes = Interacao.objects.select_related("leitor", "livro__autor").filter(
+            leitor=leitor, status__in=status
+        )
 
         return [
             {
                 "id": interacao.id,
                 "leitor": {
                     "id": interacao.leitor.id,
-                    "username": interacao.leitor.username
+                    "username": interacao.leitor.username,
                 },
                 "livro": {
                     "id": interacao.livro.id,
@@ -27,13 +39,13 @@ class InteracaoController:
                     "sinopse": interacao.livro.sinopse,
                     "capa": interacao.livro.capa,
                     "n_paginas": interacao.livro.n_paginas,
-                    "autor":{
+                    "autor": {
                         "id": interacao.livro.autor.id,
-                        "nome": interacao.livro.autor.nome
-                    }
+                        "nome": interacao.livro.autor.nome,
+                    },
                 },
                 "status": interacao.status,
-                "pg_atual": interacao.pg_atual
+                "pg_atual": interacao.pg_atual,
             }
             for interacao in interacoes
         ]
@@ -51,21 +63,27 @@ class InteracaoController:
             leitor=leitor,
             livro=livro,
             defaults={
-                'status': interacao_in.status,
-                'pg_atual': livro.n_paginas if interacao_in.status == 'LD' else interacao_in.pg_atual,
+                "status": interacao_in.status,
+                "pg_atual": livro.n_paginas
+                if interacao_in.status == "LD"
+                else interacao_in.pg_atual,
             },
         )
 
         if not _created:
             interacao.status = interacao_in.status
-            interacao.pg_atual = livro.n_paginas if interacao_in.status == 'LD' else interacao_in.pg_atual
+            interacao.pg_atual = (
+                livro.n_paginas
+                if interacao_in.status == "LD"
+                else interacao_in.pg_atual
+            )
             interacao.save()
 
         return {
             "id": interacao.id,
             "leitor": {
                 "id": interacao.leitor.id,
-                "username": interacao.leitor.username
+                "username": interacao.leitor.username,
             },
             "livro": {
                 "id": interacao.livro.id,
@@ -76,22 +94,24 @@ class InteracaoController:
                 "n_paginas": interacao.livro.n_paginas,
                 "autor": {
                     "id": interacao.livro.autor.id,
-                    "nome": interacao.livro.autor.nome
-                }
+                    "nome": interacao.livro.autor.nome,
+                },
             },
             "status": interacao.status,
-            "pg_atual": interacao.pg_atual
+            "pg_atual": interacao.pg_atual,
         }
 
     @route.get("/{int:id}", response={200: InteracaoSchema, 404: ErrorSchema})
     def listar_interacao_id(self, request, id: int):
         try:
-            interacao = Interacao.objects.select_related('leitor', 'livro__autor').get(id=id)
+            interacao = Interacao.objects.select_related("leitor", "livro__autor").get(
+                id=id
+            )
             return {
                 "id": interacao.id,
                 "leitor": {
                     "id": interacao.leitor.id,
-                    "username": interacao.leitor.username
+                    "username": interacao.leitor.username,
                 },
                 "livro": {
                     "id": interacao.livro.id,
@@ -102,28 +122,35 @@ class InteracaoController:
                     "n_paginas": interacao.livro.n_paginas,
                     "autor": {
                         "id": interacao.livro.autor.id,
-                        "nome": interacao.livro.autor.nome
-                    }
+                        "nome": interacao.livro.autor.nome,
+                    },
                 },
                 "status": interacao.status,
-                "pg_atual": interacao.pg_atual
+                "pg_atual": interacao.pg_atual,
             }
         except Interacao.DoesNotExist:
             return 404, {"message": "Interação não encontrada"}
 
-
     @route.put("/{int:id}", response={200: InteracaoSchema, 404: ErrorSchema})
-    def atualizar_interacao(self, request, id: int, interacao_update: InteracaoSchemaUpdate):
+    def atualizar_interacao(
+        self, request, id: int, interacao_update: InteracaoSchemaUpdate
+    ):
         try:
             interacao = Interacao.objects.get(id=id)
-            interacao.status = interacao_update.status if interacao_update.status else interacao.status
-            interacao.pg_atual = interacao_update.pg_atual if interacao_update.pg_atual else interacao.pg_atual
+            interacao.status = (
+                interacao_update.status if interacao_update.status else interacao.status
+            )
+            interacao.pg_atual = (
+                interacao_update.pg_atual
+                if interacao_update.pg_atual
+                else interacao.pg_atual
+            )
             interacao.save()
             return {
                 "id": interacao.id,
                 "leitor": {
                     "id": interacao.leitor.id,
-                    "username": interacao.leitor.username
+                    "username": interacao.leitor.username,
                 },
                 "livro": {
                     "id": interacao.livro.id,
@@ -134,12 +161,12 @@ class InteracaoController:
                     "n_paginas": interacao.livro.n_paginas,
                     "autor": {
                         "id": interacao.livro.autor.id,
-                        "nome": interacao.livro.autor.nome
-                    }
+                        "nome": interacao.livro.autor.nome,
+                    },
                 },
                 "status": interacao.status,
-                "pg_atual": interacao.pg_atual
+                "pg_atual": interacao.pg_atual,
             }
-            
+
         except Interacao.DoesNotExist:
             return 404, {"message": "Interação não encontrada"}

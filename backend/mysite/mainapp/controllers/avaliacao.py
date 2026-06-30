@@ -3,33 +3,36 @@ from ninja_jwt.authentication import JWTAuth
 from mainapp.models import Avaliacao, Livro
 from mainapp.schemas import AvaliacaoSchemaIn, AvaliacaoSchemaOut, ErrorSchema
 
+
 @api_controller("/avaliacoes", auth=JWTAuth(), tags=["Avaliacoes"])
 class AvaliacaoController:
     @route.get("", response=list[AvaliacaoSchemaOut])
     def listar_avaliacoes(self, request):
-        return [{
-            "id": avaliacao.id,
-            "livro": {
-                "id": avaliacao.livro.id,
-                "titulo": avaliacao.livro.titulo,
-                "sinopse": avaliacao.livro.sinopse,
-                "isbn": avaliacao.livro.isbn,
-                "n_paginas": avaliacao.livro.n_paginas,
-                "capa": avaliacao.livro.capa,
-                "autor": {
-                    "id": avaliacao.livro.autor.id,
-                    "nome": avaliacao.livro.autor.nome
-                }
-            },
-            "leitor": {
-                "id": avaliacao.leitor.id,
-                "username": avaliacao.leitor.username
-            },
-            "nota": avaliacao.nota,
-            "data_hora": avaliacao.data_hora.isoformat(),
-            "texto": avaliacao.texto
-        }
-        for avaliacao in Avaliacao.objects.all()]
+        return [
+            {
+                "id": avaliacao.id,
+                "livro": {
+                    "id": avaliacao.livro.id,
+                    "titulo": avaliacao.livro.titulo,
+                    "sinopse": avaliacao.livro.sinopse,
+                    "isbn": avaliacao.livro.isbn,
+                    "n_paginas": avaliacao.livro.n_paginas,
+                    "capa": avaliacao.livro.capa,
+                    "autor": {
+                        "id": avaliacao.livro.autor.id,
+                        "nome": avaliacao.livro.autor.nome,
+                    },
+                },
+                "leitor": {
+                    "id": avaliacao.leitor.id,
+                    "username": avaliacao.leitor.username,
+                },
+                "nota": avaliacao.nota,
+                "data_hora": avaliacao.data_hora.isoformat(),
+                "texto": avaliacao.texto,
+            }
+            for avaliacao in Avaliacao.objects.all()
+        ]
 
     @route.get("/{avaliacao_id}", response={200: AvaliacaoSchemaOut, 404: ErrorSchema})
     def listar_avaliacao(self, request, avaliacao_id: int):
@@ -41,38 +44,42 @@ class AvaliacaoController:
                     "id": avaliacao.livro.id,
                     "titulo": avaliacao.livro.titulo,
                     "sinopse": avaliacao.livro.sinopse,
-                    "isbn": avaliacao.livro.isbn,              
+                    "isbn": avaliacao.livro.isbn,
                     "n_paginas": avaliacao.livro.n_paginas,
                     "capa": avaliacao.livro.capa,
                     "autor": {
                         "id": avaliacao.livro.autor.id,
-                        "nome": avaliacao.livro.autor.nome
-                    }
+                        "nome": avaliacao.livro.autor.nome,
+                    },
                 },
                 "leitor": {
                     "id": avaliacao.leitor.id,
-                    "username": avaliacao.leitor.username
+                    "username": avaliacao.leitor.username,
                 },
                 "nota": avaliacao.nota,
                 "data_hora": avaliacao.data_hora.isoformat(),
-                "texto": avaliacao.texto
+                "texto": avaliacao.texto,
             }
         except Avaliacao.DoesNotExist:
             return 404, {"message": "Avaliação não encontrada"}
-        
-    @route.post("", response={200: AvaliacaoSchemaOut, 400:ErrorSchema , 404: ErrorSchema})
+
+    @route.post(
+        "", response={200: AvaliacaoSchemaOut, 400: ErrorSchema, 404: ErrorSchema}
+    )
     def adicionar_avaliacao(self, request, avaliacao: AvaliacaoSchemaIn):
         try:
             livro = Livro.objects.get(id=avaliacao.livro_id)
 
-            avaliacao_exists = Avaliacao.objects.filter(livro=livro, leitor=request.user)
+            avaliacao_exists = Avaliacao.objects.filter(
+                livro=livro, leitor=request.user
+            )
 
             if not avaliacao_exists:
                 avaliacao_nova = Avaliacao.objects.create(
                     livro=livro,
                     leitor=request.user,
                     nota=avaliacao.nota,
-                    texto=avaliacao.texto
+                    texto=avaliacao.texto,
                 )
                 return {
                     "id": avaliacao_nova.id,
@@ -80,23 +87,23 @@ class AvaliacaoController:
                         "id": avaliacao_nova.livro.id,
                         "titulo": avaliacao_nova.livro.titulo,
                         "sinopse": avaliacao_nova.livro.sinopse,
-                        "isbn": avaliacao_nova.livro.isbn,              
+                        "isbn": avaliacao_nova.livro.isbn,
                         "n_paginas": avaliacao_nova.livro.n_paginas,
                         "capa": avaliacao_nova.livro.capa,
                         "autor": {
                             "id": avaliacao_nova.livro.autor.id,
-                            "nome": avaliacao_nova.livro.autor.nome
-                        }
+                            "nome": avaliacao_nova.livro.autor.nome,
+                        },
                     },
                     "leitor": {
                         "id": avaliacao_nova.leitor.id,
-                        "username": avaliacao_nova.leitor.username
+                        "username": avaliacao_nova.leitor.username,
                     },
                     "nota": avaliacao_nova.nota,
                     "data_hora": avaliacao_nova.data_hora.isoformat(),
-                    "texto": avaliacao_nova.texto
-            }
-            
+                    "texto": avaliacao_nova.texto,
+                }
+
             else:
                 return 400, {"message": "Já existe uma avaliação sua sobre esse livro"}
 

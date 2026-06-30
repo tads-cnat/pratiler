@@ -4,16 +4,15 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('mainapp', '0007_rename_interação_interacao_and_more'),
+        ("mainapp", "0007_rename_interação_interacao_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='leitor',
-            name='nome',
-            field=models.CharField(default='Felipe Alves', max_length=120),
+            model_name="leitor",
+            name="nome",
+            field=models.CharField(default="Felipe Alves", max_length=120),
             preserve_default=False,
         ),
     ]
