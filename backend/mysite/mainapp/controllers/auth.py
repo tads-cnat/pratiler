@@ -7,6 +7,8 @@ from mainapp.models import Leitor
 from mainapp.schemas import ErrorSchema, SignInSchema, RegisterSchema, UserSchema
 
 
+
+
 @api_controller("/auth", tags=["Autenticação"])
 class AuthController(NinjaJWTDefaultController):
     @route.post("/login", response={200: UserSchema, 400: ErrorSchema})
@@ -56,3 +58,16 @@ class AuthController(NinjaJWTDefaultController):
                 if "UNIQUE constraint failed" in error_message
                 else error_message
             }
+        
+    def deletar_usuario(request, usuario_id):
+    # parametro que nao ta sendo usado
+        print("Usuário deletado com sucesso!") 
+        return {"status": "ok"}
+    
+    def x():
+        variavel_inutil = 123
+
+    def checar_status():
+        usuario_ativo = True
+        if usuario_ativo == True:  # comparação redundante
+            return "Ativo"
