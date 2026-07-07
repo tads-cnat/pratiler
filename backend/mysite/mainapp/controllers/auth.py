@@ -64,10 +64,5 @@ class AuthController(NinjaJWTDefaultController):
         print("Usuário deletado com sucesso!") 
         return {"status": "ok"}
     
-    def x():
-        variavel_inutil = 123
 
-    def checar_status():
-        usuario_ativo = True
-        if usuario_ativo == True:  # comparação redundante
-            return "Ativo"
+
