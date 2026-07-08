@@ -59,10 +59,6 @@ class AuthController(NinjaJWTDefaultController):
                 else error_message
             }
         
-    def checar_token(token):
-        if token == None: 
-            return False
-        return True
     
 
 
