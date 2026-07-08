@@ -59,10 +59,10 @@ class AuthController(NinjaJWTDefaultController):
                 else error_message
             }
         
-    def deletar_usuario(request, usuario_id):
-    # parametro que nao ta sendo usado
-        print("Usuário deletado com sucesso!") 
-        return {"status": "ok"}
+    def checar_token(token):
+        if token == None: 
+            return False
+        return True
     
 
 
