@@ -7,8 +7,6 @@ from mainapp.models import Leitor
 from mainapp.schemas import ErrorSchema, SignInSchema, RegisterSchema, UserSchema
 
 
-
-
 @api_controller("/auth", tags=["Autenticação"])
 class AuthController(NinjaJWTDefaultController):
     @route.post("/login", response={200: UserSchema, 400: ErrorSchema})
@@ -58,7 +56,3 @@ class AuthController(NinjaJWTDefaultController):
                 if "UNIQUE constraint failed" in error_message
                 else error_message
             }
-        
-    
-
-
