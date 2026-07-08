@@ -1,9 +1,7 @@
-# import que nao vai ser utilizado
-import os
-
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import sys
+import os
 
 
 def main():
