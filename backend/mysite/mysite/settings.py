@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "mainapp",
     "ninja_extra",
+    "sslserver",
 ]
 
 MIDDLEWARE = [
