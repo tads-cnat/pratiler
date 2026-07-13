@@ -4,4 +4,6 @@ call python .\manage.py makemigrations
 
 call python .\manage.py migrate
 
-call python .\manage.py runserver
+@REM call python .\manage.py runserver
+
+call python .\manage.py runsslserver localhost:8000 --certificate cert.pem --key key.pem
