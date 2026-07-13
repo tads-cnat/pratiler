@@ -5,6 +5,16 @@ import sys
 import os
 
 
+import ssl
+if not hasattr(ssl, 'wrap_socket'):
+    def patched_wrap_socket(sock, certfile=None, keyfile=None, server_side=False, **kwargs):
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER if server_side else ssl.PROTOCOL_TLS_CLIENT)
+        if certfile:
+            context.load_cert_chain(certfile, keyfile)
+        return context.wrap_socket(sock, server_side=server_side)
+    ssl.wrap_socket = patched_wrap_socket
+
+
 def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
