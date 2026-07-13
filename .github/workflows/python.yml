@@ -65,9 +65,15 @@ jobs:
           source .venv/bin/activate
           python -m pip install ruff
 
-      - name: Verificar formatacao e estilo e code smells
+      - name: Verificar code smells
         run: |
           cd ./backend/mysite
           source .venv/bin/activate
           ruff check .
+          ruff format --check .
+
+      - name: Veririficar formatacao
+        run: |
+          cd ./backend/mysite
+          source .venv/bin/activate
           ruff format --check .
