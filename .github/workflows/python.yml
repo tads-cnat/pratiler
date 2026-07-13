@@ -69,5 +69,5 @@ jobs:
         run: |
           cd ./backend/mysite
           source .venv/bin/activate
-          ruff format --check .
           ruff check .
+          ruff format --check .
