@@ -1,13 +1,16 @@
 services:
   frontend:
-    image: pratiler/frontend
+    # image: pratiler/frontend
     container_name: pratiler_frontend
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+#        - VITE_API_URL=/api
+        - VITE_API_URL=${VITE_API_URL}
+        - VITE_GOOGLE_BOOKS_KEY=${VITE_GOOGLE_BOOKS_KEY}
     restart: always
     ports:
-      - '80:5173'
+      - '80:80'
     env_file:
       - .env
-    command: sh -c "npm run dev"
