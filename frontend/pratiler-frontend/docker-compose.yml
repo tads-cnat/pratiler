@@ -1,12 +1,13 @@
 services:
   frontend:
-    # image: pratiler/frontend:2.0.0
-    container_name: pratiler-frontend
+    # image: pratiler/frontend
+    container_name: pratiler_frontend
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        # Isso puxa as variáveis do seu arquivo .env local e injeta no build do Docker
+#        - VITE_API_URL=/api
+        - VITE_API_URL=${VITE_API_URL}
         - VITE_GOOGLE_BOOKS_KEY=${VITE_GOOGLE_BOOKS_KEY}
     restart: always
     ports:
