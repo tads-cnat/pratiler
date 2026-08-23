@@ -24,9 +24,6 @@ RUN pip install --no-cache-dir --upgrade pip \
 # Copia o código da aplicação e o script de entrypoint
 COPY . .
 
-# Dá permissão ao script que roda as migrações no banco
-RUN chmod +x /app/entrypoint.sh
-
 EXPOSE 8000
 
 # Executa o entrypoint primeiro, e depois sobe o Gunicorn
