@@ -71,7 +71,7 @@ export function AuthPage(props) {
 
 AuthPage.propTypes = {
   authenticate: PropTypes.func,
-  fields: PropTypes.object,
+  fields: PropTypes.arrayOf(PropTypes.object),
   imagemFundo: PropTypes.string,
   labelButton: PropTypes.string,
   message: PropTypes.element,

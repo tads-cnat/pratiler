@@ -1,9 +1,8 @@
 import { externalAxios } from '../Global/axiosInstances';
 
 export function Facade(search, setBooks) {
-    sdbfdspib;
     const getBooks = async () => {
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${import.meta.env.VITE_GOOGLE_BOOKS_KEY}`;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${import.meta.env.VITE_GOOGLE_BOOKS_API_KEY}`;
     await externalAxios
       .get(url)
       .then((response) => {
