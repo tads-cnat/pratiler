@@ -1,37 +1,34 @@
-FROM ubuntu:22.04
+# Usa a imagem oficial, enxuta e que já vem com o Python 3.12
+FROM python:3.12-slim
 
-ENV DEBIAN_FRONTEND=noninteractive
+# Evita a criação de arquivos .pyc e força o log direto no terminal (bom para AWS CloudWatch)
 ENV PYTHONUNBUFFERED=1
+ENV DEBIAN_FRONTEND=noninteractive
 
-# 1. Instala suporte a PPA e pacotes do sistema
+# Instala apenas as dependências do sistema operacional necessárias
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    software-properties-common \
     postgresql-client \
-    && add-apt-repository ppa:deadsnakes/ppa -y \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
-       python3.12 \
-       python3.12-venv \
-       python3.12-dev \
-       gcc \
+    gcc \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
-
-# 2. Cria o ambiente virtual e atualiza o PATH
-RUN python3.12 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
 
 WORKDIR /app
 
-# 3. Instala dependências Python (Aproveita o cache do Docker)
+# Em imagens oficiais do Python, não é obrigatório usar venv, 
+# mas vamos instalar as dependências aproveitando o cache do Docker
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
     && pip install --no-cache-dir gunicorn
 
-# 4. Copia a aplicação
+# Copia o código da aplicação e o script de entrypoint
 COPY . .
+
+# Dá permissão ao script que roda as migrações no banco
+RUN chmod +x /app/entrypoint.sh
 
 EXPOSE 8000
 
-# 5. Roda o servidor WSGI de produção
+# Executa o entrypoint primeiro, e depois sobe o Gunicorn
+ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "mysite.wsgi:application"]
