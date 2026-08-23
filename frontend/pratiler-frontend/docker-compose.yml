@@ -8,7 +8,7 @@ services:
       args:
 #        - VITE_API_URL=/api
         - VITE_API_URL=${VITE_API_URL}
-        - VITE_GOOGLE_BOOKS_KEY=${VITE_GOOGLE_BOOKS_KEY}
+        - VITE_GOOGLE_BOOKS_API_KEY=${VITE_GOOGLE_BOOKS_API_KEY}
     restart: always
     ports:
       - '80:80'
