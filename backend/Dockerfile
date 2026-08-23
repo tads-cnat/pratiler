@@ -25,7 +25,3 @@ RUN pip install --no-cache-dir --upgrade pip \
 COPY . .
 
 EXPOSE 8000
-
-# Executa o entrypoint primeiro, e depois sobe o Gunicorn
-ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "mysite.wsgi:application"]
